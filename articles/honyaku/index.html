@@ -12,8 +12,6 @@
 <meta property="og:url" content="https://kyotolab.github.io/articles/honyaku/">
 <meta property="og:site_name" content="京都ラボ">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <style>
   img{max-width:100%}
@@ -25,12 +23,13 @@
   :root{
     color-scheme:light;
     --bg:#FFFFFF; --bg2:#F5F5F7; --bg3:#FAFAFB; --fg:#1D1D1F; --fg2:#6E6E73; --fg3:#86868B;
-    --line:#D2D2D7; --line2:#EBEBF0;
-    --accent:#0E6B76; --accent-soft:#EAF6F7; --accent-brd:#B9DDE1;
+    --line:rgba(0,0,0,.12); --line2:rgba(0,0,0,.08);
+    --accent:#0066CC; --accent-soft:#EAF2FD; --accent-brd:#B9D6F5;
+    --label:#A33A2C;
     --warn:#8A5A14; --warn-soft:#FBF4E5; --warn-brd:#E7D3AC;
     --stop:#8E2F22; --stop-soft:#FBEEEC;
     --ok:#1F6B43; --ok-soft:#EAF5EF;
-    --sys:-apple-system,BlinkMacSystemFont,"SF Pro Display","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;
+    --sys:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
     --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
     --gut:clamp(22px,5vw,44px);
   }
@@ -42,7 +41,7 @@
   a{color:var(--accent)}
   :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
   .wrap{max-width:860px; margin:0 auto; padding-inline:var(--gut)}
-  .eyebrow{font-size:14px; font-weight:600; color:var(--accent); margin-bottom:12px}
+  .eyebrow{font-size:14px; font-weight:600; color:var(--label); margin-bottom:12px}
   .lead{font-size:clamp(16px,1.9vw,19px); color:var(--fg2); line-height:1.62}
   .lead strong, p strong{color:var(--fg); font-weight:600}
   .sub{margin-top:16px; max-width:38em}
@@ -69,12 +68,12 @@
   /* 核心 */
   .core{background:var(--fg); color:#F5F5F7}
   .core h2{color:#FFF}
-  .core .eyebrow{color:#7FD3DC}
+  .core .eyebrow{color:#FF6F5E}
   .core p{color:#B6BCC0; max-width:40em}
   .core p + p{margin-top:14px}
   .core p strong{color:#FFF}
   .core .big{font-size:clamp(19px,2.6vw,26px); color:#FFF; font-weight:600; letter-spacing:-.018em;
-             line-height:1.5; margin-top:24px; padding-left:18px; border-left:3px solid #5FD1DC; max-width:30em}
+             line-height:1.5; margin-top:24px; padding-left:18px; border-left:3px solid var(--accent); max-width:30em}
 
   /* 3つの問い */
   .q{margin-top:28px; display:grid; gap:1px; background:var(--line2); border:1px solid var(--line2); border-radius:14px; overflow:hidden}

@@ -17,9 +17,6 @@
 <meta property="og:locale" content="en_GB">
 <meta property="og:locale:alternate" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap">
 <style>
   /* 配信側の雛形が持っていたベースライン */
   img{max-width:100%}
@@ -35,20 +32,20 @@
 <style>
   :root{
     color-scheme: light;
-    /* 紙。純白をやめ、わずかに温かいニュートラルへ */
-    --bg:#F7F6F3; --bg2:#EFEDE8; --fg:#14171A; --fg2:#5D666D; --fg3:#8C949A;
-    --line:#D8D5CE; --line2:#E7E4DD;
+    /* 白を基調に、面の切り替えはソフトグレーで */
+    --bg:#FFFFFF; --bg2:#F5F5F7; --fg:#1D1D1F; --fg2:#6E6E73; --fg3:#86868B;
+    --line:rgba(0,0,0,.12); --line2:rgba(0,0,0,.08);
 
-    /* 錆浅葱＝製品の色。触れるもの・動くものに使う */
-    --accent:#0E6B76; --accent-soft:#E7F2F3; --accent-brd:#B3D7DB;
-    /* 金＝文字組の色。見出しの前の罫、ラベル、通し番号にだけ使う */
-    --gold:#8A6D33; --gold2:#B49559;
+    /* 青＝製品の色。触れるもの・動くものに使う */
+    --accent:#0066CC; --accent-soft:#EAF2FD; --accent-brd:#B9D6F5;
+    /* 朱＝文字組の色。ラベル、通し番号にだけ使う */
+    --gold:#A33A2C; --gold2:#C25A48;
 
     /* artwork tiles — deliberately dark, on paper */
-    --tile:#0A0C0D; --tile-fg:#EFEDE8; --tile-fg2:#98A1A7; --tile-line:#242A2D; --tile-accent:#5FD1DC;
+    --tile:#1D1D1F; --tile-fg:#F5F5F7; --tile-fg2:#98989D; --tile-line:#3A3A3C; --tile-accent:#5AC8FA;
 
-    --sys:-apple-system,BlinkMacSystemFont,"SF Pro Display","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;
-    --disp:"Cormorant Garamond","Hiragino Mincho ProN","Hiragino Mincho Pro","YuMincho","Yu Mincho","Noto Serif JP",serif;
+    --sys:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --disp:var(--sys);
     --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
     --gut:clamp(22px,5vw,40px);
     --max:1040px;
@@ -57,8 +54,8 @@
   *{box-sizing:border-box}
   body{background:var(--bg); color:var(--fg); font-family:var(--sys);
        font-size:17px; line-height:1.55; -webkit-font-smoothing:antialiased; letter-spacing:.004em}
-  h1,h2,h3{margin:0; font-family:var(--disp); font-weight:500; letter-spacing:.006em;
-           line-height:1.22; text-wrap:balance}
+  h1,h2,h3{margin:0; font-family:var(--disp); font-weight:700; letter-spacing:-.03em;
+           line-height:1.1; text-wrap:balance; font-feature-settings:"palt" 1}
   h4{margin:0; font-weight:600; letter-spacing:-.012em; line-height:1.2; text-wrap:balance}
   p{margin:0}
   a{color:inherit; text-decoration:none}
@@ -68,10 +65,8 @@
   .wrap{max-width:var(--max); margin:0 auto; padding-inline:var(--gut)}
   .wide{max-width:1240px; margin:0 auto; padding-inline:var(--gut)}
 
-  .eyebrow{font-size:10.5px; font-weight:500; color:var(--gold); margin-bottom:18px;
-           letter-spacing:.26em; text-transform:uppercase; font-feature-settings:"palt" 0}
-  .eyebrow::before{content:""; display:inline-block; width:26px; height:1px;
-                   background:var(--gold); vertical-align:.34em; margin-right:12px}
+  .eyebrow{font-size:11px; font-weight:650; color:var(--gold); margin-bottom:18px;
+           letter-spacing:.12em; text-transform:uppercase; font-feature-settings:"palt" 0}
   .lead{font-size:clamp(17px,2vw,21px); line-height:1.55; color:var(--fg2); letter-spacing:.006em}
   .lead strong{color:var(--fg); font-weight:600}
   .link{color:var(--accent); font-size:17px; display:inline-flex; align-items:center; gap:5px}
@@ -81,11 +76,11 @@
 
   /* ---------------- nav ---------------- */
   .nav{position:sticky; top:0; z-index:60; height:48px;
-       background:rgba(247,246,243,.82);
+       background:rgba(255,255,255,.82);
        backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
        border-bottom:1px solid var(--line2)}
   .nav .wide{display:flex; align-items:center; justify-content:space-between; height:100%; gap:20px}
-  .nav .logo{font-family:var(--disp); font-size:18px; font-weight:500; letter-spacing:.08em; white-space:nowrap}
+  .nav .logo{font-family:var(--disp); font-size:18px; font-weight:700; letter-spacing:.08em; white-space:nowrap}
   .nav ul{display:flex; gap:clamp(12px,2.4vw,30px); list-style:none; margin:0; padding:0}
   .nav ul a{font-size:12px; color:var(--fg2)}
   .nav ul a:hover{color:var(--fg)}
@@ -95,11 +90,18 @@
   .panel{background:var(--bg); position:relative; overflow:hidden}
 
   /* ---------------- hero ---------------- */
-  .hero{padding-block:clamp(72px,12vw,140px) clamp(58px,9vw,104px); text-align:center;
-        border-bottom:1px solid var(--line2)}
-  #grid{position:absolute; inset:0; width:100%; height:100%; display:block}
+  .hero{padding-block:clamp(72px,12vw,140px) 0; text-align:center; background:var(--bg2)}
   .hero .wrap{position:relative; z-index:2}
-  .hero h1{font-size:clamp(36px,7vw,80px); line-height:1.2; letter-spacing:.01em; font-weight:400}
+  .hero h1{font-size:clamp(38px,7.4vw,92px); line-height:1.02; letter-spacing:-.045em; font-weight:700}
+  .hero-photo{position:relative; overflow:hidden; margin:clamp(48px,7vw,86px) max(18px,4vw) 0;
+              height:clamp(230px,34vw,430px); border-radius:30px 30px 0 0;
+              background:url(../assets/gion-street.jpg) 50% 58%/cover no-repeat}
+  .hero-photo::after{content:""; position:absolute; inset:0;
+                     background:linear-gradient(rgba(10,10,10,.02),rgba(10,10,10,.22))}
+  .hero-place{position:absolute; right:clamp(18px,4vw,42px); bottom:26px; z-index:2;
+              text-align:right; font-family:var(--mono); font-size:9px; line-height:1.7;
+              letter-spacing:.12em; color:rgba(255,255,255,.62)}
+  @media (max-width:640px){ .hero-place{display:none} }
   .hero .sub{margin:clamp(20px,3vw,30px) auto 0; max-width:30em;
              font-size:clamp(17px,2.1vw,23px); line-height:1.5; color:var(--fg2)}
   .cta{margin-top:clamp(28px,4vw,42px); display:flex; gap:14px; justify-content:center; flex-wrap:wrap}
@@ -115,13 +117,13 @@
   .product{padding-block:clamp(72px,11vw,132px); background:var(--bg2); border-top:1px solid var(--line2)}
   .product .wide{display:grid; grid-template-columns:1fr minmax(0,360px); gap:clamp(36px,6vw,80px); align-items:center}
   @media (max-width:900px){ .product .wide{grid-template-columns:1fr; justify-items:center; text-align:center} }
-  .product h2{font-size:clamp(30px,5.2vw,56px); line-height:1.22; letter-spacing:.008em}
+  .product h2{font-size:clamp(30px,5.2vw,56px); line-height:1.08; letter-spacing:-.035em}
   .product .lead{margin-top:22px; max-width:26em}
   .product .link{margin-top:26px; display:inline-flex}
   .spec{margin-top:34px; display:flex; gap:clamp(20px,4vw,44px); flex-wrap:wrap}
   @media (max-width:900px){ .spec{justify-content:center} }
   .spec div b{display:block; font-family:var(--disp); font-size:clamp(28px,3.6vw,38px);
-              font-weight:500; letter-spacing:.01em; line-height:1.2}
+              font-weight:700; letter-spacing:-.03em; line-height:1.15}
   .spec div span{display:block; font-size:12px; color:var(--fg3); margin-top:3px}
 
   .phone{width:min(340px,88vw); border-radius:44px; padding:9px;
@@ -156,13 +158,13 @@
   .issues{padding-block:clamp(70px,10vw,120px)}
   .issue{padding-block:clamp(46px,7vw,84px); border-top:1px solid var(--line2)}
   .issue:first-child{border-top:none; padding-top:0}
-  .issue h2{font-size:clamp(27px,4.4vw,48px); line-height:1.26; letter-spacing:.008em; max-width:17em}
+  .issue h2{font-size:clamp(27px,4.4vw,48px); line-height:1.12; letter-spacing:-.035em; max-width:17em}
   .issue .lead{margin-top:20px; max-width:34em}
   .issue .lead + .lead{margin-top:18px}
   .stat{margin-top:30px; display:inline-flex; align-items:baseline; gap:12px;
         border:1px solid var(--line); border-radius:14px; padding:14px 20px; background:var(--bg2)}
-  .stat b{font-family:var(--disp); font-size:clamp(26px,3.4vw,36px); font-weight:500;
-          letter-spacing:.01em; color:var(--accent)}
+  .stat b{font-family:var(--disp); font-size:clamp(26px,3.4vw,36px); font-weight:700;
+          letter-spacing:-.03em; color:var(--accent)}
   .stat span{font-size:14px; color:var(--fg2)}
 
   /* ---------------- pillars ---------------- */
@@ -226,13 +228,13 @@
   /* ---------------- journal ---------------- */
   .journal{padding-block:clamp(60px,9vw,104px); border-top:1px solid var(--line2)}
   .jhead{display:flex; align-items:baseline; justify-content:space-between; gap:20px; flex-wrap:wrap}
-  .jhead h2{font-size:clamp(27px,4vw,44px); letter-spacing:.008em}
+  .jhead h2{font-size:clamp(27px,4vw,44px); letter-spacing:-.035em}
   .jlist{margin-top:clamp(26px,4vw,40px)}
   .jrow{display:grid; grid-template-columns:112px minmax(0,1fr) auto; gap:clamp(14px,3vw,28px);
         align-items:start; padding:22px 0; border-top:1px solid var(--line2)}
   @media (max-width:640px){ .jrow{grid-template-columns:1fr; gap:7px} }
   .jrow time{font-size:13px; color:var(--fg3); font-family:var(--mono); padding-top:3px}
-  .jrow h3{font-size:20px; letter-spacing:.01em; line-height:1.4}
+  .jrow h3{font-size:20px; letter-spacing:-.02em; line-height:1.35}
   .jrow p{margin-top:7px; font-size:14.5px; color:var(--fg2); line-height:1.6; max-width:52em}
   a.jrow:hover h3{color:var(--accent)}
   .jlangs{display:block; margin-top:9px; font-size:11.5px; color:var(--accent); font-family:var(--mono); letter-spacing:.04em}
@@ -329,7 +331,7 @@
     font-family:var(--disp); font-size:14px; line-height:1; color:var(--fg);
     padding-top:1px;
   }
-  .brand .nm{font-family:var(--disp); font-size:18px; font-weight:500; letter-spacing:.08em}
+  .brand .nm{font-family:var(--disp); font-size:18px; font-weight:700; letter-spacing:.06em}
   .brand:hover .mk{border-color:var(--accent); color:var(--accent)}
   .brand:hover .nm{color:var(--accent)}
 
@@ -356,7 +358,7 @@
   .jcard:hover{border-color:var(--accent-brd); transform:translateY(-2px)}
   .jcard .cat{font-family:var(--mono); font-size:10px; letter-spacing:.16em;
               text-transform:uppercase; color:var(--gold); line-height:1.6}
-  .jcard h3{font-size:20px; letter-spacing:.008em; line-height:1.38}
+  .jcard h3{font-size:20px; letter-spacing:-.02em; line-height:1.35}
   .jcard:hover h3{color:var(--accent)}
   .jcard p{font-size:14px; color:var(--fg2); line-height:1.68; flex:1}
   .jcard .foot{display:flex; align-items:center; justify-content:space-between;
@@ -391,7 +393,6 @@
 
 <main id="top">
   <section class="panel hero">
-    <canvas id="grid" aria-hidden="true"></canvas>
     <div class="wrap">
       <p class="eyebrow">Kyoto Lab ／ From Shimogyo, Kyoto</p>
       <h1>What visitors<br>are not told.</h1>
@@ -401,6 +402,9 @@
         <a class="btn btn-line" href="#tejun">How to use a bathhouse <i>›</i></a>
       </div>
       <p class="hero-note">Kyoto, Japan ／ Field notes · Shop tools · Inbound support</p>
+    </div>
+    <div class="hero-photo" aria-hidden="true">
+      <p class="hero-place">35.0116° N<br>135.7681° E<br><b>KYOTO, JAPAN</b></p>
     </div>
   </section>
 
@@ -678,102 +682,6 @@
 (function(){
   "use strict";
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  /* ---------- 1. hero canvas: 京都の碁盤の目 ---------- */
-  (function(){
-    var cv = document.getElementById("grid");
-    if(!cv || !cv.getContext) return;
-    var ctx = cv.getContext("2d"), W=0, H=0, dpr=1;
-    /* irregular spacing, the way Kyoto's streets actually sit */
-    var VX=[.07,.16,.28,.34,.45,.53,.66,.74,.86,.94];
-    var HY=[.11,.22,.30,.41,.52,.63,.71,.84,.93];
-    var travellers=[];
-
-    function resize(){
-      dpr = Math.min(window.devicePixelRatio||1, 2);
-      W = cv.clientWidth; H = cv.clientHeight;
-      cv.width = Math.max(1, W*dpr); cv.height = Math.max(1, H*dpr);
-      ctx.setTransform(dpr,0,0,dpr,0,0);
-    }
-
-    function seed(){
-      travellers = [];
-      var n = W < 700 ? 5 : 9;
-      for(var i=0;i<n;i++) travellers.push(mk());
-    }
-    function mk(){
-      var vert = Math.random() < .5;
-      return {
-        vert: vert,
-        pos: vert ? VX[(Math.random()*VX.length)|0] : HY[(Math.random()*HY.length)|0],
-        t: Math.random(),
-        sp: .00035 + Math.random()*.0009,
-        len: .10 + Math.random()*.16,
-        dir: Math.random() < .5 ? 1 : -1
-      };
-    }
-
-    function grid(){
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = "rgba(0,0,0,0.070)";
-      ctx.beginPath();
-      VX.forEach(function(f){ var x=Math.round(f*W)+.5; ctx.moveTo(x,0); ctx.lineTo(x,H); });
-      HY.forEach(function(f){ var y=Math.round(f*H)+.5; ctx.moveTo(0,y); ctx.lineTo(W,y); });
-      ctx.stroke();
-      /* 鴨川 — the one line that is not straight */
-      ctx.strokeStyle = "rgba(14,107,118,0.22)";
-      ctx.lineWidth = 2;
-      var rx = .795*W;
-      ctx.beginPath();
-      ctx.moveTo(rx, -10);
-      ctx.bezierCurveTo(rx-14, H*.3, rx+16, H*.55, rx-6, H+10);
-      ctx.stroke();
-    }
-
-    function draw(){
-      ctx.clearRect(0,0,W,H);
-      grid();
-      for(var i=0;i<travellers.length;i++){
-        var t = travellers[i];
-        t.t += t.sp * t.dir;
-        if(t.t > 1.25 || t.t < -.25){ travellers[i] = mk(); continue; }
-        var a = t.t, b = t.t - t.len*t.dir;
-        var g;
-        if(t.vert){
-          var x = Math.round(t.pos*W)+.5;
-          g = ctx.createLinearGradient(x, b*H, x, a*H);
-          g.addColorStop(0,"rgba(14,107,118,0)");
-          g.addColorStop(1,"rgba(14,107,118,0.48)");
-          ctx.strokeStyle = g; ctx.lineWidth = 1.4;
-          ctx.beginPath(); ctx.moveTo(x, b*H); ctx.lineTo(x, a*H); ctx.stroke();
-        }else{
-          var y = Math.round(t.pos*H)+.5;
-          g = ctx.createLinearGradient(b*W, y, a*W, y);
-          g.addColorStop(0,"rgba(14,107,118,0)");
-          g.addColorStop(1,"rgba(14,107,118,0.48)");
-          ctx.strokeStyle = g; ctx.lineWidth = 1.4;
-          ctx.beginPath(); ctx.moveTo(b*W, y); ctx.lineTo(a*W, y); ctx.stroke();
-        }
-      }
-    }
-
-    var running = true, raf = 0;
-    function loop(){ if(!running) return; draw(); raf = requestAnimationFrame(loop); }
-
-    resize(); seed(); draw();
-    if(!reduce){
-      loop();
-      document.addEventListener("visibilitychange", function(){
-        running = !document.hidden;
-        if(running){ raf = requestAnimationFrame(loop); } else { cancelAnimationFrame(raf); }
-      });
-    }
-    var rt;
-    window.addEventListener("resize", function(){
-      clearTimeout(rt);
-      rt = setTimeout(function(){ resize(); seed(); draw(); }, 160);
-    });
-  })();
 
   /* ---------- 2. phone: live language switch ---------- */
   (function(){

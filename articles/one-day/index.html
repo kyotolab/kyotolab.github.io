@@ -12,9 +12,6 @@
 <meta property="og:url" content="https://kyotolab.github.io/articles/one-day/">
 <meta property="og:site_name" content="京都ラボ">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+TC:wght@600;800&family=Noto+Serif+KR:wght@600;800&display=swap">
 <style>
   /* 配信側の雛形が持っていたベースライン。単体で動かすために明示する */
   img{max-width:100%}
@@ -22,42 +19,40 @@
 </style>
 </head>
 <body>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <style>
   :root{
-    --paper:#F1F2EF; --surface:#FAFBF8;
-    --ink:#15222A; --ink-soft:#3C4E57; --muted:#6E8087;
-    --rule:#CBD3D2; --rule-soft:#E1E6E3;
-    --accent:#2E6F79; --accent-ink:#22555D; --accent-soft:#DEEAEA;
+    --paper:#FFFFFF; --surface:#F5F5F7;
+    --ink:#1D1D1F; --ink-soft:#4A4A4E; --muted:#6E6E73;
+    --rule:rgba(0,0,0,.12); --rule-soft:rgba(0,0,0,.08);
+    --accent:#0066CC; --accent-ink:#0052A6; --accent-soft:#EAF2FD;
     --kamo:#8FAEB2;
-    --ochre:#A87A22; --ochre-soft:#F2E9D4;
-    --serif:"Shippori Mincho B1","Noto Serif TC","Noto Serif KR","Hiragino Mincho ProN","Yu Mincho",serif;
-    --sans:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
-    --mono:"IBM Plex Mono",Menlo,monospace;
+    --ochre:#A33A2C; --ochre-soft:#FBEDEA;
+    --sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --serif:var(--sans);
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
     --gut:clamp(20px,4vw,48px);
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --paper:#0F181D; --surface:#16232A;
-      --ink:#E7ECE9; --ink-soft:#B4C3C5; --muted:#84979D;
-      --rule:#2C3C43; --rule-soft:#22323A;
-      --accent:#77BDC4; --accent-ink:#9AD3D8; --accent-soft:#1C3138;
-      --kamo:#517379; --ochre:#D6A94B; --ochre-soft:#2E2718;
+      --paper:#000000; --surface:#1C1C1E;
+      --ink:#F5F5F7; --ink-soft:#C7C7CC; --muted:#98989D;
+      --rule:rgba(255,255,255,.16); --rule-soft:rgba(255,255,255,.1);
+      --accent:#0A84FF; --accent-ink:#5AC8FA; --accent-soft:#12233A;
+      --kamo:#517379; --ochre:#FF6F5E; --ochre-soft:#2B1512;
     }
   }
   :root[data-theme="dark"]{
-    --paper:#0F181D; --surface:#16232A;
-    --ink:#E7ECE9; --ink-soft:#B4C3C5; --muted:#84979D;
-    --rule:#2C3C43; --rule-soft:#22323A;
-    --accent:#77BDC4; --accent-ink:#9AD3D8; --accent-soft:#1C3138;
-    --kamo:#517379; --ochre:#D6A94B; --ochre-soft:#2E2718;
+    --paper:#000000; --surface:#1C1C1E;
+    --ink:#F5F5F7; --ink-soft:#C7C7CC; --muted:#98989D;
+    --rule:rgba(255,255,255,.16); --rule-soft:rgba(255,255,255,.1);
+    --accent:#0A84FF; --accent-ink:#5AC8FA; --accent-soft:#12233A;
+    --kamo:#517379; --ochre:#FF6F5E; --ochre-soft:#2B1512;
   }
 
   *{box-sizing:border-box}
-  body{background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.9; -webkit-font-smoothing:antialiased}
-  h1,h2,h3,h4{margin:0; font-family:var(--serif); font-weight:600; line-height:1.45; text-wrap:balance}
+  body{background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.75; -webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{margin:0; font-family:var(--serif); font-weight:700; letter-spacing:-.035em; line-height:1.16; font-feature-settings:"palt" 1; text-wrap:balance}
   p{margin:0}
   button{font-family:inherit; cursor:pointer; border:none; background:none; color:inherit}
 

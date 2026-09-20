@@ -12,8 +12,6 @@
 <meta property="og:url" content="https://kyotolab.github.io/articles/kamogawa/">
 <meta property="og:site_name" content="京都ラボ">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <style>
   /* 配信側の雛形が持っていたベースライン。単体で動かすために明示する */
@@ -30,22 +28,23 @@
   ───────────────────────────────────────────── */
   :root{
     color-scheme:light dark;
-    --paper:#FCFCFB;      /* わずかに温かい紙。クリームではない */
-    --paper2:#F2F3F1;
-    --ink:#131A1F;        /* 青に寄せた黒（空の色から） */
-    --ink2:#57646C;
-    --ink3:#8A959B;
-    --rule:#DDDFDC;
-    --rule2:#EDEEEB;
-    --accent:#0E6B76;     /* 錆浅葱（HP準拠） */
-    --water:#1E5F8A;      /* 疏水の青。水位線に使う */
-    --panel:#101A20;      /* 暗いパネル（HPのアートパネルと同族） */
-    --panel-ink:#E7ECEE;
-    --panel-ink2:#93A3AB;
-    --panel-accent:#5FD1DC;
+    --paper:#FFFFFF;
+    --paper2:#F5F5F7;
+    --ink:#1D1D1F;
+    --ink2:#6E6E73;
+    --ink3:#86868B;
+    --rule:rgba(0,0,0,.12);
+    --rule2:rgba(0,0,0,.08);
+    --accent:#0066CC;     /* 触れるもの・動くもの（HP準拠） */
+    --label:#A33A2C;      /* 朱。キッカー＝HPの eyebrow と同じ役目 */
+    --water:#3B7EA8;      /* 疏水の青。水位線に使う。accent と混ざらない明度 */
+    --panel:#1D1D1F;
+    --panel-ink:#F5F5F7;
+    --panel-ink2:#98989D;
+    --panel-accent:#5AC8FA;
 
-    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic",system-ui,sans-serif;
-    --min:"Hiragino Mincho ProN","Hiragino Mincho Pro","YuMincho","Yu Mincho","Noto Serif JP",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --min:var(--sans);
     --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 
     --gut:clamp(20px,5vw,40px);
@@ -53,25 +52,26 @@
   }
   @media (prefers-color-scheme:dark){
     :root:not([data-theme="light"]){
-      --paper:#0E1418; --paper2:#161F25;
-      --ink:#E9EDEF; --ink2:#9BA9B1; --ink3:#6B7980;
-      --rule:#26323A; --rule2:#1B242A;
-      --accent:#5FD1DC; --water:#6FB3DE;
-      --panel:#050A0D; --panel-ink:#E9EDEF; --panel-ink2:#8D9DA5; --panel-accent:#5FD1DC;
+      --paper:#000000; --paper2:#1C1C1E;
+      --ink:#F5F5F7; --ink2:#98989D; --ink3:#6E6E73;
+      --rule:rgba(255,255,255,.16); --rule2:rgba(255,255,255,.1);
+      --accent:#0A84FF; --label:#FF6F5E; --water:#6FB3DE;
+      --panel:#1C1C1E; --panel-ink:#F5F5F7; --panel-ink2:#98989D; --panel-accent:#5AC8FA;
     }
   }
   :root[data-theme="dark"]{
-    --paper:#0E1418; --paper2:#161F25;
-    --ink:#E9EDEF; --ink2:#9BA9B1; --ink3:#6B7980;
-    --rule:#26323A; --rule2:#1B242A;
-    --accent:#5FD1DC; --water:#6FB3DE;
-    --panel:#050A0D; --panel-ink:#E9EDEF; --panel-ink2:#8D9DA5; --panel-accent:#5FD1DC;
+    --paper:#000000; --paper2:#1C1C1E;
+    --ink:#F5F5F7; --ink2:#98989D; --ink3:#6E6E73;
+    --rule:rgba(255,255,255,.16); --rule2:rgba(255,255,255,.1);
+    --accent:#0A84FF; --label:#FF6F5E; --water:#6FB3DE;
+    --panel:#1C1C1E; --panel-ink:#F5F5F7; --panel-ink2:#98989D; --panel-accent:#5AC8FA;
   }
 
   *{box-sizing:border-box}
   body{background:var(--paper); color:var(--ink); font-family:var(--min);
-       font-size:17px; line-height:1.95; -webkit-font-smoothing:antialiased}
-  h1,h2,h3,.sans{font-family:var(--sans); font-weight:700; letter-spacing:-.02em; line-height:1.24; margin:0; text-wrap:balance}
+       font-size:17px; line-height:1.75; -webkit-font-smoothing:antialiased}
+  h1,h2,h3,.sans{font-family:var(--sans); font-weight:700; letter-spacing:-.035em; line-height:1.12;
+                 margin:0; text-wrap:balance; font-feature-settings:"palt" 1}
   p{margin:0}
   a{color:var(--accent); text-underline-offset:3px}
   :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:3px}
@@ -81,7 +81,7 @@
 
   /* ── 見出し帯（観測記録の体裁） ───────────── */
   .top{border-bottom:1px solid var(--rule); padding-block:clamp(30px,6vw,58px) 0}
-  .kicker{font-family:var(--mono); font-size:11px; letter-spacing:.16em; color:var(--accent);
+  .kicker{font-family:var(--mono); font-size:11px; letter-spacing:.12em; color:var(--label);
           text-transform:uppercase; display:flex; gap:10px; align-items:center}
   .kicker::after{content:""; flex:1; height:1px; background:var(--rule)}
   h1{font-size:clamp(27px,5.4vw,44px); margin-top:18px; line-height:1.2}

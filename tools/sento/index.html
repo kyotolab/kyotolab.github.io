@@ -12,8 +12,6 @@
 <meta property="og:url" content="https://kyotolab.github.io/tools/sento/">
 <meta property="og:site_name" content="京都ラボ">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <style>
   /* 配信側の雛形が持っていたベースライン。単体で動かすために明示する */
@@ -25,32 +23,32 @@
 <style>
   :root{
     color-scheme:light;
-    --bg:#F1F4F4; --surf:#FFFFFF; --surf2:#F7F9F9;
-    --ink:#0F171B; --ink2:#5C6B72; --ink3:#8B999F;
-    --line:#DBE3E4; --line2:#EBF0F0;
-    --accent:#0E6B76; --accent-soft:#E6F4F5; --accent-brd:#AFDCE1;
+    --bg:#F5F5F7; --surf:#FFFFFF; --surf2:#FAFAFC;
+    --ink:#1D1D1F; --ink2:#6E6E73; --ink3:#86868B;
+    --line:rgba(0,0,0,.12); --line2:rgba(0,0,0,.08);
+    --accent:#0066CC; --accent-soft:#EAF2FD; --accent-brd:#B9D6F5;
     --hot:#B4402F; --hot-soft:#FBEDEA; --hot-brd:#EFC7BF;
     --done:#1F6B43; --done-soft:#E9F5EE;
     --tile:rgba(15,23,27,.035);
-    --sys:-apple-system,BlinkMacSystemFont,"SF Pro Display","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,"Noto Sans TC","Noto Sans KR",sans-serif;
+    --sys:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,"Noto Sans TC","Noto Sans KR",sans-serif;
     --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
   }
   @media (prefers-color-scheme:dark){
     :root:not([data-theme="light"]){
-      --bg:#0A1013; --surf:#131C21; --surf2:#182228;
-      --ink:#E9EEEF; --ink2:#93A3AA; --ink3:#69787F;
-      --line:#243137; --line2:#1B252B;
-      --accent:#5FD1DC; --accent-soft:#0F2A2E; --accent-brd:#215C63;
+      --bg:#000000; --surf:#1C1C1E; --surf2:#2C2C2E;
+      --ink:#F5F5F7; --ink2:#98989D; --ink3:#6E6E73;
+      --line:rgba(255,255,255,.16); --line2:rgba(255,255,255,.1);
+      --accent:#0A84FF; --accent-soft:#12233A; --accent-brd:#2A4A72;
       --hot:#E2705C; --hot-soft:#2B1512; --hot-brd:#63302A;
       --done:#4FB07C; --done-soft:#12271C;
       --tile:rgba(233,238,239,.04);
     }
   }
   :root[data-theme="dark"]{
-    --bg:#0A1013; --surf:#131C21; --surf2:#182228;
-    --ink:#E9EEEF; --ink2:#93A3AA; --ink3:#69787F;
-    --line:#243137; --line2:#1B252B;
-    --accent:#5FD1DC; --accent-soft:#0F2A2E; --accent-brd:#215C63;
+    --bg:#000000; --surf:#1C1C1E; --surf2:#2C2C2E;
+    --ink:#F5F5F7; --ink2:#98989D; --ink3:#6E6E73;
+    --line:rgba(255,255,255,.16); --line2:rgba(255,255,255,.1);
+    --accent:#0A84FF; --accent-soft:#12233A; --accent-brd:#2A4A72;
     --hot:#E2705C; --hot-soft:#2B1512; --hot-brd:#63302A;
     --done:#4FB07C; --done-soft:#12271C;
     --tile:rgba(233,238,239,.04);
