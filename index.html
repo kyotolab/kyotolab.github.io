@@ -177,7 +177,9 @@
   .autumn{padding-block:clamp(72px,11vw,126px); border-top:1px solid var(--line2)}
   .autumn h2{font-size:clamp(30px,5vw,56px); letter-spacing:-.026em; line-height:1.18; max-width:15em}
   .autumn .lead{margin-top:20px; max-width:36em}
-  .ascenes{margin-top:clamp(34px,5vw,56px); display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px}
+  .ascenes{margin-top:clamp(34px,5vw,56px); display:grid; gap:18px;
+           grid-template-columns:repeat(4,minmax(0,1fr))}
+  @media (max-width:1100px){ .ascenes{grid-template-columns:repeat(2,minmax(0,1fr))} }
   @media (max-width:860px){ .ascenes{grid-template-columns:1fr; max-width:420px; margin-inline:auto} }
   .ascene{border-radius:20px; overflow:hidden; background:var(--tile); color:var(--tile-fg);
           box-shadow:0 18px 40px -26px rgba(0,0,0,.45)}
@@ -464,7 +466,7 @@
 
       <div class="ascenes">
         <figure class="ascene">
-          <img class="art" src="assets/chikurin.jpg" srcset="assets/chikurin@700.jpg 700w, assets/chikurin.jpg 1200w" sizes="(max-width:860px) 92vw, 33vw" width="1200" height="896" loading="lazy" decoding="async" alt="嵐山・竹林の道。両側から竹が覆いかぶさる石畳の小道">
+          <img class="art" src="assets/chikurin.jpg" srcset="assets/chikurin@700.jpg 700w, assets/chikurin.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="嵐山・竹林の道。両側から竹が覆いかぶさる石畳の小道">
           <figcaption class="cap">
             <h3>嵐山・竹林の道</h3><span class="ro">ARASHIYAMA</span>
             <p>竹林の道は、朝8時を過ぎると人の流れに押されて、歩くだけの場所になります。7時台なら、同じ道が音のない場所として残っています。</p>
@@ -472,7 +474,7 @@
           </figcaption>
         </figure>
         <figure class="ascene">
-          <img class="art" src="assets/kiyomizu.jpg" srcset="assets/kiyomizu@700.jpg 700w, assets/kiyomizu.jpg 1200w" sizes="(max-width:860px) 92vw, 33vw" width="1200" height="896" loading="lazy" decoding="async" alt="夕暮れの清水寺。紅葉に囲まれた舞台と、その下の懸造りの柱">
+          <img class="art" src="assets/kiyomizu.jpg" srcset="assets/kiyomizu@700.jpg 700w, assets/kiyomizu.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="夕暮れの清水寺。紅葉に囲まれた舞台と、その下の懸造りの柱">
           <figcaption class="cap">
             <h3>清水寺</h3><span class="ro">KIYOMIZU-DERA</span>
             <p>年間を通して朝6時に開きます。京都の主要な寺で、これほど早く開くところは他にありません。舞台に人が10人といない時間帯があります。</p>
@@ -480,11 +482,20 @@
           </figcaption>
         </figure>
         <figure class="ascene">
-          <img class="art" src="assets/fushimi-inari.jpg" srcset="assets/fushimi-inari@700.jpg 700w, assets/fushimi-inari.jpg 1200w" sizes="(max-width:860px) 92vw, 33vw" width="1200" height="896" loading="lazy" decoding="async" alt="伏見稲荷大社の千本鳥居。朱塗りの鳥居が連なる参道">
+          <img class="art" src="assets/fushimi-inari.jpg" srcset="assets/fushimi-inari@700.jpg 700w, assets/fushimi-inari.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="伏見稲荷大社の千本鳥居。朱塗りの鳥居が連なる参道">
           <figcaption class="cap">
             <h3>伏見稲荷大社</h3><span class="ro">FUSHIMI INARI</span>
             <p>24時間いつでも参拝できます。だから千本鳥居は、昼に並ぶのではなく、夜か早朝に歩く場所です。朱色は暗いほうがよく見えます。</p>
             <div class="best"><b>24時間</b><span>千本鳥居に人がいないのは夜と早朝</span></div>
+          </figcaption>
+        </figure>
+
+        <figure class="ascene">
+          <img class="art" src="assets/togetsukyo.jpg" srcset="assets/togetsukyo@700.jpg 700w, assets/togetsukyo.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="渡月橋と、色づいた嵐山。橋の下を桂川が流れる">
+          <figcaption class="cap">
+            <h3>渡月橋</h3><span class="ro">TOGETSUKYO</span>
+            <p>紅葉の時期、橋の上は一方通行の人の列になります。対岸の中之島側から見るほうが、橋も山も一度に入ります。</p>
+            <div class="best"><b>対岸から</b><span>橋は渡るより、眺めるほうが早い</span></div>
           </figcaption>
         </figure>
       </div>
