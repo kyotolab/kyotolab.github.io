@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Gion's Invisible Line</title>
+<meta name="description" content="In Gion, one street allows photographs and the next one fines you.">
+<link rel="canonical" href="https://kyotolab.github.io/articles/gion/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gion&#x27;s Invisible Line">
+<meta property="og:description" content="In Gion, one street allows photographs and the next one fines you.">
+<meta property="og:url" content="https://kyotolab.github.io/articles/gion/">
+<meta property="og:site_name" content="京都ラボ">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Spectral:wght@200;300;400;600&display=swap">
+</head>
+<body>
+<style>
+  /* ── Kyoto Lab / English series ────────────────────────────────
+     Reference taste: The Parkhouse Kyoto Karasuma-Oike.
+     Near-black ground, bronze hairlines, wide-tracked Latin labels,
+     a high-contrast serif that is allowed to be quiet.
+  ──────────────────────────────────────────────────────────────── */
+  :root{
+    color-scheme:light dark;
+    --paper:#F6F5F2; --paper2:#EDEBE6;
+    --ink:#14171A; --ink2:#5D666D; --ink3:#8C949A;
+    --rule:#DBD8D2; --rule2:#E9E7E2;
+    --gold:#8E7134; --gold2:#B49559;
+    --teal:#0E6B76;
+    --panel:#0B0E10; --panel-ink:#EDEBE6; --panel-ink2:#98A1A7; --panel-gold:#C3A468;
+
+    --disp:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+    --body:"Spectral",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+
+    --gut:clamp(22px,5vw,44px);
+    --measure:33em;
+  }
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+    --paper:#0D1013; --paper2:#151A1E;
+    --ink:#E8E6E1; --ink2:#9BA3A9; --ink3:#6D767C;
+    --rule:#242B31; --rule2:#1A2024;
+    --gold:#C3A468; --gold2:#A98D57;
+    --teal:#5FD1DC;
+    --panel:#05080A; --panel-ink:#E8E6E1; --panel-ink2:#8D959B; --panel-gold:#C3A468;
+  }}
+  :root[data-theme="dark"]{
+    --paper:#0D1013; --paper2:#151A1E;
+    --ink:#E8E6E1; --ink2:#9BA3A9; --ink3:#6D767C;
+    --rule:#242B31; --rule2:#1A2024;
+    --gold:#C3A468; --gold2:#A98D57;
+    --teal:#5FD1DC;
+    --panel:#05080A; --panel-ink:#E8E6E1; --panel-ink2:#8D959B; --panel-gold:#C3A468;
+  }
+
+  *{box-sizing:border-box}
+  body{background:var(--paper); color:var(--ink); font-family:var(--body);
+       font-size:17.5px; font-weight:300; line-height:1.85; -webkit-font-smoothing:antialiased}
+  p{margin:0}
+  a{color:var(--gold); text-underline-offset:3px; text-decoration-thickness:.5px}
+  :focus-visible{outline:1.5px solid var(--gold); outline-offset:4px}
+  ::selection{background:var(--gold); color:var(--paper)}
+
+  .col{max-width:var(--measure); margin-inline:auto; padding-inline:var(--gut)}
+  .wide{max-width:940px; margin-inline:auto; padding-inline:var(--gut)}
+  .col > * + *{margin-top:1.35em}
+
+  /* ── wide-tracked latin label, the Parkhouse tell ── */
+  .eyebrow{font-family:var(--sans); font-size:10px; font-weight:500; letter-spacing:.26em;
+           text-transform:uppercase; color:var(--gold); display:block}
+
+  /* ── masthead ───────────────────────────────────── */
+  .top{background:var(--panel); color:var(--panel-ink); padding-block:clamp(54px,11vw,110px) clamp(40px,8vw,74px)}
+  .top .eyebrow{color:var(--panel-gold)}
+  .brand{display:flex; align-items:center; gap:13px; margin-bottom:clamp(40px,9vw,86px)}
+  .brand .mk{font-family:var(--disp); font-size:19px; letter-spacing:.06em; color:var(--panel-ink)}
+  .brand .ln{flex:1; height:1px; background:linear-gradient(90deg,var(--panel-gold),transparent)}
+  .brand .sr{font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; color:var(--panel-ink2)}
+  h1{font-family:var(--disp); font-weight:400; font-size:clamp(35px,7.2vw,66px); line-height:1.12;
+     letter-spacing:-.005em; margin:.5em 0 0; text-wrap:balance; color:var(--panel-ink)}
+  .stand{font-size:16px; color:var(--panel-ink2); margin-top:1.5em; max-width:30em; font-weight:200}
+  .meta{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; color:var(--panel-ink2);
+        margin-top:clamp(34px,6vw,54px); padding-top:16px; border-top:1px solid #22282C;
+        display:flex; flex-wrap:wrap; gap:6px 22px}
+
+  /* ── the device: expectation vs. what is actually there ── */
+  .frame{margin:clamp(38px,7vw,64px) auto 0; display:grid; gap:1px; background:var(--rule);
+         border:1px solid var(--rule); border-radius:2px; overflow:hidden}
+  @media(min-width:620px){ .frame{grid-template-columns:1fr 1fr} }
+  .frame > div{background:var(--paper); padding:clamp(20px,3.4vw,28px)}
+  .frame .t{font-family:var(--sans); font-size:9.5px; font-weight:600; letter-spacing:.2em;
+            text-transform:uppercase; color:var(--ink3); display:block; margin-bottom:11px}
+  .frame .v{font-family:var(--disp); font-size:clamp(19px,2.7vw,23px); line-height:1.32; font-weight:400}
+  .frame .real{background:var(--paper2)}
+  .frame .real .t{color:var(--gold)}
+
+  /* ── section rule ── */
+  .sec{margin-top:clamp(46px,8vw,80px)}
+  .sec .eyebrow{margin-bottom:14px}
+  .sec .eyebrow::before{content:""; display:inline-block; width:26px; height:1px;
+                        background:var(--gold); vertical-align:.32em; margin-right:11px}
+  h2{font-family:var(--disp); font-weight:500; font-size:clamp(25px,4.2vw,34px);
+     line-height:1.24; margin:0; text-wrap:balance}
+
+  em{font-style:italic; color:var(--ink)}
+  strong{font-weight:600; color:var(--ink)}
+
+  /* ── plate ── */
+  .plate{margin:clamp(38px,7vw,64px) 0 0}
+  .plate img{display:block; width:100%; height:auto}
+  .plate figcaption{font-family:var(--mono); font-size:10.5px; line-height:1.8; color:var(--ink3);
+                    margin-top:12px; padding-left:13px; border-left:1px solid var(--gold)}
+
+  /* ── dark panel: the history paragraph ── */
+  .panel{background:var(--panel); color:var(--panel-ink); margin-top:clamp(46px,8vw,80px);
+         padding-block:clamp(40px,7vw,66px)}
+  .panel .eyebrow{color:var(--panel-gold)}
+  .panel h2{color:var(--panel-ink)}
+  .panel strong{color:var(--panel-ink)}
+  .panel .yr{font-family:var(--mono); font-size:11px; letter-spacing:.14em; color:var(--panel-gold);
+             display:block; margin-top:8px}
+
+  /* ── practical footer notes ── */
+  .notes{margin-top:clamp(46px,8vw,80px); border-top:1px solid var(--rule); padding-top:clamp(26px,5vw,38px)}
+  .notes dl{margin:18px 0 0; display:grid; gap:0}
+  .notes dt{font-family:var(--sans); font-size:10px; font-weight:600; letter-spacing:.18em;
+            text-transform:uppercase; color:var(--gold); padding-top:15px; border-top:1px solid var(--rule2)}
+  .notes dd{margin:5px 0 15px; font-size:15.5px; color:var(--ink2)}
+  .notes dl > dt:first-child{border-top:0; padding-top:0}
+
+  /* ── series footer ── */
+  .end{margin-top:clamp(52px,9vw,88px); border-top:1px solid var(--rule);
+       padding-block:clamp(30px,5vw,44px) clamp(52px,9vw,84px)}
+  .end .eyebrow{margin-bottom:18px}
+  .end ol{list-style:none; margin:0; padding:0; display:grid; gap:1px; background:var(--rule2)}
+  .end li{background:var(--paper); display:flex; gap:16px; align-items:baseline; padding:13px 2px}
+  .end .n{font-family:var(--mono); font-size:10.5px; color:var(--ink3); flex:none; width:2.2em}
+  .end .ttl{font-family:var(--disp); font-size:19px; line-height:1.3}
+  .end a{text-decoration:none; color:var(--ink)}
+  .end a:hover{color:var(--gold)}
+  .end .self{color:var(--gold)}
+  .sign{font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; color:var(--ink3); margin-top:30px}
+</style>
+
+<div class="top">
+  <div class="wide">
+    <div class="brand"><span class="mk">Kyoto Lab</span><span class="ln"></span><span class="sr">03 / 05</span></div>
+    <span class="eyebrow">What You're Actually Looking At</span>
+    <h1>In Gion,<br>the Photo You Want<br>May Be Illegal</h1>
+    <p class="stand">There is a ¥10,000 fine for photography on some streets in Gion and none at all on others. Nothing on the ground tells you which street you are standing on.</p>
+    <p class="meta"><span>Gion · Higashiyama-ku</span><span>Kyoto</span><span>Kyoto Lab field note</span></p>
+  </div>
+</div>
+
+<div class="wide">
+  <div class="frame">
+    <div><span class="t">What visitors assume</span><span class="v">A preserved historic quarter, open to walk through and photograph.</span></div>
+    <div class="real"><span class="t">What is actually there</span><span class="v">A working district of private streets, private houses, and people going to work — with one public road running through the middle.</span></div>
+  </div>
+</div>
+
+<div class="col">
+  <p>Since April 2024, the residents' and businesses' association in Gion has prohibited photography in the private alleys around Hanamikoji street. The stated penalty is ¥10,000.</p>
+
+  <p>Hanamikoji itself — the wide, famous lane with the wooden facades — is a public road, and cannot be closed to photography in the same way.</p>
+
+  <p>So the rule is: <strong>on this street, photographs are fine. Turn down that gap between two buildings, and they are not.</strong></p>
+
+  <p>Now stand there and try to tell which is which.</p>
+</div>
+
+<div class="sec col">
+  <span class="eyebrow">The real problem</span>
+  <h2>A rule you cannot see is not a rule you can follow</h2>
+
+  <p>The alleys of Gion do not look like private property to a visitor. They have no gates. They are paved like the main street. They are, frankly, more beautiful than the main street, which is exactly why people walk into them.</p>
+
+  <p>In Japan the boundary is understood without a sign. The width of the lane, the way the stone changes, the lanterns belonging to specific houses — locals read all of it instantly and never think about it.</p>
+
+  <p>A visitor reads none of it. They are not being disrespectful. They are being unable to see something that was never made visible.</p>
+
+  <p>This is the pattern behind almost every friction between Kyoto and its visitors, and it is worth stating plainly, because it changes what you do about it:</p>
+
+  <p><strong>The rules are not hidden by intent. They were simply never written down, because for four hundred years everyone already knew them.</strong></p>
+
+  <p>Translating a sign does not fix this. There is no sign to translate.</p>
+</div>
+
+<div class="panel">
+  <div class="col">
+    <span class="eyebrow">What a hanamachi is</span>
+    <h2>Not performers. Commuters.</h2>
+    <p>Kyoto has five <em>hanamachi</em> — districts where geiko and their apprentices, maiko, live, train, and work. Gion Kobu is the largest. The others are Gion Higashi, Miyagawa-cho, Pontocho and Kamishichiken.</p>
+    <p>Kyoto uses the word <strong>geiko</strong>, not "geisha." They are artists under long professional training — dance, shamisen, song, conversation — and they work in the teahouses of the district in the evening.</p>
+    <p>The woman in the kimono crossing the street at 5:40pm is not part of an attraction. <strong>She is late for work,</strong> in shoes that make running impossible, and a group of strangers has just formed a wall in front of her with phones up.</p>
+    <p>That is the behaviour the rule exists to stop. It escalated to people touching sleeves and blocking doorways, which is why a fine now exists at all.</p>
+    <p>Most people in kimono in Gion during the day, incidentally, are visitors in rental kimono. The photograph you think you are taking is usually of another tourist.</p>
+  </div>
+</div>
+
+<div class="sec col">
+  <span class="eyebrow">Instead</span>
+  <h2>Three ways to actually meet this district</h2>
+
+  <p><strong>Go to the theatre.</strong> Every April, Gion Kobu stages the <em>Miyako Odori</em>, a dance performance run several times a day for the month, at the district's own theatre. It is a public performance, tickets are sold, photography rules are stated, and you see the art rather than chasing it down a lane. Other hanamachi hold their own seasonal dances.</p>
+
+  <p><strong>Walk Shirakawa instead of Hanamikoji.</strong> A few minutes north, the Shirakawa canal runs past willow trees and old wooden houses. Same architecture, small stone bridges, a fraction of the crowd, and no ambiguity about where you may stand.</p>
+
+  <p><strong>Come at the wrong hour.</strong> Gion at 7am is a normal neighbourhood: deliveries, cleaning, cats. The light is better and nobody is being photographed at work.</p>
+</div>
+
+<div class="sec col">
+  <span class="eyebrow">The geography, briefly</span>
+  <h2>Where Gion actually is</h2>
+
+  <p>Gion runs along Shijo street, with Yasaka Shrine closing the eastern end and the Kamo River at the western end. Yasaka Shrine is open, free, and busy at night — it is the one part of the area designed for crowds.</p>
+
+  <p>Between them, the blocks north and south of Shijo are ordinary streets where people live. That is the whole distinction, and once you hold it, the district stops being confusing.</p>
+</div>
+
+<div class="col notes">
+  <span class="eyebrow">Notes</span>
+  <dl>
+    <dt>The fine</dt><dd>Set by the local association for private lanes near Hanamikoji, in force since April 2024. Hanamikoji itself is a public road and is treated differently. Signage exists but is easy to walk past.</dd>
+    <dt>Asking for a photo</dt><dd>If a geiko or maiko is walking, she is working. If you are a guest at a teahouse or a booked event, photography is arranged for you. There is no third case.</dd>
+    <dt>Yasaka Shrine</dt><dd>At the eastern end of Shijo, open at night, no admission. The reasonable place to spend evening time in this area.</dd>
+    <dt>Check before you go</dt><dd>Miyako Odori dates and ticketing are published each year by Gion Kobu. Confirm rather than assuming April availability.</dd>
+  </dl>
+</div>
+
+<div class="col end">
+  <span class="eyebrow">What You're Actually Looking At — five places</span>
+    <ol>
+      <li><span class="n">01</span><a class="ttl" href="../kinkakuji/">The Golden Pavilion is younger than your grandmother</a></li>
+      <li><span class="n">02</span><a class="ttl" href="../ginkakuji/">The Silver Pavilion has no silver. It has something better.</a></li>
+      <li><span class="n">03</span><span class="ttl self">In Gion, the photo you want may be illegal</span></li>
+      <li><span class="n">04</span><a class="ttl" href="../nishiki/">Nishiki Market would like you to stand still</a></li>
+      <li><span class="n">05</span><a class="ttl" href="../gosho/">The Emperor's palace is free, unbooked, and nearly empty</a></li>
+    </ol>
+  <p class="sign">KYOTO LAB · field notes on what visitors are not told</p>
+</div>
+
+
+</body>
+</html>

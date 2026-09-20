@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>手順 — 銭湯</title>
+<meta name="description" content="銭湯の入り方を、言葉がなくても分かる順番で並べた案内。">
+<link rel="canonical" href="https://kyotolab.github.io/tools/sento/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手順 — 銭湯">
+<meta property="og:description" content="銭湯の入り方を、言葉がなくても分かる順番で並べた案内。">
+<meta property="og:url" content="https://kyotolab.github.io/tools/sento/">
+<meta property="og:site_name" content="京都ラボ">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+</head>
+<body>
+<style>
+  :root{
+    color-scheme:light;
+    --bg:#F1F4F4; --surf:#FFFFFF; --surf2:#F7F9F9;
+    --ink:#0F171B; --ink2:#5C6B72; --ink3:#8B999F;
+    --line:#DBE3E4; --line2:#EBF0F0;
+    --accent:#0E6B76; --accent-soft:#E6F4F5; --accent-brd:#AFDCE1;
+    --hot:#B4402F; --hot-soft:#FBEDEA; --hot-brd:#EFC7BF;
+    --done:#1F6B43; --done-soft:#E9F5EE;
+    --tile:rgba(15,23,27,.035);
+    --sys:-apple-system,BlinkMacSystemFont,"SF Pro Display","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,"Noto Sans TC","Noto Sans KR",sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0A1013; --surf:#131C21; --surf2:#182228;
+      --ink:#E9EEEF; --ink2:#93A3AA; --ink3:#69787F;
+      --line:#243137; --line2:#1B252B;
+      --accent:#5FD1DC; --accent-soft:#0F2A2E; --accent-brd:#215C63;
+      --hot:#E2705C; --hot-soft:#2B1512; --hot-brd:#63302A;
+      --done:#4FB07C; --done-soft:#12271C;
+      --tile:rgba(233,238,239,.04);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0A1013; --surf:#131C21; --surf2:#182228;
+    --ink:#E9EEEF; --ink2:#93A3AA; --ink3:#69787F;
+    --line:#243137; --line2:#1B252B;
+    --accent:#5FD1DC; --accent-soft:#0F2A2E; --accent-brd:#215C63;
+    --hot:#E2705C; --hot-soft:#2B1512; --hot-brd:#63302A;
+    --done:#4FB07C; --done-soft:#12271C;
+    --tile:rgba(233,238,239,.04);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--bg); color:var(--ink); font-family:var(--sys);
+    font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+    background-image:
+      repeating-linear-gradient(0deg,var(--tile) 0 1px,transparent 1px 44px),
+      repeating-linear-gradient(90deg,var(--tile) 0 1px,transparent 1px 44px);
+  }
+  h1,h2,h3{margin:0; font-weight:700; letter-spacing:-.02em; line-height:1.2; text-wrap:balance}
+  p{margin:0}
+  button{font:inherit; color:inherit; cursor:pointer}
+  :focus-visible{outline:2.5px solid var(--accent); outline-offset:2px; border-radius:6px}
+
+  .app{max-width:560px; margin:0 auto; padding:0 14px 44px}
+
+  /* ── 言語バー（最重要・常時見える） ───────── */
+  .bar{position:sticky; top:0; z-index:30; padding-top:12px; background:linear-gradient(var(--bg) 74%,transparent)}
+  .langs{display:grid; grid-template-columns:repeat(4,1fr); gap:5px;
+         background:var(--surf); border:1px solid var(--line); border-radius:13px; padding:5px}
+  .langs button{border:none; background:transparent; border-radius:9px; padding:11px 3px;
+                font-size:14px; font-weight:600; color:var(--ink2); letter-spacing:-.01em;
+                transition:background .12s,color .12s}
+  .langs button[aria-pressed="true"]{background:var(--accent); color:#fff}
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .langs button[aria-pressed="true"]{color:#08191C} }
+  :root[data-theme="dark"] .langs button[aria-pressed="true"]{color:#08191C}
+
+  .prog{margin-top:9px; display:flex; align-items:center; gap:10px}
+  .track{flex:1; height:6px; background:var(--line); border-radius:99px; overflow:hidden}
+  .fill{height:100%; width:0; background:var(--accent); border-radius:99px; transition:width .28s ease}
+  .pnum{font-family:var(--mono); font-size:11.5px; color:var(--ink3); letter-spacing:.04em;
+        font-variant-numeric:tabular-nums; white-space:nowrap}
+
+  /* ── ヘッダ ─────────────────────────────── */
+  header{padding:22px 4px 4px}
+  .eyebrow{font-family:var(--mono); font-size:10.5px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase}
+  header h1{font-size:clamp(27px,7vw,36px); margin-top:9px}
+  header .sub{margin-top:9px; font-size:15.5px; color:var(--ink2); line-height:1.62}
+
+  /* ── 手順カード ─────────────────────────── */
+  .steps{margin-top:18px; display:grid; gap:9px}
+  .step{
+    display:grid; grid-template-columns:46px minmax(0,1fr) 26px; gap:13px; align-items:start;
+    background:var(--surf); border:1px solid var(--line); border-radius:15px;
+    padding:15px 14px; text-align:left; width:100%;
+    transition:border-color .14s, background .14s, opacity .14s;
+  }
+  .step:hover{border-color:var(--accent-brd)}
+  .num{width:46px; height:46px; border-radius:11px; background:var(--surf2); border:1px solid var(--line2);
+       display:grid; place-items:center; position:relative}
+  .num b{position:absolute; top:2px; left:6px; font-family:var(--mono); font-size:10px;
+         color:var(--ink3); font-variant-numeric:tabular-nums}
+  .num svg{width:23px; height:23px; stroke:var(--accent); fill:none;
+           stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; margin-top:5px}
+  .step .t{display:block; font-weight:700; letter-spacing:-.015em; font-size:17px; letter-spacing:-.015em; line-height:1.35}
+  .step .d{display:block; margin-top:5px; font-size:14px; color:var(--ink2); line-height:1.65}
+  .step .w{display:block; margin-top:9px; font-size:13.5px; color:var(--hot); background:var(--hot-soft);
+           border:1px solid var(--hot-brd); border-radius:9px; padding:7px 11px; line-height:1.55; font-weight:600}
+  .chk{width:26px; height:26px; border-radius:50%; border:2px solid var(--line);
+       display:grid; place-items:center; margin-top:9px}
+  .chk svg{width:14px; height:14px; stroke:#fff; fill:none; stroke-width:2.6;
+           stroke-linecap:round; stroke-linejoin:round; opacity:0; transition:opacity .12s}
+  .step[aria-pressed="true"]{background:var(--done-soft); border-color:transparent; opacity:.62}
+  .step[aria-pressed="true"] .chk{background:var(--done); border-color:var(--done)}
+  .step[aria-pressed="true"] .chk svg{opacity:1}
+  .step[aria-pressed="true"] .num{background:transparent; border-color:transparent}
+  .step[aria-pressed="true"] .t{text-decoration:line-through; text-decoration-thickness:1px; text-underline-offset:2px}
+
+  /* ── 完了 ───────────────────────────────── */
+  .fin{margin-top:12px; background:var(--accent); border-radius:15px; padding:19px 20px; display:none}
+  .fin.on{display:block}
+  .fin p{color:#fff; font-size:16.5px; font-weight:600; line-height:1.55}
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .fin p{color:#08191C} }
+  :root[data-theme="dark"] .fin p{color:#08191C}
+
+  /* ── 絶対のルール ───────────────────────── */
+  .must{margin-top:26px; background:var(--surf); border:1.5px solid var(--hot-brd); border-radius:15px; overflow:hidden}
+  .must > h2{font-size:14px; letter-spacing:.01em; color:var(--hot); background:var(--hot-soft);
+             padding:12px 16px; border-bottom:1px solid var(--hot-brd)}
+  .must ul{margin:0; padding:6px 16px 14px; list-style:none; display:grid}
+  .must li{display:grid; grid-template-columns:19px minmax(0,1fr); gap:11px; align-items:start;
+           padding:10px 0; border-bottom:1px solid var(--line2); font-size:15px; line-height:1.55}
+  .must li:last-child{border-bottom:none}
+  .must li::before{content:"×"; color:var(--hot); font-weight:700; font-size:17px; line-height:1.35}
+
+  .ask{margin-top:12px; background:var(--accent-soft); border:1px solid var(--accent-brd);
+       border-radius:15px; padding:15px 17px}
+  .ask h2{font-size:13px; color:var(--accent); letter-spacing:.01em}
+  .ask p{margin-top:7px; font-size:14.5px; color:var(--ink2); line-height:1.65}
+
+  .tools{margin-top:16px; display:flex; justify-content:center}
+  .reset{background:transparent; border:1px solid var(--line); border-radius:99px;
+         padding:9px 20px; font-size:13.5px; color:var(--ink2)}
+  .reset:hover{border-color:var(--accent-brd); color:var(--accent)}
+
+  /* ── 店主向け ───────────────────────────── */
+  details{margin-top:28px; background:var(--surf); border:1px solid var(--line); border-radius:15px}
+  summary{padding:15px 17px; font-size:14.5px; font-weight:600; cursor:pointer; list-style:none;
+          display:flex; justify-content:space-between; align-items:center; gap:12px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"＋"; color:var(--accent); font-size:16px; flex:none}
+  details[open] summary::after{content:"−"}
+  .inner{padding:2px 17px 18px; border-top:1px solid var(--line2); margin-top:2px}
+  .inner p{font-size:14px; color:var(--ink2); line-height:1.72; margin-top:12px}
+  .inner ol{margin:13px 0 0; padding:0; list-style:none; display:grid; gap:10px; counter-reset:s}
+  .inner ol li{counter-increment:s; display:grid; grid-template-columns:22px minmax(0,1fr); gap:11px;
+               font-size:14px; line-height:1.65; color:var(--ink2)}
+  .inner ol li::before{content:counter(s); font-family:var(--mono); font-size:11px; color:var(--accent);
+                       background:var(--accent-soft); border-radius:6px; width:22px; height:22px;
+                       display:grid; place-items:center; margin-top:2px}
+  .inner ol li b{color:var(--ink); font-weight:600}
+
+  footer{margin-top:24px; text-align:center}
+  footer p{font-family:var(--mono); font-size:10.5px; color:var(--ink3); letter-spacing:.08em; line-height:2}
+
+  @media (prefers-reduced-motion:reduce){ *{transition:none !important} }
+</style>
+
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;overflow:hidden">
+  <symbol id="g1" viewBox="0 0 24 24"><path d="M3 16h6l3 2h7a2 2 0 0 1 2 2v1H3z"/><path d="M6 16v-3"/></symbol>
+  <symbol id="g2" viewBox="0 0 24 24"><circle cx="9" cy="12" r="4.5"/><circle cx="16" cy="12" r="4.5"/></symbol>
+  <symbol id="g3" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M4.5 6v11"/><path d="M9.5 6v11"/><path d="M14.5 6v11"/><path d="M19.5 6v11"/></symbol>
+  <symbol id="g4" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M12 3v18"/><circle cx="9.2" cy="12" r="1"/><circle cx="14.8" cy="12" r="1"/></symbol>
+  <symbol id="g5" viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M4 10.5h16"/></symbol>
+  <symbol id="g6" viewBox="0 0 24 24"><path d="M6 3v4"/><path d="M3 7h6"/><path d="M4.5 10v1.4M6 10v1.4M7.5 10v1.4"/><rect x="12" y="12.5" width="8.5" height="2.6" rx="1.3"/><path d="M13.8 15.1V20M18.7 15.1V20"/></symbol>
+  <symbol id="g7" viewBox="0 0 24 24"><path d="M12 3.5c2.8 4 4.5 6.3 4.5 8.3a4.5 4.5 0 0 1-9 0c0-2 1.7-4.3 4.5-8.3z"/></symbol>
+  <symbol id="g8" viewBox="0 0 24 24"><path d="M3 12h18v3.5a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z"/><path d="M9 8.5c0-1.2 1.2-1.2 1.2-2.4S9 3.7 9 3.7"/><path d="M14 8.5c0-1.2 1.2-1.2 1.2-2.4S14 3.7 14 3.7"/></symbol>
+  <symbol id="g9" viewBox="0 0 24 24"><circle cx="12" cy="5.5" r="2.6"/><path d="M7.5 21v-7a4.5 4.5 0 0 1 9 0v7"/><path d="M4 13.5h16"/></symbol>
+  <symbol id="ck" viewBox="0 0 24 24"><path d="M4 12.5l5.5 5.5L20 7"/></symbol>
+</svg>
+
+<div class="app">
+  <div class="bar">
+    <div class="langs" role="group" id="langs"></div>
+    <div class="prog">
+      <div class="track"><div class="fill" id="fill"></div></div>
+      <span class="pnum" id="pnum">0 / 9</span>
+    </div>
+  </div>
+
+  <header>
+    <p class="eyebrow" id="eyebrow">SENTO — PUBLIC BATH</p>
+    <h1 id="shop">銭湯のはいりかた</h1>
+    <p class="sub" id="sub">上から順番にやれば大丈夫です。終わったら押して消せます。</p>
+  </header>
+
+  <div class="steps" id="steps"></div>
+  <div class="fin" id="fin"><p id="finTxt"></p></div>
+
+  <div class="must">
+    <h2 id="mustTitle">これだけは</h2>
+    <ul id="musts"></ul>
+  </div>
+
+  <div class="ask">
+    <h2 id="askTitle">店に確認してください</h2>
+    <p id="askTxt"></p>
+  </div>
+
+  <div class="tools"><button class="reset" id="reset">最初から</button></div>
+
+  <details>
+    <summary id="ownerSum">店の方へ — この案内の作り方</summary>
+    <div class="inner">
+      <p id="ownerP">この画面は、店ごとに作ります。作業は最初の一度だけで、あとは何もしなくても動き続けます。毎日ボタンを押す必要はありません。</p>
+      <ol id="ownerSteps"></ol>
+    </div>
+  </details>
+
+  <footer>
+    <p>京都ラボ ／ 手順 プロトタイプ v1<br>これは実在の店舗の案内ではありません。一般的な銭湯の作法にもとづく試作です。</p>
+  </footer>
+</div>
+
+<noscript>
+  <div class="app"><div class="must"><h2>手順（日本語）</h2><ul>
+    <li>靴を脱いで下駄箱へ</li><li>受付で払う</li><li>のれんの色で男女を確認</li>
+    <li>脱衣所で全部脱ぐ（水着は着ない）</li><li>小さいタオルだけ持って浴室へ</li>
+    <li>座って体を洗う</li><li>泡を完全に流す</li><li>湯船に入る（タオルは湯に入れない）</li>
+    <li>体を拭いてから脱衣所へ</li>
+  </ul></div></div>
+</noscript>
+
+<script>
+(function(){
+  "use strict";
+  var D = {
+    ja:{ label:"日本語", eyebrow:"銭湯のはいりかた", shop:"銭湯のはいりかた",
+      sub:"上から順番にやれば大丈夫です。終わったら押して消せます。",
+      fin:"これで大丈夫です。ゆっくりどうぞ。", reset:"最初から",
+      mustTitle:"これだけは", askTitle:"店に確認してください",
+      ask:"入れ墨・タトゥーが入れるかどうかは、店によって違います。入る前に受付でたずねてください。",
+      ownerSum:"店の方へ — この案内の作り方",
+      ownerP:"この画面は、店ごとに作ります。作業は最初の一度だけで、あとは何もしなくても動き続けます。毎日ボタンを押す必要はありません。",
+      owner:["<b>店の手順を話してもらう</b>だけです。文章を書く必要はありません。","こちらで順番に並べ、4言語に翻訳します。","<b>QRコードを1枚お渡しします。</b>入口か脱衣所に貼ってください。","内容を変えたいときだけ、連絡をください。"],
+      steps:[
+        {t:"靴を脱いで下駄箱へ",d:"入口で靴を脱ぎ、下駄箱に入れて鍵を持ちます。"},
+        {t:"受付で払う",d:"番台か券売機で料金を払います。現金だけの店もあります。"},
+        {t:"のれんの色で男女を確認",d:"男湯と女湯は分かれています。青いのれんが男、赤が女のことが多いです。漢字は 男（おとこ）／女（おんな）。",w:"間違えると大きなトラブルになります。必ず確認してください。"},
+        {t:"脱衣所で全部脱ぐ",d:"服はすべて脱いで、ロッカーに入れます。",w:"水着は着ません。裸で入ります。"},
+        {t:"小さいタオルだけ持って浴室へ",d:"大きいタオルは脱衣所に置いていきます。"},
+        {t:"座って体を洗う",d:"洗い場の椅子に座り、シャワーで体を洗います。",w:"湯船に入る前に必ず洗います。"},
+        {t:"泡を完全に流す",d:"石けんとシャンプーを残さず流します。"},
+        {t:"湯船に入る",d:"ここでやっと湯船に入れます。熱いので、ゆっくり入ってください。",w:"タオルは湯に入れません。頭の上か縁に置きます。"},
+        {t:"体を拭いてから脱衣所へ",d:"小さいタオルで体を拭いてから出ます。床を濡らさないためです。"}
+      ],
+      musts:["湯船の中で体や髪を洗わない","タオルを湯に入れない","浴室と脱衣所で写真を撮らない","大きな声で話さない"]
+    },
+    en:{ label:"English", eyebrow:"SENTO — PUBLIC BATH", shop:"How to use a sento",
+      sub:"Just follow the steps in order. Tap a step to check it off.",
+      fin:"That's everything. Enjoy your bath.", reset:"Start over",
+      mustTitle:"Never do these", askTitle:"Please ask the staff",
+      ask:"Tattoo policy is different at every bathhouse. Please ask at the front desk before you go in.",
+      ownerSum:"For shop owners — how this is made",
+      ownerP:"This page is made for each shop. It only takes one setup, and then it keeps working on its own. You never have to press a button each day.",
+      owner:["<b>Just tell us your shop's steps</b> out loud. You don't have to write anything.","We put them in order and translate them into four languages.","<b>You get one QR code.</b> Put it at the entrance or in the changing room.","Contact us only when you want to change something."],
+      steps:[
+        {t:"Take off your shoes",d:"Remove your shoes at the entrance, put them in a shoe locker and keep the key."},
+        {t:"Pay at the front",d:"Pay at the front desk or the ticket machine. Some places take cash only."},
+        {t:"Check the curtain colour",d:"Men's and women's baths are separate. Blue curtain is usually men, red is women. The kanji are 男 (men) and 女 (women).",w:"Going through the wrong one causes a serious problem. Please check."},
+        {t:"Undress completely",d:"Take off all your clothes and put everything in a locker.",w:"No swimsuits. You bathe naked."},
+        {t:"Take only the small towel",d:"Leave the large towel in the changing room."},
+        {t:"Wash sitting down",d:"Sit on a stool at a washing station and wash your whole body with the shower.",w:"You must wash before entering the bath."},
+        {t:"Rinse off all the soap",d:"No soap or shampoo should be left on your body."},
+        {t:"Now get in the bath",d:"Now you can enter. The water is hot, so get in slowly.",w:"Do not put your towel in the water. Rest it on your head or the edge."},
+        {t:"Dry off before going back",d:"Wipe yourself with the small towel before returning, so the floor stays dry."}
+      ],
+      musts:["Do not wash your body or hair in the bath","Do not put your towel in the water","No photos in the bath or changing room","Keep your voice down"]
+    },
+    zh:{ label:"繁體中文", eyebrow:"錢湯 — 公共澡堂", shop:"錢湯的入浴方式",
+      sub:"依照順序進行就可以了。完成後可以點一下打勾。",
+      fin:"這樣就沒問題了。請慢慢享受。", reset:"重新開始",
+      mustTitle:"絕對不可以", askTitle:"請向店家確認",
+      ask:"刺青是否可以入浴，每家店的規定都不一樣。進場前請先向櫃檯確認。",
+      ownerSum:"給店家 — 這份說明的製作方式",
+      ownerP:"這個畫面是為每一家店製作的。只需要最初設定一次，之後就會自動運作。不需要每天按任何按鈕。",
+      owner:["<b>只要口頭告訴我們店裡的流程</b>即可，不需要自己寫文章。","由我們排好順序，並翻譯成四種語言。","<b>提供一張 QR 碼</b>，貼在入口或更衣室即可。","只有想修改內容時才需要聯絡我們。"],
+      steps:[
+        {t:"脫鞋放進鞋櫃",d:"在入口脫鞋，放進鞋櫃並帶走鑰匙。"},
+        {t:"在櫃檯付款",d:"在櫃檯或售票機付費。有些店只收現金。"},
+        {t:"用門簾顏色確認男女",d:"男湯與女湯是分開的。多半藍色門簾為男性，紅色為女性。漢字：男／女。",w:"走錯會造成嚴重問題，請務必確認。"},
+        {t:"在更衣室脫掉全部衣物",d:"衣物全部脫下，放進置物櫃。",w:"不可穿泳衣，是裸體入浴。"},
+        {t:"只帶小毛巾進浴室",d:"大浴巾請留在更衣室。"},
+        {t:"坐著洗身體",d:"坐在洗澡區的矮凳上，用蓮蓬頭把全身洗乾淨。",w:"進浴池前一定要先洗身體。"},
+        {t:"把泡沫完全沖掉",d:"身上不可殘留肥皂或洗髮精。"},
+        {t:"進入浴池",d:"這時才可以進浴池。水很燙，請慢慢進入。",w:"毛巾不可放入水中，請放在頭上或池邊。"},
+        {t:"擦乾身體再回更衣室",d:"用小毛巾把身體擦乾再出去，以免弄濕地板。"}
+      ],
+      musts:["不可在浴池中洗身體或頭髮","不可把毛巾放入池水","浴室與更衣室內禁止拍照","請小聲交談"]
+    },
+    ko:{ label:"한국어", eyebrow:"센토 — 대중목욕탕", shop:"센토 이용 순서",
+      sub:"위에서부터 순서대로 하면 됩니다. 끝난 항목은 눌러서 체크하세요.",
+      fin:"이제 괜찮습니다. 천천히 즐기세요.", reset:"처음부터",
+      mustTitle:"절대 하면 안 되는 것", askTitle:"가게에 확인해 주세요",
+      ask:"문신 입장 가능 여부는 목욕탕마다 다릅니다. 들어가기 전에 카운터에 문의해 주세요.",
+      ownerSum:"업주분께 — 이 안내를 만드는 방법",
+      ownerP:"이 화면은 가게마다 따로 만듭니다. 처음 한 번만 준비하면 이후에는 그대로 계속 작동합니다. 매일 버튼을 누를 필요가 없습니다.",
+      owner:["<b>가게의 순서를 말씀해 주시기만</b> 하면 됩니다. 글을 쓰실 필요는 없습니다.","저희가 순서대로 정리하고 4개 언어로 번역합니다.","<b>QR 코드 한 장을 드립니다.</b> 입구나 탈의실에 붙여 주세요.","내용을 바꾸고 싶을 때만 연락 주시면 됩니다."],
+      steps:[
+        {t:"신발을 벗어 신발장에",d:"입구에서 신발을 벗어 신발장에 넣고 열쇠를 가져갑니다."},
+        {t:"카운터에서 요금 지불",d:"카운터나 자동판매기에서 요금을 냅니다. 현금만 받는 곳도 있습니다."},
+        {t:"노렌 색으로 남녀 확인",d:"남탕과 여탕은 분리되어 있습니다. 보통 파란색이 남성, 빨간색이 여성입니다. 한자는 男(남) / 女(여).",w:"잘못 들어가면 큰 문제가 됩니다. 반드시 확인하세요."},
+        {t:"탈의실에서 옷을 모두 벗기",d:"옷은 전부 벗어 사물함에 넣습니다.",w:"수영복은 입지 않습니다. 알몸으로 들어갑니다."},
+        {t:"작은 수건만 들고 욕실로",d:"큰 수건은 탈의실에 두고 갑니다."},
+        {t:"앉아서 몸을 씻기",d:"샤워 자리의 의자에 앉아 몸 전체를 씻습니다.",w:"욕조에 들어가기 전에 반드시 씻어야 합니다."},
+        {t:"거품을 완전히 헹구기",d:"비누와 샴푸가 남지 않도록 완전히 헹굽니다."},
+        {t:"욕조에 들어가기",d:"이제 욕조에 들어갈 수 있습니다. 물이 뜨거우니 천천히 들어가세요.",w:"수건은 물에 넣지 마세요. 머리 위나 가장자리에 둡니다."},
+        {t:"몸을 닦고 탈의실로",d:"작은 수건으로 몸을 닦고 나갑니다. 바닥이 젖지 않게 하기 위해서입니다."}
+      ],
+      musts:["욕조 안에서 몸이나 머리를 씻지 않기","수건을 물에 넣지 않기","욕실과 탈의실에서 촬영 금지","큰 소리로 대화하지 않기"]
+    }
+  };
+
+  var ORDER = ["ja","en","zh","ko"];
+  var N = 9;
+  var lang = "ja";
+  var done = [];
+
+  function load(){
+    try{
+      var s = localStorage.getItem("tejun.sento");
+      if(s){ var o = JSON.parse(s); if(Array.isArray(o.done)) done = o.done; if(D[o.lang]) lang = o.lang; }
+    }catch(e){}
+    if(done.length !== N) done = new Array(N).fill(false);
+  }
+  function save(){
+    try{ localStorage.setItem("tejun.sento", JSON.stringify({lang:lang, done:done})); }catch(e){}
+  }
+
+  var $ = function(id){ return document.getElementById(id); };
+
+  function buildLangs(){
+    var w = $("langs"); w.innerHTML = "";
+    ORDER.forEach(function(k){
+      var b = document.createElement("button");
+      b.type = "button"; b.textContent = D[k].label;
+      b.setAttribute("aria-pressed", k === lang ? "true" : "false");
+      b.addEventListener("click", function(){ lang = k; save(); render(); });
+      w.appendChild(b);
+    });
+  }
+
+  function render(){
+    var d = D[lang];
+    document.documentElement.lang = (lang === "zh" ? "zh-Hant" : lang);
+    $("eyebrow").textContent = d.eyebrow;
+    $("shop").textContent = d.shop;
+    $("sub").textContent = d.sub;
+    $("finTxt").textContent = d.fin;
+    $("mustTitle").textContent = d.mustTitle;
+    $("askTitle").textContent = d.askTitle;
+    $("askTxt").textContent = d.ask;
+    $("reset").textContent = d.reset;
+    $("ownerSum").textContent = d.ownerSum;
+    $("ownerP").textContent = d.ownerP;
+
+    buildLangs();
+
+    var st = $("steps"); st.innerHTML = "";
+    d.steps.forEach(function(s, i){
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "step";
+      b.setAttribute("aria-pressed", done[i] ? "true" : "false");
+      var warn = s.w ? '<span class="w">' + s.w + '</span>' : '';
+      b.innerHTML =
+        '<span class="num"><b>' + (i+1) + '</b><svg><use href="#g' + (i+1) + '"></use></svg></span>' +
+        '<span><span class="t">' + s.t + '</span><span class="d">' + s.d + '</span>' + warn + '</span>' +
+        '<span class="chk"><svg><use href="#ck"></use></svg></span>';
+      b.addEventListener("click", function(){
+        done[i] = !done[i]; save();
+        b.setAttribute("aria-pressed", done[i] ? "true" : "false");
+        progress();
+      });
+      st.appendChild(b);
+    });
+
+    var ml = $("musts"); ml.innerHTML = "";
+    d.musts.forEach(function(m){
+      var li = document.createElement("li"); li.textContent = m; ml.appendChild(li);
+    });
+
+    var ow = $("ownerSteps"); ow.innerHTML = "";
+    d.owner.forEach(function(o){
+      var li = document.createElement("li"); li.innerHTML = o; ow.appendChild(li);
+    });
+
+    progress();
+  }
+
+  function progress(){
+    var n = done.filter(Boolean).length;
+    $("fill").style.width = (n / N * 100) + "%";
+    $("pnum").textContent = n + " / " + N;
+    $("fin").className = "fin" + (n === N ? " on" : "");
+  }
+
+  $("reset").addEventListener("click", function(){
+    done = new Array(N).fill(false); save(); render();
+  });
+
+  load();
+  render();
+})();
+</script>
+
+
+</body>
+</html>

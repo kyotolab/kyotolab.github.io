@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Empty Palace</title>
+<meta name="description" content="The Kyoto Imperial Palace is free, needs no booking, and stays quiet.">
+<link rel="canonical" href="https://kyotolab.github.io/articles/gosho/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Empty Palace">
+<meta property="og:description" content="The Kyoto Imperial Palace is free, needs no booking, and stays quiet.">
+<meta property="og:url" content="https://kyotolab.github.io/articles/gosho/">
+<meta property="og:site_name" content="京都ラボ">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Spectral:wght@200;300;400;600&display=swap">
+</head>
+<body>
+<style>
+  /* ── Kyoto Lab / English series ────────────────────────────────
+     Reference taste: The Parkhouse Kyoto Karasuma-Oike.
+     Near-black ground, bronze hairlines, wide-tracked Latin labels,
+     a high-contrast serif that is allowed to be quiet.
+  ──────────────────────────────────────────────────────────────── */
+  :root{
+    color-scheme:light dark;
+    --paper:#F6F5F2; --paper2:#EDEBE6;
+    --ink:#14171A; --ink2:#5D666D; --ink3:#8C949A;
+    --rule:#DBD8D2; --rule2:#E9E7E2;
+    --gold:#8E7134; --gold2:#B49559;
+    --teal:#0E6B76;
+    --panel:#0B0E10; --panel-ink:#EDEBE6; --panel-ink2:#98A1A7; --panel-gold:#C3A468;
+
+    --disp:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+    --body:"Spectral",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+
+    --gut:clamp(22px,5vw,44px);
+    --measure:33em;
+  }
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+    --paper:#0D1013; --paper2:#151A1E;
+    --ink:#E8E6E1; --ink2:#9BA3A9; --ink3:#6D767C;
+    --rule:#242B31; --rule2:#1A2024;
+    --gold:#C3A468; --gold2:#A98D57;
+    --teal:#5FD1DC;
+    --panel:#05080A; --panel-ink:#E8E6E1; --panel-ink2:#8D959B; --panel-gold:#C3A468;
+  }}
+  :root[data-theme="dark"]{
+    --paper:#0D1013; --paper2:#151A1E;
+    --ink:#E8E6E1; --ink2:#9BA3A9; --ink3:#6D767C;
+    --rule:#242B31; --rule2:#1A2024;
+    --gold:#C3A468; --gold2:#A98D57;
+    --teal:#5FD1DC;
+    --panel:#05080A; --panel-ink:#E8E6E1; --panel-ink2:#8D959B; --panel-gold:#C3A468;
+  }
+
+  *{box-sizing:border-box}
+  body{background:var(--paper); color:var(--ink); font-family:var(--body);
+       font-size:17.5px; font-weight:300; line-height:1.85; -webkit-font-smoothing:antialiased}
+  p{margin:0}
+  a{color:var(--gold); text-underline-offset:3px; text-decoration-thickness:.5px}
+  :focus-visible{outline:1.5px solid var(--gold); outline-offset:4px}
+  ::selection{background:var(--gold); color:var(--paper)}
+
+  .col{max-width:var(--measure); margin-inline:auto; padding-inline:var(--gut)}
+  .wide{max-width:940px; margin-inline:auto; padding-inline:var(--gut)}
+  .col > * + *{margin-top:1.35em}
+
+  /* ── wide-tracked latin label, the Parkhouse tell ── */
+  .eyebrow{font-family:var(--sans); font-size:10px; font-weight:500; letter-spacing:.26em;
+           text-transform:uppercase; color:var(--gold); display:block}
+
+  /* ── masthead ───────────────────────────────────── */
+  .top{background:var(--panel); color:var(--panel-ink); padding-block:clamp(54px,11vw,110px) clamp(40px,8vw,74px)}
+  .top .eyebrow{color:var(--panel-gold)}
+  .brand{display:flex; align-items:center; gap:13px; margin-bottom:clamp(40px,9vw,86px)}
+  .brand .mk{font-family:var(--disp); font-size:19px; letter-spacing:.06em; color:var(--panel-ink)}
+  .brand .ln{flex:1; height:1px; background:linear-gradient(90deg,var(--panel-gold),transparent)}
+  .brand .sr{font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; color:var(--panel-ink2)}
+  h1{font-family:var(--disp); font-weight:400; font-size:clamp(35px,7.2vw,66px); line-height:1.12;
+     letter-spacing:-.005em; margin:.5em 0 0; text-wrap:balance; color:var(--panel-ink)}
+  .stand{font-size:16px; color:var(--panel-ink2); margin-top:1.5em; max-width:30em; font-weight:200}
+  .meta{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; color:var(--panel-ink2);
+        margin-top:clamp(34px,6vw,54px); padding-top:16px; border-top:1px solid #22282C;
+        display:flex; flex-wrap:wrap; gap:6px 22px}
+
+  /* ── the device: expectation vs. what is actually there ── */
+  .frame{margin:clamp(38px,7vw,64px) auto 0; display:grid; gap:1px; background:var(--rule);
+         border:1px solid var(--rule); border-radius:2px; overflow:hidden}
+  @media(min-width:620px){ .frame{grid-template-columns:1fr 1fr} }
+  .frame > div{background:var(--paper); padding:clamp(20px,3.4vw,28px)}
+  .frame .t{font-family:var(--sans); font-size:9.5px; font-weight:600; letter-spacing:.2em;
+            text-transform:uppercase; color:var(--ink3); display:block; margin-bottom:11px}
+  .frame .v{font-family:var(--disp); font-size:clamp(19px,2.7vw,23px); line-height:1.32; font-weight:400}
+  .frame .real{background:var(--paper2)}
+  .frame .real .t{color:var(--gold)}
+
+  /* ── section rule ── */
+  .sec{margin-top:clamp(46px,8vw,80px)}
+  .sec .eyebrow{margin-bottom:14px}
+  .sec .eyebrow::before{content:""; display:inline-block; width:26px; height:1px;
+                        background:var(--gold); vertical-align:.32em; margin-right:11px}
+  h2{font-family:var(--disp); font-weight:500; font-size:clamp(25px,4.2vw,34px);
+     line-height:1.24; margin:0; text-wrap:balance}
+
+  em{font-style:italic; color:var(--ink)}
+  strong{font-weight:600; color:var(--ink)}
+
+  /* ── plate ── */
+  .plate{margin:clamp(38px,7vw,64px) 0 0}
+  .plate img{display:block; width:100%; height:auto}
+  .plate figcaption{font-family:var(--mono); font-size:10.5px; line-height:1.8; color:var(--ink3);
+                    margin-top:12px; padding-left:13px; border-left:1px solid var(--gold)}
+
+  /* ── dark panel: the history paragraph ── */
+  .panel{background:var(--panel); color:var(--panel-ink); margin-top:clamp(46px,8vw,80px);
+         padding-block:clamp(40px,7vw,66px)}
+  .panel .eyebrow{color:var(--panel-gold)}
+  .panel h2{color:var(--panel-ink)}
+  .panel strong{color:var(--panel-ink)}
+  .panel .yr{font-family:var(--mono); font-size:11px; letter-spacing:.14em; color:var(--panel-gold);
+             display:block; margin-top:8px}
+
+  /* ── practical footer notes ── */
+  .notes{margin-top:clamp(46px,8vw,80px); border-top:1px solid var(--rule); padding-top:clamp(26px,5vw,38px)}
+  .notes dl{margin:18px 0 0; display:grid; gap:0}
+  .notes dt{font-family:var(--sans); font-size:10px; font-weight:600; letter-spacing:.18em;
+            text-transform:uppercase; color:var(--gold); padding-top:15px; border-top:1px solid var(--rule2)}
+  .notes dd{margin:5px 0 15px; font-size:15.5px; color:var(--ink2)}
+  .notes dl > dt:first-child{border-top:0; padding-top:0}
+
+  /* ── series footer ── */
+  .end{margin-top:clamp(52px,9vw,88px); border-top:1px solid var(--rule);
+       padding-block:clamp(30px,5vw,44px) clamp(52px,9vw,84px)}
+  .end .eyebrow{margin-bottom:18px}
+  .end ol{list-style:none; margin:0; padding:0; display:grid; gap:1px; background:var(--rule2)}
+  .end li{background:var(--paper); display:flex; gap:16px; align-items:baseline; padding:13px 2px}
+  .end .n{font-family:var(--mono); font-size:10.5px; color:var(--ink3); flex:none; width:2.2em}
+  .end .ttl{font-family:var(--disp); font-size:19px; line-height:1.3}
+  .end a{text-decoration:none; color:var(--ink)}
+  .end a:hover{color:var(--gold)}
+  .end .self{color:var(--gold)}
+  .sign{font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; color:var(--ink3); margin-top:30px}
+</style>
+
+<div class="top">
+  <div class="wide">
+    <div class="brand"><span class="mk">Kyoto Lab</span><span class="ln"></span><span class="sr">05 / 05</span></div>
+    <span class="eyebrow">What You're Actually Looking At</span>
+    <h1>The Emperor's Palace<br>Is Free, Unbooked,<br>and Nearly Empty</h1>
+    <p class="stand">Kyoto's most crowded temples charge admission and run at capacity. The palace where emperors actually lived costs nothing, needs no reservation, and most visitors never go.</p>
+    <p class="meta"><span>Kyoto Gosho · Kyoto Gyoen</span><span>Kamigyo-ku, Kyoto</span><span>Kyoto Lab field note</span></p>
+  </div>
+</div>
+
+<div class="wide">
+  <div class="frame">
+    <div><span class="t">What visitors assume</span><span class="v">A restricted imperial site needing permits, passports, and a booked tour weeks ahead.</span></div>
+    <div class="real"><span class="t">What is actually there</span><span class="v">An open site you walk into, free, no application — and a park the size of a neighbourhood around it.</span></div>
+  </div>
+</div>
+
+<div class="col">
+  <p>Until 2016, visiting the Kyoto Imperial Palace meant applying in advance to the Imperial Household Agency. That requirement is gone. You walk up, you go in, there is no charge.</p>
+
+  <p>The guidance still circulating online is years out of date, which is a large part of why the place is quiet. People read that they need a permit, decide they do not have time, and go to Kiyomizu-dera with eleven thousand other people instead.</p>
+
+  <p>It is closed on Mondays. That is essentially the whole restriction.</p>
+</div>
+
+<div class="sec col">
+  <span class="eyebrow">What you are standing in</span>
+  <h2>Two things with confusingly similar names</h2>
+
+  <p>People conflate these constantly, so:</p>
+
+  <p><strong>Kyoto Gyoen</strong> is the park — a very large rectangle of gravel paths, pine and plum and cherry trees, open all the time, free, with no gates to speak of. Locals cross it on bicycles. Children play baseball in it.</p>
+
+  <p><strong>Kyoto Gosho</strong>, the palace, is the walled compound inside that park. This is the part with opening hours and a Monday closure.</p>
+
+  <p>There is also a third: <strong>Sento Imperial Palace</strong>, the retired-emperor's palace, also inside the park. That one <em>does</em> still work the old way — advance application, passport, guided tour only. If you read a page about needing a permit, it was probably about the Sento.</p>
+</div>
+
+<div class="panel">
+  <div class="col">
+    <span class="eyebrow">14th century — 1869</span>
+    <h2>The building is not old. The address is.</h2>
+    <p>Emperors lived on this site from the fourteenth century until 1869, when the court moved to Tokyo and Kyoto stopped being the capital after more than a thousand years.</p>
+    <p>The buildings you see, though, were rebuilt in the 1850s, at the very end of the Edo period. The palace burned and was rebuilt repeatedly across its history; what stands is a nineteenth-century reconstruction executed in deliberately archaic Heian style.</p>
+    <p>So the Gosho does the same thing the Golden Pavilion does — <strong>a recent building carefully made to look like a much older one</strong> — except here the intent was political. It was rebuilt in ancient style at the moment imperial authority was about to return to the centre of Japanese politics.</p>
+    <p>Nine years after it was finished, the emperor left for Tokyo and never came back.</p>
+  </div>
+</div>
+
+<div class="sec col">
+  <span class="eyebrow">What is worth looking at</span>
+  <h2>Proportions, and an unreasonable amount of gravel</h2>
+
+  <p>The palace does not compete with temples on ornament. It has almost none. What it has is scale and emptiness — enormous white gravel courtyards, cypress-bark roofs, vermilion and white halls set far apart from one another.</p>
+
+  <p>The main hall, the <em>Shishinden</em>, is where enthronement ceremonies were held. In front of it is a wide gravel court with a cherry tree on one side and a mandarin orange tree on the other, both replanted over the centuries, both in the same positions for a thousand years.</p>
+
+  <p>The route is signed and one-way, mostly outdoors, and takes about an hour at a slow pace. You do not go inside the buildings; you look into them from the gravel.</p>
+
+  <p>The effect is unlike anywhere else in Kyoto, and it is largely down to the emptiness. There is no queue in front of you. You can stand where you like, for as long as you like.</p>
+</div>
+
+<div class="sec col">
+  <span class="eyebrow">The park is the other half</span>
+  <h2>The best free hour in central Kyoto</h2>
+
+  <p>Kyoto Gyoen is where the city actually is. Plum blossom in February, an early weeping cherry near the north-west corner well before the main cherry season, ginkgo in November.</p>
+
+  <p>It is also flat, quiet, and directly on the subway. If you have an awkward ninety minutes between things and you are in the centre of the city, this is the correct answer and it costs nothing.</p>
+</div>
+
+<div class="col notes">
+  <span class="eyebrow">Notes</span>
+  <dl>
+    <dt>Access</dt><dd>Marutamachi or Imadegawa stations on the Karasuma subway line put you at the park's edge. The palace entrance is inside the park; allow ten minutes of walking on gravel from either station.</dd>
+    <dt>Closed</dt><dd>Mondays, with the usual shift when a Monday is a public holiday, plus year-end and occasional ceremonial closures.</dd>
+    <dt>Sento Imperial Palace</dt><dd>Separate site, same park, advance application with passport, guided tour only. Not the same thing as the Gosho.</dd>
+    <dt>Check before you go</dt><dd>The Imperial Household Agency publishes current hours and closures. Because the 2016 change is still widely mis-reported, this is one place where the official page is genuinely worth opening.</dd>
+  </dl>
+</div>
+
+<div class="col end">
+  <span class="eyebrow">What You're Actually Looking At — five places</span>
+    <ol>
+      <li><span class="n">01</span><a class="ttl" href="../kinkakuji/">The Golden Pavilion is younger than your grandmother</a></li>
+      <li><span class="n">02</span><a class="ttl" href="../ginkakuji/">The Silver Pavilion has no silver. It has something better.</a></li>
+      <li><span class="n">03</span><a class="ttl" href="../gion/">In Gion, the photo you want may be illegal</a></li>
+      <li><span class="n">04</span><a class="ttl" href="../nishiki/">Nishiki Market would like you to stand still</a></li>
+      <li><span class="n">05</span><span class="ttl self">The Emperor's palace is free, unbooked, and nearly empty</span></li>
+    </ol>
+  <p class="sign">KYOTO LAB · field notes on what visitors are not told</p>
+</div>
+
+
+</body>
+</html>

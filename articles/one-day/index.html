@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>One Day in Kyoto</title>
+<meta name="description" content="下京・中京・東山を1日で歩くルート。英語・中国語・韓国語版つき。">
+<link rel="canonical" href="https://kyotolab.github.io/articles/one-day/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="One Day in Kyoto">
+<meta property="og:description" content="下京・中京・東山を1日で歩くルート。英語・中国語・韓国語版つき。">
+<meta property="og:url" content="https://kyotolab.github.io/articles/one-day/">
+<meta property="og:site_name" content="京都ラボ">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+TC:wght@600;800&family=Noto+Serif+KR:wght@600;800&display=swap">
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<style>
+  :root{
+    --paper:#F1F2EF; --surface:#FAFBF8;
+    --ink:#15222A; --ink-soft:#3C4E57; --muted:#6E8087;
+    --rule:#CBD3D2; --rule-soft:#E1E6E3;
+    --accent:#2E6F79; --accent-ink:#22555D; --accent-soft:#DEEAEA;
+    --kamo:#8FAEB2;
+    --ochre:#A87A22; --ochre-soft:#F2E9D4;
+    --serif:"Shippori Mincho B1","Noto Serif TC","Noto Serif KR","Hiragino Mincho ProN","Yu Mincho",serif;
+    --sans:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --mono:"IBM Plex Mono",Menlo,monospace;
+    --gut:clamp(20px,4vw,48px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0F181D; --surface:#16232A;
+      --ink:#E7ECE9; --ink-soft:#B4C3C5; --muted:#84979D;
+      --rule:#2C3C43; --rule-soft:#22323A;
+      --accent:#77BDC4; --accent-ink:#9AD3D8; --accent-soft:#1C3138;
+      --kamo:#517379; --ochre:#D6A94B; --ochre-soft:#2E2718;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0F181D; --surface:#16232A;
+    --ink:#E7ECE9; --ink-soft:#B4C3C5; --muted:#84979D;
+    --rule:#2C3C43; --rule-soft:#22323A;
+    --accent:#77BDC4; --accent-ink:#9AD3D8; --accent-soft:#1C3138;
+    --kamo:#517379; --ochre:#D6A94B; --ochre-soft:#2E2718;
+  }
+
+  *{box-sizing:border-box}
+  body{background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.9; -webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{margin:0; font-family:var(--serif); font-weight:600; line-height:1.45; text-wrap:balance}
+  p{margin:0}
+  button{font-family:inherit; cursor:pointer; border:none; background:none; color:inherit}
+
+  .wrap{max-width:760px; margin:0 auto; padding-inline:var(--gut)}
+  .wide{max-width:920px; margin:0 auto; padding-inline:var(--gut)}
+  .tag{font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; color:var(--muted); text-transform:uppercase}
+
+  /* ---- language bar ---- */
+  .langbar{position:sticky; top:0; z-index:30; background:color-mix(in srgb,var(--paper) 93%, transparent); backdrop-filter:saturate(1.2) blur(8px); border-bottom:1px solid var(--rule)}
+  .langbar .wide{display:flex; align-items:center; justify-content:space-between; gap:18px; min-height:56px; flex-wrap:wrap}
+  .brand{display:flex; align-items:baseline; gap:9px}
+  .brand b{font-family:var(--serif); font-weight:800; font-size:16px; letter-spacing:.05em}
+  .brand span{font-family:var(--mono); font-size:9.5px; letter-spacing:.18em; color:var(--muted)}
+  .langs{display:flex; gap:5px; flex-wrap:wrap}
+  .langs button{font-size:12.5px; padding:5px 12px; border:1px solid var(--rule); border-radius:99px; color:var(--muted); line-height:1.6}
+  .langs button[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--surface)}
+
+  /* ---- masthead ---- */
+  header.doc{padding-block:clamp(34px,5.5vw,58px) 30px; border-bottom:1px solid var(--rule)}
+  .kicker{display:flex; align-items:center; gap:10px; margin-bottom:18px}
+  .kicker .rule{width:38px; height:1px; background:var(--accent)}
+  header.doc h1{font-size:clamp(27px,4.6vw,43px); font-weight:800; letter-spacing:.01em}
+  header.doc h1 em{font-style:normal; color:var(--accent-ink); display:block; margin-top:4px}
+  header.doc .lede{margin-top:20px; color:var(--ink-soft); font-size:16px; max-width:62ch}
+  .facts{margin-top:28px; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule)}
+  @media (max-width:640px){ .facts{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  .fact{background:var(--paper); padding:12px 14px}
+  .fact dt{font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; color:var(--muted); display:block; margin-bottom:2px}
+  .fact dd{margin:0; font-family:var(--serif); font-size:17px; font-weight:600; font-variant-numeric:tabular-nums; line-height:1.4}
+  .fact dd small{font-family:var(--sans); font-size:11px; font-weight:400; color:var(--muted); margin-left:3px}
+
+  section{padding-block:clamp(36px,5vw,54px); border-bottom:1px solid var(--rule)}
+  .sec-head{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px}
+  h2{font-size:clamp(20px,2.6vw,26px)}
+  .body{margin-top:14px; color:var(--ink-soft); font-size:15.5px; max-width:64ch}
+  .body em{font-style:normal; background:linear-gradient(transparent 62%, var(--accent-soft) 62%); padding:0 2px}
+
+  /* ---- diagram ---- */
+  figure.shape{margin:0}
+  figure.shape svg{display:block; width:100%; height:auto; overflow:visible}
+  .zbox{fill:var(--surface); stroke:var(--rule); stroke-width:1}
+  .zname{font-family:var(--serif); font-size:14px; fill:var(--ink); font-weight:600}
+  .ztime{font-family:var(--mono); font-size:9.5px; fill:var(--accent); letter-spacing:.08em}
+  .zlist{font-family:var(--sans); font-size:10.5px; fill:var(--muted)}
+  .zacc{font-family:var(--sans); font-size:10.5px; fill:var(--accent)}
+  .rpath{fill:none; stroke:var(--accent); stroke-width:1.6; stroke-dasharray:5 4}
+  .rdot{fill:var(--accent)}
+  .rnum{font-family:var(--mono); font-size:9px; fill:var(--paper); font-weight:600}
+  .river{fill:none; stroke:var(--kamo); stroke-width:3; stroke-linecap:round}
+  .rlabel{font-family:var(--sans); font-size:10px; fill:var(--muted)}
+  figcaption{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; color:var(--muted); margin-top:14px; text-align:right}
+
+  /* ---- itinerary ---- */
+  .plan{margin-top:24px; border-top:1px solid var(--rule)}
+  .stop{display:grid; grid-template-columns:80px minmax(0,1fr); gap:clamp(14px,3vw,26px); padding:21px 0; border-bottom:1px solid var(--rule-soft)}
+  @media (max-width:620px){ .stop{grid-template-columns:1fr; gap:8px} }
+  .when{font-family:var(--mono); font-size:14px; font-variant-numeric:tabular-nums; color:var(--accent-ink); padding-top:2px}
+  .when small{display:block; font-size:10px; color:var(--muted); letter-spacing:.06em; margin-top:2px}
+  .stop-head{display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; margin-bottom:6px}
+  .stop-head h3{font-size:18px}
+  .kanji{font-family:var(--mono); font-size:11.5px; color:var(--muted); letter-spacing:.04em}
+  .ward{display:inline-block; font-family:var(--mono); font-size:9.5px; letter-spacing:.06em; padding:2px 7px; border-radius:2px; line-height:1.7; white-space:nowrap; border:1px solid}
+  .w-h{color:var(--accent-ink); border-color:color-mix(in srgb,var(--accent) 50%,transparent); background:var(--accent-soft)}
+  .w-n{color:var(--ochre); border-color:color-mix(in srgb,var(--ochre) 50%,transparent); background:var(--ochre-soft)}
+  .w-s{color:var(--muted); border-color:var(--rule); background:var(--surface)}
+  .stop p{font-size:14.5px; color:var(--ink-soft); max-width:64ch}
+  .stop p b{color:var(--ink)}
+  .meta{margin-top:10px; display:flex; gap:5px 14px; flex-wrap:wrap}
+  .meta span{font-family:var(--mono); font-size:11px; color:var(--muted); letter-spacing:.03em}
+  .meta span b{color:var(--ink-soft); font-weight:500}
+  .move{display:grid; grid-template-columns:80px minmax(0,1fr); gap:clamp(14px,3vw,26px); padding:8px 0; border-bottom:1px solid var(--rule-soft)}
+  @media (max-width:620px){ .move{grid-template-columns:1fr; gap:2px} }
+  .move .when{font-size:10.5px; color:var(--muted); padding-top:0}
+  .move p{font-family:var(--mono); font-size:11px; color:var(--muted); letter-spacing:.02em}
+
+  /* ---- pitfalls / cuts / fares ---- */
+  .pits{margin-top:22px; border-top:1px solid var(--rule)}
+  .pit{display:grid; grid-template-columns:104px minmax(0,1fr); gap:clamp(14px,3vw,26px); padding:19px 0; border-bottom:1px solid var(--rule-soft)}
+  @media (max-width:620px){ .pit{grid-template-columns:1fr; gap:6px} }
+  .pit .k{font-family:var(--serif); font-size:15px; color:var(--accent-ink); font-weight:600}
+  .pit h3{font-size:16.5px; margin-bottom:6px}
+  .pit p{font-size:14.5px; color:var(--ink-soft); max-width:62ch}
+  .pit p b{color:var(--ink)}
+
+  .cuts{margin-top:20px; display:grid; gap:1px; background:var(--rule); border:1px solid var(--rule)}
+  .cut{background:var(--paper); display:grid; grid-template-columns:150px minmax(0,1fr); gap:18px; padding:13px 16px; align-items:baseline}
+  @media (max-width:560px){ .cut{grid-template-columns:1fr; gap:3px} }
+  .cut b{font-family:var(--serif); font-size:15px; font-weight:600}
+  .cut span{font-size:13.5px; color:var(--ink-soft)}
+  .cut span b{font-family:var(--sans); font-size:13.5px; color:var(--ink)}
+
+  .tablewrap{margin-top:20px; overflow-x:auto; border-top:1px solid var(--rule)}
+  table{width:100%; border-collapse:collapse; font-size:14px; min-width:480px}
+  th,td{text-align:left; vertical-align:top; padding:10px 16px 10px 0; border-bottom:1px solid var(--rule-soft)}
+  th{font-family:var(--mono); font-size:10px; letter-spacing:.12em; color:var(--muted); text-transform:uppercase; font-weight:500}
+  td:first-child{padding-right:22px}
+  td.n{font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap}
+  td small{display:block; color:var(--muted); font-size:12px; line-height:1.7}
+
+  .callout{margin-top:22px; border-left:2px solid var(--ochre); background:var(--ochre-soft); padding:16px 20px; border-radius:0 3px 3px 0}
+  .callout .tag{display:block; color:var(--ochre); margin-bottom:8px}
+  .callout p{font-size:13.5px; color:var(--ink-soft); max-width:64ch}
+  .callout p + p{margin-top:8px}
+  .callout p b{color:var(--ink)}
+
+  footer{padding-block:32px 44px}
+  footer .box{border:1px solid var(--rule); border-radius:3px; background:var(--surface); padding:22px 24px}
+  footer .box .tag{display:block; margin-bottom:10px}
+  footer .box h3{font-size:17px; margin-bottom:8px}
+  footer .box p{font-size:13.5px; color:var(--ink-soft); max-width:62ch}
+  footer .sig{margin-top:18px; display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap}
+  footer .sig p{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; color:var(--muted)}
+
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px}
+  @media (prefers-reduced-motion: reduce){ *{animation:none!important; transition:none!important} }
+</style>
+
+<div class="langbar">
+  <div class="wide">
+    <div class="brand"><b>京都ラボ</b><span>KYOTO LAB</span></div>
+    <div class="langs" id="langs"></div>
+  </div>
+</div>
+
+<div id="app"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  var LANGS = [
+    {k:"en", n:"English"},
+    {k:"zh", n:"中文"},
+    {k:"ko", n:"한국어"},
+    {k:"ja", n:"日本語"}
+  ];
+
+  /* geometry is shared; only the words change */
+  var GEO = {
+    zones:[
+      {x:600,y:24,w:284,h:150},
+      {x:248,y:24,w:200,h:112},
+      {x:16, y:24,w:196,h:112},
+      {x:16, y:186,w:290,h:118},
+      {x:342,y:196,w:104,h:98}
+    ],
+    dots:[[742,12],[348,12],[114,12],[161,174],[394,184]],
+    paths:["M600 100 L 452 84","M248 84 L 216 84","M110 140 L 110 182","M308 250 L 340 246"],
+    river:"M470 14 C 462 80, 478 150, 468 220 C 460 280, 474 300, 466 314"
+  };
+
+  var D = {};
+
+  /* ============================ ENGLISH ============================ */
+  D.en = {
+    dir:"Everyday Kyoto",
+    h1:"Be at Kiyomizu-dera by 6 a.m.",
+    h1em:"Higashiyama, Nakagyō and Shimogyō in one day.",
+    lede:"Kyoto's famous places are not crowded because they are famous. They are crowded because everyone arrives at the same hour. Kiyomizu-dera opens at 6:00, all year round. The same temple at six and at eleven is not the same place. This is a timetable for walking three wards of Kyoto in a single day.",
+    facts:[["Duration","13","hrs"],["On foot","11","km"],["Admissions","2,600","yen approx."],["Transport","1,100","yen day pass"]],
+    shapeH:"The shape of the day", shapeTag:"Overview",
+    shapeBody:"Start in the eastern hills, eat lunch in the centre, see a castle in the west, and watch the sun go down by the station in the south. It is built so that you <em>cross the Kamo River once and never double back</em> — except for one step north at the end, for dinner.",
+    shapeCap:"KYOTO ／ order of the day, not a map",
+    river:"Kamo River",
+    zones:[
+      {t:"06:00 — 11:00", n:"Higashiyama", l:["Kiyomizu-dera, Ninenzaka","Yasaka Shrine, Gion, Kennin-ji"], a:"Walk it before anyone arrives"},
+      {t:"11:15 — 13:30", n:"Nakagyō east", l:["Nishiki Market, Teramachi","Lunch here"], a:""},
+      {t:"14:00 — 15:45", n:"Nakagyō west", l:["Nijō Castle","South down Horikawa-dōri"], a:""},
+      {t:"16:00 — 18:00", n:"Shimogyō", l:["Nishi- and Higashi-Hongan-ji","Sunset from Kyoto Tower"], a:""},
+      {t:"18:30 —", n:"Pontochō", l:["Dinner"], a:""}
+    ],
+    planH:"The timetable", planTag:"Itinerary",
+    planBody:"Times are guidelines. Only <em>the first one matters</em> — be at Kiyomizu-dera at six. Get that right and the day survives everything else slipping.",
+    wards:{h:"Higashiyama", n:"Nakagyō", s:"Shimogyō"},
+    plan:[
+      {t:"06:00", d:"morning", n:"Kiyomizu-dera", k:"清水寺", w:"h",
+       p:"Opens at 6:00 every day of the year. No other major temple in Kyoto opens this early. There are minutes when fewer than ten people stand on the wooden stage, with the city below under morning haze. At eleven, that same stage holds several hundred. <b>This is the one appointment on this day you cannot move.</b>",
+       m:[["Admission","¥500"],["Stay","50 min"],["Opens","6:00"]]},
+      {mv:"Walk 15 min", mt:"Down Kiyomizu-zaka → Sannenzaka → Ninenzaka"},
+      {t:"07:00", d:"morning", n:"Sannenzaka, Ninenzaka & Yasaka Pagoda", k:"三年坂・二年坂・八坂の塔", w:"h",
+       p:"Stone lanes lined with wooden townhouses. After ten you move with the crowd rather than walk through it; at seven the shops are still shut and you see the street itself instead. The view up to Yasaka Pagoda from the foot of the slope is the most photographed frame in Kyoto. This is the only hour it holds nobody else.",
+       m:[["Free",""],["Stay","40 min"],["Slopes and steps",""]]},
+      {mv:"Walk 12 min", mt:"Nene-no-Michi → through Maruyama Park"},
+      {t:"07:45", d:"morning", n:"Yasaka Shrine & Maruyama Park", k:"八坂神社・円山公園", w:"h",
+       p:"Yasaka Shrine has no closing gate: open all night, no admission. It stands at the eastern end of Shijō-dōri, facing back down the street into the city. Maruyama Park behind it is where people walk their dogs at this hour. The line between a tourist site and a neighbourhood is clearest in the morning.",
+       m:[["Free",""],["Stay","30 min"],["Grounds","24 h"]]},
+      {mv:"Walk 5 min", mt:"West along Shijō-dōri"},
+      {t:"08:20", d:"breakfast", n:"Breakfast around Gion and Shijō", k:"", w:"h",
+       p:"Few places open this early. A kissaten — an old-style coffee house — serving a morning set, a convenience store, a bakery. Kyoto's kissaten culture runs deep and several long-standing ones open from seven, scattered between Shijō and Sanjō. Sit down here. <b>You are walking eleven kilometres today.</b>",
+       m:[["Budget","¥600–1,200"],["Stay","50 min"]]},
+      {t:"09:15", d:"morning", n:"Gion and Hanamikōji", k:"祇園・花見小路", w:"h",
+       p:"Teahouses along a stone-paved street. <b>There are photography rules here.</b> The private lanes leading off Hanamikōji prohibit unauthorised photography and are signposted. The main street is fine; do not point a camera down the private lanes, or at the people using them. This is not etiquette — it is where people live and work.",
+       m:[["Free",""],["Stay","35 min"],["Private lanes","no photos"]]},
+      {mv:"Walk 6 min", mt:"South through Hanamikōji"},
+      {t:"10:00", d:"morning", n:"Kennin-ji", k:"建仁寺", w:"h",
+       p:"Directly behind Gion, and quiet. Japan's oldest Zen temple; twin dragons are painted across the ceiling of the Dharma Hall. It is also the only place on this route where you can sit on tatami and look at a garden for a while. Coming in off the crowded lanes, the city suddenly goes a long way away.",
+       m:[["Admission","¥800"],["Stay","60 min"],["Opens","10:00"]]},
+      {mv:"Walk 15 min", mt:"Shijō-dōri → cross the river at Shijō-Ōhashi → Nakagyō"},
+      {t:"11:15", d:"lunch", n:"Nishiki Market", k:"錦市場", w:"n",
+       p:"A four-hundred-year-old food market, now mostly visitors. <b>Please do not eat while walking.</b> The merchants ask people to stop at the shopfront and eat there; it is a litter and congestion problem, not a rule invented for tourists. Most stalls give you somewhere to stand. Shops open around 9:30–10:00, varying by stall.",
+       m:[["Lunch","¥1,500–2,500"],["Stay","75 min"],["No eating while walking",""]]},
+      {t:"12:45", d:"afternoon", n:"Teramachi and Shinkyōgoku arcades", k:"寺町通・新京極", w:"n",
+       p:"The east end of Nishiki runs straight into two covered arcades. Teramachi has secondhand bookshops, stationers and old establishments; Shinkyōgoku has souvenirs and shops aimed at a younger crowd. Two parallel streets with completely different characters. Both are roofed, so this is where you go if it rains or the sun is hard.",
+       m:[["Free",""],["Stay","45 min"],["Covered",""]]},
+      {mv:"Subway 15 min", mt:"Shijō Stn → change at Karasuma-Oike → Nijōjō-mae Stn"},
+      {t:"14:00", d:"afternoon", n:"Nijō Castle", k:"二条城", w:"n",
+       p:"The Tokugawa shoguns' castle, and the room where the return of power to the Emperor was announced in 1867. The corridors of Ninomaru Palace sing under your feet — they were built to. After a day of temples and shrines, one warrior building shows that Kyoto is not only a city of temples. <b>Last admission is an hour before closing.</b>",
+       m:[["Admission","¥1,300"],["Stay","105 min"],["Last entry","16:00"]]},
+      {mv:"City bus 12 min", mt:"Nijōjō-mae → south on Horikawa-dōri → Nishi-Honganji-mae"},
+      {t:"16:00", d:"late afternoon", n:"Nishi-Hongan-ji", k:"西本願寺", w:"s",
+       p:"A UNESCO World Heritage site, and <b>free to enter</b>. Goeidō Hall is among the largest wooden buildings in Japan, and you can walk in and sit down on the tatami. Because it sits off the standard circuit there are few people, and the late light runs long across the veranda. This may be the most luxurious half hour of the day.",
+       m:[["Free",""],["Stay","40 min"],["World Heritage",""]]},
+      {mv:"Walk 12 min", mt:"Horikawa-dōri → east to Karasuma-dōri"},
+      {t:"16:50", d:"late afternoon", n:"Higashi-Hongan-ji", k:"東本願寺", w:"s",
+       p:"A few minutes on foot from Kyoto Station, and also free. Its Goeidō Gate is one of the largest wooden gates in the world. The reason there are two Hongan-ji goes back to a split in the sixteenth century, but you do not need that to see the difference, having stood in both within the hour.",
+       m:[["Free",""],["Stay","25 min"],["Near Kyoto Stn",""]]},
+      {mv:"Walk 8 min", mt:"South on Karasuma-dōri → Kyoto Station"},
+      {t:"17:30", d:"sunset", n:"Kyoto Tower", k:"京都タワー", w:"s",
+       p:"In a city with strict limits on building height, this is one of very few places you can look down on it. You can pick out the stage of Kiyomizu-dera, where you stood at six this morning, against the eastern hills. <b>The point of ending here is to check the day's route from above.</b> Time it with sunset and you watch the lights come on in order.",
+       m:[["Observation deck","¥900"],["Stay","45 min"]]},
+      {mv:"Subway 10 min", mt:"Kyoto Stn → Shijō Stn → walk to Pontochō"},
+      {t:"18:45", d:"evening", n:"Pontochō", k:"先斗町", w:"n",
+       p:"A lane about two metres wide between the Kamo River and Kiyamachi, packed with restaurants. It is the only backtrack of the day and it earns it. <b>But this is where foreign visitors get stuck most often.</b> Some places have no English menu, some need a reservation, some add a cover charge. It is easy to walk the whole lane without ever finding out which is which.",
+       m:[["Dinner","¥3,000–8,000"],["Cover charge","varies"]]}
+    ],
+    fricH:"Four things that actually trip people up", fricTag:"Friction",
+    fricBody:"Every guide has the sights. These four are what they leave out — the things we hear again and again from the people running shops here.",
+    pits:[
+      {k:"Addresses", h:"“Shijō-Karasuma agaru” does not resolve in map apps",
+       p:"Kyoto addresses are written with street names plus <b>agaru</b> (north of), <b>sagaru</b> (south of), <b>higashi-iru</b> (east) and <b>nishi-iru</b> (west). It is the clearest system there is for residents, but foreign map and ride-hailing apps often fail on it, and you end up unable to reach a place you booked. Search by the shop's name, or get a phone number in advance."},
+      {k:"Dashi", h:"A vegetable dish is not necessarily vegetarian",
+       p:"Most Kyoto cooking is built on <b>katsuo dashi</b>, a stock made from dried bonito. A dish that looks entirely vegetable still contains fish. If you are vegetarian or vegan, do not ask “is this vegetables?” — ask <b>“does this use katsuo dashi?”</b> Nobody is hiding it; the distinction simply is not widely known here."},
+      {k:"Day pass", h:"The bus-only day pass no longer exists",
+       p:"Older articles still recommend a ¥600 city-bus day pass. <b>It has been discontinued.</b> What you can buy now is the Subway &amp; Bus One-Day Pass at ¥1,100. This route uses the subway twice and a bus once, which roughly covers it. ICOCA and Suica work on both the buses and the subway."},
+      {k:"Luggage", h:"Kyoto Station lockers fill by late morning",
+       p:"Walking up Kiyomizu-zaka with a large suitcase is not realistic. Station lockers fill during the morning in peak season. <b>Arrange the station's luggage counter, or a delivery service from your accommodation, before you arrive.</b> It also eases the buses, which fill up with suitcases."}
+    ],
+    cutH:"What was left out, and why", cutTag:"Left out",
+    cutBody:"There is a limit to what fits in a day. <em>An itinerary that does not say what it dropped cannot be trusted.</em>",
+    cuts:[
+      ["Kinkaku-ji 金閣寺","Kita ward. Close to an hour each way from here; it does not physically fit. Give it a morning of its own."],
+      ["Fushimi Inari 伏見稲荷","Fushimi ward. Open around the clock, so it is <b>better as an early morning or a night</b> on another day. The thousand torii are worth walking with no one in them."],
+      ["Arashiyama 嵐山","Ukyō ward. Half a day at minimum, and in the opposite direction from these three wards. Adding it makes both halves poor."],
+      ["Sanjūsangen-dō 三十三間堂","Higashiyama ward, and it would have fitted. But a thousand and one Kannon deserve better than tired legs. You could put it <b>before Kiyomizu-dera, from 8:30</b>."],
+      ["Nanzen-ji & Ginkaku-ji","Sakyō ward. With the Philosopher's Path these make a half-day course of their own."]
+    ],
+    fareH:"What it costs", fareTag:"Budget",
+    fareHead:["Item","Amount","Note"],
+    fares:[
+      ["Kiyomizu-dera","¥500","opens 6:00"],
+      ["Kennin-ji","¥800","opens 10:00"],
+      ["Nijō Castle","¥1,300","entry + Ninomaru Palace"],
+      ["Kyoto Tower","¥900","observation deck"],
+      ["Yasaka Shrine, both Hongan-ji","¥0","Nishi-Hongan-ji is World Heritage and still free"],
+      ["Subway & Bus One-Day Pass","¥1,100","two subway rides and one bus covers it"],
+      ["Three meals","¥5,000–11,000","the dinner is what moves the range"]
+    ],
+    coTag:"On how fresh this is",
+    co1:"Admissions, opening hours and transport schemes change. The figures here were checked when this was written, but <b>confirm on each site's official page before you go.</b> Special viewing periods, the New Year holidays and ceremony days all differ from normal.",
+    co2:"One reason for writing this: a great many guides are still carrying old information. Schemes that no longer exist, like the bus day pass, are still being recommended. This article will go the same way in time, which is why the date is on it.",
+    ftTag:"About this article", ftH:"Kyoto Lab",
+    ftP:"We watch what makes life and business difficult in Kyoto, and build it back into apps for the people on the ground. Currently getting started as a one-person practice. The dashi, the addresses and the unreadable menus in this article are exactly the problems we are working on right now. If you run a place that struggles with foreign customers, please get in touch.",
+    sig1:"京都ラボ ／ KYOTO LAB", sig2:"3 Sept 2026 ・ Daichi Ninomiya"
+  };
+
+  /* ============================ 中文（繁體） ============================ */
+  D.zh = {
+    dir:"京都的日常",
+    h1:"早上6點，到清水寺。",
+    h1em:"東山・中京・下京，一日走完。",
+    lede:"京都的名勝並不是因為有名才擁擠，而是因為所有人都在同一個時段前往。清水寺全年早上6點開門。同一座寺，6點和11點是兩個不同的地方。這是一份用一天走完京都三個區的時間表。",
+    facts:[["所需","13","小時"],["步行","約11","公里"],["參拜費","2,600","日圓 參考"],["交通費","1,100","日圓 一日券"]],
+    shapeH:"一天的形狀", shapeTag:"Overview",
+    shapeBody:"從東邊的山開始，在市中心吃午餐，往西看城，最後在南邊的車站前看日落。整條路線設計成<em>只渡一次鴨川、不走回頭路</em> —— 只有最後為了晚餐往北折返一次。",
+    shapeCap:"KYOTO ／ 這是順序圖，不是地圖",
+    river:"鴨川",
+    zones:[
+      {t:"06:00 — 11:00", n:"東山區", l:["清水寺・二年坂・八坂之塔","八坂神社・祇園・建仁寺"], a:"趁沒有人的時候走完"},
+      {t:"11:15 — 13:30", n:"中京區・東", l:["錦市場・寺町・新京極","午餐在這裡"], a:""},
+      {t:"14:00 — 15:45", n:"中京區・西", l:["二條城","沿堀川通往南"], a:""},
+      {t:"16:00 — 18:00", n:"下京區", l:["西本願寺・東本願寺","在京都塔看日落"], a:""},
+      {t:"18:30 —", n:"先斗町", l:["晚餐"], a:""}
+    ],
+    planH:"時間表", planTag:"Itinerary",
+    planBody:"時刻只是參考。真正要守住的<em>只有第一個</em> —— 6點要在清水寺。只要這一點對了，之後稍有延誤也不會讓整天崩掉。",
+    wards:{h:"東山區", n:"中京區", s:"下京區"},
+    plan:[
+      {t:"06:00", d:"清晨", n:"清水寺", k:"きよみずでら", w:"h",
+       p:"全年早上6點開門。京都主要的寺院中，沒有比這裡更早開的。有些時候，木造的舞台上站著不到十個人，底下的市區籠罩在晨霧裡。到了11點，同一個舞台上會有好幾百人。<b>這一天當中，只有這個時間不能挪動。</b>",
+       m:[["參拜費","500日圓"],["停留","50分"],["開門","6:00"]]},
+      {mv:"步行 15分", mt:"下清水坂 → 三年坂 → 二年坂"},
+      {t:"07:00", d:"清晨", n:"三年坂・二年坂・八坂之塔", k:"さんねんざか", w:"h",
+       p:"石板路兩側是木造的町家。過了10點，你只能跟著人潮移動；7點時店還沒開，看見的反而是道路本身。從坡下仰望八坂之塔（法觀寺）的構圖，是京都被拍得最多的一張。只有這個時段，畫面裡不會有別人。",
+       m:[["免費",""],["停留","40分"],["有坡道與階梯",""]]},
+      {mv:"步行 12分", mt:"寧寧之道 → 穿過圓山公園"},
+      {t:"07:45", d:"清晨", n:"八坂神社・圓山公園", k:"やさかじんじゃ", w:"h",
+       p:"八坂神社沒有關閉的大門，24小時可以進入，也不收費。它位於四條通最東端，面向街道的方向。後方的圓山公園，這個時間是當地人遛狗的地方。觀光地與生活的界線，早晨看得最清楚。",
+       m:[["免費",""],["停留","30分"],["境內","24小時"]]},
+      {mv:"步行 5分", mt:"沿四條通往西"},
+      {t:"08:20", d:"早餐", n:"早餐（祇園・四條一帶）", k:"", w:"h",
+       p:"這個時間開的店有限。老派喫茶店的早餐套餐、便利商店、麵包店。京都的喫茶店文化很深，四條到三條之間有幾家老店7點就開。在這裡坐下來休息。<b>今天要走11公里。</b>",
+       m:[["預算","600〜1,200日圓"],["停留","50分"]]},
+      {t:"09:15", d:"上午", n:"祇園・花見小路", k:"ぎおん", w:"h",
+       p:"石板路兩側是茶屋。<b>這裡有攝影規定。</b>從花見小路岔出去的私人巷道禁止擅自拍攝，現場有告示牌。主要街道可以拍，但不要把鏡頭對準私人巷道，或對準走在那裡的人。這不是觀光禮儀，而是有人在那裡生活與工作。",
+       m:[["免費",""],["停留","35分"],["私人巷道","禁止攝影"]]},
+      {mv:"步行 6分", mt:"沿花見小路往南"},
+      {t:"10:00", d:"上午", n:"建仁寺", k:"けんにんじ", w:"h",
+       p:"就在祇園後方，卻很安靜。日本最古老的禪寺，法堂天花板上畫著雙龍圖。這也是整條路線中，唯一能坐在榻榻米上好好看一段庭園的地方。從人潮中走進來，街上的聲音會突然變得很遠。",
+       m:[["參拜費","800日圓"],["停留","60分"],["開門","10:00"]]},
+      {mv:"步行 15分", mt:"四條通 → 四條大橋渡鴨川 → 中京區"},
+      {t:"11:15", d:"中午", n:"錦市場", k:"にしきいちば", w:"n",
+       p:"有400年歷史的食材市場，現在大半是觀光客。<b>請不要邊走邊吃。</b>商店街希望大家停在店門口吃完，這是垃圾與通行的問題，不是為了觀光客訂的規矩。多數店家會在門口準備站著吃的位置。開店時間約在9點半到10點，依店家而異。",
+       m:[["午餐","1,500〜2,500日圓"],["停留","75分"],["不可邊走邊吃",""]]},
+      {t:"12:45", d:"下午", n:"寺町通・新京極", k:"てらまち", w:"n",
+       p:"錦市場的東端直接連著兩條有頂的商店街。寺町通有舊書店、文具店和老鋪；新京極則是土產和年輕人的店。兩條平行的路，性格完全不同。兩條都有屋頂，所以下雨或日照太強時就來這裡。",
+       m:[["免費",""],["停留","45分"],["有屋頂",""]]},
+      {mv:"地鐵 15分", mt:"四條站 → 烏丸御池轉東西線 → 二條城前站"},
+      {t:"14:00", d:"下午", n:"二條城", k:"にじょうじょう", w:"n",
+       p:"德川幕府的城，也是1867年宣告大政奉還的地方。二之丸御殿的走廊走上去會發出聲響（鶯張）。在一整天的寺院與神社之後，加入一座武家建築，會讓人明白京都不只是寺院之城。光是城內就要走一公里以上。<b>入城受理在閉門的一小時前結束。</b>",
+       m:[["入城費","1,300日圓"],["停留","105分"],["受理截止","16:00"]]},
+      {mv:"市巴士 12分", mt:"二條城前 → 沿堀川通往南 → 西本願寺前"},
+      {t:"16:00", d:"傍晚", n:"西本願寺", k:"にしほんがんじ", w:"s",
+       p:"是世界遺產，而且<b>免費參觀</b>。御影堂是日本規模最大的木造建築之一，可以走進去坐在榻榻米上。因為不在標準的觀光動線上，人很少，傍晚的光會長長地灑在簷廊上。這一天最奢侈的一段時間，也許就在這裡。",
+       m:[["免費",""],["停留","40分"],["世界遺產",""]]},
+      {mv:"步行 12分", mt:"堀川通 → 往東至烏丸通"},
+      {t:"16:50", d:"傍晚", n:"東本願寺", k:"ひがしほんがんじ", w:"s",
+       p:"距離京都車站步行幾分鐘，同樣免費。御影堂門是世界最大級的木造門之一。西本願寺與東本願寺之所以分成兩座，要追溯到戰國時期的分裂；不過就算不知道這段歷史，在一小時內站過兩邊，也看得出建築的差異。",
+       m:[["免費",""],["停留","25分"],["鄰近京都車站",""]]},
+      {mv:"步行 8分", mt:"沿烏丸通往南 → 京都車站"},
+      {t:"17:30", d:"日落", n:"京都塔", k:"きょうとタワー", w:"s",
+       p:"在建築高度管制嚴格的京都，這是少數能從上往下看整座城市的地方。你可以在東邊的山邊，找到今天早上6點站過的清水寺舞台。<b>把這裡放在最後，是為了從高處確認今天走過的路。</b>配合日落的時刻，就能看見街燈依序亮起。",
+       m:[["展望室","900日圓"],["停留","45分"]]},
+      {mv:"地鐵 10分", mt:"京都站 → 四條站 → 步行至先斗町"},
+      {t:"18:45", d:"夜晚", n:"先斗町", k:"ぽんとちょう", w:"n",
+       p:"在鴨川與木屋町之間，一條寬約兩公尺的細長通道，兩側擠滿了店。這是一天當中唯一往回走的一段，但值得。<b>不過，外國旅客最常在這裡卡住。</b>有的店沒有外語菜單，有的需要訂位，有的會收座位費（お通し）。很容易走完整條路，卻始終沒弄清楚哪家是哪家。",
+       m:[["晚餐","3,000〜8,000日圓"],["座位費","依店而異"]]}
+    ],
+    fricH:"外國旅客真正會卡住的四件事", fricTag:"Friction",
+    fricBody:"名勝的資訊每本指南都有。沒寫的是這四件。這些是我們和京都店家談話時，反覆聽到的內容。",
+    pits:[
+      {k:"地址", h:"「四條烏丸上ル」在地圖App裡找不到",
+       p:"京都的地址是用街道名加上「<b>上ル</b>（往北）」「<b>下ル</b>（往南）」「<b>東入ル</b>」「<b>西入ル</b>」來寫的。對居民來說這是最清楚的寫法，但海外的地圖App和叫車服務常常無法正確解析，結果訂了位卻找不到店。<b>建議用店名搜尋，或事先問到電話號碼。</b>"},
+      {k:"高湯", h:"看起來是蔬菜，不代表就是素食",
+       p:"京都料理大多使用<b>柴魚高湯（かつおだし）</b>。就算外觀全是蔬菜，高湯裡還是有魚。素食者請不要問「這是蔬菜嗎」，而要問<b>「這道有沒有用柴魚高湯」</b>。店家並非刻意隱瞞，只是在這裡，這個差別還不太為人所知。"},
+      {k:"一日券", h:"巴士專用的一日券已經沒有了",
+       p:"舊文章裡還寫著「市巴士一日券600日圓」，<b>但這個票券已經停售。</b>現在能買的是地鐵・巴士一日券（1,100日圓）。這條路線用到兩次地鐵和一次巴士，大致能回本。ICOCA和Suica在巴士與地鐵都能使用。"},
+      {k:"行李", h:"京都車站的置物櫃，上午就會滿",
+       p:"拖著大行李箱爬清水坂並不實際。旺季時，車站的置物櫃在上午就會被用完。<b>請事先安排車站的行李寄放處，或從住宿處寄送到飯店的服務。</b>市巴士車內被行李佔滿的問題，也能因此減少一些。"}
+    ],
+    cutH:"沒有排進去的名勝，以及理由", cutTag:"Left out",
+    cutBody:"一天能塞進去的東西有限。<em>不說明自己捨棄了什麼的行程，是不能信的。</em>",
+    cuts:[
+      ["金閣寺","北區。從這裡單程將近一小時，這個行程在物理上放不進去。請留給第二天的早上。"],
+      ["伏見稻荷大社","伏見區。24小時都能參拜，所以<b>反而適合安排在別天的清晨或夜裡</b>。千本鳥居值得在沒有人的時候走一趟。"],
+      ["嵐山","右京區。至少要半天，而且和這三個區方向相反。硬加進來，兩邊都會變得半吊子。"],
+      ["三十三間堂","位於東山區，其實排得進去。但一千零一尊千手觀音，用疲累的腳草草看過太可惜。<b>也可以改排在清水寺之前，從8點半開始。</b>"],
+      ["南禪寺・銀閣寺","左京區。加上哲學之道會成為半天的路線，獨立出來比較好。"]
+    ],
+    fareH:"費用參考", fareTag:"Budget",
+    fareHead:["項目","金額","備註"],
+    fares:[
+      ["清水寺","500日圓","早上6點開門"],
+      ["建仁寺","800日圓","10點開門"],
+      ["二條城","1,300日圓","入城費＋二之丸御殿"],
+      ["京都塔","900日圓","展望室"],
+      ["八坂神社・兩本願寺","0日圓","西本願寺是世界遺產但免費"],
+      ["地鐵・巴士一日券","1,100日圓","地鐵2次＋巴士1次就能回本"],
+      ["三餐","5,000〜11,000日圓","晚餐的落差最大"]
+    ],
+    coTag:"關於資訊的新鮮度",
+    co1:"參拜費、開門時間、交通制度都會變動。這裡寫的金額與時刻是撰寫當時確認過的，但<b>出發前請務必到各設施的官方網站確認。</b>特別參拜期間、年末年初、法會當天都與平常不同。",
+    co2:"寫這篇文章的理由之一，就是有太多指南仍留著舊資訊。像巴士一日券這種已經不存在的制度，現在還被繼續介紹。這篇文章總有一天也會如此，所以我們把日期寫清楚。",
+    ftTag:"關於這篇文章", ftH:"京都ラボ（京都Lab）",
+    ftP:"我們觀察在京都生活與做生意的人所遇到的困難，把它做成應用程式送回現場。目前正在籌備開業，由一人經營。這篇文章裡提到的「高湯」「地址」「看不懂的菜單」，正是我們現在實際在處理的課題。如果您的店在接待外國客人時遇到困難，歡迎與我們聯繫。",
+    sig1:"京都ラボ ／ KYOTO LAB", sig2:"2026.09.03 ・ 二ノ宮 大知"
+  };
+
+  /* ============================ 한국어 ============================ */
+  D.ko = {
+    dir:"교토의 일상",
+    h1:"아침 6시, 기요미즈데라로.",
+    h1em:"히가시야마·나카교·시모교를 하루에 걷다.",
+    lede:"교토의 명소는 유명해서 붐비는 것이 아닙니다. 모두가 같은 시간대에 가기 때문에 붐빕니다. 기요미즈데라는 연중 아침 6시에 문을 엽니다. 같은 절이라도 6시와 11시는 서로 다른 장소입니다. 이 글은 교토의 세 개 구를 하루에 걸어서 도는 시간표입니다.",
+    facts:[["소요","13","시간"],["도보","약 11","km"],["관람료","2,600","엔 정도"],["교통비","1,100","엔 1일권"]],
+    shapeH:"하루의 형태", shapeTag:"Overview",
+    shapeBody:"동쪽 산에서 시작해 도심에서 점심을 먹고, 서쪽에서 성을 보고, 남쪽 역 앞에서 해가 지는 것을 봅니다. <em>가모강을 한 번만 건너고 되돌아가지 않도록</em> 짰습니다. 저녁의 폰토초만이 유일하게 북쪽으로 되돌아가는 한 수입니다.",
+    shapeCap:"KYOTO ／ 지도가 아니라 순서를 나타낸 그림",
+    river:"가모강",
+    zones:[
+      {t:"06:00 — 11:00", n:"히가시야마구", l:["기요미즈데라・니넨자카","야사카 신사・기온・겐닌지"], a:"아무도 없는 시간대에 걸어 둔다"},
+      {t:"11:15 — 13:30", n:"나카교구・동", l:["니시키 시장・데라마치","점심은 여기서"], a:""},
+      {t:"14:00 — 15:45", n:"나카교구・서", l:["니조성","호리카와도리를 따라 남쪽으로"], a:""},
+      {t:"16:00 — 18:00", n:"시모교구", l:["니시혼간지・히가시혼간지","교토타워에서 일몰"], a:""},
+      {t:"18:30 —", n:"폰토초", l:["저녁 식사"], a:""}
+    ],
+    planH:"시간표", planTag:"Itinerary",
+    planBody:"시각은 어디까지나 기준입니다. 반드시 지켜야 할 것은 <em>첫 번째 하나뿐</em>입니다 — 6시에 기요미즈데라에 있을 것. 이것만 맞으면 나머지가 조금 밀려도 하루는 무너지지 않습니다.",
+    wards:{h:"히가시야마", n:"나카교", s:"시모교"},
+    plan:[
+      {t:"06:00", d:"새벽", n:"기요미즈데라", k:"清水寺", w:"h",
+       p:"연중 아침 6시에 문을 엽니다. 교토의 주요 사찰 중 이렇게 일찍 여는 곳은 없습니다. 나무로 된 무대 위에 열 명도 채 서 있지 않은 시간이 있고, 그 아래로 아침 안개에 잠긴 시가지가 보입니다. 11시에 오면 같은 무대에 수백 명이 서 있습니다. <b>이 하루에서 시간을 옮길 수 없는 것은 여기뿐입니다.</b>",
+       m:[["관람료","500엔"],["체류","50분"],["개문","6:00"]]},
+      {mv:"도보 15분", mt:"기요미즈자카를 내려가 → 산넨자카 → 니넨자카"},
+      {t:"07:00", d:"새벽", n:"산넨자카・니넨자카・야사카탑", k:"三年坂・二年坂", w:"h",
+       p:"돌바닥 길 양옆으로 목조 마치야가 늘어서 있습니다. 10시가 넘으면 사람의 흐름에 밀려 걷기만 하게 되지만, 7시에는 가게가 아직 닫혀 있어서 대신 길 자체가 보입니다. 언덕 아래에서 야사카탑(호칸지)을 올려다보는 구도는 교토에서 가장 많이 찍히는 한 장입니다. 아무도 찍히지 않는 것은 이 시간뿐입니다.",
+       m:[["무료",""],["체류","40분"],["언덕과 계단 있음",""]]},
+      {mv:"도보 12분", mt:"네네노미치 → 마루야마 공원을 지나"},
+      {t:"07:45", d:"새벽", n:"야사카 신사・마루야마 공원", k:"八坂神社・円山公園", w:"h",
+       p:"야사카 신사는 닫는 문이 없어 24시간 들어갈 수 있고 관람료도 없습니다. 시조도리의 동쪽 끝에 서서 거리 쪽을 향하고 있습니다. 뒤편의 마루야마 공원은 이 시간대에 동네 사람들이 개를 산책시키는 곳입니다. 관광지와 생활의 경계는 아침에 가장 뚜렷하게 보입니다.",
+       m:[["무료",""],["체류","30분"],["경내","24시간"]]},
+      {mv:"도보 5분", mt:"시조도리를 따라 서쪽으로"},
+      {t:"08:20", d:"아침 식사", n:"아침 식사 (기온·시조 일대)", k:"", w:"h",
+       p:"이 시간에 여는 가게는 한정적입니다. 옛날식 찻집(킷사텐)의 모닝 세트, 편의점, 빵집. 교토는 킷사텐 문화가 깊어 시조에서 산조 사이에 7시대부터 여는 노포가 흩어져 있습니다. 여기서 한 번 앉아 다리를 쉬세요. <b>오늘은 11km를 걷습니다.</b>",
+       m:[["예산","600〜1,200엔"],["체류","50분"]]},
+      {t:"09:15", d:"오전", n:"기온・하나미코지", k:"祇園・花見小路", w:"h",
+       p:"돌바닥 길 양옆에 오차야가 늘어선 거리입니다. <b>여기에는 촬영 규칙이 있습니다.</b> 하나미코지에서 갈라지는 사유지 골목은 무단 촬영이 금지되어 있고, 안내판이 세워져 있습니다. 큰길은 촬영할 수 있지만, 사유지 골목과 그곳을 걷는 사람에게 카메라를 향하지 마세요. 이것은 관광 예절이 아니라, 거기서 살고 일하는 사람들의 생활에 관한 문제입니다.",
+       m:[["무료",""],["체류","35분"],["사유지 골목","촬영 금지"]]},
+      {mv:"도보 6분", mt:"하나미코지를 따라 남쪽으로"},
+      {t:"10:00", d:"오전", n:"겐닌지", k:"建仁寺", w:"h",
+       p:"기온 바로 뒤에 있으면서도 조용합니다. 일본에서 가장 오래된 선종 사찰로, 법당 천장에는 쌍룡도가 그려져 있습니다. 이 하루 중 다다미에 앉아 정원을 오래 바라볼 수 있는 유일한 장소이기도 합니다. 붐비는 거리를 걷다가 여기로 들어오면, 거리의 소리가 갑자기 멀어집니다.",
+       m:[["관람료","800엔"],["체류","60분"],["개문","10:00"]]},
+      {mv:"도보 15분", mt:"시조도리 → 시조대교로 가모강을 건너 → 나카교구"},
+      {t:"11:15", d:"점심", n:"니시키 시장", k:"錦市場", w:"n",
+       p:"400년 된 식재료 시장으로, 지금은 관광객이 대부분입니다. <b>걸어 다니면서 먹는 것은 삼가 주세요.</b> 상점가에서 가게 앞에 멈춰 서서 먹어 달라고 요청하고 있습니다. 쓰레기와 통행 문제 때문이지, 관광객을 겨냥해 만든 규칙이 아닙니다. 대부분의 가게가 서서 먹을 자리를 마련해 둡니다. 개점은 9시 반에서 10시경, 가게마다 다릅니다.",
+       m:[["점심","1,500〜2,500엔"],["체류","75분"],["보행 중 취식 불가",""]]},
+      {t:"12:45", d:"오후", n:"데라마치도리・신쿄고쿠", k:"寺町通・新京極", w:"n",
+       p:"니시키 시장의 동쪽 끝이 그대로 두 개의 아케이드로 이어집니다. 데라마치도리에는 헌책방·문구점·노포가, 신쿄고쿠에는 기념품과 젊은 층을 겨냥한 가게가 있습니다. 나란한 두 길의 성격이 완전히 다른 점이 재미있습니다. 둘 다 지붕이 있어서 비가 오거나 볕이 강할 때 이곳에서 시간을 보낼 수 있습니다.",
+       m:[["무료",""],["체류","45분"],["지붕 있음",""]]},
+      {mv:"지하철 15분", mt:"시조역 → 가라스마오이케에서 환승 → 니조조마에역"},
+      {t:"14:00", d:"오후", n:"니조성", k:"二条城", w:"n",
+       p:"도쿠가와 가문의 성이며, 1867년 대정봉환이 선언된 장소입니다. 니노마루 고텐의 복도는 걸으면 소리가 납니다(우구이스바리). 절과 신사가 이어진 하루에 무가의 건물이 하나 들어가면, 교토가 절만의 도시가 아니라는 것을 알게 됩니다. 부지 안을 도는 것만으로 1km가 넘습니다. <b>입성 접수는 폐문 1시간 전에 마감됩니다.</b>",
+       m:[["입성료","1,300엔"],["체류","105분"],["접수 마감","16:00"]]},
+      {mv:"시내버스 12분", mt:"니조조마에 → 호리카와도리 남쪽 → 니시혼간지마에"},
+      {t:"16:00", d:"저녁 무렵", n:"니시혼간지", k:"西本願寺", w:"s",
+       p:"세계문화유산이면서 <b>관람이 무료</b>입니다. 고에이도는 일본 최대급 목조 건축 중 하나로, 안으로 들어가 다다미에 앉을 수 있습니다. 일반적인 관광 동선에 포함되어 있지 않아 사람이 적고, 저녁 빛이 툇마루에 길게 뻗습니다. 이 하루에서 가장 사치스러운 시간은 어쩌면 여기일지 모릅니다.",
+       m:[["무료",""],["체류","40분"],["세계문화유산",""]]},
+      {mv:"도보 12분", mt:"호리카와도리 → 동쪽 가라스마도리로"},
+      {t:"16:50", d:"저녁 무렵", n:"히가시혼간지", k:"東本願寺", w:"s",
+       p:"교토역에서 도보 몇 분 거리에 있으며 역시 무료입니다. 고에이도몬은 목조 문으로는 세계 최대급입니다. 혼간지가 서쪽과 동쪽 두 곳으로 나뉜 이유는 전국시대의 분열까지 거슬러 올라가지만, 그것을 몰라도 한 시간 안에 두 곳에 서 보면 건물의 차이를 알 수 있습니다.",
+       m:[["무료",""],["체류","25분"],["교토역 인근",""]]},
+      {mv:"도보 8분", mt:"가라스마도리를 남쪽으로 → 교토역"},
+      {t:"17:30", d:"일몰", n:"교토타워", k:"京都タワー", w:"s",
+       p:"경관 규제가 엄격한 교토에서 시가지를 위에서 내려다볼 수 있는 몇 안 되는 장소입니다. 오늘 아침 6시에 서 있던 기요미즈데라의 무대를 동쪽 산자락에서 찾을 수 있습니다. <b>마지막에 이곳에 오는 것은, 걸어온 길을 위에서 확인하기 위해서입니다.</b> 일몰 시각에 맞추면 거리의 불이 차례로 켜지는 순간에 함께할 수 있습니다.",
+       m:[["전망실","900엔"],["체류","45분"]]},
+      {mv:"지하철 10분", mt:"교토역 → 시조역 → 도보로 폰토초"},
+      {t:"18:45", d:"밤", n:"폰토초", k:"先斗町", w:"n",
+       p:"가모강과 기야마치 사이, 폭 2m 남짓의 가늘고 긴 길에 가게가 빽빽합니다. 이 하루에서 유일하게 북쪽으로 되돌아가는 이동이지만, 그만한 값어치가 있습니다. <b>다만 외국인이 가장 많이 막히는 곳이 이 거리입니다.</b> 외국어 메뉴가 없는 가게, 예약이 필요한 가게, 자릿세(오토시)가 붙는 가게가 섞여 있습니다. 입구의 차림표를 읽지 못한 채 그냥 지나치기 쉽습니다.",
+       m:[["저녁","3,000〜8,000엔"],["자릿세","가게에 따라 다름"]]}
+    ],
+    fricH:"외국인이 실제로 막히는 네 가지", fricTag:"Friction",
+    fricBody:"명소 정보는 어느 가이드에나 실려 있습니다. 실려 있지 않은 것은 이 네 가지입니다. 교토에서 가게를 하는 분들과 이야기하며 반복해서 나온 것들입니다.",
+    pits:[
+      {k:"주소", h:"‘시조가라스마 아가루’가 지도 앱에 닿지 않는다",
+       p:"교토의 주소는 길 이름에 <b>아가루(上ル, 북쪽)</b>, <b>사가루(下ル, 남쪽)</b>, <b>히가시이루(東入ル)</b>, <b>니시이루(西入ル)</b>를 붙여 씁니다. 주민에게는 가장 알기 쉬운 표기지만, 해외 지도 앱이나 차량 호출 서비스에서는 제대로 해석되지 않는 경우가 많아 예약을 하고도 가게에 도착하지 못하는 일이 생깁니다. <b>가게 이름으로 검색하거나, 미리 전화번호를 받아 두는 편이 확실합니다.</b>"},
+      {k:"다시", h:"채소 요리라고 해서 채식은 아니다",
+       p:"교토 요리의 대부분은 <b>가쓰오 다시</b>(가다랑어포 육수)를 씁니다. 겉보기에 채소뿐이어도 육수에 생선이 들어 있습니다. 채식·비건이신 분은 “채소인가요”가 아니라 <b>“가쓰오 다시를 쓰나요”</b>라고 물어보세요. 가게에서 숨기는 것이 아니라, 그 차이가 여기서는 아직 널리 알려져 있지 않을 뿐입니다."},
+      {k:"1일권", h:"버스 전용 1일권은 이제 없습니다",
+       p:"오래된 글에는 ‘시내버스 1일권 600엔’이라고 쓰여 있지만 <b>이 승차권은 판매가 종료되었습니다.</b> 지금 살 수 있는 것은 지하철·버스 1일권(1,100엔)입니다. 이 코스는 지하철 2회와 버스 1회를 쓰므로 대체로 본전을 뽑습니다. ICOCA와 Suica도 버스·지하철 양쪽에서 쓸 수 있습니다."},
+      {k:"짐", h:"교토역 코인로커는 오전 중에 찹니다",
+       p:"큰 캐리어를 끌고 기요미즈자카를 오르는 것은 현실적이지 않습니다. 성수기에는 교토역 로커가 오전 중에 다 찹니다. <b>역의 수하물 보관소나, 숙소에서 호텔로 보내는 배송 서비스를 미리 확보해 두세요.</b> 시내버스 안이 짐으로 가득 차는 문제도 이것으로 조금 줄어듭니다."}
+    ],
+    cutH:"넣지 못한 명소와 그 이유", cutTag:"Left out",
+    cutBody:"하루에 담을 수 있는 것에는 한계가 있습니다. <em>무엇을 뺐는지 말하지 않는 일정은 믿을 수 없습니다.</em>",
+    cuts:[
+      ["금각사","기타구. 여기서 편도 1시간 가까이 걸려 이 일정에는 물리적으로 들어가지 않습니다. 둘째 날 아침에 단독으로."],
+      ["후시미이나리 대사","후시미구. 24시간 참배할 수 있으므로 <b>오히려 다른 날 이른 아침이나 밤</b>에 가는 편이 좋습니다. 센본토리이는 사람이 없을 때 걸어 볼 가치가 있습니다."],
+      ["아라시야마","우쿄구. 최소 반나절은 필요합니다. 이 세 구와는 방향이 반대라, 같은 날에 더하면 양쪽 다 어중간해집니다."],
+      ["산주산겐도","히가시야마구라 넣을 여지는 있었습니다. 다만 1,001기의 천수관음을 지친 다리로 훑어보기에는 아깝습니다. <b>기요미즈데라 앞, 8시 반부터</b>로 바꿔 짜는 것도 방법입니다."],
+      ["난젠지・긴카쿠지","사쿄구. 철학의 길과 묶으면 반나절 코스가 되므로 따로 떼는 편이 좋습니다."]
+    ],
+    fareH:"비용의 기준", fareTag:"Budget",
+    fareHead:["항목","금액","비고"],
+    fares:[
+      ["기요미즈데라","500엔","아침 6시 개문"],
+      ["겐닌지","800엔","10시 개문"],
+      ["니조성","1,300엔","입성료＋니노마루 고텐"],
+      ["교토타워","900엔","전망실"],
+      ["야사카 신사・두 혼간지","0엔","니시혼간지는 세계유산이지만 무료"],
+      ["지하철·버스 1일권","1,100엔","지하철 2회＋버스 1회면 본전"],
+      ["식사 3회","5,000〜11,000엔","저녁의 폭이 가장 큼"]
+    ],
+    coTag:"정보의 신선도에 대하여",
+    co1:"관람료·개문 시간·교통 제도는 바뀝니다. 여기에 쓴 금액과 시각은 집필 시점에 확인한 것이지만, <b>방문 전에 각 시설의 공식 사이트에서 반드시 확인해 주세요.</b> 특별 참배 기간, 연말연시, 법요일은 평소와 다릅니다.",
+    co2:"이 글을 쓴 이유 중 하나는, 오래된 정보가 그대로 남아 있는 가이드가 많다는 것이었습니다. 버스 1일권처럼 이미 존재하지 않는 제도가 지금도 소개되고 있습니다. 이 글도 언젠가 같은 길을 걷게 되므로, 날짜를 명시해 둡니다.",
+    ftTag:"이 글에 대하여", ftH:"교토랩 (京都ラボ)",
+    ftP:"교토에서 살아가는 사람과 가게의 어려움을 관찰하고, 그것을 앱의 형태로 만들어 현장에 돌려주기 위한 회사입니다. 현재 1인 사업으로 개업 준비 중입니다. 이 글에 나오는 ‘다시’, ‘주소’, ‘읽을 수 없는 차림표’는 지금 저희가 실제로 붙들고 있는 과제 그 자체입니다. 외국인 손님 응대로 어려움을 겪는 가게가 있다면 연락 주세요.",
+    sig1:"京都ラボ ／ KYOTO LAB", sig2:"2026.09.03 ・ 니노미야 다이치"
+  };
+
+  /* ============================ 日本語 ============================ */
+  D.ja = {
+    dir:"京都の日常",
+    h1:"朝6時に清水寺へ。",
+    h1em:"東山・中京・下京を1日で歩く。",
+    lede:"京都の定番は、混んでいるから避けるべきなのではありません。行く時間が全員同じだから混むのです。清水寺は朝6時から開いています。同じ寺でも、6時と11時では別の場所です。この記事は、三つの区の名所を一日で歩ききるための時間割です。",
+    facts:[["所要","13","時間"],["歩行","約11","km"],["拝観料","2,600","円 目安"],["交通費","1,100","円 一日券"]],
+    shapeH:"一日の形", shapeTag:"Overview",
+    shapeBody:"東の山から始めて、街の中心で昼を食べ、西で城を見て、南の駅前で日が落ちる。<em>鴨川を一度だけ渡り、あとは戻らない</em>ように組んでいます。夜の先斗町だけが、少し北へ引き返す一手です。",
+    shapeCap:"KYOTO ／ 一日の動き（地図ではなく順序の図）",
+    river:"鴨川",
+    zones:[
+      {t:"06:00 — 11:00", n:"東山区", l:["清水寺・二年坂・八坂の塔","円山公園・祇園・建仁寺"], a:"誰もいない時間帯に歩ききる"},
+      {t:"11:15 — 13:30", n:"中京区・東", l:["錦市場・寺町・新京極","昼食はここで"], a:""},
+      {t:"14:00 — 15:45", n:"中京区・西", l:["二条城","堀川通を南へ下る"], a:""},
+      {t:"16:00 — 18:00", n:"下京区", l:["西本願寺・東本願寺","京都タワーで日没"], a:""},
+      {t:"18:30 —", n:"先斗町", l:["夕食"], a:""}
+    ],
+    planH:"時間割", planTag:"Itinerary",
+    planBody:"時刻は目安です。守るべきなのは<em>最初の一つだけ</em> ── 6時に清水寺にいること。ここさえ合えば、あとは多少ずれても一日は崩れません。",
+    wards:{h:"東山区", n:"中京区", s:"下京区"},
+    plan:[
+      {t:"06:00", d:"朝", n:"清水寺", k:"", w:"h",
+       p:"年間を通して朝6時に開きます。京都の主要な寺でこれほど早く開くところは他にありません。舞台に人が10人といない時間帯があり、そこから市街が朝もやの下に見えます。11時に来れば同じ舞台に人が数百人立っています。<b>この一日で、ここだけは時間をずらせません。</b>",
+       m:[["拝観料","500円"],["滞在","50分"],["開門","6:00"]]},
+      {mv:"徒歩 15分", mt:"清水坂を下る → 三年坂 → 二年坂"},
+      {t:"07:00", d:"朝", n:"三年坂・二年坂・八坂の塔", k:"", w:"h",
+       p:"石畳と町家の坂。この一帯は10時を過ぎると人の流れに押されて歩くだけになりますが、7時なら店はまだ閉まっていて、代わりに道そのものが見えます。八坂の塔（法観寺）を坂の下から見上げる構図は、京都でもっとも撮られている一枚です。誰も写り込まないのは、この時間だけです。",
+       m:[["無料",""],["滞在","40分"],["坂と階段あり",""]]},
+      {mv:"徒歩 12分", mt:"ねねの道 → 円山公園を抜ける"},
+      {t:"07:45", d:"朝", n:"八坂神社・円山公園", k:"", w:"h",
+       p:"八坂神社は境内に門がなく、24時間入れて拝観料もかかりません。四条通の東の突き当たりに立っていて、街のほうを向いています。円山公園はその裏手で、地元の人が犬を連れて歩いている時間帯です。観光地と生活の境目が、朝はいちばんはっきり見えます。",
+       m:[["無料",""],["滞在","30分"],["境内","24時間"]]},
+      {mv:"徒歩 5分", mt:"四条通を西へ"},
+      {t:"08:20", d:"朝食", n:"朝食（祇園・四条界隈）", k:"", w:"h",
+       p:"この時間に開いている店は限られます。喫茶店のモーニング、コンビニ、パン屋。京都は喫茶店文化が根強く、7時台から開けている老舗が四条から三条にかけて点在しています。ここで一度座って、足を休めてください。<b>この一日は歩行11kmです。</b>",
+       m:[["予算","600〜1,200円"],["滞在","50分"]]},
+      {t:"09:15", d:"午前", n:"祇園・花見小路", k:"", w:"h",
+       p:"石畳の両側にお茶屋が並ぶ通り。<b>ここには撮影のルールがあります。</b>花見小路から入る私道は、無断撮影が禁止されており、看板が出ています。表通りは撮影できますが、私道と、そこを歩く人へカメラを向けないこと。これは観光の作法ではなく、そこに住み働いている人の生活の話です。",
+       m:[["無料",""],["滞在","35分"],["私道","撮影禁止"]]},
+      {mv:"徒歩 6分", mt:"花見小路を南へ抜ける"},
+      {t:"10:00", d:"午前", n:"建仁寺", k:"", w:"h",
+       p:"祇園のすぐ裏にありながら、静かです。日本最古の禅寺で、法堂の天井には双龍図が描かれています。畳に座って庭を見ていられる時間が、この一日の中で唯一まとまって取れる場所でもあります。人混みを歩いた後にここへ入ると、街の音が急に遠くなります。",
+       m:[["拝観料","800円"],["滞在","60分"],["開門","10:00"]]},
+      {mv:"徒歩 15分", mt:"四条通 → 四条大橋で鴨川を渡る → 中京区へ"},
+      {t:"11:15", d:"昼", n:"錦市場", k:"", w:"n",
+       p:"400年続く食材の市場で、いまは観光客が大半を占めます。<b>歩きながら食べるのは控えてください。</b>商店街として、店頭で立ち止まって食べるようお願いが出ています。ゴミと通行の問題が理由で、観光客向けに作った規則ではありません。多くの店が食べる場所を店先に用意しています。開くのは9時半から10時ごろ、店によって違います。",
+       m:[["昼食","1,500〜2,500円"],["滞在","75分"],["食べ歩き","不可"]]},
+      {t:"12:45", d:"午後", n:"寺町通・新京極", k:"", w:"n",
+       p:"錦市場の東端がそのまま二本のアーケードにつながります。寺町通は古書店・文具・老舗、新京極は土産物と若者向けの店。同じ二本の道が、一本ずつ性格を変えているのが面白いところです。屋根があるので、雨でも日射しでもここで時間を潰せます。",
+       m:[["無料",""],["滞在","45分"],["屋根あり",""]]},
+      {mv:"地下鉄 15分", mt:"四条駅 → 烏丸御池で東西線に乗換 → 二条城前駅"},
+      {t:"14:00", d:"午後", n:"二条城", k:"", w:"n",
+       p:"徳川の城で、大政奉還が告げられた場所です。二の丸御殿の廊下は歩くと鳴ります（鶯張り）。ここまで寺と神社が続いてきた一日に、武家の建物が一つ入ることで、京都が寺の街だけではないことが分かります。庭も広く、敷地内だけで1km以上歩きます。<b>入城の受付は閉門の1時間前に締まります。</b>",
+       m:[["入城料","1,300円"],["滞在","105分"],["受付終了","16:00"]]},
+      {mv:"市バス 12分", mt:"二条城前 → 堀川通を南へ → 西本願寺前"},
+      {t:"16:00", d:"夕方", n:"西本願寺", k:"", w:"s",
+       p:"世界遺産で、しかも<b>拝観無料</b>です。御影堂は日本最大級の木造建築のひとつで、中に入って座れます。観光の順路に組み込まれていないぶん人が少なく、夕方の光が縁側に長く伸びます。この一日でいちばん贅沢な時間はここかもしれません。",
+       m:[["無料",""],["滞在","40分"],["世界遺産",""]]},
+      {mv:"徒歩 12分", mt:"堀川通 → 烏丸通へ東進"},
+      {t:"16:50", d:"夕方", n:"東本願寺", k:"", w:"s",
+       p:"京都駅から歩いて数分の位置に、これも無料で入れます。御影堂門は木造の門としては世界最大級。西と東で本願寺が二つある理由は戦国期の分裂にさかのぼりますが、それを知らなくても、一時間のうちに両方に立てば建物の違いが分かります。",
+       m:[["無料",""],["滞在","25分"],["京都駅至近",""]]},
+      {mv:"徒歩 8分", mt:"烏丸通を南へ → 京都駅前"},
+      {t:"17:30", d:"日没", n:"京都タワー", k:"", w:"s",
+       p:"景観規制の厳しい京都で、市街を上から見下ろせる数少ない場所です。朝に立っていた清水寺の舞台が、東の山際に見つけられます。<b>一日の最後にここへ来るのは、歩いた道を上から確認するためです。</b>日没の時刻に合わせると、街の明かりが順に点くところに立ち会えます。",
+       m:[["展望室","900円"],["滞在","45分"]]},
+      {mv:"地下鉄 10分", mt:"京都駅 → 四条駅 → 先斗町へ徒歩"},
+      {t:"18:45", d:"夜", n:"先斗町", k:"", w:"n",
+       p:"鴨川と木屋町のあいだ、幅2mほどの細長い通りに店が詰まっています。この一日で唯一、北へ引き返す移動ですが、それだけの価値があります。<b>ただし、外国人が最もつまずくのがこの通りです。</b>外国語のメニューがない店、予約が要る店、お通し代がかかる店が混在しています。入口の品書きが読めないまま素通りすることになりがちです。",
+       m:[["夕食","3,000〜8,000円"],["お通し代","店による"]]}
+    ],
+    fricH:"外国人が実際につまずく4つのこと", fricTag:"Friction",
+    fricBody:"名所の情報はどのガイドにも載っています。載っていないのは、この4つです。京都で店の人と話していて、繰り返し出てくるものを挙げます。",
+    pits:[
+      {k:"住所", h:"「四条烏丸上ル」が地図アプリに届かない",
+       p:"京都の住所は通り名と「<b>上ル</b>（北へ）」「<b>下ル</b>（南へ）」「<b>東入ル</b>」「<b>西入ル</b>」で書かれます。市民には最も分かりやすい記法ですが、海外の地図アプリや配車サービスでは正しく解決されないことが多く、予約したのに店にたどり着けないことが起きます。<b>店名で検索するか、店に電話番号を聞いておくほうが確実です。</b>"},
+      {k:"だし", h:"野菜料理でも、ベジタリアンとは限らない",
+       p:"京都の料理の多くは<b>かつおだし</b>を使います。見た目が野菜だけでも、だしに魚が入っています。ベジタリアンやヴィーガンの方は、「野菜ですか」ではなく<b>「かつおだしを使っていますか」</b>と聞いてください。店の人に悪気はなく、そこが違いだと知られていないだけです。"},
+      {k:"一日券", h:"バス専用の一日券は、もうありません",
+       p:"古い記事には「市バス一日券600円」と書かれていますが、<b>これは販売を終了しています。</b>いま買えるのは地下鉄・バス一日券（1,100円）です。このルートは地下鉄2回とバス1回を使うので、それでもだいたい元が取れます。ICOCAやSuicaもバス・地下鉄の両方で使えます。"},
+      {k:"荷物", h:"京都駅のコインロッカーは午前中に埋まる",
+       p:"大きなスーツケースを持ったまま清水坂を上るのは現実的ではありません。京都駅のロッカーは観光シーズンの午前中で埋まります。<b>駅の手荷物預かり所か、宿からホテルへの配送サービスを先に押さえてください。</b>市バスの車内が荷物で埋まる問題も、これで少し減ります。"}
+    ],
+    cutH:"入れなかった名所と、その理由", cutTag:"Left out",
+    cutBody:"一日に詰め込めるものには限りがあります。<em>入れなかったものを言わない旅程は、信用できません。</em>",
+    cuts:[
+      ["金閣寺","北区。ここから片道1時間近くかかり、この日程には物理的に入りません。二日目の朝に単独で。"],
+      ["伏見稲荷大社","伏見区。24時間参拝できるので、<b>むしろ別の日の早朝か夜</b>に行くほうが良い場所です。千本鳥居は人がいないときに歩く価値があります。"],
+      ["嵐山","右京区。半日は要ります。この三区とは方角が逆で、同じ日に足すと両方が中途半端になります。"],
+      ["三十三間堂","東山区で、入れる余地はありました。ただし千一体の千手観音は、疲れた足で流し見るには惜しい。<b>清水寺の前、朝8時半から</b>組み替えるのも手です。"],
+      ["南禅寺・銀閣寺","左京区。哲学の道と合わせて半日のコースになるので、独立させたほうが良い場所です。"]
+    ],
+    fareH:"費用の目安", fareTag:"Budget",
+    fareHead:["項目","金額","備考"],
+    fares:[
+      ["清水寺","500円","朝6時開門"],
+      ["建仁寺","800円","10時開門"],
+      ["二条城","1,300円","入城料＋二の丸御殿"],
+      ["京都タワー","900円","展望室"],
+      ["八坂神社・両本願寺","0円","西本願寺は世界遺産だが無料"],
+      ["地下鉄・バス一日券","1,100円","地下鉄2回＋バス1回で元が取れる"],
+      ["食事 3回","5,000〜11,000円","夕食の幅が大きい"]
+    ],
+    coTag:"情報の鮮度について",
+    co1:"拝観料・開門時間・交通の制度は変わります。ここに書いた金額と時刻は執筆時点で確認したものですが、<b>訪れる前に各施設の公式サイトで必ず確認してください。</b>特別拝観の期間、年末年始、法要の日は通常と異なります。",
+    co2:"この記事を書いた理由のひとつは、古い情報のまま残っているガイドが多いことでした。バス一日券のように、すでに存在しない制度が今も紹介されています。この記事も同じ運命をたどるので、日付を明記しています。",
+    ftTag:"この記事について", ftH:"京都ラボ",
+    ftP:"京都で暮らす人と店の困りごとを観測し、アプリという形にして現場に戻すための取り組みです。個人事業として開業準備中。この記事に出てくる「だし」「住所」「読めない品書き」は、いま実際に手を動かしている課題そのものです。外国人のお客さまへの対応で困っている店舗の方は、ご連絡ください。",
+    sig1:"京都ラボ ／ KYOTO LAB", sig2:"2026.09.03 ・ 二ノ宮 大知"
+  };
+
+  /* ============================ render ============================ */
+  var state = { lang: "en" };
+
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+
+  function svgShape(d){
+    var out = '<svg viewBox="0 0 900 320" role="img" aria-label="' + esc(d.shapeH) + '">';
+    out += '<path class="river" d="' + GEO.river + '"></path>';
+    out += '<text class="rlabel" x="482" y="312">' + esc(d.river) + '</text>';
+    d.zones.forEach(function(z, i){
+      var g = GEO.zones[i];
+      out += '<rect class="zbox" x="'+g.x+'" y="'+g.y+'" width="'+g.w+'" height="'+g.h+'" rx="3"></rect>';
+      out += '<text class="ztime" x="'+(g.x+18)+'" y="'+(g.y+26)+'">'+esc(z.t)+'</text>';
+      out += '<text class="zname" x="'+(g.x+18)+'" y="'+(g.y+50)+'">'+esc(z.n)+'</text>';
+      z.l.forEach(function(line, j){
+        out += '<text class="zlist" x="'+(g.x+18)+'" y="'+(g.y+74+j*20)+'">'+esc(line)+'</text>';
+      });
+      if(z.a){
+        out += '<text class="zacc" x="'+(g.x+18)+'" y="'+(g.y+122)+'">'+esc(z.a)+'</text>';
+      }
+    });
+    GEO.paths.forEach(function(p){ out += '<path class="rpath" d="'+p+'"></path>'; });
+    GEO.dots.forEach(function(c, i){
+      out += '<circle class="rdot" cx="'+c[0]+'" cy="'+c[1]+'" r="10"></circle>';
+      out += '<text class="rnum" x="'+c[0]+'" y="'+(c[1]+3.5)+'" text-anchor="middle">'+(i+1)+'</text>';
+    });
+    return out + '</svg>';
+  }
+
+  function render(){
+    var d = D[state.lang];
+    document.documentElement.lang = state.lang;
+
+    var h = "";
+
+    /* header */
+    h += '<header class="doc"><div class="wrap">';
+    h += '<div class="kicker"><span class="rule"></span><span class="tag">' + esc(d.dir) + '</span></div>';
+    h += '<h1>' + esc(d.h1) + '<em>' + esc(d.h1em) + '</em></h1>';
+    h += '<p class="lede">' + esc(d.lede) + '</p>';
+    h += '<dl class="facts">';
+    d.facts.forEach(function(f){
+      h += '<div class="fact"><dt>'+esc(f[0])+'</dt><dd>'+esc(f[1])+'<small>'+esc(f[2])+'</small></dd></div>';
+    });
+    h += '</dl></div></header>';
+
+    /* shape */
+    h += '<section><div class="wide">';
+    h += '<div class="sec-head"><h2>'+esc(d.shapeH)+'</h2><span class="tag">'+esc(d.shapeTag)+'</span></div>';
+    h += '<p class="body">' + d.shapeBody + '</p>';
+    h += '<figure class="shape">' + svgShape(d) + '<figcaption>'+esc(d.shapeCap)+'</figcaption></figure>';
+    h += '</div></section>';
+
+    /* itinerary */
+    h += '<section><div class="wrap">';
+    h += '<div class="sec-head"><h2>'+esc(d.planH)+'</h2><span class="tag">'+esc(d.planTag)+'</span></div>';
+    h += '<p class="body">' + d.planBody + '</p>';
+    h += '<div class="plan">';
+    d.plan.forEach(function(it){
+      if(it.mv){
+        h += '<div class="move"><div class="when">'+esc(it.mv)+'</div><p>'+esc(it.mt)+'</p></div>';
+        return;
+      }
+      h += '<article class="stop">';
+      h += '<div class="when">'+esc(it.t)+'<small>'+esc(it.d)+'</small></div><div>';
+      h += '<div class="stop-head"><h3>'+esc(it.n)+'</h3>';
+      if(it.k){ h += '<span class="kanji">'+esc(it.k)+'</span>'; }
+      h += '<span class="ward w-'+it.w+'">'+esc(d.wards[it.w])+'</span></div>';
+      h += '<p>' + it.p + '</p>';
+      h += '<div class="meta">';
+      it.m.forEach(function(mm){
+        h += '<span>'+esc(mm[0])+(mm[1] ? ' <b>'+esc(mm[1])+'</b>' : '')+'</span>';
+      });
+      h += '</div></div></article>';
+    });
+    h += '</div></div></section>';
+
+    /* friction */
+    h += '<section><div class="wrap">';
+    h += '<div class="sec-head"><h2>'+esc(d.fricH)+'</h2><span class="tag">'+esc(d.fricTag)+'</span></div>';
+    h += '<p class="body">'+esc(d.fricBody)+'</p><div class="pits">';
+    d.pits.forEach(function(pt){
+      h += '<div class="pit"><div class="k">'+esc(pt.k)+'</div><div><h3>'+esc(pt.h)+'</h3><p>'+pt.p+'</p></div></div>';
+    });
+    h += '</div></div></section>';
+
+    /* cuts */
+    h += '<section><div class="wrap">';
+    h += '<div class="sec-head"><h2>'+esc(d.cutH)+'</h2><span class="tag">'+esc(d.cutTag)+'</span></div>';
+    h += '<p class="body">'+d.cutBody+'</p><div class="cuts">';
+    d.cuts.forEach(function(c){
+      h += '<div class="cut"><b>'+esc(c[0])+'</b><span>'+c[1]+'</span></div>';
+    });
+    h += '</div></div></section>';
+
+    /* fares */
+    h += '<section><div class="wrap">';
+    h += '<div class="sec-head"><h2>'+esc(d.fareH)+'</h2><span class="tag">'+esc(d.fareTag)+'</span></div>';
+    h += '<div class="tablewrap"><table><thead><tr>';
+    d.fareHead.forEach(function(th){ h += '<th>'+esc(th)+'</th>'; });
+    h += '</tr></thead><tbody>';
+    d.fares.forEach(function(r){
+      h += '<tr><td>'+esc(r[0])+'</td><td class="n">'+esc(r[1])+'</td><td><small>'+esc(r[2])+'</small></td></tr>';
+    });
+    h += '</tbody></table></div>';
+    h += '<div class="callout"><span class="tag">'+esc(d.coTag)+'</span><p>'+d.co1+'</p><p>'+d.co2+'</p></div>';
+    h += '</div></section>';
+
+    /* footer */
+    h += '<footer><div class="wrap"><div class="box">';
+    h += '<span class="tag">'+esc(d.ftTag)+'</span><h3>'+esc(d.ftH)+'</h3><p>'+esc(d.ftP)+'</p></div>';
+    h += '<div class="sig"><p>'+esc(d.sig1)+'</p><p>'+esc(d.sig2)+'</p></div>';
+    h += '</div></footer>';
+
+    document.getElementById("app").innerHTML = h;
+
+    var btns = document.querySelectorAll("#langs button");
+    for(var i=0;i<btns.length;i++){
+      btns[i].setAttribute("aria-pressed", btns[i].dataset.lang === state.lang);
+    }
+  }
+
+  var lb = document.getElementById("langs");
+  lb.innerHTML = LANGS.map(function(l){
+    return '<button data-lang="'+l.k+'" aria-pressed="'+(state.lang===l.k)+'">'+l.n+'</button>';
+  }).join("");
+  lb.addEventListener("click", function(e){
+    var b = e.target.closest("button");
+    if(!b || !b.dataset.lang) return;
+    state.lang = b.dataset.lang;
+    render();
+    window.scrollTo(0,0);
+  });
+
+  render();
+})();
+</script>
+
+
+</body>
+</html>

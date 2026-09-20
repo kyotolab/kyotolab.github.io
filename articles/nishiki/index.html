@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Nishiki, Standing Still</title>
+<meta name="description" content="Nishiki Market asks one thing of visitors: do not eat while walking.">
+<link rel="canonical" href="https://kyotolab.github.io/articles/nishiki/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nishiki, Standing Still">
+<meta property="og:description" content="Nishiki Market asks one thing of visitors: do not eat while walking.">
+<meta property="og:url" content="https://kyotolab.github.io/articles/nishiki/">
+<meta property="og:site_name" content="京都ラボ">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Spectral:wght@200;300;400;600&display=swap">
+</head>
+<body>
+<style>
+  /* ── Kyoto Lab / English series ────────────────────────────────
+     Reference taste: The Parkhouse Kyoto Karasuma-Oike.
+     Near-black ground, bronze hairlines, wide-tracked Latin labels,
+     a high-contrast serif that is allowed to be quiet.
+  ──────────────────────────────────────────────────────────────── */
+  :root{
+    color-scheme:light dark;
+    --paper:#F6F5F2; --paper2:#EDEBE6;
+    --ink:#14171A; --ink2:#5D666D; --ink3:#8C949A;
+    --rule:#DBD8D2; --rule2:#E9E7E2;
+    --gold:#8E7134; --gold2:#B49559;
+    --teal:#0E6B76;
+    --panel:#0B0E10; --panel-ink:#EDEBE6; --panel-ink2:#98A1A7; --panel-gold:#C3A468;
+
+    --disp:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+    --body:"Spectral",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+
+    --gut:clamp(22px,5vw,44px);
+    --measure:33em;
+  }
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+    --paper:#0D1013; --paper2:#151A1E;
+    --ink:#E8E6E1; --ink2:#9BA3A9; --ink3:#6D767C;
+    --rule:#242B31; --rule2:#1A2024;
+    --gold:#C3A468; --gold2:#A98D57;
+    --teal:#5FD1DC;
+    --panel:#05080A; --panel-ink:#E8E6E1; --panel-ink2:#8D959B; --panel-gold:#C3A468;
+  }}
+  :root[data-theme="dark"]{
+    --paper:#0D1013; --paper2:#151A1E;
+    --ink:#E8E6E1; --ink2:#9BA3A9; --ink3:#6D767C;
+    --rule:#242B31; --rule2:#1A2024;
+    --gold:#C3A468; --gold2:#A98D57;
+    --teal:#5FD1DC;
+    --panel:#05080A; --panel-ink:#E8E6E1; --panel-ink2:#8D959B; --panel-gold:#C3A468;
+  }
+
+  *{box-sizing:border-box}
+  body{background:var(--paper); color:var(--ink); font-family:var(--body);
+       font-size:17.5px; font-weight:300; line-height:1.85; -webkit-font-smoothing:antialiased}
+  p{margin:0}
+  a{color:var(--gold); text-underline-offset:3px; text-decoration-thickness:.5px}
+  :focus-visible{outline:1.5px solid var(--gold); outline-offset:4px}
+  ::selection{background:var(--gold); color:var(--paper)}
+
+  .col{max-width:var(--measure); margin-inline:auto; padding-inline:var(--gut)}
+  .wide{max-width:940px; margin-inline:auto; padding-inline:var(--gut)}
+  .col > * + *{margin-top:1.35em}
+
+  /* ── wide-tracked latin label, the Parkhouse tell ── */
+  .eyebrow{font-family:var(--sans); font-size:10px; font-weight:500; letter-spacing:.26em;
+           text-transform:uppercase; color:var(--gold); display:block}
+
+  /* ── masthead ───────────────────────────────────── */
+  .top{background:var(--panel); color:var(--panel-ink); padding-block:clamp(54px,11vw,110px) clamp(40px,8vw,74px)}
+  .top .eyebrow{color:var(--panel-gold)}
+  .brand{display:flex; align-items:center; gap:13px; margin-bottom:clamp(40px,9vw,86px)}
+  .brand .mk{font-family:var(--disp); font-size:19px; letter-spacing:.06em; color:var(--panel-ink)}
+  .brand .ln{flex:1; height:1px; background:linear-gradient(90deg,var(--panel-gold),transparent)}
+  .brand .sr{font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; color:var(--panel-ink2)}
+  h1{font-family:var(--disp); font-weight:400; font-size:clamp(35px,7.2vw,66px); line-height:1.12;
+     letter-spacing:-.005em; margin:.5em 0 0; text-wrap:balance; color:var(--panel-ink)}
+  .stand{font-size:16px; color:var(--panel-ink2); margin-top:1.5em; max-width:30em; font-weight:200}
+  .meta{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; color:var(--panel-ink2);
+        margin-top:clamp(34px,6vw,54px); padding-top:16px; border-top:1px solid #22282C;
+        display:flex; flex-wrap:wrap; gap:6px 22px}
+
+  /* ── the device: expectation vs. what is actually there ── */
+  .frame{margin:clamp(38px,7vw,64px) auto 0; display:grid; gap:1px; background:var(--rule);
+         border:1px solid var(--rule); border-radius:2px; overflow:hidden}
+  @media(min-width:620px){ .frame{grid-template-columns:1fr 1fr} }
+  .frame > div{background:var(--paper); padding:clamp(20px,3.4vw,28px)}
+  .frame .t{font-family:var(--sans); font-size:9.5px; font-weight:600; letter-spacing:.2em;
+            text-transform:uppercase; color:var(--ink3); display:block; margin-bottom:11px}
+  .frame .v{font-family:var(--disp); font-size:clamp(19px,2.7vw,23px); line-height:1.32; font-weight:400}
+  .frame .real{background:var(--paper2)}
+  .frame .real .t{color:var(--gold)}
+
+  /* ── section rule ── */
+  .sec{margin-top:clamp(46px,8vw,80px)}
+  .sec .eyebrow{margin-bottom:14px}
+  .sec .eyebrow::before{content:""; display:inline-block; width:26px; height:1px;
+                        background:var(--gold); vertical-align:.32em; margin-right:11px}
+  h2{font-family:var(--disp); font-weight:500; font-size:clamp(25px,4.2vw,34px);
+     line-height:1.24; margin:0; text-wrap:balance}
+
+  em{font-style:italic; color:var(--ink)}
+  strong{font-weight:600; color:var(--ink)}
+
+  /* ── plate ── */
+  .plate{margin:clamp(38px,7vw,64px) 0 0}
+  .plate img{display:block; width:100%; height:auto}
+  .plate figcaption{font-family:var(--mono); font-size:10.5px; line-height:1.8; color:var(--ink3);
+                    margin-top:12px; padding-left:13px; border-left:1px solid var(--gold)}
+
+  /* ── dark panel: the history paragraph ── */
+  .panel{background:var(--panel); color:var(--panel-ink); margin-top:clamp(46px,8vw,80px);
+         padding-block:clamp(40px,7vw,66px)}
+  .panel .eyebrow{color:var(--panel-gold)}
+  .panel h2{color:var(--panel-ink)}
+  .panel strong{color:var(--panel-ink)}
+  .panel .yr{font-family:var(--mono); font-size:11px; letter-spacing:.14em; color:var(--panel-gold);
+             display:block; margin-top:8px}
+
+  /* ── practical footer notes ── */
+  .notes{margin-top:clamp(46px,8vw,80px); border-top:1px solid var(--rule); padding-top:clamp(26px,5vw,38px)}
+  .notes dl{margin:18px 0 0; display:grid; gap:0}
+  .notes dt{font-family:var(--sans); font-size:10px; font-weight:600; letter-spacing:.18em;
+            text-transform:uppercase; color:var(--gold); padding-top:15px; border-top:1px solid var(--rule2)}
+  .notes dd{margin:5px 0 15px; font-size:15.5px; color:var(--ink2)}
+  .notes dl > dt:first-child{border-top:0; padding-top:0}
+
+  /* ── series footer ── */
+  .end{margin-top:clamp(52px,9vw,88px); border-top:1px solid var(--rule);
+       padding-block:clamp(30px,5vw,44px) clamp(52px,9vw,84px)}
+  .end .eyebrow{margin-bottom:18px}
+  .end ol{list-style:none; margin:0; padding:0; display:grid; gap:1px; background:var(--rule2)}
+  .end li{background:var(--paper); display:flex; gap:16px; align-items:baseline; padding:13px 2px}
+  .end .n{font-family:var(--mono); font-size:10.5px; color:var(--ink3); flex:none; width:2.2em}
+  .end .ttl{font-family:var(--disp); font-size:19px; line-height:1.3}
+  .end a{text-decoration:none; color:var(--ink)}
+  .end a:hover{color:var(--gold)}
+  .end .self{color:var(--gold)}
+  .sign{font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; color:var(--ink3); margin-top:30px}
+</style>
+
+<div class="top">
+  <div class="wide">
+    <div class="brand"><span class="mk">Kyoto Lab</span><span class="ln"></span><span class="sr">04 / 05</span></div>
+    <span class="eyebrow">What You're Actually Looking At</span>
+    <h1>Nishiki Market<br>Would Like You<br>to Stand Still</h1>
+    <p class="stand">Three hundred and ninety metres, about a hundred and twenty-six shops, four hundred years — and one request that half the visitors never hear: please don't eat while walking.</p>
+    <p class="meta"><span>Nishiki-koji · Nakagyo-ku</span><span>Kyoto</span><span>Kyoto Lab field note</span></p>
+  </div>
+</div>
+
+<div class="wide">
+  <div class="frame">
+    <div><span class="t">What visitors assume</span><span class="v">A street-food arcade. Buy a skewer, walk, eat, repeat.</span></div>
+    <div class="real"><span class="t">What is actually there</span><span class="v">A four-hundred-year-old wholesale and grocery street that asks you to eat where you bought it.</span></div>
+  </div>
+</div>
+
+<div class="col">
+  <p>Nishiki is a covered lane running about <strong>390 metres</strong> east to west, roughly <strong>126 shops</strong> wide at any given time, one block north of Shijo in the centre of the city.</p>
+
+  <p>It has been a recognised market for around four hundred years, and food has been sold on this ground since long before that. Kyoto calls it <em>Kyoto no daidokoro</em> — Kyoto's kitchen — and until quite recently that was a literal job description. This is where restaurants and households bought fish, pickles, tofu, and <em>kyo-yasai</em>, the local vegetable varieties that Kyoto cooking is built on.</p>
+
+  <p>Then it became famous, and a market that sold ingredients started selling snacks.</p>
+</div>
+
+<div class="sec col">
+  <span class="eyebrow">The one rule</span>
+  <h2>Eating while walking is the thing not to do</h2>
+
+  <p>The merchants' association asks visitors not to eat while walking through the market. Many individual shops say the same on small signs. It is the single most-broken request in Nishiki.</p>
+
+  <p>The reasons are dull and completely practical:</p>
+
+  <p>The lane is narrow and two-way. A person eating walks slowly, stops without warning, and holds a stick or a cup at the height of other people's clothing. At peak hours this alone is enough to jam the street.</p>
+
+  <p>And it is still a food market. Sauce, oil, and dropped skewers land in front of stalls selling open, unpackaged fish and pickles.</p>
+
+  <p><strong>What shops want you to do instead is simple: buy it, stand at that shop's counter or just outside it, eat it there, hand back the stick.</strong> Most stalls have a small standing space or a bin for exactly this. It costs you ninety seconds.</p>
+
+  <p>This is not a Kyoto quirk about tourists. Eating while moving is broadly considered poor manners across Japan — most Japanese people do it very rarely, in any city. The market is not applying a special rule to visitors. It is applying the ordinary one, which visitors have no way of knowing.</p>
+</div>
+
+<div class="panel">
+  <div class="col">
+    <span class="eyebrow">Roughly 1600 — now</span>
+    <h2>What happens when a working market becomes a sight</h2>
+    <p>Nishiki's problem is not crowds as such. It is that the crowd wants something slightly different from what the street was built to sell.</p>
+    <p>A shop that has sold dried fish to the same restaurants for four generations can either keep doing that, in front of a river of people who will not buy dried fish — or start selling a grilled skewer version to the river.</p>
+    <p>Many have done the second. That is not a betrayal; it is how the street stays alive. But it means the market you walk through is halfway between two businesses, and its rules come from the older half.</p>
+    <p><strong>The skewer is new. The etiquette around it is four hundred years old.</strong> That mismatch is the whole experience of Nishiki, and knowing it makes the place legible instead of confusing.</p>
+  </div>
+</div>
+
+<div class="sec col">
+  <span class="eyebrow">How to use it well</span>
+  <h2>Go in the morning, buy something you can't take home</h2>
+
+  <p><strong>Timing.</strong> Shops open through the morning and many close in the late afternoon — Nishiki is not an evening destination. Mid-morning on a weekday is the version of this street that still functions as a market. Early afternoon on a weekend is a queue with a roof.</p>
+
+  <p><strong>What is actually worth buying.</strong> The interesting things here are the ones you cannot get elsewhere: <em>tsukemono</em> pickles by the piece, fresh yuba, sesame tofu, dashi ingredients, knives at the specialist shops, and seasonal kyo-yasai you will not see in a supermarket at home.</p>
+
+  <p><strong>Walk out the east end.</strong> Nishiki finishes at Nishiki Tenmangu, a small shrine wedged between shopfronts under an arcade, with lanterns and an ox statue polished bald by hands. It is the least likely-looking shrine in Kyoto and it is right there at the end of the lane.</p>
+</div>
+
+<div class="col notes">
+  <span class="eyebrow">Notes</span>
+  <dl>
+    <dt>Where</dt><dd>Nishiki-koji street, one block north of Shijo, running roughly between Teramachi and Takakura. Enter from the Teramachi arcade end and walk west, or the reverse.</dd>
+    <dt>Cash</dt><dd>Card acceptance has improved a great deal but is still uneven shop to shop. Carrying some cash removes the problem entirely.</dd>
+    <dt>Bins</dt><dd>Public bins are rare in Japan generally. In Nishiki, the shop that sold you the food takes the rubbish back. Do not carry it down the street looking for a bin — there isn't one.</dd>
+    <dt>Check before you go</dt><dd>Individual shop hours and closing days vary widely, and the market is quiet on some public holidays.</dd>
+  </dl>
+</div>
+
+<div class="col end">
+  <span class="eyebrow">What You're Actually Looking At — five places</span>
+    <ol>
+      <li><span class="n">01</span><a class="ttl" href="../kinkakuji/">The Golden Pavilion is younger than your grandmother</a></li>
+      <li><span class="n">02</span><a class="ttl" href="../ginkakuji/">The Silver Pavilion has no silver. It has something better.</a></li>
+      <li><span class="n">03</span><a class="ttl" href="../gion/">In Gion, the photo you want may be illegal</a></li>
+      <li><span class="n">04</span><span class="ttl self">Nishiki Market would like you to stand still</span></li>
+      <li><span class="n">05</span><a class="ttl" href="../gosho/">The Emperor's palace is free, unbooked, and nearly empty</a></li>
+    </ol>
+  <p class="sign">KYOTO LAB · field notes on what visitors are not told</p>
+</div>
+
+
+</body>
+</html>

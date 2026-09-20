@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>京都ラボ お品書き</title>
+<meta name="description" content="多言語のお品書き。アレルギーと食べられないものでその場で絞り込めます。">
+<link rel="canonical" href="https://kyotolab.github.io/tools/menu/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="京都ラボ お品書き">
+<meta property="og:description" content="多言語のお品書き。アレルギーと食べられないものでその場で絞り込めます。">
+<meta property="og:url" content="https://kyotolab.github.io/tools/menu/">
+<meta property="og:site_name" content="京都ラボ">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<style>
+  :root{
+    --paper:#F1F2EF; --surface:#FAFBF8; --screen:#FFFFFF;
+    --ink:#15222A; --ink-soft:#3C4E57; --muted:#6E8087;
+    --rule:#CBD3D2; --rule-soft:#E4E8E5;
+    --accent:#2E6F79; --accent-ink:#22555D; --accent-soft:#E2EDED;
+    --ochre:#A87A22; --ochre-soft:#F2E9D4;
+    --alert:#9C4A34; --alert-soft:#F4E3DE;
+    --serif:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
+    --sans:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --mono:"IBM Plex Mono",Menlo,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#0F181D; --surface:#16232A; --screen:#141F25;
+      --ink:#E7ECE9; --ink-soft:#B4C3C5; --muted:#84979D;
+      --rule:#2C3C43; --rule-soft:#22323A;
+      --accent:#77BDC4; --accent-ink:#9AD3D8; --accent-soft:#1C3138;
+      --ochre:#D6A94B; --ochre-soft:#2E2718;
+      --alert:#DE9280; --alert-soft:#33211C;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#0F181D; --surface:#16232A; --screen:#141F25;
+    --ink:#E7ECE9; --ink-soft:#B4C3C5; --muted:#84979D;
+    --rule:#2C3C43; --rule-soft:#22323A;
+    --accent:#77BDC4; --accent-ink:#9AD3D8; --accent-soft:#1C3138;
+    --ochre:#D6A94B; --ochre-soft:#2E2718;
+    --alert:#DE9280; --alert-soft:#33211C;
+  }
+
+  *{box-sizing:border-box}
+  body{background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.8; -webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:var(--serif); font-weight:600; margin:0; text-wrap:balance; line-height:1.45}
+  p{margin:0}
+  button{font-family:inherit; cursor:pointer; border:none; background:none; color:inherit}
+  .tag{font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; color:var(--muted); text-transform:uppercase}
+
+  .stage{max-width:1160px; margin:0 auto; padding:clamp(24px,4vw,52px) clamp(20px,4vw,48px) 60px}
+  .head{display:flex; align-items:flex-start; justify-content:space-between; gap:24px; flex-wrap:wrap; padding-bottom:24px; border-bottom:1px solid var(--rule)}
+  .head .kicker{display:flex; align-items:center; gap:10px; margin-bottom:14px}
+  .head .kicker .rule{width:38px; height:1px; background:var(--accent)}
+  .head h1{font-size:clamp(24px,3.6vw,34px); font-weight:800}
+  .head .lede{margin-top:12px; color:var(--ink-soft); font-size:14.5px; max-width:52ch}
+  .demo-badge{font-family:var(--mono); font-size:10px; letter-spacing:.14em; color:var(--ochre); border:1px solid color-mix(in srgb,var(--ochre) 50%,transparent); padding:4px 9px; border-radius:2px; white-space:nowrap}
+
+  .layout{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,420px); gap:clamp(28px,5vw,56px); align-items:start; padding-top:clamp(28px,4vw,44px)}
+  @media (max-width:900px){ .layout{grid-template-columns:1fr} }
+
+  /* ---- pitch rail ---- */
+  .rail h2{font-size:19px; margin-bottom:6px}
+  .rail > p.sub{color:var(--ink-soft); font-size:14px; max-width:52ch}
+  .points{margin-top:24px; border-top:1px solid var(--rule)}
+  .point{display:grid; grid-template-columns:92px minmax(0,1fr); gap:20px; padding:18px 0; border-bottom:1px solid var(--rule-soft)}
+  @media (max-width:520px){ .point{grid-template-columns:1fr; gap:4px} }
+  .point .k{font-family:var(--serif); font-size:15.5px; color:var(--accent-ink); font-weight:600}
+  .point h3{font-size:15.5px; margin-bottom:5px}
+  .point p{font-size:13.5px; color:var(--ink-soft); max-width:52ch}
+  .rail .callout{margin-top:24px; border-left:2px solid var(--ochre); background:var(--ochre-soft); padding:14px 18px; border-radius:0 3px 3px 0}
+  .rail .callout .tag{display:block; color:var(--ochre); margin-bottom:6px}
+  .rail .callout p{font-size:13px; color:var(--ink-soft); max-width:50ch}
+
+  .modeswitch{margin-top:26px; display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:14px 16px; border:1px solid var(--rule); border-radius:3px; background:var(--surface)}
+  .modeswitch .lbl{font-size:13.5px; color:var(--ink-soft); flex:1; min-width:180px}
+  .segbtn{display:flex; border:1px solid var(--rule); border-radius:3px; overflow:hidden}
+  .segbtn button{font-family:var(--mono); font-size:11px; letter-spacing:.08em; padding:7px 13px; color:var(--muted); background:var(--paper)}
+  .segbtn button[aria-pressed="true"]{background:var(--accent); color:var(--screen)}
+
+  /* ---- phone ---- */
+  .phonecol{position:sticky; top:24px}
+  @media (max-width:900px){ .phonecol{position:static} }
+  .phone{
+    position:relative; margin:0 auto; max-width:400px;
+    border:1px solid var(--rule); border-radius:22px; background:var(--screen);
+    overflow:hidden; box-shadow:0 18px 40px -28px rgba(10,30,40,.5);
+  }
+  .screen{height:min(700px,76vh); overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin}
+  .phone-cap{text-align:center; font-family:var(--mono); font-size:10.5px; color:var(--muted); letter-spacing:.1em; margin-top:12px}
+
+  /* app chrome */
+  .shopbar{padding:16px 18px 12px; border-bottom:1px solid var(--rule-soft); background:var(--screen); position:sticky; top:0; z-index:5}
+  .shopname{display:flex; align-items:baseline; justify-content:space-between; gap:10px}
+  .shopname h2{font-size:17px}
+  .shopname .qr{font-family:var(--mono); font-size:9.5px; color:var(--muted); letter-spacing:.08em}
+  .langrow{display:flex; gap:6px; margin-top:12px; flex-wrap:wrap}
+  .langrow button{font-size:12px; padding:5px 11px; border:1px solid var(--rule); border-radius:99px; color:var(--muted); background:transparent; line-height:1.6}
+  .langrow button[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--screen)}
+  .filterrow{display:flex; gap:6px; margin-top:9px; flex-wrap:wrap; align-items:center}
+  .filterrow .flabel{font-family:var(--mono); font-size:9.5px; color:var(--muted); letter-spacing:.1em; margin-right:2px}
+  .filterrow button{font-size:11.5px; padding:4px 10px; border:1px solid var(--rule); border-radius:99px; color:var(--muted); background:transparent; line-height:1.6}
+  .filterrow button[aria-pressed="true"]{background:var(--accent-soft); border-color:var(--accent); color:var(--accent-ink)}
+
+  .catlabel{font-family:var(--serif); font-size:13px; color:var(--muted); letter-spacing:.08em; padding:20px 18px 6px; border-bottom:1px solid var(--rule-soft)}
+
+  .dish{display:grid; grid-template-columns:58px minmax(0,1fr) auto; gap:14px; align-items:start; width:100%; text-align:left; padding:15px 18px; border-bottom:1px solid var(--rule-soft)}
+  .dish:hover{background:var(--surface)}
+  .dish .art{width:58px; height:50px}
+  .dish .art svg{width:100%; height:100%; display:block; stroke:var(--accent); fill:none; stroke-width:1.3; stroke-linecap:round; stroke-linejoin:round}
+  .dish .nm{display:block; font-family:var(--serif); font-weight:600; font-size:15px; line-height:1.5}
+  .dish .sub{display:block; font-size:11.5px; color:var(--muted); font-family:var(--mono); letter-spacing:.02em; margin-top:1px}
+  .dish .desc{display:block; font-size:12.5px; color:var(--ink-soft); margin-top:5px; line-height:1.65}
+  .dish .price{font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums; color:var(--ink); white-space:nowrap; padding-top:2px}
+  .dish .flags{display:flex; gap:4px; flex-wrap:wrap; margin-top:7px}
+  .flag{font-size:10px; padding:1px 6px; border-radius:2px; border:1px solid var(--rule); color:var(--muted); line-height:1.7; white-space:nowrap}
+  .flag.ok{color:var(--accent-ink); border-color:color-mix(in srgb,var(--accent) 45%,transparent); background:var(--accent-soft)}
+  .flag.warn{color:var(--alert); border-color:color-mix(in srgb,var(--alert) 40%,transparent); background:var(--alert-soft)}
+  .dish.out{opacity:.45}
+  .dish.out .price{text-decoration:line-through}
+  .soldtag{font-size:10px; color:var(--alert); border:1px solid color-mix(in srgb,var(--alert) 45%,transparent); padding:1px 6px; border-radius:2px; line-height:1.7}
+
+  .empty{padding:34px 22px; text-align:center; color:var(--muted); font-size:13px}
+  .empty strong{display:block; color:var(--ink); font-family:var(--serif); font-size:15px; margin-bottom:8px}
+
+  /* store mode */
+  .storehead{padding:12px 18px; background:var(--ochre-soft); border-bottom:1px solid var(--rule-soft); font-size:12.5px; color:var(--ink-soft)}
+  .storehead b{font-family:var(--mono); font-size:10px; letter-spacing:.12em; color:var(--ochre); display:block; margin-bottom:3px}
+  .stoggle{width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 18px; border-bottom:1px solid var(--rule-soft); text-align:left}
+  .stoggle .nm{font-size:14px}
+  .stoggle .nm small{display:block; font-family:var(--mono); font-size:10.5px; color:var(--muted)}
+  .sw{width:44px; height:24px; border-radius:99px; background:var(--rule); position:relative; flex:none; transition:background .15s}
+  .sw::after{content:""; position:absolute; top:3px; left:3px; width:18px; height:18px; border-radius:99px; background:var(--screen); transition:transform .15s; box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  .stoggle[aria-pressed="true"] .sw{background:var(--alert)}
+  .stoggle[aria-pressed="true"] .sw::after{transform:translateX(20px)}
+
+  /* sheets */
+  .sheet{position:absolute; inset:0; background:var(--screen); z-index:20; display:flex; flex-direction:column; overflow-y:auto}
+  .sheet[hidden]{display:none}
+  .sheet-top{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 18px; border-bottom:1px solid var(--rule-soft); position:sticky; top:0; background:var(--screen)}
+  .sheet-top .tag{letter-spacing:.12em}
+  .closebtn{font-family:var(--mono); font-size:11px; color:var(--muted); border:1px solid var(--rule); border-radius:99px; padding:4px 12px}
+  .sheet-body{padding:20px 18px 26px}
+  .sheet-art{width:100%; height:104px; margin-bottom:16px}
+  .sheet-art svg{width:auto; height:100%; display:block; margin:0 auto; stroke:var(--accent); fill:none; stroke-width:1.2; stroke-linecap:round; stroke-linejoin:round}
+  .sheet h3{font-size:21px}
+  .sheet .sub{font-family:var(--mono); font-size:12px; color:var(--muted); margin-top:3px}
+  .sheet .desc{margin-top:12px; font-size:13.5px; color:var(--ink-soft)}
+  .sheet .price{margin-top:14px; font-family:var(--mono); font-size:19px; font-variant-numeric:tabular-nums}
+  .sheet-sec{margin-top:22px; border-top:1px solid var(--rule-soft); padding-top:16px}
+  .sheet-sec .tag{display:block; margin-bottom:10px}
+  .allergens{display:flex; gap:6px; flex-wrap:wrap}
+  .diet{display:grid; gap:7px; margin-top:12px}
+  .diet div{display:flex; align-items:baseline; gap:9px; font-size:13px; color:var(--ink-soft)}
+  .diet .mk{font-family:var(--mono); font-size:12px; width:14px; flex:none}
+  .diet .mk.y{color:var(--accent)}
+  .diet .mk.n{color:var(--alert)}
+
+  .showbtn{width:100%; margin-top:24px; background:var(--accent); color:var(--screen); border-radius:4px; padding:14px; font-size:15px; font-weight:700; letter-spacing:.02em}
+  .showbtn[disabled]{background:var(--rule); color:var(--muted); cursor:not-allowed}
+
+  /* order card */
+  .order-body{padding:26px 20px 30px; display:flex; flex-direction:column; gap:0; min-height:100%}
+  .order-lead{font-size:13px; color:var(--ink-soft); text-align:center; padding-bottom:20px; border-bottom:1px dashed var(--rule)}
+  .order-jp{padding:28px 4px; text-align:center}
+  .order-jp .plz{font-family:var(--serif); font-size:15px; color:var(--muted); letter-spacing:.1em}
+  .order-jp .nm{font-family:var(--serif); font-size:29px; font-weight:800; margin:14px 0 6px; line-height:1.4}
+  .order-jp .give{font-family:var(--serif); font-size:22px; font-weight:600; margin-top:16px}
+  .qty{display:flex; align-items:center; justify-content:center; gap:18px; margin-top:22px; padding-top:20px; border-top:1px dashed var(--rule)}
+  .qty button{width:40px; height:40px; border:1px solid var(--rule); border-radius:99px; font-size:19px; color:var(--accent-ink); line-height:1}
+  .qty .n{font-family:var(--mono); font-size:26px; font-variant-numeric:tabular-nums; min-width:44px; text-align:center}
+  .qty .u{font-family:var(--serif); font-size:17px; color:var(--muted)}
+  .order-note{margin-top:auto; padding-top:22px; text-align:center; font-size:12px; color:var(--muted)}
+
+  footer{border-top:1px solid var(--rule); margin-top:56px; padding-top:22px}
+  footer .stage-in{max-width:1160px; margin:0 auto; padding-inline:clamp(20px,4vw,48px); display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap}
+  footer p{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; color:var(--muted)}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+  @media (prefers-reduced-motion: reduce){ *{animation:none!important; transition:none!important} }
+</style>
+
+<div class="stage">
+  <div class="head">
+    <div>
+      <div class="kicker"><span class="rule"></span><span class="tag">京都ラボ ／ プロダクト試作</span></div>
+      <h1>お品書き</h1>
+      <p class="lede">店頭のQRコードから開く、多言語メニュー。お客さまはアプリのインストールが要りません。右の画面は実際に触れます ── 言語を切り替え、料理をタップしてみてください。</p>
+    </div>
+    <span class="demo-badge">DEMO ／ 架空の店舗</span>
+  </div>
+
+  <div class="layout">
+    <div class="rail">
+      <h2>店舗の方に、この5つを見せてください</h2>
+      <p class="sub">機能の説明ではなく、いま店で起きている手間がどう消えるかの話をします。</p>
+
+      <div class="points">
+        <div class="point">
+          <div class="k">導入</div>
+          <div><h3>紙のQRを1枚置くだけ</h3><p>お客さま側のインストールも会員登録もありません。カメラを向ければその人の言語で開きます。</p></div>
+        </div>
+        <div class="point">
+          <div class="k">管理</div>
+          <div><h3>値段の直しは1回だけ</h3><p>4か国語ぶんのメニューを別々に作り直す必要がありません。元を直せば全言語に反映されます。</p></div>
+        </div>
+        <div class="point">
+          <div class="k">だし</div>
+          <div><h3>「かつおだし」まで表示する</h3><p>ベジタリアンのお客さまが一番つまずくのがここです。運んだ後で下げることになる事故を、注文の前に防ぎます。</p></div>
+        </div>
+        <div class="point">
+          <div class="k">注文</div>
+          <div><h3>画面を見せるだけで通じる</h3><p>料理を選ぶと「これをください」が日本語で大きく出ます。指差しと数字だけで注文が終わります。</p></div>
+        </div>
+        <div class="point">
+          <div class="k">品切れ</div>
+          <div><h3>タップ1回で全言語から消える</h3><p>下の切り替えで店舗モードにすると、品切れの操作を試せます。お客さま画面にすぐ反映されます。</p></div>
+        </div>
+      </div>
+
+      <div class="modeswitch">
+        <span class="lbl">画面を切り替えて、両側の見え方を確認できます。</span>
+        <div class="segbtn" role="group" aria-label="表示モード">
+          <button id="m-guest" aria-pressed="true">お客さま</button>
+          <button id="m-store" aria-pressed="false">店舗</button>
+        </div>
+      </div>
+
+      <div class="callout">
+        <span class="tag">この試作に入っていないもの</span>
+        <p>写真、決済、注文の送信、店側の編集画面。写真は撮影して差し替える前提です。この試作で確かめたいのは「言語と品切れとアレルギーを一元管理すると、店の手間が本当に減るか」の一点だけです。</p>
+      </div>
+    </div>
+
+    <div class="phonecol">
+      <div class="phone">
+        <div class="screen" id="screen">
+          <div id="app"></div>
+        </div>
+
+        <div class="sheet" id="sheet" hidden>
+          <div class="sheet-top">
+            <span class="tag" id="sheet-kicker">DETAIL</span>
+            <button class="closebtn" id="sheet-close">✕ <span id="sheet-close-t">閉じる</span></button>
+          </div>
+          <div class="sheet-body" id="sheet-body"></div>
+        </div>
+
+        <div class="sheet" id="order" hidden>
+          <div class="sheet-top">
+            <span class="tag" id="order-kicker">ORDER</span>
+            <button class="closebtn" id="order-close">✕ <span id="order-close-t">閉じる</span></button>
+          </div>
+          <div class="order-body" id="order-body"></div>
+        </div>
+      </div>
+      <p class="phone-cap">店頭のQRから開いた画面</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="stage-in">
+    <p>京都ラボ ／ KYOTO LAB</p>
+    <p>お品書き 試作 ・ 2026.09</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  var ICONS = {
+    donburi: '<svg viewBox="0 0 60 52"><path d="M8 22 h44 a2 2 0 0 1 2 2 c0 12-10 21-24 21 S6 36 6 24 a2 2 0 0 1 2-2 z"/><path d="M14 22 c4-5 12-7 16-7 s12 2 16 7"/><path d="M24 11 c-3-3 1-5-1-8"/><path d="M34 12 c-3-3 1-6-1-9"/><path d="M12 34 h36"/></svg>',
+    tamago:  '<svg viewBox="0 0 60 52"><rect x="8" y="18" width="15" height="20" rx="3"/><rect x="24" y="18" width="15" height="20" rx="3"/><rect x="40" y="18" width="12" height="20" rx="3"/><path d="M12 24 c3 2 3 8 0 10"/><path d="M28 24 c3 2 3 8 0 10"/><path d="M6 42 h48"/></svg>',
+    sushi:   '<svg viewBox="0 0 60 52"><rect x="9" y="20" width="42" height="9" rx="2"/><rect x="9" y="29" width="42" height="10" rx="2"/><path d="M23 20 v19"/><path d="M37 20 v19"/><path d="M14 24 c4-3 9-3 13 0"/><path d="M6 44 h48"/></svg>',
+    soup:    '<svg viewBox="0 0 60 52"><path d="M14 24 h32 a2 2 0 0 1 2 2 c0 9-8 16-18 16 s-18-7-18-16 a2 2 0 0 1 2-2 z"/><path d="M22 24 c2-3 6-4 8-4 s6 1 8 4"/><path d="M27 15 c-2-2 1-4-1-6"/><path d="M34 16 c-2-2 1-4-1-6"/></svg>',
+    tempura: '<svg viewBox="0 0 60 52"><ellipse cx="30" cy="36" rx="24" ry="7"/><path d="M6 36 c0 5 11 8 24 8 s24-3 24-8"/><path d="M16 32 c-3-6 1-11 5-11 s7 4 5 10"/><path d="M30 30 c-4-7 0-13 4-13 s7 5 4 12"/><path d="M42 33 c-3-5 0-9 3-9 s5 4 3 8"/></svg>',
+    pickles: '<svg viewBox="0 0 60 52"><ellipse cx="30" cy="35" rx="25" ry="8"/><path d="M12 28 l7-8 7 8 z"/><path d="M26 30 l6-11 6 11 z"/><path d="M38 30 l5-7 5 7 z"/></svg>',
+    sweet:   '<svg viewBox="0 0 60 52"><path d="M13 22 h34 a2 2 0 0 1 2 2 c0 10-8 17-19 17 s-19-7-19-17 a2 2 0 0 1 2-2 z"/><rect x="20" y="24" width="9" height="8" rx="1.5"/><rect x="31" y="26" width="9" height="8" rx="1.5"/><path d="M24 18 c1-3 5-3 6 0"/><path d="M33 19 c1-3 5-3 6 0"/></svg>'
+  };
+
+  var A = {
+    soy:    {ja:"大豆",       en:"Soy",           zh:"大豆",     ko:"대두"},
+    wheat:  {ja:"小麦",       en:"Wheat",         zh:"小麥",     ko:"밀"},
+    egg:    {ja:"卵",         en:"Egg",           zh:"雞蛋",     ko:"계란"},
+    dashi:  {ja:"かつおだし", en:"Bonito dashi",  zh:"柴魚高湯", ko:"가쓰오 다시"},
+    fish:   {ja:"魚（さば）", en:"Fish (mackerel)",zh:"魚（鯖魚）",ko:"생선(고등어)"},
+    shrimp: {ja:"えび",       en:"Shrimp",        zh:"蝦",       ko:"새우"},
+    chicken:{ja:"鶏肉",       en:"Chicken",       zh:"雞肉",     ko:"닭고기"},
+    alcohol:{ja:"みりん・酒", en:"Mirin / sake",  zh:"味醂・清酒",ko:"미림·청주"},
+    kelp:   {ja:"昆布",       en:"Kelp",          zh:"昆布",     ko:"다시마"}
+  };
+
+  var CATS = {
+    rice:  {ja:"丼・定食", en:"Rice bowls & sets", zh:"丼飯・定食", ko:"덮밥·정식"},
+    small: {ja:"一品",     en:"Small plates",      zh:"單品",       ko:"단품"},
+    sweet: {ja:"甘味",     en:"Sweets",            zh:"甜點",       ko:"디저트"}
+  };
+
+  var T = {
+    ja:{shop:"京都ラボ デモ食堂", scanned:"QRから表示中", filter:"絞り込み", all:"すべて",
+        veg:"ベジタリアン", nopork:"豚肉なし", noalc:"アルコールなし",
+        detail:"料理の詳細", order:"注文", close:"閉じる", soldout:"品切れ",
+        ing:"アレルギー・食材", diet:"食べられるかどうか",
+        vegOk:"ベジタリアン対応", vegNo:"ベジタリアン不可",
+        porkOk:"豚肉不使用", porkNo:"豚肉を含む",
+        alcOk:"アルコール不使用", alcNo:"みりん・酒を含む",
+        show:"店員に見せる", showOut:"品切れです",
+        lead:"この画面を店員に見せてください。",
+        note:"金額は税込です。写真はイメージではなく線画です。",
+        storeTitle:"店舗モード", storeLead:"タップして品切れを切り替えます。お客さまの画面にすぐ反映されます。",
+        emptyT:"条件に合う料理がありません", emptyB:"だしに鰹が使われている料理が多いためです。絞り込みを外すか、別の条件をお試しください。",
+        avail:"提供中", unavail:"品切れ"},
+    en:{shop:"Kyoto Lab Demo Shokudo", scanned:"Opened from QR", filter:"Filter", all:"All",
+        veg:"Vegetarian", nopork:"No pork", noalc:"No alcohol",
+        detail:"Dish detail", order:"Order", close:"Close", soldout:"Sold out",
+        ing:"Allergens & ingredients", diet:"Can you eat this?",
+        vegOk:"Vegetarian friendly", vegNo:"Not vegetarian",
+        porkOk:"No pork", porkNo:"Contains pork",
+        alcOk:"No alcohol", alcNo:"Contains mirin / sake",
+        show:"Show this to the staff", showOut:"Sold out",
+        lead:"Please show this screen to the staff.",
+        note:"Prices include tax. Illustrations, not photographs.",
+        storeTitle:"Staff mode", storeLead:"Tap to toggle sold out. Guests see it immediately.",
+        emptyT:"No dishes match", emptyB:"Many dishes use bonito dashi. Try removing a filter.",
+        avail:"Available", unavail:"Sold out"},
+    zh:{shop:"京都Lab 示範食堂", scanned:"由QR碼開啟", filter:"篩選", all:"全部",
+        veg:"素食", nopork:"不含豬肉", noalc:"不含酒精",
+        detail:"餐點詳情", order:"點餐", close:"關閉", soldout:"售完",
+        ing:"過敏原與食材", diet:"是否可以食用",
+        vegOk:"適合素食", vegNo:"不適合素食",
+        porkOk:"不含豬肉", porkNo:"含豬肉",
+        alcOk:"不含酒精", alcNo:"含味醂・清酒",
+        show:"出示給店員看", showOut:"已售完",
+        lead:"請將此畫面出示給店員。",
+        note:"價格含稅。圖為線描插畫，非照片。",
+        storeTitle:"店家模式", storeLead:"點一下即可切換售完狀態，顧客畫面會立即更新。",
+        emptyT:"沒有符合條件的餐點", emptyB:"多數餐點使用柴魚高湯。請試著取消部分篩選條件。",
+        avail:"供應中", unavail:"售完"},
+    ko:{shop:"교토랩 데모 식당", scanned:"QR로 열림", filter:"필터", all:"전체",
+        veg:"채식", nopork:"돼지고기 없음", noalc:"알코올 없음",
+        detail:"메뉴 상세", order:"주문", close:"닫기", soldout:"품절",
+        ing:"알레르기·식재료", diet:"드실 수 있는지",
+        vegOk:"채식 가능", vegNo:"채식 불가",
+        porkOk:"돼지고기 미사용", porkNo:"돼지고기 포함",
+        alcOk:"알코올 미사용", alcNo:"미림·청주 포함",
+        show:"직원에게 보여주기", showOut:"품절입니다",
+        lead:"이 화면을 직원에게 보여주세요.",
+        note:"가격은 세금 포함입니다. 사진이 아닌 선화입니다.",
+        storeTitle:"매장 모드", storeLead:"탭하여 품절을 전환합니다. 손님 화면에 바로 반영됩니다.",
+        emptyT:"조건에 맞는 메뉴가 없습니다", emptyB:"가쓰오 다시를 쓰는 메뉴가 많습니다. 필터를 해제해 보세요.",
+        avail:"제공 중", unavail:"품절"}
+  };
+
+  var DISHES = [
+    {id:"yuba", cat:"rice", icon:"donburi", price:1200, veg:false, pork:false, alc:true,
+     al:["soy","wheat","dashi","alcohol"],
+     name:{ja:"湯葉あんかけ丼", en:"Yuba Rice Bowl", zh:"湯葉燴飯", ko:"유바 덮밥"},
+     desc:{ja:"京都名物の湯葉を、だしのあんで丼に。", en:"Kyoto's tofu skin in a warm dashi sauce over rice.",
+           zh:"京都名產豆皮，淋上溫熱高湯芡汁。", ko:"교토 명물 유바를 따뜻한 다시 소스로 덮은 덮밥."}},
+    {id:"oyako", cat:"rice", icon:"donburi", price:1100, veg:false, pork:false, alc:true,
+     al:["egg","chicken","wheat","soy","dashi","alcohol"],
+     name:{ja:"親子丼", en:"Oyako-don", zh:"親子丼", ko:"오야코동"},
+     desc:{ja:"鶏肉と卵を、だしで一緒に煮て丼に。", en:"Chicken and egg simmered together in dashi, over rice.",
+           zh:"雞肉與雞蛋以高湯同煮的丼飯。", ko:"닭고기와 계란을 다시에 함께 조려 얹은 덮밥."}},
+    {id:"tempura", cat:"rice", icon:"tempura", price:1500, veg:false, pork:false, alc:true,
+     al:["wheat","egg","shrimp","soy","dashi","alcohol"],
+     name:{ja:"天ぷら定食", en:"Tempura Set", zh:"天婦羅定食", ko:"텐푸라 정식"},
+     desc:{ja:"季節の野菜と海老を揚げて、ご飯と味噌汁つき。", en:"Seasonal vegetables and shrimp, with rice and miso soup.",
+           zh:"時令蔬菜與蝦，附白飯與味噌湯。", ko:"제철 채소와 새우 튀김, 밥과 된장국 포함."}},
+    {id:"saba", cat:"small", icon:"sushi", price:1600, veg:false, pork:false, alc:false,
+     al:["fish","kelp"],
+     name:{ja:"鯖寿司", en:"Saba-zushi", zh:"鯖魚壽司", ko:"고등어 초밥"},
+     desc:{ja:"塩と酢でしめた鯖を、棒寿司に。", en:"Pressed sushi with salt- and vinegar-cured mackerel.",
+           zh:"以鹽與醋醃漬的鯖魚製成的棒壽司。", ko:"소금과 식초로 절인 고등어로 만든 봉초밥."}},
+    {id:"tamago", cat:"small", icon:"tamago", price:800, veg:false, pork:false, alc:true,
+     al:["egg","dashi","wheat","soy","alcohol"],
+     name:{ja:"だし巻き玉子", en:"Dashimaki Tamago", zh:"高湯玉子燒", ko:"다시마키 타마고"},
+     desc:{ja:"だしをたっぷり含ませて焼き上げる、京都の定番。", en:"Rolled omelette soaked with plenty of dashi broth.",
+           zh:"吸飽高湯燒製而成的京都定番。", ko:"다시를 듬뿍 머금은 교토식 계란말이."}},
+    {id:"miso", cat:"small", icon:"soup", price:300, veg:false, pork:false, alc:false,
+     al:["soy","dashi"],
+     name:{ja:"九条ねぎと油揚げの味噌汁", en:"Miso Soup with Kujo Leek", zh:"九條蔥豆皮味噌湯", ko:"구조파와 유부 된장국"},
+     desc:{ja:"京野菜の九条ねぎと、油揚げを合わせて。", en:"Kyoto's Kujo leek with fried tofu.",
+           zh:"京都蔬菜九條蔥搭配油豆皮。", ko:"교토 채소 구조파와 유부를 넣었습니다."}},
+    {id:"tsukemono", cat:"small", icon:"pickles", price:600, veg:true, pork:false, alc:false,
+     al:["kelp"],
+     name:{ja:"京漬物の盛り合わせ", en:"Kyoto Pickles Platter", zh:"京漬物拼盤", ko:"교토 절임 모둠"},
+     desc:{ja:"すぐき・しば漬・千枚漬の三種。", en:"Three kinds: suguki, shibazuke and senmaizuke.",
+           zh:"酸莖、紫蘇漬、千枚漬三種。", ko:"스구키·시바즈케·센마이즈케 세 가지."}},
+    {id:"warabi", cat:"sweet", icon:"sweet", price:700, veg:true, pork:false, alc:false,
+     al:["soy"],
+     name:{ja:"抹茶わらび餅", en:"Matcha Warabi-mochi", zh:"抹茶蕨餅", ko:"말차 와라비모찌"},
+     desc:{ja:"宇治抹茶をかけた、やわらかいわらび餅。", en:"Soft warabi-mochi dusted with Uji matcha.",
+           zh:"淋上宇治抹茶的軟嫩蕨餅。", ko:"우지 말차를 뿌린 부드러운 와라비모찌."}}
+  ];
+
+  var LANGS = [{k:"ja",n:"日本語"},{k:"en",n:"English"},{k:"zh",n:"中文"},{k:"ko",n:"한국어"}];
+
+  var state = {lang:"ja", mode:"guest", filters:{veg:false,pork:false,alc:false}, out:{}, current:null, qty:1};
+
+  try{
+    var saved = localStorage.getItem("kyotolab-oshinagaki-out");
+    if(saved){ state.out = JSON.parse(saved) || {}; }
+  }catch(e){ state.out = {}; }
+
+  function persist(){
+    try{ localStorage.setItem("kyotolab-oshinagaki-out", JSON.stringify(state.out)); }catch(e){}
+  }
+
+  function t(k){ return T[state.lang][k]; }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function yen(n){ return "¥" + n.toLocaleString("en-US"); }
+
+  function passes(d){
+    if(state.filters.veg && !d.veg) return false;
+    if(state.filters.pork && d.pork) return false;
+    if(state.filters.alc && d.alc) return false;
+    return true;
+  }
+
+  function chrome(){
+    var langs = LANGS.map(function(l){
+      return '<button data-lang="'+l.k+'" aria-pressed="'+(state.lang===l.k)+'">'+l.n+'</button>';
+    }).join("");
+    var fils = [["veg","veg"],["pork","nopork"],["alc","noalc"]].map(function(p){
+      return '<button data-filter="'+p[0]+'" aria-pressed="'+state.filters[p[0]]+'">'+esc(t(p[1]))+'</button>';
+    }).join("");
+    return '<div class="shopbar">' +
+      '<div class="shopname"><h2>'+esc(t("shop"))+'</h2><span class="qr">'+esc(t("scanned"))+'</span></div>' +
+      '<div class="langrow">'+langs+'</div>' +
+      '<div class="filterrow"><span class="flabel">'+esc(t("filter"))+'</span>'+fils+'</div>' +
+    '</div>';
+  }
+
+  function guestList(){
+    var html = "", any = false;
+    ["rice","small","sweet"].forEach(function(cat){
+      var items = DISHES.filter(function(d){ return d.cat===cat && passes(d); });
+      if(!items.length) return;
+      any = true;
+      html += '<div class="catlabel">'+esc(CATS[cat][state.lang])+'</div>';
+      items.forEach(function(d){
+        var out = !!state.out[d.id];
+        var flags = "";
+        if(d.veg) flags += '<span class="flag ok">'+esc(t("veg"))+'</span>';
+        if(d.al.indexOf("dashi")>-1) flags += '<span class="flag warn">'+esc(A.dashi[state.lang])+'</span>';
+        if(d.alc) flags += '<span class="flag">'+esc(A.alcohol[state.lang])+'</span>';
+        if(out) flags += '<span class="soldtag">'+esc(t("soldout"))+'</span>';
+        html += '<button class="dish'+(out?" out":"")+'" data-dish="'+d.id+'">' +
+          '<span class="art">'+ICONS[d.icon]+'</span>' +
+          '<span><span class="nm">'+esc(d.name[state.lang])+'</span>' +
+            (state.lang!=="ja" ? '<span class="sub">'+esc(d.name.ja)+'</span>' : '') +
+            '<span class="desc">'+esc(d.desc[state.lang])+'</span>' +
+            '<span class="flags">'+flags+'</span></span>' +
+          '<span class="price">'+yen(d.price)+'</span>' +
+        '</button>';
+      });
+    });
+    if(!any){
+      html = '<div class="empty"><strong>'+esc(t("emptyT"))+'</strong>'+esc(t("emptyB"))+'</div>';
+    }
+    return html;
+  }
+
+  function storeList(){
+    var html = '<div class="storehead"><b>'+esc(t("storeTitle"))+'</b>'+esc(t("storeLead"))+'</div>';
+    DISHES.forEach(function(d){
+      var out = !!state.out[d.id];
+      html += '<button class="stoggle" data-toggle="'+d.id+'" aria-pressed="'+out+'">' +
+        '<span class="nm">'+esc(d.name.ja)+'<small>'+(out?esc(t("unavail")):esc(t("avail")))+' ・ '+yen(d.price)+'</small></span>' +
+        '<span class="sw"></span></button>';
+    });
+    return html;
+  }
+
+  function render(){
+    document.getElementById("app").innerHTML = chrome() + (state.mode==="store" ? storeList() : guestList());
+    document.getElementById("sheet-close-t").textContent = t("close");
+    document.getElementById("order-close-t").textContent = t("close");
+    document.getElementById("m-guest").setAttribute("aria-pressed", state.mode==="guest");
+    document.getElementById("m-store").setAttribute("aria-pressed", state.mode==="store");
+  }
+
+  function dietRow(ok, okKey, noKey){
+    return '<div><span class="mk '+(ok?"y":"n")+'">'+(ok?"○":"×")+'</span><span>'+esc(t(ok?okKey:noKey))+'</span></div>';
+  }
+
+  function openSheet(id){
+    var d = DISHES.filter(function(x){ return x.id===id; })[0];
+    if(!d) return;
+    state.current = d;
+    var out = !!state.out[d.id];
+    var al = d.al.map(function(k){
+      var warn = (k==="dashi"||k==="alcohol");
+      return '<span class="flag'+(warn?" warn":"")+'">'+esc(A[k][state.lang])+'</span>';
+    }).join("");
+
+    document.getElementById("sheet-kicker").textContent = t("detail");
+    document.getElementById("sheet-body").innerHTML =
+      '<div class="sheet-art">'+ICONS[d.icon]+'</div>' +
+      '<h3>'+esc(d.name[state.lang])+'</h3>' +
+      (state.lang!=="ja" ? '<p class="sub">'+esc(d.name.ja)+'</p>' : '') +
+      '<p class="desc">'+esc(d.desc[state.lang])+'</p>' +
+      '<p class="price">'+yen(d.price)+'</p>' +
+      '<div class="sheet-sec"><span class="tag">'+esc(t("ing"))+'</span><div class="allergens">'+al+'</div></div>' +
+      '<div class="sheet-sec"><span class="tag">'+esc(t("diet"))+'</span><div class="diet">' +
+        dietRow(d.veg,"vegOk","vegNo") +
+        dietRow(!d.pork,"porkOk","porkNo") +
+        dietRow(!d.alc,"alcOk","alcNo") +
+      '</div></div>' +
+      '<button class="showbtn" id="showbtn"'+(out?" disabled":"")+'>'+esc(out?t("showOut"):t("show"))+'</button>';
+
+    document.getElementById("sheet").hidden = false;
+    if(!out){
+      document.getElementById("showbtn").addEventListener("click", openOrder);
+    }
+  }
+
+  function renderOrder(){
+    var d = state.current;
+    if(!d) return;
+    document.getElementById("order-kicker").textContent = t("order");
+    document.getElementById("order-body").innerHTML =
+      '<p class="order-lead">'+esc(t("lead"))+'</p>' +
+      '<div class="order-jp">' +
+        '<p class="plz">すみません</p>' +
+        '<p class="nm">'+esc(d.name.ja)+'</p>' +
+        '<p class="give">を '+state.qty+'つ ください</p>' +
+        '<div class="qty">' +
+          '<button data-qty="-1" aria-label="minus">−</button>' +
+          '<span class="n">'+state.qty+'</span><span class="u">つ</span>' +
+          '<button data-qty="1" aria-label="plus">＋</button>' +
+        '</div>' +
+      '</div>' +
+      '<p class="order-note">'+esc(yen(d.price))+' × '+state.qty+' = '+esc(yen(d.price*state.qty))+'<br>'+esc(t("note"))+'</p>';
+  }
+
+  function openOrder(){
+    state.qty = 1;
+    renderOrder();
+    document.getElementById("order").hidden = false;
+  }
+
+  document.getElementById("app").addEventListener("click", function(e){
+    var b = e.target.closest("button");
+    if(!b) return;
+    if(b.dataset.lang){ state.lang = b.dataset.lang; render(); return; }
+    if(b.dataset.filter){ state.filters[b.dataset.filter] = !state.filters[b.dataset.filter]; render(); return; }
+    if(b.dataset.dish){ openSheet(b.dataset.dish); return; }
+    if(b.dataset.toggle){
+      var id = b.dataset.toggle;
+      if(state.out[id]) delete state.out[id]; else state.out[id] = true;
+      persist(); render(); return;
+    }
+  });
+
+  document.getElementById("order-body").addEventListener("click", function(e){
+    var b = e.target.closest("button");
+    if(!b || !b.dataset.qty) return;
+    state.qty = Math.min(9, Math.max(1, state.qty + parseInt(b.dataset.qty, 10)));
+    renderOrder();
+  });
+
+  document.getElementById("sheet-close").addEventListener("click", function(){
+    document.getElementById("sheet").hidden = true;
+  });
+  document.getElementById("order-close").addEventListener("click", function(){
+    document.getElementById("order").hidden = true;
+  });
+
+  document.getElementById("m-guest").addEventListener("click", function(){ state.mode="guest"; render(); });
+  document.getElementById("m-store").addEventListener("click", function(){ state.mode="store"; render(); });
+
+  render();
+})();
+</script>
+
+
+</body>
+</html>

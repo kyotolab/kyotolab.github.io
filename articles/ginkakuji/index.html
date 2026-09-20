@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Unsilvered Pavilion</title>
+<meta name="description" content="The Silver Pavilion has no silver — it has the first Japanese room.">
+<link rel="canonical" href="https://kyotolab.github.io/articles/ginkakuji/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Unsilvered Pavilion">
+<meta property="og:description" content="The Silver Pavilion has no silver — it has the first Japanese room.">
+<meta property="og:url" content="https://kyotolab.github.io/articles/ginkakuji/">
+<meta property="og:site_name" content="京都ラボ">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Spectral:wght@200;300;400;600&display=swap">
+</head>
+<body>
+<style>
+  /* ── Kyoto Lab / English series ────────────────────────────────
+     Reference taste: The Parkhouse Kyoto Karasuma-Oike.
+     Near-black ground, bronze hairlines, wide-tracked Latin labels,
+     a high-contrast serif that is allowed to be quiet.
+  ──────────────────────────────────────────────────────────────── */
+  :root{
+    color-scheme:light dark;
+    --paper:#F6F5F2; --paper2:#EDEBE6;
+    --ink:#14171A; --ink2:#5D666D; --ink3:#8C949A;
+    --rule:#DBD8D2; --rule2:#E9E7E2;
+    --gold:#8E7134; --gold2:#B49559;
+    --teal:#0E6B76;
+    --panel:#0B0E10; --panel-ink:#EDEBE6; --panel-ink2:#98A1A7; --panel-gold:#C3A468;
+
+    --disp:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+    --body:"Spectral",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+
+    --gut:clamp(22px,5vw,44px);
+    --measure:33em;
+  }
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+    --paper:#0D1013; --paper2:#151A1E;
+    --ink:#E8E6E1; --ink2:#9BA3A9; --ink3:#6D767C;
+    --rule:#242B31; --rule2:#1A2024;
+    --gold:#C3A468; --gold2:#A98D57;
+    --teal:#5FD1DC;
+    --panel:#05080A; --panel-ink:#E8E6E1; --panel-ink2:#8D959B; --panel-gold:#C3A468;
+  }}
+  :root[data-theme="dark"]{
+    --paper:#0D1013; --paper2:#151A1E;
+    --ink:#E8E6E1; --ink2:#9BA3A9; --ink3:#6D767C;
+    --rule:#242B31; --rule2:#1A2024;
+    --gold:#C3A468; --gold2:#A98D57;
+    --teal:#5FD1DC;
+    --panel:#05080A; --panel-ink:#E8E6E1; --panel-ink2:#8D959B; --panel-gold:#C3A468;
+  }
+
+  *{box-sizing:border-box}
+  body{background:var(--paper); color:var(--ink); font-family:var(--body);
+       font-size:17.5px; font-weight:300; line-height:1.85; -webkit-font-smoothing:antialiased}
+  p{margin:0}
+  a{color:var(--gold); text-underline-offset:3px; text-decoration-thickness:.5px}
+  :focus-visible{outline:1.5px solid var(--gold); outline-offset:4px}
+  ::selection{background:var(--gold); color:var(--paper)}
+
+  .col{max-width:var(--measure); margin-inline:auto; padding-inline:var(--gut)}
+  .wide{max-width:940px; margin-inline:auto; padding-inline:var(--gut)}
+  .col > * + *{margin-top:1.35em}
+
+  /* ── wide-tracked latin label, the Parkhouse tell ── */
+  .eyebrow{font-family:var(--sans); font-size:10px; font-weight:500; letter-spacing:.26em;
+           text-transform:uppercase; color:var(--gold); display:block}
+
+  /* ── masthead ───────────────────────────────────── */
+  .top{background:var(--panel); color:var(--panel-ink); padding-block:clamp(54px,11vw,110px) clamp(40px,8vw,74px)}
+  .top .eyebrow{color:var(--panel-gold)}
+  .brand{display:flex; align-items:center; gap:13px; margin-bottom:clamp(40px,9vw,86px)}
+  .brand .mk{font-family:var(--disp); font-size:19px; letter-spacing:.06em; color:var(--panel-ink)}
+  .brand .ln{flex:1; height:1px; background:linear-gradient(90deg,var(--panel-gold),transparent)}
+  .brand .sr{font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; color:var(--panel-ink2)}
+  h1{font-family:var(--disp); font-weight:400; font-size:clamp(35px,7.2vw,66px); line-height:1.12;
+     letter-spacing:-.005em; margin:.5em 0 0; text-wrap:balance; color:var(--panel-ink)}
+  .stand{font-size:16px; color:var(--panel-ink2); margin-top:1.5em; max-width:30em; font-weight:200}
+  .meta{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; color:var(--panel-ink2);
+        margin-top:clamp(34px,6vw,54px); padding-top:16px; border-top:1px solid #22282C;
+        display:flex; flex-wrap:wrap; gap:6px 22px}
+
+  /* ── the device: expectation vs. what is actually there ── */
+  .frame{margin:clamp(38px,7vw,64px) auto 0; display:grid; gap:1px; background:var(--rule);
+         border:1px solid var(--rule); border-radius:2px; overflow:hidden}
+  @media(min-width:620px){ .frame{grid-template-columns:1fr 1fr} }
+  .frame > div{background:var(--paper); padding:clamp(20px,3.4vw,28px)}
+  .frame .t{font-family:var(--sans); font-size:9.5px; font-weight:600; letter-spacing:.2em;
+            text-transform:uppercase; color:var(--ink3); display:block; margin-bottom:11px}
+  .frame .v{font-family:var(--disp); font-size:clamp(19px,2.7vw,23px); line-height:1.32; font-weight:400}
+  .frame .real{background:var(--paper2)}
+  .frame .real .t{color:var(--gold)}
+
+  /* ── section rule ── */
+  .sec{margin-top:clamp(46px,8vw,80px)}
+  .sec .eyebrow{margin-bottom:14px}
+  .sec .eyebrow::before{content:""; display:inline-block; width:26px; height:1px;
+                        background:var(--gold); vertical-align:.32em; margin-right:11px}
+  h2{font-family:var(--disp); font-weight:500; font-size:clamp(25px,4.2vw,34px);
+     line-height:1.24; margin:0; text-wrap:balance}
+
+  em{font-style:italic; color:var(--ink)}
+  strong{font-weight:600; color:var(--ink)}
+
+  /* ── plate ── */
+  .plate{margin:clamp(38px,7vw,64px) 0 0}
+  .plate img{display:block; width:100%; height:auto}
+  .plate figcaption{font-family:var(--mono); font-size:10.5px; line-height:1.8; color:var(--ink3);
+                    margin-top:12px; padding-left:13px; border-left:1px solid var(--gold)}
+
+  /* ── dark panel: the history paragraph ── */
+  .panel{background:var(--panel); color:var(--panel-ink); margin-top:clamp(46px,8vw,80px);
+         padding-block:clamp(40px,7vw,66px)}
+  .panel .eyebrow{color:var(--panel-gold)}
+  .panel h2{color:var(--panel-ink)}
+  .panel strong{color:var(--panel-ink)}
+  .panel .yr{font-family:var(--mono); font-size:11px; letter-spacing:.14em; color:var(--panel-gold);
+             display:block; margin-top:8px}
+
+  /* ── practical footer notes ── */
+  .notes{margin-top:clamp(46px,8vw,80px); border-top:1px solid var(--rule); padding-top:clamp(26px,5vw,38px)}
+  .notes dl{margin:18px 0 0; display:grid; gap:0}
+  .notes dt{font-family:var(--sans); font-size:10px; font-weight:600; letter-spacing:.18em;
+            text-transform:uppercase; color:var(--gold); padding-top:15px; border-top:1px solid var(--rule2)}
+  .notes dd{margin:5px 0 15px; font-size:15.5px; color:var(--ink2)}
+  .notes dl > dt:first-child{border-top:0; padding-top:0}
+
+  /* ── series footer ── */
+  .end{margin-top:clamp(52px,9vw,88px); border-top:1px solid var(--rule);
+       padding-block:clamp(30px,5vw,44px) clamp(52px,9vw,84px)}
+  .end .eyebrow{margin-bottom:18px}
+  .end ol{list-style:none; margin:0; padding:0; display:grid; gap:1px; background:var(--rule2)}
+  .end li{background:var(--paper); display:flex; gap:16px; align-items:baseline; padding:13px 2px}
+  .end .n{font-family:var(--mono); font-size:10.5px; color:var(--ink3); flex:none; width:2.2em}
+  .end .ttl{font-family:var(--disp); font-size:19px; line-height:1.3}
+  .end a{text-decoration:none; color:var(--ink)}
+  .end a:hover{color:var(--gold)}
+  .end .self{color:var(--gold)}
+  .sign{font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; color:var(--ink3); margin-top:30px}
+</style>
+
+<div class="top">
+  <div class="wide">
+    <div class="brand"><span class="mk">Kyoto Lab</span><span class="ln"></span><span class="sr">02 / 05</span></div>
+    <span class="eyebrow">What You're Actually Looking At</span>
+    <h1>The Silver Pavilion<br>Has No Silver.<br>It Has Something Better.</h1>
+    <p class="stand">Visitors arrive expecting a silver answer to the Golden Pavilion and find a dark wooden box. Twenty metres away is a small room that quietly became every Japanese room.</p>
+    <p class="meta"><span>Ginkaku-ji · Jisho-ji</span><span>Sakyo-ku, Kyoto</span><span>Kyoto Lab field note</span></p>
+  </div>
+</div>
+
+<div class="wide">
+  <div class="frame">
+    <div><span class="t">What visitors assume</span><span class="v">A silver-covered twin of Kinkaku-ji, and a disappointment when it isn't.</span></div>
+    <div class="real"><span class="t">What is actually there</span><span class="v">The building where the Japanese room was invented — tatami, alcove, paper windows, four and a half mats.</span></div>
+  </div>
+</div>
+
+<div class="col">
+  <p>Ginkaku-ji was built in 1482 as a retirement villa for Ashikaga Yoshimasa, the grandson of the man who built the Golden Pavilion. The family pattern was clear enough: build a villa, retire into it, let it become a temple afterwards.</p>
+
+  <p>The silver never happened. Whether Yoshimasa intended to coat it and ran out of money, or never intended to at all, the building was never silvered. The name "Silver Pavilion" was attached later, in the Edo period, by people describing it in contrast to the golden one.</p>
+
+  <p>So a great many visitors walk up the approach, see a two-storey dark wooden building, and feel mildly cheated.</p>
+
+  <p>They are standing in the wrong direction.</p>
+</div>
+
+<div class="sec col">
+  <span class="eyebrow">Togu-do, the small hall</span>
+  <h2>The room that four hundred million rooms copied</h2>
+
+  <p>Across the garden from the famous pavilion is a smaller, plainer hall called the <strong>Togu-do</strong>, put up around 1485–86 as Yoshimasa's private quarters.</p>
+
+  <p>Inside it is a room of <strong>four and a half tatami mats</strong>, called the <em>Dojinsai</em>. It has a sunken hearth in the floor, a built-in writing alcove, staggered shelves, paper-covered windows.</p>
+
+  <p>It is the oldest surviving room of its kind in Japan. Every element in it — the tatami floor, the <em>tokonoma</em> alcove, the shoji paper window, the asymmetric shelving — became the standard vocabulary of the Japanese interior for the next five hundred years.</p>
+
+  <p>If you have ever seen a tatami room, in a ryokan, in a film, in someone's apartment in Osaka, you have seen a descendant of this room. Four and a half mats is still the classic size of a Japanese tea room, and it is this room that set it.</p>
+
+  <p>It is also, by most accounts, the oldest tea room left standing.</p>
+
+  <p>The Golden Pavilion is a statement about power. This is a statement about how to sit down.</p>
+</div>
+
+<div class="panel">
+  <div class="col">
+    <span class="eyebrow">Higashiyama culture · 15th century</span>
+    <h2>A shogun who was bad at his job and good at everything else</h2>
+    <p>Yoshimasa's rule was a disaster. A succession dispute he handled poorly helped trigger the Onin War, which burned much of Kyoto in the 1460s and 70s. He withdrew to the eastern hills while the city he governed was on fire.</p>
+    <p>What he did there, though, produced the culture now taken as most characteristically Japanese: <strong>the tea ceremony, garden design, flower arrangement, noh theatre, and the domestic architecture above.</strong> Historians call it Higashiyama culture, after these eastern hills.</p>
+    <p>It is also where the aesthetic later labelled <em>wabi-sabi</em> — restraint, asymmetry, the beauty of the unfinished and the worn — took its recognisable form.</p>
+    <p><strong>An unsilvered building is not a failure of that aesthetic. It is the aesthetic.</strong></p>
+  </div>
+</div>
+
+<div class="sec col">
+  <span class="eyebrow">The sand</span>
+  <h2>Two shapes nobody explains to you</h2>
+
+  <p>In the garden there is a flat expanse of raked white sand with ridges, and beside it a truncated cone of sand about the height of a person.</p>
+
+  <p>They are called the <em>Ginshadan</em> — "sea of silver sand" — and the <em>Kogetsudai</em>, the "moon-viewing platform." They are maintained by hand, continuously, and their present form dates from well after Yoshimasa.</p>
+
+  <p>Nobody can tell you with certainty what they mean. Explanations offered include moonlight reflection, Mount Fuji, a Chinese lake, and pure abstraction. The temple does not settle it.</p>
+
+  <p>This is worth knowing before you go, because the sand is the second thing people photograph and the first thing they misunderstand. It is not ancient in its current form, and it is not decorative. It is a maintained object that requires someone to rebuild it.</p>
+</div>
+
+<div class="sec col">
+  <span class="eyebrow">How to actually visit</span>
+  <h2>Walk up the hill inside the grounds</h2>
+
+  <p>Most people photograph the pavilion, walk the sand, and leave. The path continues uphill through moss and trees to a viewpoint over the whole eastern city. It takes about ten extra minutes and most of the crowd does not do it.</p>
+
+  <p>Outside the gate, the Philosopher's Path runs south along a canal for roughly two kilometres to the Nanzen-ji area. It is one of the few walks in Kyoto that connects two major sites without a bus.</p>
+</div>
+
+<div class="col notes">
+  <span class="eyebrow">Notes</span>
+  <dl>
+    <dt>Name</dt><dd>Formally Jisho-ji. "Ginkaku-ji" is the nickname, and again, the one on every sign.</dd>
+    <dt>The Togu-do</dt><dd>The interior, including the Dojinsai, is not normally open. It is periodically shown during special openings. Even from outside, knowing which building it is changes the visit — it is the modest hall, not the famous one.</dd>
+    <dt>Pairing</dt><dd>Ginkaku-ji → Philosopher's Path → Nanzen-ji is a genuine half-day on foot, downhill, and avoids buses almost entirely.</dd>
+    <dt>Check before you go</dt><dd>Hours, admission and special openings are set by the temple and change. Confirm on the day.</dd>
+  </dl>
+</div>
+
+<div class="col end">
+  <span class="eyebrow">What You're Actually Looking At — five places</span>
+    <ol>
+      <li><span class="n">01</span><a class="ttl" href="../kinkakuji/">The Golden Pavilion is younger than your grandmother</a></li>
+      <li><span class="n">02</span><span class="ttl self">The Silver Pavilion has no silver. It has something better.</span></li>
+      <li><span class="n">03</span><a class="ttl" href="../gion/">In Gion, the photo you want may be illegal</a></li>
+      <li><span class="n">04</span><a class="ttl" href="../nishiki/">Nishiki Market would like you to stand still</a></li>
+      <li><span class="n">05</span><a class="ttl" href="../gosho/">The Emperor's palace is free, unbooked, and nearly empty</a></li>
+    </ol>
+  <p class="sign">KYOTO LAB · field notes on what visitors are not told</p>
+</div>
+
+
+</body>
+</html>
