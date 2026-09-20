@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>翻訳では直らない</title>
+<meta name="description" content="銭湯と散髪屋で実際に見た2件から、外国人観光客が京都の店で詰まる原因を分解した。必要なのは翻訳ではない、という結論に至るまで。">
+<link rel="canonical" href="https://kyotolab.github.io/articles/honyaku/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="翻訳では直らない">
+<meta property="og:description" content="銭湯と散髪屋で実際に見た2件から、外国人観光客が京都の店で詰まる原因を分解した。必要なのは翻訳ではない、という結論に至るまで。">
+<meta property="og:url" content="https://kyotolab.github.io/articles/honyaku/">
+<meta property="og:site_name" content="京都ラボ">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<style>
+  img{max-width:100%}
+  [hidden]:not([hidden="until-found"]){display:none!important}
+</style>
+</head>
+<body>
+<style>
+  :root{
+    color-scheme:light;
+    --bg:#FFFFFF; --bg2:#F5F5F7; --bg3:#FAFAFB; --fg:#1D1D1F; --fg2:#6E6E73; --fg3:#86868B;
+    --line:#D2D2D7; --line2:#EBEBF0;
+    --accent:#0E6B76; --accent-soft:#EAF6F7; --accent-brd:#B9DDE1;
+    --warn:#8A5A14; --warn-soft:#FBF4E5; --warn-brd:#E7D3AC;
+    --stop:#8E2F22; --stop-soft:#FBEEEC;
+    --ok:#1F6B43; --ok-soft:#EAF5EF;
+    --sys:-apple-system,BlinkMacSystemFont,"SF Pro Display","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --gut:clamp(22px,5vw,44px);
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg); color:var(--fg); font-family:var(--sys); font-size:16px; line-height:1.62;
+       -webkit-font-smoothing:antialiased; letter-spacing:.004em}
+  h1,h2,h3,h4{margin:0; font-weight:700; letter-spacing:-.022em; line-height:1.16; text-wrap:balance}
+  p{margin:0}
+  a{color:var(--accent)}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+  .wrap{max-width:860px; margin:0 auto; padding-inline:var(--gut)}
+  .eyebrow{font-size:14px; font-weight:600; color:var(--accent); margin-bottom:12px}
+  .lead{font-size:clamp(16px,1.9vw,19px); color:var(--fg2); line-height:1.62}
+  .lead strong, p strong{color:var(--fg); font-weight:600}
+  .sub{margin-top:16px; max-width:38em}
+
+  header{padding-block:clamp(44px,7vw,78px) 34px; border-bottom:1px solid var(--line)}
+  header h1{font-size:clamp(30px,5.6vw,54px); letter-spacing:-.028em; line-height:1.14}
+  header .lead{margin-top:20px; max-width:38em}
+  .meta{margin-top:26px; display:flex; gap:8px 26px; flex-wrap:wrap;
+        font-family:var(--mono); font-size:11.5px; color:var(--fg3); letter-spacing:.05em}
+
+  section{padding-block:clamp(40px,6vw,64px); border-bottom:1px solid var(--line2)}
+  h2{font-size:clamp(24px,3.8vw,38px); letter-spacing:-.024em; line-height:1.2}
+
+  /* 観察 2件 */
+  .obs{margin-top:28px; display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  @media (max-width:720px){ .obs{grid-template-columns:1fr} }
+  .ob{border:1px solid var(--line); border-radius:14px; padding:22px 22px 24px; background:var(--bg3)}
+  .ob .tag{font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--accent)}
+  .ob h3{font-size:18px; margin-top:9px; letter-spacing:-.016em}
+  .ob p{font-size:14.5px; color:var(--fg2); margin-top:9px; line-height:1.72}
+  .ob .verdict{margin-top:14px; padding-top:13px; border-top:1px solid var(--line2);
+               font-size:13.5px; font-weight:600; color:var(--fg)}
+
+  /* 核心 */
+  .core{background:var(--fg); color:#F5F5F7}
+  .core h2{color:#FFF}
+  .core .eyebrow{color:#7FD3DC}
+  .core p{color:#B6BCC0; max-width:40em}
+  .core p + p{margin-top:14px}
+  .core p strong{color:#FFF}
+  .core .big{font-size:clamp(19px,2.6vw,26px); color:#FFF; font-weight:600; letter-spacing:-.018em;
+             line-height:1.5; margin-top:24px; padding-left:18px; border-left:3px solid #5FD1DC; max-width:30em}
+
+  /* 3つの問い */
+  .q{margin-top:28px; display:grid; gap:1px; background:var(--line2); border:1px solid var(--line2); border-radius:14px; overflow:hidden}
+  .qr{background:var(--bg); padding:20px 22px; display:grid; grid-template-columns:auto minmax(0,1fr); gap:16px; align-items:start}
+  .qr .n{font-family:var(--mono); font-size:12px; color:var(--accent); padding-top:3px; letter-spacing:.06em}
+  .qr h3{font-size:18px; letter-spacing:-.016em}
+  .qr p{font-size:14.5px; color:var(--fg2); margin-top:7px; line-height:1.72}
+  .qr .no{margin-top:11px; font-size:13.5px; color:var(--stop); background:var(--stop-soft);
+          padding:9px 13px; border-radius:9px; display:inline-block}
+
+  /* 解決策 */
+  .sol{margin-top:30px; display:grid; gap:20px}
+  .s{border:1px solid var(--line); border-radius:16px; overflow:hidden}
+  .s > .hd{padding:22px 24px 20px; border-bottom:1px solid var(--line2)}
+  .s .badge{display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:11px;
+            letter-spacing:.1em; color:var(--accent); background:var(--accent-soft);
+            border:1px solid var(--accent-brd); padding:4px 10px; border-radius:20px}
+  .s h3{font-size:clamp(20px,2.8vw,26px); margin-top:13px; letter-spacing:-.02em}
+  .s .one{margin-top:10px; font-size:15.5px; color:var(--fg2); max-width:40em; line-height:1.7}
+  .s > .bd{padding:20px 24px 24px; display:grid; gap:16px}
+  .s .row{display:grid; grid-template-columns:6.5em minmax(0,1fr); gap:16px; align-items:baseline}
+  @media (max-width:620px){ .s .row{grid-template-columns:1fr; gap:5px} }
+  .s .row dt{font-family:var(--mono); font-size:11px; letter-spacing:.07em; color:var(--fg3)}
+  .s .row dd{margin:0; font-size:14.5px; color:var(--fg2); line-height:1.72}
+  .s .row dd b{color:var(--fg); font-weight:600}
+  .s .why{background:var(--accent-soft); border:1px solid var(--accent-brd); border-radius:11px;
+          padding:13px 16px; font-size:14.5px; color:var(--fg); line-height:1.7}
+  .s .why b{color:var(--accent)}
+  .s.pick{border-color:var(--accent); border-width:1.5px}
+  .s.pick > .hd{background:var(--accent-soft)}
+
+  /* 評価表 */
+  .tbl{margin-top:26px; overflow-x:auto; border:1px solid var(--line); border-radius:14px}
+  table{border-collapse:collapse; width:100%; min-width:600px; font-size:14.5px}
+  th,td{text-align:left; padding:14px 18px; border-bottom:1px solid var(--line2)}
+  thead th{background:var(--bg2); font-family:var(--mono); font-size:11px; letter-spacing:.08em;
+           color:var(--fg3); font-weight:400}
+  tbody tr:last-child td{border-bottom:none}
+  td:first-child{font-weight:600; white-space:nowrap}
+  .pill{display:inline-block; padding:3px 10px; border-radius:20px; font-size:12.5px; font-weight:600}
+  .p-hi{background:var(--ok-soft); color:var(--ok)}
+  .p-md{background:var(--warn-soft); color:var(--warn)}
+  .p-lo{background:var(--stop-soft); color:var(--stop)}
+
+  .note{margin-top:24px; border-left:2px solid var(--warn); background:var(--warn-soft);
+        padding:16px 20px; border-radius:0 12px 12px 0}
+  .note b{font-size:11px; font-family:var(--mono); letter-spacing:.1em; color:var(--warn); display:block; margin-bottom:8px}
+  .note p{font-size:14.5px; color:var(--fg2); max-width:42em; line-height:1.72}
+  .note p + p{margin-top:9px}
+
+  footer{padding-block:32px 46px}
+  footer p{font-family:var(--mono); font-size:11px; color:var(--fg3); letter-spacing:.08em; line-height:1.9}
+</style>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">京都ラボ ／ 課題分析</p>
+    <h1>翻訳では直らない</h1>
+    <p class="lead">外国人観光客が京都の店で詰まる原因を、実際に見た2件から分解しました。結論は、多くの現場で必要なのは翻訳ではないということです。<strong>翻訳できるのは、書かれている文章だけだからです。</strong></p>
+    <div class="meta">
+      <span>2026.09.05</span>
+      <span>観察2件 ／ 解決策3案 ／ 試作1本</span>
+      <span>二ノ宮 大知</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">観察</p>
+    <h2>実際に見た、2つの詰まり方。</h2>
+    <p class="lead sub">推測ではなく、京都市内で実際に目撃した場面です。この2件は、詰まり方の種類が違います。</p>
+    <div class="obs">
+      <div class="ob">
+        <p class="tag">CASE A ／ 銭湯</p>
+        <h3>情報はあるのに、動けない</h3>
+        <p>脱衣所に英語の注意書きは貼ってある。それでも外国人のお客さんは立ち止まったまま動けなくなっていた。読めていないのではなく、読んでも次の行動が決まらない。</p>
+        <p>服をどこまで脱ぐのか、体をどこで洗うのか、タオルをどうするのか。<b>それぞれの禁止事項は書いてあるが、順番が書かれていない。</b></p>
+        <p class="verdict">→ 文章はあるが、手順がない</p>
+      </div>
+      <div class="ob">
+        <p class="tag">CASE B ／ 散髪屋</p>
+        <h3>そもそも情報がない</h3>
+        <p>外国人客が飛び込みで「今からカットできるか」と尋ねた。予約制なので店主は断った。店主は英語が話せず、身振り手振りでのやりとりになった。</p>
+        <p>客は無駄足を踏み、店は売れたかもしれない時間を失った。<b>「今空いているか」がドアの外から一切わからない。</b></p>
+        <p class="verdict">→ 手順以前に、状態が見えない</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="core">
+  <div class="wrap">
+    <p class="eyebrow">核心</p>
+    <h2>足りないのは英語ではない。</h2>
+    <p>この2件を翻訳アプリは解決しません。CASE A では、翻訳すべき文章はすでに英語になっていました。CASE B では、翻訳する文章がそもそも存在しません。</p>
+    <p>共通しているのは、<strong>店側が「日本人なら説明しなくてもわかる」と思っていることが、どこにも書かれていない</strong>という一点です。日本人が誰にも教わらずに覚えた順番や慣習は、書かれていないので翻訳のしようがない。</p>
+    <p class="big">翻訳は、書かれていないものを訳せない。<br>だから翻訳ツールを入れても、この問題は残る。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">分解</p>
+    <h2>店の前で、旅行者が答えを欲しがっている3つの問い。</h2>
+    <p class="lead sub">現場の困りごとを分解すると、旅行者が必要としている情報はこの3つに収束します。どれも「文章の翻訳」では埋まりません。</p>
+    <div class="q">
+      <div class="qr">
+        <span class="n">Q1</span>
+        <div>
+          <h3>入っていいのか</h3>
+          <p>予約が要るのか、飛び込みでいいのか。今日はやっているのか。自分が入っていい店なのか（一見さんお断りではないか、子ども連れは可か、タトゥーは可か）。</p>
+          <p class="no">ドアの外からは判断できない → 諦めるか、店に迷惑をかけるかの二択になる</p>
+        </div>
+      </div>
+      <div class="qr">
+        <span class="n">Q2</span>
+        <div>
+          <h3>中で何が起きるのか</h3>
+          <p>入ってから出るまでの順番。どこで払うか、何を脱ぐか、どこに座るか、何をしてはいけないか。所要時間とだいたいの金額。</p>
+          <p class="no">禁止事項の貼り紙は「してはいけないこと」しか伝えない → 何をすればいいかは依然わからない</p>
+        </div>
+      </div>
+      <div class="qr">
+        <span class="n">Q3</span>
+        <div>
+          <h3>今、行くべきなのか</h3>
+          <p>今は混んでいるのか。待つならどれくらいか。ここが混んでいるなら、近くの似た選択肢はどこか。</p>
+          <p class="no">わからないので、結果として全員が同じ有名スポットの同じ時間帯に集まる</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">解決策</p>
+    <h2>3つの問いに、3つの道具。</h2>
+    <p class="lead sub">3つの問いにそれぞれ対応させます。ただし副業でやる以上、作れるかどうかより<strong>店に負担をかけずに動き続けるか</strong>で選ぶ必要があります。その観点を各案に入れました。</p>
+
+    <div class="sol">
+      <div class="s pick">
+        <div class="hd">
+          <span class="badge">Q2 に対応 ／ 最初に作る</span>
+          <h3>手順 — 中で何が起きるかを、順番で渡す</h3>
+          <p class="one">禁止事項の羅列をやめ、入店から退店までを番号のついた行動の列に組み替えます。文章ではなく順番を渡すのが要点です。QRを1枚貼るだけで、客の手元に多言語で出ます。</p>
+        </div>
+        <div class="bd">
+          <dl class="row"><dt>対象</dt><dd>銭湯、温浴施設、飲食店の作法がある業態、和菓子屋、寺社の拝観、体験教室</dd></dl>
+          <dl class="row"><dt>店の操作</dt><dd><b>初回だけ。</b>一度作れば、あとは店主が何もしなくても動き続ける</dd></dl>
+          <dl class="row"><dt>客の操作</dt><dd>QRを読む。言語を選ぶ。上から順に見る。それだけ</dd></dl>
+          <dl class="row"><dt>効かない場合</dt><dd>手順が客ごとに変わる業態（複雑な予約や個別対応が主）には向かない</dd></dl>
+          <div class="why"><b>これを最初に作る理由：</b>3案のうち唯一、<b>店主が毎日触らなくても機能し続ける</b>案です。副業で運用する以上、店側の継続操作を必要とする道具は必ず止まります。しかも創業のきっかけになった銭湯の場面を、そのまま直接解いています。</div>
+        </div>
+      </div>
+
+      <div class="s">
+        <div class="hd">
+          <span class="badge">Q1 に対応 ／ 2番目</span>
+          <h3>いま — 入れるかどうかを、ドアの外に出す</h3>
+          <p class="one">予約システムではありません。店主が1日に数回、3つのボタンのどれかを押すだけ。「今入れます／◯分待ち／本日終了」。それが店頭のQRと店の地図表示に多言語で反映されます。</p>
+        </div>
+        <div class="bd">
+          <dl class="row"><dt>対象</dt><dd>散髪屋、個人経営の飲食店、町の整体、小さな体験工房</dd></dl>
+          <dl class="row"><dt>店の操作</dt><dd><b>毎日ある。</b>ここが最大の弱点。押し忘れると情報が嘘になり、押されない日が続けば道具ごと死ぬ</dd></dl>
+          <dl class="row"><dt>客の操作</dt><dd>店頭のQR、または事前に見る</dd></dl>
+          <dl class="row"><dt>設計上の要点</dt><dd>更新が止まったら<b>自動で「情報なし」に戻す</b>こと。古い情報を出し続けるほうが、何も出さないより有害</dd></dl>
+          <div class="why"><b>あとに回す理由：</b>効果は大きいが、店主の毎日の操作に依存します。1軒目で「手順」を入れて店主との関係ができてから持ち込むほうが、続く確率が上がります。</div>
+        </div>
+      </div>
+
+      <div class="s">
+        <div class="hd">
+          <span class="badge">Q3 に対応 ／ アプリにしない</span>
+          <h3>ずらす — 混雑を、時間と場所で散らす</h3>
+          <p class="one">京都が混んでいると言われるとき、実際に混むのは同じ数か所の同じ時間帯です。混雑を計測するのではなく、<strong>空いている時間と代わりの場所の知識を配る</strong>ほうが、個人の規模では現実的です。</p>
+        </div>
+        <div class="bd">
+          <dl class="row"><dt>対象</dt><dd>京都に来る旅行者全般</dd></dl>
+          <dl class="row"><dt>アプリにしない理由</dt><dd>リアルタイムの混雑データを個人で集めるのは無理があり、精度の低い混雑表示は<b>信頼を一度で失う</b>種類の失敗をする</dd></dl>
+          <dl class="row"><dt>代わりにやること</dt><dd><b>記事で解く。</b>「清水寺は朝6時開門」「岡崎は道が広いから混んで見えない」といった知識は、記事のほうが速く、正確で、古くならない</dd></dl>
+          <dl class="row"><dt>接続</dt><dd>記事100本という目標が、そのまま分散の装置になる。書けば書くほど効く</dd></dl>
+          <div class="why"><b>これは道具ではなく発信の仕事です。</b>3案のうち唯一、開発をしないのが正解の案でした。すでに公開しているシリーズ「京都を通る水」の3本は、この解決策の実装そのものです。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">比較</p>
+    <h2>副業で運用できるか、で並べ替える。</h2>
+    <p class="lead sub">効果の大きさではなく、<strong>止まらずに動き続けるか</strong>で評価しています。本業を持つ一人が支える前提だと、この列がいちばん重要になります。</p>
+    <div class="tbl">
+      <table>
+        <thead>
+          <tr><th>案</th><th>効果</th><th>作る手間</th><th>店の毎日の操作</th><th>止まりにくさ</th><th>判断</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>手順</td>
+            <td><span class="pill p-hi">大</span></td>
+            <td><span class="pill p-md">中</span></td>
+            <td><span class="pill p-hi">なし</span></td>
+            <td><span class="pill p-hi">高い</span></td>
+            <td>最初に作る</td>
+          </tr>
+          <tr>
+            <td>いま</td>
+            <td><span class="pill p-hi">大</span></td>
+            <td><span class="pill p-hi">小</span></td>
+            <td><span class="pill p-lo">毎日</span></td>
+            <td><span class="pill p-lo">低い</span></td>
+            <td>2軒目以降</td>
+          </tr>
+          <tr>
+            <td>ずらす</td>
+            <td><span class="pill p-md">中</span></td>
+            <td><span class="pill p-lo">大</span></td>
+            <td><span class="pill p-hi">なし</span></td>
+            <td><span class="pill p-md">中</span></td>
+            <td>記事で解く</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <b>この表の読み方</b>
+      <p>「いま」は作る手間が最も小さいのに、判断は2番目です。<strong>作りやすさと続きやすさは別だからです。</strong>店主が毎日ボタンを押す必要がある道具は、忙しい日に押されなくなり、押されない情報は嘘になり、嘘をついた道具は二度と使われません。</p>
+      <p>副業でやる事業では、この「止まりにくさ」の列が実質的に唯一の評価軸になります。動かなくなった道具は、効果がゼロではなく<strong>マイナス</strong>だからです。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>京都ラボ ／ 課題分析 2026.09.05<br>観察は京都市内で実際に目撃した2件にもとづく。解決策の優先順位は副業前提（週8〜10時間）で評価した。</p>
+  </div>
+</footer>
+
+
+</body>
+</html>
