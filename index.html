@@ -11,6 +11,11 @@
 <meta property="og:url" content="https://kyotolab.github.io/">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://kyotolab.github.io/">
+<link rel="alternate" hreflang="ja" href="https://kyotolab.github.io/">
+<link rel="alternate" hreflang="en" href="https://kyotolab.github.io/en/">
+<link rel="alternate" hreflang="x-default" href="https://kyotolab.github.io/">
+<meta property="og:locale:alternate" content="en_GB">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap">
@@ -309,12 +314,58 @@
          transition:opacity .7s cubic-bezier(.2,.6,.2,1), transform .7s cubic-bezier(.2,.6,.2,1)}
   @media (prefers-reduced-motion:reduce){ .rv{opacity:1; transform:none} }
 
+
+  /* ── ロゴ：角囲みの「京」＋社名 ───────────────── */
+  .brand{display:inline-flex; align-items:center; gap:9px; white-space:nowrap}
+  .brand .mk{
+    width:25px; height:25px; flex:none; display:grid; place-content:center;
+    border:1px solid var(--fg); border-radius:2px;
+    font-family:var(--disp); font-size:14px; line-height:1; color:var(--fg);
+    padding-top:1px;
+  }
+  .brand .nm{font-family:var(--disp); font-size:18px; font-weight:500; letter-spacing:.08em}
+  .brand:hover .mk{border-color:var(--accent); color:var(--accent)}
+  .brand:hover .nm{color:var(--accent)}
+
+  /* ── 言語切替 ─────────────────────────────── */
+  .lang{display:inline-flex; align-items:center; gap:7px; font-family:var(--mono);
+        font-size:11px; letter-spacing:.1em}
+  .lang a{color:var(--fg3); padding:2px 1px}
+  .lang a:hover{color:var(--fg)}
+  .lang a[aria-current="true"]{color:var(--fg); font-weight:500}
+  .lang span{color:var(--line); user-select:none}
+  .navend{display:flex; align-items:center; gap:clamp(12px,2vw,20px)}
+  @media (max-width:560px){ .nav .tel{display:none} }
+
+  /* ── 記事カード ───────────────────────────── */
+  .jgrid{margin-top:clamp(24px,4vw,38px); display:grid; gap:16px;
+         grid-template-columns:repeat(3,minmax(0,1fr))}
+  @media (max-width:900px){ .jgrid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  @media (max-width:620px){ .jgrid{grid-template-columns:1fr} }
+  .jcard{
+    display:flex; flex-direction:column; gap:9px; background:var(--bg2);
+    border:1px solid var(--line2); border-radius:16px; padding:22px 22px 18px;
+    transition:border-color .18s, transform .18s;
+  }
+  .jcard:hover{border-color:var(--accent-brd); transform:translateY(-2px)}
+  .jcard .cat{font-family:var(--mono); font-size:10px; letter-spacing:.16em;
+              text-transform:uppercase; color:var(--gold); line-height:1.6}
+  .jcard h3{font-size:20px; letter-spacing:.008em; line-height:1.38}
+  .jcard:hover h3{color:var(--accent)}
+  .jcard p{font-size:14px; color:var(--fg2); line-height:1.68; flex:1}
+  .jcard .foot{display:flex; align-items:center; justify-content:space-between;
+               gap:10px; padding-top:12px; margin-top:2px; border-top:1px solid var(--line2)}
+  .jcard time{font-family:var(--mono); font-size:11px; color:var(--fg3);
+              font-variant-numeric:tabular-nums}
+  .jseries{padding:5px 0; max-width:74ch}
+  .jseries + .jseries{border-top:1px solid var(--line2); padding-top:11px; margin-top:6px}
+
   :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
 </style>
 
 <nav class="nav">
   <div class="wide">
-    <a class="logo" href="#top">京都ラボ</a>
+    <a class="brand" href="#top" aria-label="京都ラボ ホーム"><span class="mk" aria-hidden="true">京</span><span class="nm">京都ラボ</span></a>
     <ul>
       <li><a href="#why">背景</a></li>
       <li><a href="#issues">課題</a></li>
@@ -325,7 +376,10 @@
       <li><a href="#tejun">手順</a></li>
       <li><a href="#about">事業概要</a></li>
     </ul>
-    <a class="tel" href="tel:08069352240">080-6935-2240</a>
+    <div class="navend">
+      <p class="lang"><a href="./" aria-current="true" hreflang="ja">JP</a><span>/</span><a href="en/" hreflang="en">EN</a></p>
+      <a class="tel" href="tel:08069352240">080-6935-2240</a>
+    </div>
   </div>
 </nav>
 
@@ -449,104 +503,82 @@
         <span class="pill">記事は順次公開</span>
       </div>
 
-      <div class="jlist">
-        <p class="jseries"><b>シリーズ「京都を通る水」</b> — 鴨川、平安神宮、南禅寺の水路閣。三つとも、京都を通る水の話でつながっている。</p>
+      <p class="jseries"><b>シリーズ「京都を通る水」</b> — 鴨川、平安神宮、南禅寺の水路閣。三つとも、京都を通る水の話でつながっている。</p>
+      <p class="jseries"><b>Series — What You're Actually Looking At</b> 金閣寺・銀閣寺・祇園・錦市場・御所。訪れる人が「見ていると思っているもの」と、実際に目の前にあるもののずれを5本で書いた。英語。海外読者に向けた本命の記事群。</p>
+      
+      
 
-        <a class="jrow" href="articles/kamogawa/">
-          <time datetime="2026-09-05">2026.09.05</time>
-          <div>
-            <h3>鴨川は等間隔になる</h3>
-            <p>誰も決めていないのに、河原に座る人の間隔は揃う。書かれていないルールがうまく機能している例と、機能しなくなった例（銭湯）の差について。納涼床の期間と、増水時の注意も書いた。</p>
-            <span class="jlangs">京都を通る水 01</span>
-          </div>
-          <span class="pill live">公開中</span>
+      <div class="jgrid">
+        
+
+        <a class="jcard" href="articles/kamogawa/">
+          <span class="cat">京都を通る水 01</span>
+          <h3>鴨川は等間隔になる</h3>
+          <p>誰も決めていないのに、河原に座る人の間隔は揃う。書かれていないルールがうまく機能している例と、機能しなくなった例（銭湯）の差について。納涼床の期間と、増水時の注意も書いた。</p>
+          <div class="foot"><time datetime="2026-09-05">2026.09.05</time><span class="pill live">公開中</span></div>
         </a>
 
-        <a class="jrow" href="articles/heian-jingu/">
-          <time datetime="2026-09-05">2026.09.05</time>
-          <div>
-            <h3>1895年生まれの「平安」</h3>
-            <p>平安神宮のあの朱色の門は、平安時代のものではない。都が東京へ移り、沈みかけた京都が「まだ終わっていない」と言うために建てた新築の建物だった。そして今も、驚くほど空いている。</p>
-            <span class="jlangs">京都を通る水 02</span>
-          </div>
-          <span class="pill live">公開中</span>
+        <a class="jcard" href="articles/heian-jingu/">
+          <span class="cat">京都を通る水 02</span>
+          <h3>1895年生まれの「平安」</h3>
+          <p>平安神宮のあの朱色の門は、平安時代のものではない。都が東京へ移り、沈みかけた京都が「まだ終わっていない」と言うために建てた新築の建物だった。そして今も、驚くほど空いている。</p>
+          <div class="foot"><time datetime="2026-09-05">2026.09.05</time><span class="pill live">公開中</span></div>
         </a>
 
-        <a class="jrow" href="articles/suirokaku/">
-          <time datetime="2026-09-05">2026.09.05</time>
-          <div>
-            <h3>寺を突っ切る水道橋</h3>
-            <p>700年の禅寺の境内を、明治のレンガのアーチが横切っている。なぜ許されたのか。130年前にいちばん異物だったものが、いまいちばん「京都らしい」と言われる場所になるまでの話。</p>
-            <span class="jlangs">京都を通る水 03</span>
-          </div>
-          <span class="pill live">公開中</span>
+        <a class="jcard" href="articles/suirokaku/">
+          <span class="cat">京都を通る水 03</span>
+          <h3>寺を突っ切る水道橋</h3>
+          <p>700年の禅寺の境内を、明治のレンガのアーチが横切っている。なぜ許されたのか。130年前にいちばん異物だったものが、いまいちばん「京都らしい」と言われる場所になるまでの話。</p>
+          <div class="foot"><time datetime="2026-09-05">2026.09.05</time><span class="pill live">公開中</span></div>
         </a>
 
-        <p class="jseries"><b>Series — What You're Actually Looking At</b> 金閣寺・銀閣寺・祇園・錦市場・御所。訪れる人が「見ていると思っているもの」と、実際に目の前にあるもののずれを5本で書いた。英語。海外読者に向けた本命の記事群。</p>
+        
 
-        <a class="jrow" href="articles/kinkakuji/">
-          <time datetime="2026-09-07">2026.09.07</time>
-          <div>
-            <h3>Kinkaku-ji, 1955</h3>
-            <p>金閣寺。いま見ている建物は1955年の再建で、しかも一階は金が貼られていない。三層が三つの様式で積まれた「権力の図解」としての読み方。</p>
-            <span class="jlangs">English ／ What You're Actually Looking At 01</span>
-          </div>
-          <span class="pill live">公開中</span>
+        <a class="jcard" href="articles/kinkakuji/">
+          <span class="cat">English ／ What You're Actually Looking At 01</span>
+          <h3>Kinkaku-ji, 1955</h3>
+          <p>金閣寺。いま見ている建物は1955年の再建で、しかも一階は金が貼られていない。三層が三つの様式で積まれた「権力の図解」としての読み方。</p>
+          <div class="foot"><time datetime="2026-09-07">2026.09.07</time><span class="pill live">公開中</span></div>
         </a>
 
-        <a class="jrow" href="articles/ginkakuji/">
-          <time datetime="2026-09-07">2026.09.07</time>
-          <div>
-            <h3>The Unsilvered Pavilion</h3>
-            <p>銀閣寺。銀は最初から無い。庭の向こうにある四畳半——東求堂同仁斎が、その後の日本の部屋すべての原型になった話。</p>
-            <span class="jlangs">English ／ What You're Actually Looking At 02</span>
-          </div>
-          <span class="pill live">公開中</span>
+        <a class="jcard" href="articles/ginkakuji/">
+          <span class="cat">English ／ What You're Actually Looking At 02</span>
+          <h3>The Unsilvered Pavilion</h3>
+          <p>銀閣寺。銀は最初から無い。庭の向こうにある四畳半——東求堂同仁斎が、その後の日本の部屋すべての原型になった話。</p>
+          <div class="foot"><time datetime="2026-09-07">2026.09.07</time><span class="pill live">公開中</span></div>
         </a>
 
-        <a class="jrow" href="articles/gion/">
-          <time datetime="2026-09-07">2026.09.07</time>
-          <div>
-            <h3>Gion's Invisible Line</h3>
-            <p>祇園。私道での撮影は1万円の過料、公道の花見小路は対象外。その境界が地面のどこにも書かれていないという、京都ラボの課題そのものの話。</p>
-            <span class="jlangs">English ／ What You're Actually Looking At 03</span>
-          </div>
-          <span class="pill live">公開中</span>
+        <a class="jcard" href="articles/gion/">
+          <span class="cat">English ／ What You're Actually Looking At 03</span>
+          <h3>Gion's Invisible Line</h3>
+          <p>祇園。私道での撮影は1万円の過料、公道の花見小路は対象外。その境界が地面のどこにも書かれていないという、京都ラボの課題そのものの話。</p>
+          <div class="foot"><time datetime="2026-09-07">2026.09.07</time><span class="pill live">公開中</span></div>
         </a>
 
-        <a class="jrow" href="articles/nishiki/">
-          <time datetime="2026-09-07">2026.09.07</time>
-          <div>
-            <h3>Nishiki, Standing Still</h3>
-            <p>錦市場。390メートル、約126軒、約400年。食べ歩きを断る理由は道徳ではなく、道幅と、開いたまま並んでいる魚。</p>
-            <span class="jlangs">English ／ What You're Actually Looking At 04</span>
-          </div>
-          <span class="pill live">公開中</span>
+        <a class="jcard" href="articles/nishiki/">
+          <span class="cat">English ／ What You're Actually Looking At 04</span>
+          <h3>Nishiki, Standing Still</h3>
+          <p>錦市場。390メートル、約126軒、約400年。食べ歩きを断る理由は道徳ではなく、道幅と、開いたまま並んでいる魚。</p>
+          <div class="foot"><time datetime="2026-09-07">2026.09.07</time><span class="pill live">公開中</span></div>
         </a>
 
-        <a class="jrow" href="articles/gosho/">
-          <time datetime="2026-09-07">2026.09.07</time>
-          <div>
-            <h3>The Empty Palace</h3>
-            <p>京都御所。2016年に事前申請が不要になったのに、その情報が更新されないまま「許可がいる」と書かれ続けている。だから空いている。</p>
-            <span class="jlangs">English ／ What You're Actually Looking At 05</span>
-          </div>
-          <span class="pill live">公開中</span>
+        <a class="jcard" href="articles/gosho/">
+          <span class="cat">English ／ What You're Actually Looking At 05</span>
+          <h3>The Empty Palace</h3>
+          <p>京都御所。2016年に事前申請が不要になったのに、その情報が更新されないまま「許可がいる」と書かれ続けている。だから空いている。</p>
+          <div class="foot"><time datetime="2026-09-07">2026.09.07</time><span class="pill live">公開中</span></div>
         </a>
 
-        <p class="jseries"><b>単発</b></p>
+        
 
-        <a class="jrow" href="articles/one-day/">
-          <time datetime="2026-09-03">2026.09.03</time>
-          <div>
-            <h3>朝6時に清水寺へ。東山・中京・下京を1日で歩く。</h3>
-            <p>京都の定番は、行く時間が全員同じだから混む。清水寺の6時開門から始めて、三つの区の名所を一日で歩ききるための時間割。入れなかった名所と、その理由も書いた。</p>
-            <span class="jlangs">English ／ 繁體中文 ／ 한국어 ／ 日本語</span>
-          </div>
-          <span class="pill live">公開中</span>
+        <a class="jcard" href="articles/one-day/">
+          <span class="cat">English ／ 繁體中文 ／ 한국어 ／ 日本語</span>
+          <h3>朝6時に清水寺へ。東山・中京・下京を1日で歩く。</h3>
+          <p>京都の定番は、行く時間が全員同じだから混む。清水寺の6時開門から始めて、三つの区の名所を一日で歩ききるための時間割。入れなかった名所と、その理由も書いた。</p>
+          <div class="foot"><time datetime="2026-09-03">2026.09.03</time><span class="pill live">公開中</span></div>
         </a>
 
-        <p class="jseries"><b>準備中</b></p>
+        
 
         <div class="jrow">
           <time datetime="2026-09">2026.09</time>
