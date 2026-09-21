@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Kyoto Lab</title>
-<meta name="description" content="Easing the language gap between Kyoto’s shops and their visitors with AI and IT: multilingual menus, bathhouse step guides, and onboarding support. From Shimogyo, Kyoto.">
+<meta name="description" content="Easing the language gap between Kyoto’s shops and their visitors with AI and IT: shop guides, multilingual menus, and AI onboarding support. From Shimogyo, Kyoto.">
 <link rel="canonical" href="https://kyotolab.github.io/en/">
 <link rel="alternate" hreflang="ja" href="https://kyotolab.github.io/">
 <link rel="alternate" hreflang="en" href="https://kyotolab.github.io/en/">
@@ -184,13 +184,14 @@
   .pcard li::before{content:""; position:absolute; left:0; top:.62em; width:7px; height:1.5px;
                     border-radius:2px; background:var(--accent)}
 
-  /* ---------------- autumn (white section, dark art tiles) ---------------- */
-  .autumn{padding-block:clamp(72px,11vw,126px); border-top:1px solid var(--line2)}
-  .autumn h2{font-size:clamp(30px,5vw,56px); letter-spacing:-.026em; line-height:1.18; max-width:15em}
-  .autumn .lead{margin-top:20px; max-width:36em}
-  .ascenes{margin-top:clamp(34px,5vw,56px); display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px}
+  /* ---------------- spots (white section, dark art tiles) ---------------- */
+  .spots{padding-block:clamp(72px,11vw,126px); border-top:1px solid var(--line2)}
+  .spots h2{font-size:clamp(30px,5vw,56px); letter-spacing:-.026em; line-height:1.18; max-width:15em}
+  .spots .lead{margin-top:20px; max-width:36em}
+  .ascenes{margin-top:clamp(34px,5vw,56px); display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px}
+  @media (max-width:1100px){ .ascenes{grid-template-columns:repeat(2,minmax(0,1fr))} }
   @media (max-width:860px){ .ascenes{grid-template-columns:1fr; max-width:420px; margin-inline:auto} }
-  .ascene{border-radius:20px; overflow:hidden; background:var(--tile); color:var(--tile-fg);
+  .ascene{margin:0; border-radius:20px; overflow:hidden; background:var(--tile); color:var(--tile-fg);
           box-shadow:0 18px 40px -26px rgba(0,0,0,.45)}
   .ascene .art{display:block; width:100%; height:auto}
   .ascene .cap{padding:20px 22px 24px}
@@ -198,6 +199,10 @@
   .ascene .ro{display:block; font-size:10.5px; color:var(--tile-fg2); font-family:var(--mono);
               letter-spacing:.14em; margin-top:4px}
   .ascene p{margin-top:12px; font-size:14px; color:var(--tile-fg2); line-height:1.65}
+  .ascene .art-t{display:grid; place-items:center; aspect-ratio:4/3; background:linear-gradient(160deg,#2C2C2F,var(--tile));
+                 font-size:clamp(84px,9vw,112px); font-weight:700; line-height:1; color:rgba(255,255,255,.13); user-select:none}
+  .ascene .more{display:inline-block; margin-top:14px; font-size:13px; color:var(--tile-accent); text-decoration:none}
+  .ascene .more:hover{text-decoration:underline}
   .best{margin-top:15px; padding-top:13px; border-top:1px solid var(--tile-line);
         display:flex; align-items:baseline; gap:9px}
   .best b{color:var(--tile-accent); font-size:17px; font-weight:600; letter-spacing:-.01em; white-space:nowrap}
@@ -236,6 +241,7 @@
   .jrow{display:grid; grid-template-columns:112px minmax(0,1fr) auto; gap:clamp(14px,3vw,28px);
         align-items:start; padding:22px 0; border-top:1px solid var(--line2)}
   @media (max-width:640px){ .jrow{grid-template-columns:1fr; gap:7px} }
+  .jgrid .jrow{grid-column:1/-1}
   .jrow time{font-size:13px; color:var(--fg3); font-family:var(--mono); padding-top:3px}
   .jrow h3{font-size:20px; letter-spacing:-.02em; line-height:1.35}
   .jrow p{margin-top:7px; font-size:14.5px; color:var(--fg2); line-height:1.6; max-width:52em}
@@ -373,14 +379,12 @@
 
   :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
 </style>
-</head>
-<body>
 <nav class="nav">
   <div class="wide">
     <a class="brand" href="#top" aria-label="Kyoto Lab home"><span class="mk" aria-hidden="true">京</span><span class="nm">KYOTO LAB</span></a>
     <ul>
       <li><a href="#why">Why</a></li>
-      <li><a href="#autumn">Autumn</a></li>
+      <li><a href="#spots">Spot guide</a></li>
       <li><a href="#journal">Field notes</a></li>
       <li><a href="#tejun">Bathhouse</a></li>
       <li><a href="#product">Menu</a></li>
@@ -399,9 +403,9 @@
     <div class="wrap">
       <p class="eyebrow">Kyoto Lab ／ From Shimogyo, Kyoto</p>
       <h1>Solving Kyoto’s challenges.</h1>
-      <p class="sub">Kyoto Lab uses AI and IT to ease the language gap between Kyoto’s shops and the people who visit them: multilingual menus, bathhouse step guides, and onboarding support. From Shimogyo, the ward we were born in, we build only what works on the shop floor.</p>
+      <p class="sub">Kyoto Lab uses AI and IT to ease the language gap between Kyoto’s shops and the people who visit them: shop guides, multilingual menus, and AI onboarding support for shops.<br>Drawing on growing up in Shimogyo, Kyoto, we build only what works on the shop floor.</p>
       <div class="cta">
-        <a class="btn btn-fill" href="#journal">Read the field notes</a>
+        <a class="btn btn-fill" href="#spots">Read the spot guide</a>
         <a class="btn btn-line" href="#tejun">How to use a bathhouse <i>›</i></a>
       </div>
       <p class="hero-note">Kyoto, Japan ／ Field notes · Shop tools · Inbound support</p>
@@ -421,11 +425,11 @@
     </div>
   </section>
 
-  <section class="panel autumn" id="autumn">
+  <section class="panel spots" id="spots">
     <div class="wide">
-      <p class="eyebrow">Autumn in Kyoto</p>
-      <h2>The crowding is<br>a clock, not a map.</h2>
-      <p class="lead">For three weeks in November, Kyoto fills up. But the place is not what is uneven — <strong>the hour is.</strong> The same bamboo path at 7am and at 1pm are two different locations. What is worth telling you is not where to go. It is when.</p>
+      <p class="eyebrow">Spot guide</p>
+      <h2>The hour changes<br>the place.</h2>
+      <p class="lead">Kyoto’s famous places all fill up at the same hours. But the place is not what is uneven — <strong>the hour is.</strong> The same spot at 7am and at 1pm are two different places. What is worth telling you is not just where to go, but when, and what to look at.</p>
 
       <div class="ascenes">
         <figure class="ascene">
@@ -434,15 +438,6 @@
             <h3>Bamboo Grove</h3><span class="ro">ARASHIYAMA</span>
             <p>After 8am the path becomes a queue you shuffle along. Before 8 it is still a place with no sound in it.</p>
             <div class="best"><b>Before 8:00</b><span>The line between a place and a crowd</span></div>
-          </figcaption>
-        </figure>
-
-        <figure class="ascene">
-          <img class="art" src="../assets/togetsukyo.jpg" srcset="../assets/togetsukyo@700.jpg 700w, ../assets/togetsukyo.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="Togetsukyo bridge with autumn colour on the hills behind it">
-          <figcaption class="cap">
-            <h3>Togetsukyo</h3><span class="ro">ARASHIYAMA</span>
-            <p>In leaf season the bridge is a one-way column of people. From the Nakanoshima bank you get the bridge and the hill in one frame.</p>
-            <div class="best"><b>From the far bank</b><span>Faster to look at than to cross</span></div>
           </figcaption>
         </figure>
 
@@ -463,6 +458,61 @@
             <div class="best"><b>Any hour</b><span>Open 24 hours, no admission</span></div>
           </figcaption>
         </figure>
+
+        <figure class="ascene">
+          <img class="art" src="../assets/togetsukyo.jpg" srcset="../assets/togetsukyo@700.jpg 700w, ../assets/togetsukyo.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="Togetsukyo bridge with autumn colour on the hills behind it">
+          <figcaption class="cap">
+            <h3>Togetsukyo</h3><span class="ro">ARASHIYAMA</span>
+            <p>In leaf season the bridge is a one-way column of people. From the Nakanoshima bank you get the bridge and the hill in one frame.</p>
+            <div class="best"><b>Far bank</b><span>Faster to look at than to cross</span></div>
+          </figcaption>
+        </figure>
+
+        <figure class="ascene">
+          <div class="art art-t" aria-hidden="true">金</div>
+          <figcaption class="cap">
+            <h3>Kinkaku-ji</h3><span class="ro">KINKAKU-JI</span>
+            <p>A one-way loop of about 20 minutes, and you cannot go inside. Arrive first thing: around 11am several tour coaches land together and the railing becomes a queue. Look at the ground floor before the gold — it is not gilded.</p>
+            <div class="best"><b>First thing</b><span>Tour coaches stack up around 11am</span></div>
+            <a class="more" href="../articles/kinkakuji/">Read the field note ›</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ascene">
+          <div class="art art-t" aria-hidden="true">銀</div>
+          <figcaption class="cap">
+            <h3>Ginkaku-ji</h3><span class="ro">GINKAKU-JI</span>
+            <p>There was never any silver; the name came later. What to look at is the small Togu-do across from the pavilion — its four-and-a-half-mat room is the ancestor of the Japanese room.</p>
+            <div class="best"><b>Togu-do</b><span>The small hall across from the pavilion</span></div>
+            <a class="more" href="../articles/ginkakuji/">Read the field note ›</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ascene">
+          <div class="art art-t" aria-hidden="true">祇</div>
+          <figcaption class="cap">
+            <h3>Gion</h3><span class="ro">GION</span>
+            <p>Since April 2024, photography is banned in the private alleys around Hanamikoji, with a ¥10,000 fine. Hanamikoji itself is a public road and is fine. Nothing on the ground says which is which.</p>
+            <div class="best"><b>¥10,000</b><span>Fine for photos in the private alleys</span></div>
+            <a class="more" href="../articles/gion/">Read the field note ›</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ascene">
+          <div class="art art-t" aria-hidden="true">錦</div>
+          <figcaption class="cap">
+            <h3>Nishiki Market</h3><span class="ro">NISHIKI MARKET</span>
+            <p>About 390 m and 126 shops, a market for some 400 years. Visitors are asked not to eat while walking: buy, eat at the shop, hand back the stick. Many shops close by late afternoon, so go in the morning.</p>
+            <div class="best"><b>Morning</b><span>Many shops close in the late afternoon</span></div>
+            <a class="more" href="../articles/nishiki/">Read the field note ›</a>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="afoot">
+        <a class="link" href="../articles/one-day/">Read the one-day route <i>›</i></a>
+        <a class="link" href="../articles/gosho/">Read about the Imperial Palace <i>›</i></a>
+        <p class="adisc">Images are original illustrations, not photographs. Opening hours and rules change — please also check each place’s official information before you go.</p>
       </div>
     </div>
   </section>
@@ -474,50 +524,7 @@
         <span class="pill live">Free to read</span>
       </div>
 
-      <p class="jseries"><b>What You're Actually Looking At</b> — five famous places, and the gap between what visitors assume is in front of them and what is actually there. Written for people who have already booked the trip.</p>
-
       <div class="jgrid">
-        <a class="jcard" href="../articles/kinkakuji/">
-          <span class="cat">What You're Actually Looking At 01</span>
-          <h3>Kinkaku-ji, 1955</h3>
-          <p>The Golden Pavilion you photograph went up in 1955, after a monk burned the original down. Read the un-gilded ground floor and the building becomes a diagram of power.</p>
-          <div class="foot"><time datetime="2026-09-07">2026.09.07</time><span class="pill live">Live</span></div>
-        </a>
-
-        <a class="jcard" href="../articles/ginkakuji/">
-          <span class="cat">What You're Actually Looking At 02</span>
-          <h3>The Unsilvered Pavilion</h3>
-          <p>There is no silver, and visitors feel cheated. Twenty metres away is a four-and-a-half-mat room that became the template for every Japanese room since.</p>
-          <div class="foot"><time datetime="2026-09-07">2026.09.07</time><span class="pill live">Live</span></div>
-        </a>
-
-        <a class="jcard" href="../articles/gion/">
-          <span class="cat">What You're Actually Looking At 03</span>
-          <h3>Gion's Invisible Line</h3>
-          <p>One street allows photographs. The lane beside it carries a ¥10,000 fine. Nothing on the ground tells you which one you are standing on — and the woman in the kimono is late for work.</p>
-          <div class="foot"><time datetime="2026-09-07">2026.09.07</time><span class="pill live">Live</span></div>
-        </a>
-
-        <a class="jcard" href="../articles/nishiki/">
-          <span class="cat">What You're Actually Looking At 04</span>
-          <h3>Nishiki, Standing Still</h3>
-          <p>390 metres, about 126 shops, four hundred years — and one request most visitors never hear. The skewer is new. The etiquette around it is not.</p>
-          <div class="foot"><time datetime="2026-09-07">2026.09.07</time><span class="pill live">Live</span></div>
-        </a>
-
-        <a class="jcard" href="../articles/gosho/">
-          <span class="cat">What You're Actually Looking At 05</span>
-          <h3>The Empty Palace</h3>
-          <p>The permit requirement ended in 2016 and the internet never noticed. The palace where emperors lived is free, needs no booking, and stays quiet.</p>
-          <div class="foot"><time datetime="2026-09-07">2026.09.07</time><span class="pill live">Live</span></div>
-        </a>
-
-        <a class="jcard" href="../articles/one-day/">
-          <span class="cat">Route ／ EN · 繁體中文 · 한국어 · 日本語</span>
-          <h3>One Day in Kyoto</h3>
-          <p>Kiyomizu-dera at six in the morning, then Higashiyama, Nakagyo and Shimogyo on foot in a single day. Times matter more than places here.</p>
-          <div class="foot"><time datetime="2026-09-03">2026.09.03</time><span class="pill live">Live</span></div>
-        </a>
 
         <a class="jcard" href="../articles/shimogyo/">
           <span class="cat">Neighbourhood ／ Standalone</span>
@@ -666,6 +673,7 @@
         <li><a href="#about">About</a></li>
       </ul></div>
       <div><h4>Reading</h4><ul>
+        <li><a href="#spots">Spot guide</a></li>
         <li><a href="#journal">Field notes</a></li>
         <li><a href="../articles/one-day/">One Day in Kyoto</a></li>
       </ul></div>
