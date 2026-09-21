@@ -16,6 +16,9 @@
 <meta property="og:site_name" content="Kyoto Lab">
 <meta property="og:locale" content="en_GB">
 <meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:image" content="https://kyotolab.github.io/assets/gion-street.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1066">
 <meta name="twitter:card" content="summary_large_image">
 <style>
   /* 配信側の雛形が持っていたベースライン */
@@ -69,7 +72,7 @@
            letter-spacing:.12em; text-transform:uppercase; font-feature-settings:"palt" 0}
   .lead{font-size:clamp(17px,2vw,21px); line-height:1.55; color:var(--fg2); letter-spacing:.006em}
   .lead strong{color:var(--fg); font-weight:600}
-  .link{color:var(--accent); font-size:17px; display:inline-flex; align-items:center; gap:5px}
+  .link{color:var(--accent); font-size:17px; display:inline-flex; align-items:center; gap:5px; min-height:36px}
   .link:hover{text-decoration:underline}
   .link i{font-style:normal; font-size:14px; transition:transform .18s}
   .link:hover i{transform:translateX(3px)}
@@ -134,7 +137,7 @@
   .sc-shop{font-size:15px; font-weight:600; letter-spacing:-.01em; color:var(--fg)}
   .sc-qr{font-size:9.5px; color:var(--fg3); letter-spacing:.09em; margin-top:2px; font-family:var(--mono)}
   .sc-langs{display:flex; gap:5px; margin-top:14px; flex-wrap:wrap}
-  .sc-langs button{font-size:11.5px; padding:5px 11px; border-radius:980px;
+  .sc-langs button{font-size:11.5px; padding:10px 13px; border-radius:980px;
                    border:1px solid var(--line); color:var(--fg2); line-height:1.5}
   .sc-langs button[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:#FFF; font-weight:500}
   .sc-list{padding:4px 0 0}
@@ -336,9 +339,9 @@
   .brand:hover .nm{color:var(--accent)}
 
   /* ── 言語切替 ─────────────────────────────── */
-  .lang{display:inline-flex; align-items:center; gap:7px; font-family:var(--mono);
+  .lang{display:inline-flex; align-items:center; gap:0; margin-right:-9px; font-family:var(--mono);
         font-size:11px; letter-spacing:.1em}
-  .lang a{color:var(--fg3); padding:2px 1px}
+  .lang a{color:var(--fg3); padding:11px 9px}
   .lang a:hover{color:var(--fg)}
   .lang a[aria-current="true"]{color:var(--fg); font-weight:500}
   .lang span{color:var(--line); user-select:none}
