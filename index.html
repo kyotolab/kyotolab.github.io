@@ -153,19 +153,6 @@
   .sc-fade{position:absolute; left:0; right:0; bottom:0; height:90px;
            background:linear-gradient(rgba(253,253,252,0),#FDFDFC)}
 
-  /* ---------------- statements ---------------- */
-  .issues{padding-block:clamp(70px,10vw,120px)}
-  .issue{padding-block:clamp(46px,7vw,84px); border-top:1px solid var(--line2)}
-  .issue:first-child{border-top:none; padding-top:0}
-  .issue h2{font-size:clamp(27px,4.4vw,48px); line-height:1.12; letter-spacing:-.035em; max-width:17em}
-  .issue .lead{margin-top:20px; max-width:34em}
-  .issue .lead + .lead{margin-top:18px}
-  .stat{margin-top:30px; display:inline-flex; align-items:baseline; gap:12px;
-        border:1px solid var(--line); border-radius:14px; padding:14px 20px; background:var(--bg2)}
-  .stat b{font-family:var(--disp); font-size:clamp(26px,3.4vw,36px); font-weight:700;
-          letter-spacing:-.03em; color:var(--accent)}
-  .stat span{font-size:14px; color:var(--fg2)}
-
   /* ---------------- pillars ---------------- */
   .pillars{padding-block:clamp(60px,9vw,104px); border-top:1px solid var(--line2)}
   .pillars h2{font-size:clamp(28px,4.2vw,46px); letter-spacing:-.024em; text-align:center}
@@ -377,7 +364,6 @@
     <a class="brand" href="#top" aria-label="京都ラボ ホーム"><span class="mk" aria-hidden="true">京</span><span class="nm">京都ラボ</span></a>
     <ul>
       <li><a href="#why">背景</a></li>
-      <li><a href="#issues">課題</a></li>
       <li><a href="#vision">めざすこと</a></li>
       <li><a href="#autumn">秋の京都</a></li>
       <li><a href="#journal">京都の日常</a></li>
@@ -416,32 +402,6 @@
       <p class="lead">京都市下京区で生まれ、二十四歳までこの街で過ごしました。仕事のために一度京都を離れ、三十歳で戻ってきました。<strong>離れていた六年のあいだに、街は変わっていました。</strong></p>
       <p class="lead">子どもの頃から通っていた銭湯は、いま外国から来たお客さまでいっぱいです。壁には英語の注意書きが貼られるようになりました。それでも、脱衣所で立ち止まったまま動けずにいる人を何度も見ます。掛け湯のこと、タオルのこと、洗い場のこと。<strong>日本人が説明されずに覚えたことは、貼り紙一枚では伝わりません。</strong></p>
       <p class="lead">困っているのは、どちらか一方ではありませんでした。作法がわからず戸惑う人と、それを伝える手段がない店。あいだにあるのは、言葉と、伝え方だけです。私の仕事はAIとITです。それを、生まれた街のために使うことにしました。</p>
-    </div>
-  </section>
-
-  <section class="issues" id="issues">
-    <div class="wrap">
-
-      <article class="issue">
-        <p class="eyebrow">だし</p>
-        <h2>野菜だけに見えて、<br>魚が入っている。</h2>
-        <p class="lead">京都の料理の多くは、かつおだしの上に成り立っています。見た目が野菜だけでも、だしに魚がいる。ベジタリアンのお客さまが最初につまずくのがここで、運んだあとに下げることになる事故が、いまも毎日どこかで起きています。</p>
-        <div class="stat"><b>8品中2品</b><span>デモの献立を「ベジタリアン」で絞ると、残るのはこれだけ</span></div>
-      </article>
-
-      <article class="issue">
-        <p class="eyebrow">住所</p>
-        <h2>四条烏丸上ル。<br>地図アプリには、届かない。</h2>
-        <p class="lead">通り名と「上ル・下ル」で書く京都の住所は、市民にとって最も明快な記法です。そして海外の地図アプリや配車サービスには、ほとんど通じません。予約をしたのに店にたどり着けない人が生まれ、案内をやり直すのは毎回お店の側です。</p>
-      </article>
-
-      <article class="issue">
-        <p class="eyebrow">受付</p>
-        <h2>「今からカットできる?」<br>断るしかなかった。</h2>
-        <p class="lead">散髪の順番を待っていたときに見た場面です。外国の方が扉を開けて、そう聞きました。予約制の店だったので、断られていました。店主は英語を話せません。身振りと手振りで、なんとか伝えようとしていました。</p>
-        <p class="lead">空いている時間があっても、それを伝える手段がない。<strong>断った店も、断られた客も、どちらも失っています。</strong>人を増やして解く問題ではなく、伝え方の設計で減らせる問題です。</p>
-      </article>
-
     </div>
   </section>
 
@@ -776,7 +736,6 @@
         <li><a href="#pillars">導入支援</a></li>
       </ul></div>
       <div><h4>京都ラボ</h4><ul>
-        <li><a href="#issues">取り組む課題</a></li>
         <li><a href="#about">事業概要</a></li>
       </ul></div>
       <div><h4>読みもの</h4><ul>
@@ -860,7 +819,7 @@
   (function(){
     if(reduce || !("IntersectionObserver" in window)) return;
     var targets = document.querySelectorAll(
-      ".why h2, .why .lead, .vision h2, .vision .lead, .vgrid div, .goals, .product .wide > div, .issue, .pillars h2, .pcard, .jhead, .jrow, .about h2, .arow, .contact .wrap > *"
+      ".why h2, .why .lead, .vision h2, .vision .lead, .vgrid div, .goals, .product .wide > div, .pillars h2, .pcard, .jhead, .jrow, .about h2, .arow, .contact .wrap > *"
     );
     var vh = window.innerHeight, list = [];
     for(var i=0;i<targets.length;i++){
