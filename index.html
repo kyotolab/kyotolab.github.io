@@ -225,6 +225,7 @@
   .jrow{display:grid; grid-template-columns:112px minmax(0,1fr) auto; gap:clamp(14px,3vw,28px);
         align-items:start; padding:22px 0; border-top:1px solid var(--line2)}
   @media (max-width:640px){ .jrow{grid-template-columns:1fr; gap:7px} }
+  .jgrid .jrow{grid-column:1/-1}
   .jrow time{font-size:13px; color:var(--fg3); font-family:var(--mono); padding-top:3px}
   .jrow h3{font-size:20px; letter-spacing:-.02em; line-height:1.35}
   .jrow p{margin-top:7px; font-size:14.5px; color:var(--fg2); line-height:1.6; max-width:52em}
@@ -515,6 +516,7 @@
 
       <div class="afoot">
         <a class="link" href="articles/one-day/">三区を一日で歩くルートを読む <i>›</i></a>
+        <a class="link" href="articles/gosho/">京都御所を読む（English） <i>›</i></a>
         <p class="adisc">画像は、写真ではなくオリジナルのイラストです。営業時間や規則は変わるため、行く前に各所の公式情報もご確認ください。</p>
       </div>
     </div>
@@ -528,7 +530,6 @@
       </div>
 
       <p class="jseries"><b>シリーズ「京都を通る水」</b> — 鴨川、平安神宮、南禅寺の水路閣。三つとも、京都を通る水の話でつながっている。</p>
-      <p class="jseries"><b>Series — What You're Actually Looking At</b> 金閣寺・銀閣寺・祇園・錦市場・御所。訪れる人が「見ていると思っているもの」と、実際に目の前にあるもののずれを5本で書いた。英語。海外読者に向けた本命の記事群。</p>
       
       
 
@@ -558,49 +559,7 @@
 
         
 
-        <a class="jcard" href="articles/kinkakuji/">
-          <span class="cat">English ／ What You're Actually Looking At 01</span>
-          <h3>Kinkaku-ji, 1955</h3>
-          <p>金閣寺。いま見ている建物は1955年の再建で、しかも一階は金が貼られていない。三層が三つの様式で積まれた「権力の図解」としての読み方。</p>
-          <div class="foot"><time datetime="2026-09-07">2026.09.07</time><span class="pill live">公開中</span></div>
-        </a>
-
-        <a class="jcard" href="articles/ginkakuji/">
-          <span class="cat">English ／ What You're Actually Looking At 02</span>
-          <h3>The Unsilvered Pavilion</h3>
-          <p>銀閣寺。銀は最初から無い。庭の向こうにある四畳半——東求堂同仁斎が、その後の日本の部屋すべての原型になった話。</p>
-          <div class="foot"><time datetime="2026-09-07">2026.09.07</time><span class="pill live">公開中</span></div>
-        </a>
-
-        <a class="jcard" href="articles/gion/">
-          <span class="cat">English ／ What You're Actually Looking At 03</span>
-          <h3>Gion's Invisible Line</h3>
-          <p>祇園。私道での撮影は1万円の過料、公道の花見小路は対象外。その境界が地面のどこにも書かれていないという、京都ラボの課題そのものの話。</p>
-          <div class="foot"><time datetime="2026-09-07">2026.09.07</time><span class="pill live">公開中</span></div>
-        </a>
-
-        <a class="jcard" href="articles/nishiki/">
-          <span class="cat">English ／ What You're Actually Looking At 04</span>
-          <h3>Nishiki, Standing Still</h3>
-          <p>錦市場。390メートル、約126軒、約400年。食べ歩きを断る理由は道徳ではなく、道幅と、開いたまま並んでいる魚。</p>
-          <div class="foot"><time datetime="2026-09-07">2026.09.07</time><span class="pill live">公開中</span></div>
-        </a>
-
-        <a class="jcard" href="articles/gosho/">
-          <span class="cat">English ／ What You're Actually Looking At 05</span>
-          <h3>The Empty Palace</h3>
-          <p>京都御所。2016年に事前申請が不要になったのに、その情報が更新されないまま「許可がいる」と書かれ続けている。だから空いている。</p>
-          <div class="foot"><time datetime="2026-09-07">2026.09.07</time><span class="pill live">公開中</span></div>
-        </a>
-
         
-
-        <a class="jcard" href="articles/one-day/">
-          <span class="cat">English ／ 繁體中文 ／ 한국어 ／ 日本語</span>
-          <h3>朝6時に清水寺へ。東山・中京・下京を1日で歩く。</h3>
-          <p>京都の定番は、行く時間が全員同じだから混む。清水寺の6時開門から始めて、三つの区の名所を一日で歩ききるための時間割。入れなかった名所と、その理由も書いた。</p>
-          <div class="foot"><time datetime="2026-09-03">2026.09.03</time><span class="pill live">公開中</span></div>
-        </a>
 
         <a class="jcard" href="articles/honyaku/">
           <span class="cat">課題分析</span>
@@ -626,7 +585,6 @@
           </div>
           <span class="pill">公開準備中</span>
         </div>
-
 
         <div class="jrow">
           <time datetime="2026-10">2026.10</time>
@@ -784,6 +742,7 @@
       </ul></div>
       <div><h4>読みもの</h4><ul>
         <li><a href="#journal">京都の日常</a></li>
+        <li><a href="#spots">名所攻略</a></li>
         <li><a href="articles/one-day/">京都1日ルート</a></li>
       </ul></div>
       <div><h4>連絡</h4><ul>
