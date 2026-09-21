@@ -167,15 +167,15 @@
   .pcard li::before{content:""; position:absolute; left:0; top:.62em; width:7px; height:1.5px;
                     border-radius:2px; background:var(--accent)}
 
-  /* ---------------- autumn (white section, dark art tiles) ---------------- */
-  .autumn{padding-block:clamp(72px,11vw,126px); border-top:1px solid var(--line2)}
-  .autumn h2{font-size:clamp(30px,5vw,56px); letter-spacing:-.026em; line-height:1.18; max-width:15em}
-  .autumn .lead{margin-top:20px; max-width:36em}
+  /* ---------------- spots (white section, dark art tiles) ---------------- */
+  .spots{padding-block:clamp(72px,11vw,126px); border-top:1px solid var(--line2)}
+  .spots h2{font-size:clamp(30px,5vw,56px); letter-spacing:-.026em; line-height:1.18; max-width:15em}
+  .spots .lead{margin-top:20px; max-width:36em}
   .ascenes{margin-top:clamp(34px,5vw,56px); display:grid; gap:18px;
            grid-template-columns:repeat(4,minmax(0,1fr))}
   @media (max-width:1100px){ .ascenes{grid-template-columns:repeat(2,minmax(0,1fr))} }
   @media (max-width:860px){ .ascenes{grid-template-columns:1fr; max-width:420px; margin-inline:auto} }
-  .ascene{border-radius:20px; overflow:hidden; background:var(--tile); color:var(--tile-fg);
+  .ascene{margin:0; border-radius:20px; overflow:hidden; background:var(--tile); color:var(--tile-fg);
           box-shadow:0 18px 40px -26px rgba(0,0,0,.45)}
   .ascene .art{display:block; width:100%; height:auto; aspect-ratio:4/3; object-fit:cover; background:var(--tile)}
   .ascene .cap{padding:20px 22px 24px}
@@ -183,6 +183,10 @@
   .ascene .ro{display:block; font-size:10.5px; color:var(--tile-fg2); font-family:var(--mono);
               letter-spacing:.14em; margin-top:4px}
   .ascene p{margin-top:12px; font-size:14px; color:var(--tile-fg2); line-height:1.65}
+  .ascene .art-t{display:grid; place-items:center; aspect-ratio:4/3; background:linear-gradient(160deg,#2C2C2F,var(--tile));
+                 font-size:clamp(84px,9vw,112px); font-weight:700; line-height:1; color:rgba(255,255,255,.13); user-select:none}
+  .ascene .more{display:inline-block; margin-top:14px; font-size:13px; color:var(--tile-accent); text-decoration:none}
+  .ascene .more:hover{text-decoration:underline}
   .best{margin-top:15px; padding-top:13px; border-top:1px solid var(--tile-line);
         display:flex; align-items:baseline; gap:9px}
   .best b{color:var(--tile-accent); font-size:17px; font-weight:600; letter-spacing:-.01em; white-space:nowrap}
@@ -365,7 +369,7 @@
     <ul>
       <li><a href="#why">背景</a></li>
       <li><a href="#vision">めざすこと</a></li>
-      <li><a href="#autumn">秋の京都</a></li>
+      <li><a href="#spots">名所攻略</a></li>
       <li><a href="#journal">京都の日常</a></li>
       <li><a href="#product">お品書き</a></li>
       <li><a href="#tejun">手順</a></li>
@@ -427,11 +431,11 @@
     </div>
   </section>
 
-  <section class="panel autumn" id="autumn">
+  <section class="panel spots" id="spots">
     <div class="wide">
-      <p class="eyebrow">秋の京都</p>
-      <h2>混むのは、<br>いつも同じ三か所。</h2>
-      <p class="lead">紅葉の三週間、京都には人が集中します。ただし偏るのは場所だけではありません。<strong>時間帯のほうが、もっと偏っています。</strong>同じ嵐山でも、朝7時と昼1時ではまったく別の場所です。私たちが観光客に伝えたいのは、行き先ではなく、行く時刻のほうです。</p>
+      <p class="eyebrow">名所攻略</p>
+      <h2>行く時刻で、<br>京都は別の場所になる。</h2>
+      <p class="lead">京都の名所は、どこも同じ時間に混みます。偏るのは場所だけではありません。<strong>時間帯のほうが、もっと偏っています。</strong>同じ場所でも、朝7時と昼1時ではまったく別の場所です。私たちが観光客に伝えたいのは、行き先ではなく、行く時刻と、見る場所のほうです。</p>
 
       <div class="ascenes">
         <figure class="ascene">
@@ -467,11 +471,51 @@
             <div class="best"><b>対岸から</b><span>橋は渡るより、眺めるほうが早い</span></div>
           </figcaption>
         </figure>
+
+        <figure class="ascene">
+          <div class="art art-t" aria-hidden="true">金</div>
+          <figcaption class="cap">
+            <h3>金閣寺</h3><span class="ro">KINKAKU-JI</span>
+            <p>見学は約20分の一方通行で、中には入れません。朝一番に着かないと、昼前には団体バスが重なって柵の前が列になります。金より先に、足元の1階を見てください。そこには金が貼られていません。</p>
+            <div class="best"><b>朝一番</b><span>11時ごろ、団体バスが重なる</span></div>
+            <a class="more" href="articles/kinkakuji/">詳しく読む（English） ›</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ascene">
+          <div class="art art-t" aria-hidden="true">銀</div>
+          <figcaption class="cap">
+            <h3>銀閣寺</h3><span class="ro">GINKAKU-JI</span>
+            <p>銀は、最初から貼られていません。「銀閣」の名は後の時代につきました。見るべきは銀閣の向かいにある小さな東求堂で、その中の四畳半が、いまの和室の原型です。</p>
+            <div class="best"><b>東求堂</b><span>見るのは、銀閣の向かいの小さな堂</span></div>
+            <a class="more" href="articles/ginkakuji/">詳しく読む（English） ›</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ascene">
+          <div class="art art-t" aria-hidden="true">祇</div>
+          <figcaption class="cap">
+            <h3>祇園</h3><span class="ro">GION</span>
+            <p>2024年4月から、花見小路まわりの私道の路地は撮影禁止で、過料は1万円です。花見小路そのものは公道で、撮影できます。どちらの道なのかは、地面のどこにも書かれていません。</p>
+            <div class="best"><b>¥10,000</b><span>私道の路地での撮影に科される過料</span></div>
+            <a class="more" href="articles/gion/">詳しく読む（English） ›</a>
+          </figcaption>
+        </figure>
+
+        <figure class="ascene">
+          <div class="art art-t" aria-hidden="true">錦</div>
+          <figcaption class="cap">
+            <h3>錦市場</h3><span class="ro">NISHIKI MARKET</span>
+            <p>全長約390m、約126軒。約400年続く食材の市場で、食べ歩きは控えるよう求められています。買った店の前で食べて、串は返します。夕方は閉まる店が多いので、行くなら午前中です。</p>
+            <div class="best"><b>午前中</b><span>夕方は閉まる店が多い</span></div>
+            <a class="more" href="articles/nishiki/">詳しく読む（English） ›</a>
+          </figcaption>
+        </figure>
       </div>
 
       <div class="afoot">
         <a class="link" href="articles/one-day/">三区を一日で歩くルートを読む <i>›</i></a>
-        <p class="adisc">上の三点は、写真ではなくオリジナルのイラストです。</p>
+        <p class="adisc">画像は、写真ではなくオリジナルのイラストです。営業時間や規則は変わるため、行く前に各所の公式情報もご確認ください。</p>
       </div>
     </div>
   </section>
