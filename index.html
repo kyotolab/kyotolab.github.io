@@ -113,6 +113,9 @@
   .hero-note{margin-top:clamp(30px,4vw,44px); font-size:12px; color:var(--fg3); letter-spacing:.05em}
 
   /* ---------------- product ---------------- */
+  .psintro{padding-block:clamp(72px,10vw,120px) clamp(44px,6vw,76px); border-top:1px solid var(--line2)}
+  .psintro h2{font-size:clamp(30px,5vw,56px); letter-spacing:-.026em; line-height:1.18; max-width:15em}
+  .psintro .lead{margin-top:20px; max-width:36em}
   .product{padding-block:clamp(72px,11vw,132px); background:var(--bg2); border-top:1px solid var(--line2)}
   .product .wide{display:grid; grid-template-columns:1fr minmax(0,360px); gap:clamp(36px,6vw,80px); align-items:center}
   @media (max-width:900px){ .product .wide{grid-template-columns:1fr; justify-items:center; text-align:center} }
@@ -372,8 +375,7 @@
       <li><a href="#vision">めざすこと</a></li>
       <li><a href="#spots">名所攻略</a></li>
       <li><a href="#journal">京都の日常</a></li>
-      <li><a href="#product">お品書き</a></li>
-      <li><a href="#tejun">手順</a></li>
+      <li><a href="#products">製品・サービス</a></li>
       <li><a href="#about">事業概要</a></li>
     </ul>
     <div class="navend">
@@ -391,7 +393,7 @@
       <p class="sub">京都の店と、京都を訪れる人のあいだにある言葉の壁を、AIとITで軽くします。お店の案内、多言語メニュー、店舗のAI導入支援。<br>京都市下京区で生まれ育った経験を活かして、現場に合うものだけをつくります。</p>
       <div class="cta">
         <a class="btn btn-fill" href="#why">京都ラボについて</a>
-        <a class="btn btn-line" href="#product">製品・サービス <i>›</i></a>
+        <a class="btn btn-line" href="#products">製品・サービス <i>›</i></a>
         <a class="btn btn-line" href="#spots">京都観光攻略 <i>›</i></a>
         <a class="btn btn-line" href="#journal">京都の生活記事 <i>›</i></a>
       </div>
@@ -600,6 +602,14 @@
     </div>
   </section>
 
+  <section class="psintro" id="products">
+    <div class="wide">
+      <p class="eyebrow">製品・サービス</p>
+      <h2>店に置いて、<br>そのまま使える。</h2>
+      <p class="lead">多言語のお品書きと、銭湯の手順案内。店の方の設定は最初の一度だけで、その日から使えるものをつくっています。つくって終わりにせず、導入もお手伝いします。</p>
+    </div>
+  </section>
+
   <section class="product" id="product">
     <div class="wide">
       <div>
@@ -734,7 +744,7 @@
 <footer>
   <div class="wide">
     <div class="fcols">
-      <div><h4>プロダクト</h4><ul>
+      <div><h4>製品・サービス</h4><ul>
         <li><a href="#product">お品書き</a></li>
         <li><a href="#tejun">手順</a></li>
         <li><a href="#pillars">導入支援</a></li>
