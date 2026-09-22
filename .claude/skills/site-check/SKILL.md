@@ -13,6 +13,12 @@ python3 .claude/skills/site-check/check.py
 
 各ページについて、`lang`、`description`、`canonical`、`og:*` があるか、base64 の画像を埋め込んでいないか、サイト内リンクの行き先があるか、プロフィールが `noindex` のままか、を調べる。`ERROR` は直す。`WARN` は理由があれば残してよい。
 
+```bash
+python3 social/instagram.py check
+```
+
+Instagram の投稿文（`social/instagram/`）の画像の形式、縦横比、字数、ハッシュタグの数を調べる。`main` に入ると投稿されるので、`ERROR` は必ず直す。
+
 ## 2. 表示のチェック
 
 変えたページを、スマホ幅（375px）とPC幅（1280px）の両方で見る。
