@@ -1,0 +1,70 @@
+# social/instagram/ に新しい投稿文が main に入ったら、Instagram に投稿する。
+# PR では投稿文を確かめるだけ。手で動かすときは、投稿する前まで確かめるのが既定。
+name: Instagram
+
+on:
+  pull_request:
+    paths:
+      - "social/instagram/**"
+      - "social/instagram.py"
+  push:
+    branches: [main]
+    paths:
+      - "social/instagram/**"
+  workflow_dispatch:
+    inputs:
+      file:
+        description: 投稿文のパス（例 social/instagram/kamogawa.txt）。空なら、トークンが使えるかだけを見る
+        required: false
+      publish:
+        description: 投稿する（外すと、投稿の直前まで確かめるだけ）
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 social/instagram.py check
+
+  post:
+    if: github.event_name != 'pull_request' && github.repository == 'kyotolab/kyotolab.github.io'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: instagram-post
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: 投稿文を選ぶ
+        id: files
+        env:
+          BEFORE: ${{ github.event.before }}
+          INPUT_FILE: ${{ inputs.file }}
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then
+            list="$INPUT_FILE"
+          else
+            # 足したファイルだけを投稿する。直しただけのファイルは、もう一度は投稿しない
+            git cat-file -e "$BEFORE^{commit}" 2>/dev/null || BEFORE="$GITHUB_SHA^"
+            list=$(git diff --name-only --diff-filter=A "$BEFORE" "$GITHUB_SHA" -- 'social/instagram/*.txt' | tr '\n' ' ')
+          fi
+          echo "投稿文: ${list:-なし}"
+          echo "list=$list" >> "$GITHUB_OUTPUT"
+      - name: 投稿する
+        if: steps.files.outputs.list != '' || github.event_name == 'workflow_dispatch'
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          FILES: ${{ steps.files.outputs.list }}
+          PUBLISH: ${{ github.event_name == 'push' || inputs.publish }}
+        run: |
+          args=(post)
+          [ "$PUBLISH" = true ] || args+=(--dry-run)
+          # shellcheck disable=SC2086
+          python3 social/instagram.py "${args[@]}" $FILES
