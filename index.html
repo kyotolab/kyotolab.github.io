@@ -280,10 +280,10 @@
 
   .cform{margin:clamp(38px,5vw,58px) auto 0; max-width:520px; text-align:left;
          border:1px solid var(--line); border-radius:20px; padding:26px 26px 30px; background:var(--bg)}
-  .fbanner{display:flex; gap:10px; align-items:flex-start; border-radius:12px;
-           background:#FBF4E5; border:1px solid #E7D3AC; padding:11px 14px; margin-bottom:20px}
-  .fbanner b{font-size:10px; letter-spacing:.1em; color:#8A5A14; white-space:nowrap; padding-top:3px; font-family:var(--mono)}
-  .fbanner span{font-size:12.5px; color:var(--fg2); line-height:1.65}
+  .hp{display:none}
+  .fstatus{margin-top:14px; border-radius:12px; padding:11px 14px; font-size:13px; line-height:1.65;
+           background:var(--accent-soft); border:1px solid var(--accent-brd); color:var(--fg)}
+  .fstatus.err{background:#FBF4E5; border-color:#E7D3AC}
   .fld{display:grid; gap:6px; margin-bottom:15px}
   .fld label{font-size:13px; color:var(--fg2); display:flex; align-items:center; gap:7px}
   .req{font-size:10px; letter-spacing:.06em; color:var(--accent); border:1px solid var(--accent-brd);
@@ -720,12 +720,9 @@
         <span>代表・二ノ宮が出ます。店舗の方は、フォームより電話のほうが早いです。</span>
       </p>
 
-      <form class="cform" id="cform" method="POST" action="" novalidate>
-        <div class="fbanner" id="fbanner">
-          <b>準備中</b>
-          <span>このフォームはまだ送信先に接続されていません。お急ぎの場合は、上の番号へおかけください。</span>
-        </div>
+      <form class="cform" id="cform" method="POST" action="https://formspree.io/f/mvkgkapo">
         <input type="hidden" name="_subject" value="京都ラボ サイトからのお問い合わせ">
+        <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="fld"><label for="f-name">お名前 <span class="req">必須</span></label>
           <input id="f-name" name="name" type="text" autocomplete="name" required></div>
         <div class="fld"><label for="f-org">店舗名・会社名</label>
@@ -739,7 +736,8 @@
           </select></div>
         <div class="fld"><label for="f-body">お困りのこと・ご相談内容 <span class="req">必須</span></label>
           <textarea id="f-body" name="body" rows="5" required></textarea></div>
-        <button type="submit" class="submit" id="f-submit" disabled>送信する</button>
+        <button type="submit" class="submit" id="f-submit">送信する</button>
+        <p class="fstatus" id="fstatus" role="status" hidden></p>
         <p class="fnote">いただいた内容は、お問い合わせへの返信にのみ使用します。第三者への提供や、返信以外の目的での利用はしません。</p>
       </form>
     </div>
@@ -863,20 +861,25 @@
   })();
 
   /* ---------- 4. contact form ----------
-     Formspree / Tally などのエンドポイントURLをここに貼るだけで有効になります。
-     例: var FORM_ENDPOINT = "https://formspree.io/f/abcdwxyz";
+     送信先は form の action（Formspree）。JSが動けばページ内で送り、結果をその場に出す。
+     Formspree が受け付けなかったとき（reCAPTCHA など）は、通常の送信に切り替える。
   */
   (function(){
-    var FORM_ENDPOINT = "https://formspree.io/f/mvkgkapo";
-    var form=document.getElementById("cform"), banner=document.getElementById("fbanner"), submit=document.getElementById("f-submit");
-    if(!form||!banner||!submit) return;
-    if(FORM_ENDPOINT){
-      form.setAttribute("action", FORM_ENDPOINT);
-      banner.hidden=true; submit.disabled=false;
-    }else{
-      submit.disabled=true;
-      form.addEventListener("submit", function(e){ e.preventDefault(); });
-    }
+    var form=document.getElementById("cform"), status=document.getElementById("fstatus"), submit=document.getElementById("f-submit");
+    if(!form||!status||!submit||!window.fetch||!window.FormData) return;
+    var label=submit.textContent;
+    function show(msg, err){ status.textContent=msg; status.classList.toggle("err", !!err); status.hidden=false; }
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      submit.disabled=true; submit.textContent="送信中…"; status.hidden=true;
+      fetch(form.action, {method:"POST", body:new FormData(form), headers:{"Accept":"application/json"}})
+        .then(function(res){
+          if(res.ok){ form.reset(); show("送信しました。内容を確認して、メールでお返事します。"); }
+          else{ form.submit(); }
+        })
+        .catch(function(){ show("送信できませんでした。通信状況を確かめてもう一度お試しいただくか、080-6935-2240 へお電話ください。", true); })
+        .then(function(){ submit.disabled=false; submit.textContent=label; });
+    });
   })();
 })();
 </script>
