@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>代表プロフィール ／ 京都ラボ</title>
+<meta name="description" content="京都市下京区・五条大宮生まれ。分析エンジニアとして本業を続けながら、生まれた街の課題に取り組む京都ラボ代表・二ノ宮大知のプロフィール。">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="代表プロフィール ／ 京都ラボ">
+<meta property="og:description" content="京都市下京区・五条大宮生まれ。分析エンジニアとして本業を続けながら、生まれた街の課題に取り組む京都ラボ代表・二ノ宮大知のプロフィール。">
+<meta property="og:url" content="https://kyotolab.github.io/profile/">
+<meta property="og:site_name" content="京都ラボ">
+<meta property="og:image" content="https://kyotolab.github.io/assets/gion-street.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1066">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://kyotolab.github.io/profile/">
+<style>
+  /* 配信側の雛形が持っていたベースライン。単体で動かすために明示する */
+  img{max-width:100%}
+  [hidden]:not([hidden="until-found"]){display:none!important}
+</style>
+</head>
+<body>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#FFFFFF; --bg2:#F5F5F7; --fg:#1D1D1F; --fg2:#6E6E73; --fg3:#86868B;
+    --line:rgba(0,0,0,.12); --line2:rgba(0,0,0,.08);
+    --accent:#0066CC; --accent-soft:#EAF2FD; --accent-brd:#B9D6F5;
+    --gold:#A33A2C; --gold2:#C25A48;
+    --sys:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --disp:var(--sys);
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --gut:clamp(22px,5vw,40px);
+    --max:1040px;
+    --measure:38em;
+  }
+
+  *{box-sizing:border-box}
+  body{background:var(--bg); color:var(--fg); font-family:var(--sys);
+       font-size:17px; line-height:1.55; -webkit-font-smoothing:antialiased; letter-spacing:.004em}
+  h1,h2,h3{margin:0; font-family:var(--disp); font-weight:700; letter-spacing:-.03em;
+           line-height:1.1; text-wrap:balance; font-feature-settings:"palt" 1}
+  p{margin:0}
+  a{color:inherit; text-decoration:none}
+  img{max-width:100%}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+
+  .wrap{max-width:var(--max); margin:0 auto; padding-inline:var(--gut)}
+  .wide{max-width:1240px; margin:0 auto; padding-inline:var(--gut)}
+  .col{max-width:var(--measure); margin-inline:auto; padding-inline:var(--gut)}
+
+  .eyebrow{font-size:11px; font-weight:650; color:var(--gold); margin-bottom:18px;
+           letter-spacing:.12em; text-transform:uppercase; font-feature-settings:"palt" 0}
+  .lead{font-size:clamp(16.5px,1.7vw,19px); line-height:1.85; color:var(--fg2); letter-spacing:.006em}
+  .lead strong{color:var(--fg); font-weight:600}
+  .link{color:var(--accent); font-size:16px; display:inline-flex; align-items:center; gap:5px; min-height:36px}
+  .link:hover{text-decoration:underline}
+  .link i{font-style:normal; font-size:14px; transition:transform .18s}
+  .link:hover i{transform:translateX(3px)}
+
+  /* ---------------- nav ---------------- */
+  .nav{position:sticky; top:0; z-index:60; height:48px;
+       background:rgba(255,255,255,.82);
+       backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
+       border-bottom:1px solid var(--line2)}
+  .nav .wide{display:flex; align-items:center; justify-content:space-between; height:100%; gap:20px}
+  .brand{display:inline-flex; align-items:center; gap:9px; white-space:nowrap}
+  .brand .mk{width:25px; height:25px; flex:none; display:grid; place-content:center;
+    border:1px solid var(--fg); border-radius:2px; font-family:var(--disp); font-size:14px;
+    line-height:1; color:var(--fg); padding-top:1px}
+  .brand .nm{font-family:var(--disp); font-size:18px; font-weight:700; letter-spacing:.06em}
+  .brand:hover .mk{border-color:var(--accent); color:var(--accent)}
+  .brand:hover .nm{color:var(--accent)}
+  .nav .tel{font-size:12px; color:var(--accent); white-space:nowrap}
+  @media (max-width:560px){ .nav .tel{display:none} }
+
+  /* ---------------- top / hero-lite ---------------- */
+  .ptop{padding-block:clamp(56px,9vw,104px) clamp(40px,6vw,64px); border-bottom:1px solid var(--line2)}
+  .ptop .back{font-size:13px; color:var(--fg3); display:inline-flex; align-items:center; gap:6px; margin-bottom:26px}
+  .ptop .back:hover{color:var(--fg)}
+  .ptop h1{font-size:clamp(34px,6vw,64px); letter-spacing:-.03em}
+  .ptop .role{margin-top:10px; font-size:15px; color:var(--fg3); letter-spacing:.02em}
+  .ptop .lead{margin-top:26px; max-width:38em}
+
+  .prows{margin-top:clamp(30px,4.5vw,44px); max-width:760px}
+  .prow{display:grid; grid-template-columns:120px minmax(0,1fr); gap:22px;
+        padding:13px 0; border-top:1px solid var(--line2); align-items:baseline}
+  @media (max-width:560px){ .prow{grid-template-columns:1fr; gap:3px} }
+  .prow dt{font-size:13px; color:var(--fg3)}
+  .prow dd{margin:0; font-size:15.5px}
+
+  /* ---------------- narrative sections ---------------- */
+  .psec{padding-block:clamp(52px,8vw,86px); border-bottom:1px solid var(--line2)}
+  .psec.alt{background:var(--bg2)}
+  .psec .eyebrow{margin-bottom:16px}
+  .psec h2{font-size:clamp(24px,3.6vw,36px); line-height:1.28; letter-spacing:-.022em; max-width:15em}
+  .psec .col > p{margin-top:1.15em; font-size:16.5px; line-height:1.9; color:var(--fg2)}
+  .psec .col > p:first-of-type{margin-top:22px}
+  .psec .col > p strong{color:var(--fg); font-weight:600}
+  .psec .col{max-width:40em; margin-inline:0}
+
+  .places{margin-top:22px; display:flex; flex-wrap:wrap; gap:8px}
+  .place{font-size:12.5px; padding:6px 13px; border-radius:980px; border:1px solid var(--line); color:var(--fg2)}
+
+  .vgrid2{margin-top:clamp(30px,4.5vw,44px); display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(18px,3vw,28px)}
+  @media (max-width:700px){ .vgrid2{grid-template-columns:1fr; gap:20px} }
+  .vgrid2 div{padding-top:18px; border-top:2px solid var(--accent)}
+  .vgrid2 b{display:block; font-size:18px; font-weight:600; letter-spacing:-.014em}
+  .vgrid2 span{display:block; margin-top:8px; font-size:14.5px; color:var(--fg2); line-height:1.7}
+
+  .pclose{padding-block:clamp(64px,10vw,110px); text-align:center}
+  .pclose h2{font-size:clamp(26px,4.2vw,44px); letter-spacing:-.024em; max-width:16em; margin-inline:auto}
+  .pclose .lead{margin:20px auto 0; max-width:32em}
+  .pclose .cta{margin-top:30px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+  .btn{display:inline-flex; align-items:center; gap:6px; border-radius:980px; padding:11px 22px; font-size:15.5px}
+  .btn-fill{background:var(--accent); color:#FFFFFF; font-weight:500}
+  .btn-fill:hover{opacity:.85}
+  .btn-line{border:1px solid var(--accent-brd); color:var(--accent)}
+  .btn-line:hover{background:var(--accent-soft)}
+
+  footer{background:var(--bg2); padding-block:30px 38px; font-size:12px; color:var(--fg3); border-top:1px solid var(--line2)}
+  .fbot{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; line-height:1.7}
+  .fbot a:hover{color:var(--fg); text-decoration:underline}
+</style>
+
+<nav class="nav">
+  <div class="wide">
+    <a class="brand" href="../" aria-label="京都ラボ ホーム"><span class="mk" aria-hidden="true">京</span><span class="nm">京都ラボ</span></a>
+    <a class="tel" href="tel:08069352240">080-6935-2240</a>
+  </div>
+</nav>
+
+<main id="top">
+  <section class="ptop">
+    <div class="wrap">
+      <a class="back" href="../#about">‹ 京都ラボ トップへ</a>
+      <p class="eyebrow">代表プロフィール</p>
+      <h1>二ノ宮 大知</h1>
+      <p class="role">Daichi Ninomiya ／ 京都ラボ 代表</p>
+      <p class="lead">京都市下京区・五条大宮生まれ。24歳まで京都で過ごし、仕事のために6年離れ、30歳で生活の拠点を京都に戻しました。<strong>本業では分析エンジニアとして材料分析の現場に立ちながら、週末とテレワークの日を使って京都ラボを立ち上げています。</strong></p>
+
+      <dl class="prows">
+        <div class="prow"><dt>生まれ</dt><dd>京都市下京区 五条大宮</dd></div>
+        <div class="prow"><dt>学歴</dt><dd>立命館大学 卒業／立命館大学大学院 修了（応用化学専攻）</dd></div>
+        <div class="prow"><dt>本業</dt><dd>株式会社村田製作所 分析センター ／ XPS（X線光電子分光）受託分析エンジニア<br>電池の新製品開発・材料開発を経て現職。在職中</dd></div>
+        <div class="prow"><dt>拠点</dt><dd>滋賀県野洲市（勤務）／ 京都市（生活拠点）</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="psec">
+    <div class="wrap col">
+      <p class="eyebrow">01 ／ 生い立ち</p>
+      <h2>五条大宮で育った。<br>子どもの頃は、観光地だと気づいていなかった。</h2>
+      <p>地元は五条大宮。子どもの頃の行動範囲は、梅小路公園と、家族で通っていた銭湯・五香湯。休みの日は鴨川に出て、西本願寺の門前を通り、島原の路地を歩いた。どれも観光の主動線からは外れた、<strong>地元だから知っている京都</strong>です。</p>
+      <p>その頃は、自分の育った街が観光地だという自覚がありませんでした。京都の観光資源のすごさに気づいたのは、一度この街を出てからのことです。</p>
+      <div class="places">
+        <span class="place">五条大宮</span>
+        <span class="place">梅小路公園</span>
+        <span class="place">五香湯</span>
+        <span class="place">鴨川</span>
+        <span class="place">西本願寺</span>
+        <span class="place">島原</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="psec alt">
+    <div class="wrap col">
+      <p class="eyebrow">02 ／ 化学から、分析の現場へ</p>
+      <h2>「観測して、実装して、現場に戻す」は、<br>本業でずっとやってきたことでした。</h2>
+      <p>立命館大学、大学院と応用化学を専攻し、村田製作所に入社。電池の新製品開発、材料開発を経て、現在は分析センターでXPS（X線光電子分光）による受託分析を担当しています。</p>
+      <p>分析センターに異動してから、DX・AIを独学で学び、分析報告書の作成を自動化するなど、現場の業務効率化に取り組んできました。<strong>データを観測し、自動化として実装し、報告書として現場に戻す。</strong>京都ラボが掲げる「観測して、実装して、現場に戻す」は、事業のために新しく考えた言葉ではなく、分析エンジニアとしてずっとやってきた仕事の仕方、そのものです。</p>
+    </div>
+  </section>
+
+  <section class="psec">
+    <div class="wrap col">
+      <p class="eyebrow">03 ／ 外に出て、初めて見えたもの</p>
+      <h2>最初の配属は福島県。<br>外から見て、魅力も課題も見えました。</h2>
+      <p>入社後の配属先は福島県でした。関西に戻りたく、自分から異動を希望し、現在は滋賀県野洲市の分析センターに勤務しています（週3日出社・週2日テレワーク）。</p>
+      <p>京都の外で6年を過ごしたことで、子どもの頃は気づかなかった京都の観光資源のすごさに、初めて気づきました。同時に、外から見たからこそ見えた、この街の課題もありました。</p>
+    </div>
+  </section>
+
+  <section class="psec alt">
+    <div class="wrap col">
+      <p class="eyebrow">04 ／ 京都ラボのきっかけ</p>
+      <h2>店で見た、伝わらない場面。</h2>
+      <p>ある店で、地元のおばちゃんと外国人のお客さまが、うまくコミュニケーションできずにいる場面を見ました。作法がわからず戸惑うお客さまと、それを伝える手段がない店。<strong>そこに、ビジネスとして取り組む価値があると思いました。</strong></p>
+      <p>インバウンドの増加を、迷惑として受けるだけにしたくありませんでした。メリットも自分たちで取りに行くために、京都ラボを始めることにしました。</p>
+    </div>
+  </section>
+
+  <section class="psec">
+    <div class="wrap col">
+      <p class="eyebrow">05 ／ いまの働き方</p>
+      <h2>本業を続けながら、<br>週末とテレワークの日で進めています。</h2>
+      <p><strong>京都ラボは、村田製作所での本業を続けながら立ち上げています。</strong>会社を辞めての独立ではなく、AIを使えば本業で忙しい中でも事業を進められると考えて、並行する形を選びました。平日の夜はほとんど時間が取れないため、週末とテレワークの日を使って、一つずつ形にしています。</p>
+      <p>事業として軌道に乗り、専業でやっていけると判断できた段階で、本業から独立することも考えています。急がず、現場の声を聞きながら進めるやり方は、分析の仕事で身につけたものです。</p>
+    </div>
+  </section>
+
+  <section class="psec alt">
+    <div class="wrap col">
+      <p class="eyebrow">06 ／ 大事にしていること</p>
+      <h2>品質とスピード。</h2>
+      <p>仕事で譲れないのは、品質とスピードです。受託分析という仕事は、精度と納期の両立が本質になります。京都ラボでも同じで、<strong>速いだけでも、正確なだけでも不十分</strong>だと考えています。</p>
+      <div class="vgrid2">
+        <div><b>品質</b><span>現場で使えないものはつくらない。使ってもらって終わりにせず、うまくいかなかったところを聞きに戻る。</span></div>
+        <div><b>スピード</b><span>指摘して終わりにしない。AIとITで、実際に使えるところまで早く形にする。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pclose">
+    <div class="wrap">
+      <p class="eyebrow">めざす姿</p>
+      <h2>京都の課題解決の、先頭に立つ。</h2>
+      <p class="lead">5年後、10年後には、京都市など行政とも仕事ができるレベルを目指しています。困っている店舗の方、まずは話を聞かせてください。</p>
+      <div class="cta">
+        <a class="btn btn-fill" href="tel:08069352240">080-6935-2240 に電話する</a>
+        <a class="btn btn-line" href="../#contact">お問い合わせフォームへ <i>›</i></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wide fbot">
+    <span>京都ラボ ／ 代表 二ノ宮 大知</span>
+    <a href="../">京都ラボ トップへ戻る</a>
+  </div>
+</footer>
+
+</body>
+</html>
