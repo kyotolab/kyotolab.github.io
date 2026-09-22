@@ -38,11 +38,44 @@ description: 京都ラボのサイトに記事を1本追加して、日本語ト
   - 日本語だけの記事は足さなくてよい（`jseries` の一文で日本語サイトに案内している）。
 - フッターの「読みもの」に載せるのは、トップから個別にたどらせたい記事だけ。
 
-## 4. 確かめる
+## 4. SNS に広げる
+
+記事を公開するPRに、SNS 用のファイルも入れる。どれも公開リポジトリに入るので、個人情報のルールはここにも当てはまる。
+
+### Instagram（自動）
+
+`social/instagram/<slug>.txt` をつくる。PR が `main` に入ると、GitHub Actions が投稿する。
+
+```
+image: assets/<名前>.jpg
+
+キャプション
+```
+
+- `image:` は投稿する画像のパス。JPEG で、縦横比は 4:5 から 1.91:1 のあいだにする。カード用の `@700` ではなく大きいほうを使う。
+- キャプションは日本語のあとに英語を書く。2,200字まで。ハッシュタグは30個まで使えるが、5個ほどにする。
+- キャプションの URL は押せない。サイトへは「プロフィールのリンクから」と案内する。
+- `python3 social/instagram.py check` を通す。
+- 投稿は取り消せない。PR 本文に「取り込むと Instagram に投稿される」と書く。
+- 投稿されるのは、新しく足したファイルだけ。投稿したあとにファイルを直しても、もう一度は投稿されない。
+
+### note（手で貼る）
+
+`social/note/<slug>.txt` に、note に貼る本文を書く。オーナーがコピーして note に貼る。
+
+- 1行目にタイトル、空行のあとに本文。見出しは1行で書き、貼ったあとで note の見出しに設定する。
+- 最後に、サイトの記事への案内を入れる（例「この記事は京都ラボのサイトにも載せています。https://kyotolab.github.io/articles/<slug>/」）。
+- 非公式の API や自動操作では投稿しない。
+
+### Medium（URL を貼る）
+
+ファイルはいらない。サイトに記事が出たら、オーナーが https://medium.com/p/import に記事の URL を貼る。下書きとして取り込まれ、サイトへの canonical が付くので、確かめてから公開する。PR 本文に、貼る URL を書いておく。
+
+## 5. 確かめる
 
 - 年、数、場所、営業時間、規則は出典で確かめる。変わりうる情報には、公式情報を確認するよう注記する。
 - `/site-check` を実行する。
 
-## 5. コミット
+## 6. コミット
 
-1記事1コミットにする。件名は英語の命令形にする（例 `Publish the Kamo river article`、`Add the 番台 article to the 京都の日常 list`）。
+1記事1コミットにする。件名は英語の命令形にする（例 `Publish the Kamo river article`、`Add the 番台 article to the 京都の日常 list`）。SNS 用のファイルは別のコミットにする（例 `Add the Instagram caption and note text for the Kamo river article`）。
