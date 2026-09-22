@@ -1,0 +1,48 @@
+---
+name: add-article
+description: 京都ラボのサイトに記事を1本追加して、日本語トップ（と英語トップ）の一覧に載せる。「記事を追加」「記事を公開」「公開準備中の記事を出す」「noteやMediumの記事をサイトにも載せる」と言われたときに使う。
+---
+
+# 記事を追加する
+
+先に `CLAUDE.md` の「書くときのルール」を読む。とくに個人情報のルールは、本文だけでなくコミットやPRにも当てはまる。
+
+## 1. ページをつくる
+
+1. スラッグを決める。短いローマ字か英単語にする（例 `kamogawa`、`one-day`）。
+2. 近い既存の記事をコピーして `articles/<slug>/index.html` をつくる。
+   - 日本語の記事: `articles/honyaku/`、`articles/kamogawa/`
+   - 英語の記事: `articles/gion/`、`articles/shimogyo/`
+3. `<head>` を全部書き換える。コピー元の値が残りやすいので、1つずつ確かめる。
+   - `<html lang="ja">` か `<html lang="en">`
+   - `<title>`、`description`
+   - `canonical` と `og:url` は `https://kyotolab.github.io/articles/<slug>/`
+   - `og:type` は `article`、`og:site_name` は `京都ラボ`
+   - `og:title`、`og:description`、`og:image`（`og:image:width` と `og:image:height` も合わせる）
+4. 本文の日付と、シリーズ名（例「京都を通る水 04」）を入れる。
+
+## 2. 画像
+
+- JPEG のファイルとして置く。HTML に base64 で埋め込まない。
+- トップのカードでも使う画像は `assets/<名前>.jpg`（1600px幅）と `assets/<名前>@700.jpg` の2つを用意する。記事の中だけで使う画像は記事のフォルダに置いてよい。
+- オリジナルのイラストを使う。人が写り込むものは使わない。
+
+## 3. 一覧に載せる
+
+- 日本語トップ `index.html`
+  - 暮らしの記事は「京都の日常」の `.jgrid` に `a.jcard` を足す。`span.cat`（シリーズ名か分類）、`h3`、`p`（2〜3文の紹介）、`time`（`datetime="YYYY-MM-DD"`、表示は `YYYY.MM.DD`）、`span.pill.live`（公開中）を入れる。
+  - 観光地の記事は「名所攻略」に置く。英語の記事へのリンク文は「詳しく読む（English） ›」。
+  - 「公開準備中」の `div.jrow` に同じ記事があれば消す。
+- 英語トップ `en/index.html`
+  - 英語の記事は「Field notes」の `.jgrid` に足す。パスは `../articles/<slug>/`、ラベルは `Live`。
+  - 日本語だけの記事は足さなくてよい（`jseries` の一文で日本語サイトに案内している）。
+- フッターの「読みもの」に載せるのは、トップから個別にたどらせたい記事だけ。
+
+## 4. 確かめる
+
+- 年、数、場所、営業時間、規則は出典で確かめる。変わりうる情報には、公式情報を確認するよう注記する。
+- `/site-check` を実行する。
+
+## 5. コミット
+
+1記事1コミットにする。件名は英語の命令形にする（例 `Publish the Kamo river article`、`Add the 番台 article to the 京都の日常 list`）。
