@@ -1,0 +1,22 @@
+# Instagram のトークンは60日で切れるので、月に2回、期限を延ばす。
+# 新しい文字列が返ってきたときは、SECRETS_PAT で IG_ACCESS_TOKEN を書き換える。
+name: Instagram token
+
+on:
+  schedule:
+    - cron: "0 0 1,15 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  refresh:
+    if: github.repository == 'kyotolab/kyotolab.github.io'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.SECRETS_PAT }}
+        run: python3 social/instagram.py refresh
