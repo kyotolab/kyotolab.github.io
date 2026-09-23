@@ -105,8 +105,9 @@
   .lvl{display:flex; align-items:center; gap:12px; margin-top:2.6em; margin-bottom:1.1em}
   .lvl::before{content:""; width:9px; height:9px; flex:none; border:1.5px solid var(--water);
                border-radius:50%; background:transparent}
-  .lvl h2{font-size:clamp(18px,2.6vw,22px); flex:none}
-  .lvl::after{content:""; flex:1; height:1px;
+  .lvl h2{font-size:clamp(18px,2.6vw,22px); flex:0 1 auto; min-width:0}
+  .lvl h2 .nb{display:inline-block}
+  .lvl::after{content:""; flex:1; min-width:24px; height:1px;
               background:repeating-linear-gradient(90deg,var(--rule) 0 5px,transparent 5px 10px)}
 
   /* ── 写真プレート ───────────────────────── */
@@ -196,7 +197,7 @@
 
   <div class="panel">
     <div class="col">
-      <div class="lvl"><h2>沈んだ街が、自分に立てた記念碑</h2></div>
+      <div class="lvl"><h2><span class="nb">沈んだ街が、</span><span class="nb">自分に立てた記念碑</span></h2></div>
       <span class="yr">1869 — 1895</span>
       <p>明治のはじめ、都の機能が東京へ移りました。天皇も、政府も、人も出ていく。千年以上「都であること」を前提に組み立てられてきた街から、その前提が抜けた。京都は人口を大きく減らし、産業も傾きます。</p>
       <p>そこから京都がとった手は、懐かしむことではありませんでした。<strong>博覧会を開くことです。</strong></p>
@@ -206,7 +207,7 @@
   </div>
 
   <div class="col">
-    <div class="lvl"><h2>復元ではなく、宣言だった</h2></div>
+    <div class="lvl"><h2><span class="nb">復元ではなく、</span><span class="nb">宣言だった</span></h2></div>
 
     <p>この経緯を知ってから見上げると、應天門の見え方が変わります。</p>
 
@@ -216,7 +217,7 @@
 
     <p>そして同じ時期、街の反対側では琵琶湖から水を引く工事が進んでいました。その水はやがて、この岡崎にも引かれます。平安神宮の庭を潤しているのも、そのとき通した水です。——その話は<a href="#series">3本目</a>で書きます。</p>
 
-    <div class="lvl"><h2>そして、ここは空いている</h2></div>
+    <div class="lvl"><h2><span class="nb">そして、</span><span class="nb">ここは空いている</span></h2></div>
 
     <p>実務的な話をします。平安神宮は、京都の主要な観光地のなかでは<strong>かなり空いている部類</strong>です。</p>
 

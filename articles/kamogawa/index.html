@@ -105,8 +105,9 @@
   .lvl{display:flex; align-items:center; gap:12px; margin-top:2.6em; margin-bottom:1.1em}
   .lvl::before{content:""; width:9px; height:9px; flex:none; border:1.5px solid var(--water);
                border-radius:50%; background:transparent}
-  .lvl h2{font-size:clamp(18px,2.6vw,22px); flex:none}
-  .lvl::after{content:""; flex:1; height:1px;
+  .lvl h2{font-size:clamp(18px,2.6vw,22px); flex:0 1 auto; min-width:0}
+  .lvl h2 .nb{display:inline-block}
+  .lvl::after{content:""; flex:1; min-width:24px; height:1px;
               background:repeating-linear-gradient(90deg,var(--rule) 0 5px,transparent 5px 10px)}
 
   /* ── 写真プレート ───────────────────────── */
@@ -184,7 +185,7 @@
 
     <p>私は24歳まで京都にいて、仕事で6年離れ、30歳で帰ってきました。街はずいぶん変わっていましたが、川だけは同じ速さで流れていた。変わったのは、河原に座っている人の言葉が増えたことです。</p>
 
-    <div class="lvl"><h2>誰も決めていないのに、等間隔になる</h2></div>
+    <div class="lvl"><h2><span class="nb">誰も決めていないのに、</span><span class="nb">等間隔になる</span></h2></div>
 
     <p>夕方の鴨川に降りると、すぐ気づくことがあります。土手に腰かけている人たちの間隔が、驚くほど均等なのです。カップル、学生、ひとりで本を読む人。誰も測っていないし、案内板もない。それでも、だいたい同じ距離が空く。</p>
 
@@ -201,7 +202,7 @@
   </div>
 
   <div class="col">
-    <div class="lvl"><h2>同じ川を、二つの高さで使う</h2></div>
+    <div class="lvl"><h2><span class="nb">同じ川を、</span><span class="nb">二つの高さで使う</span></h2></div>
 
     <p>写真の左側、建物から川に向かって張り出している板張りが<strong>納涼床（のうりょうゆか）</strong>です。鴨川の西岸、二条から五条のあいだに、料亭から中華料理店、カフェ、バーまで、およそ90軒が床を組みます。2026年は5月1日から10月15日まで。桃山時代に始まったと伝えられる、ずいぶん古い習慣です。</p>
 
@@ -212,7 +213,7 @@
 
   <div class="panel">
     <div class="col">
-      <div class="lvl"><h2>書かれていないルールが、機能している場所</h2></div>
+      <div class="lvl"><h2><span class="nb">書かれていないルールが、</span><span class="nb">機能している場所</span></h2></div>
       <span class="yr">なぜ京都ラボがこの川の話から始めるのか</span>
       <p>私たちが店舗のインバウンド対応を手伝おうと考えたきっかけは、ある銭湯で見た光景でした。英語の注意書きはちゃんと貼ってある。それでも外国人のお客さんは、脱衣所で止まってしまった。</p>
       <p>理由ははっきりしています。<strong>日本人が誰にも説明されずに覚えたことは、貼り紙一枚では伝わらない。</strong>服をどこで脱ぐか、体をどこで洗うか、タオルを湯に入れないこと。順番があるのに、貼り紙には順番が書かれていない。</p>
@@ -222,7 +223,7 @@
   </div>
 
   <div class="col">
-    <div class="lvl"><h2>川は、行列を作らない</h2></div>
+    <div class="lvl"><h2><span class="nb">川は、</span><span class="nb">行列を作らない</span></h2></div>
 
     <p>京都が混んでいると言われるとき、実際に混んでいるのはいつも同じ数か所です。清水寺周辺、伏見稲荷の千本鳥居、嵐山の渡月橋、錦市場。写真になる場所に、人が集まる。</p>
 
