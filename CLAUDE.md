@@ -25,7 +25,7 @@
 | `assets/` | 画像。`<名前>.jpg`（1600px幅）と、カード用の `<名前>@700.jpg` |
 | `console/` | 記事管理と Medium 投稿のツールの雛形（PyQt6）。中身はまだない。Medium の API は使えないので（下の「SNS」）、Medium への投稿はここではできない |
 | `social/instagram/<slug>.txt` | Instagram の投稿文。`main` に入ると自動で投稿される |
-| `social/note/<slug>.txt` | note に手で貼る本文 |
+| `social/note/` | note に手で貼る本文（`<slug>.txt`）と、それをコピーするページ（`index.html`。`?a=<slug>` で開く） |
 | `social/instagram.py` | Instagram の投稿文の確認、投稿、トークンの更新 |
 | `.github/workflows/` | Instagram への投稿（`instagram.yml`）と、トークンの更新（`instagram-token.yml`） |
 
@@ -67,7 +67,7 @@
   - 公開リポジトリなので、Actions のログは誰でも読める。トークンをログやファイルに出さない。
   - 60日のあいだコミットがないと、GitHub が定期実行を止める。止まったら Actions の画面で有効に戻す。
 - Medium: API は使えない（2025-01-01 から新しいトークンを発行していない）。サイトに出た記事の URL を https://medium.com/p/import に貼って取り込む。canonical はサイトに向く。
-- note: 公式の API がない。`social/note/<slug>.txt` の本文を手で貼る。非公式の API や自動操作は使わない。
+- note（https://note.com/legal_sorrel6616）: 公式の API がない。`social/note/<slug>.txt` に本文を書き、https://kyotolab.github.io/social/note/?a=<slug> のボタンでコピーして手で貼る。非公式の API や自動操作は使わない（2026-09-23 にオーナーと決めた）。
 
 ## 作業の進め方
 
