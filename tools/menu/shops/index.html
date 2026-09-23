@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>多言語お品書き 店舗向けのご案内 — 京都ラボ</title>
+<meta name="description" content="京都ラボの多言語お品書きの、店舗向けのご案内。店の持ち出しは0円で、多言語メニューから注文したお客さまにサービス料10%をいただく仕組みです。">
+<link rel="canonical" href="https://kyotolab.github.io/tools/menu/shops/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多言語お品書き 店舗向けのご案内">
+<meta property="og:description" content="店の持ち出しは0円。多言語メニューから注文したお客さまに、サービス料10%をいただく仕組みです。">
+<meta property="og:url" content="https://kyotolab.github.io/tools/menu/shops/">
+<meta property="og:site_name" content="京都ラボ">
+<meta property="og:image" content="https://kyotolab.github.io/tools/menu/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#FFFFFF; --bg2:#F5F5F7; --fg:#1D1D1F; --fg2:#6E6E73; --fg3:#86868B;
+    --line:rgba(0,0,0,.12); --line2:rgba(0,0,0,.08);
+    --accent:#0066CC;
+    --gold:#A33A2C;
+    --sys:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--fg); font-family:var(--sys); font-size:14px; line-height:1.7; -webkit-font-smoothing:antialiased}
+  h1,h2,h3{margin:0; font-weight:700; line-height:1.25; letter-spacing:-.01em; font-feature-settings:"palt" 1; text-wrap:balance}
+  p,ol,ul,dl{margin:0}
+  a{color:var(--accent)}
+
+  .sheet{max-width:780px; margin:0 auto; padding:clamp(24px,5vw,44px) 16px 40px}
+  .top{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap; padding-bottom:16px; border-bottom:2px solid var(--fg)}
+  .top > div{flex:1 1 320px; min-width:0}
+  .brand{display:flex; align-items:center; gap:8px; font-weight:700; letter-spacing:.06em; white-space:nowrap}
+  .brand .mk{width:22px; height:22px; display:grid; place-content:center; border:1px solid var(--fg); border-radius:2px; font-size:12px; letter-spacing:0}
+  .label{font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; color:var(--gold)}
+  h1{font-size:clamp(24px,5vw,30px); margin-top:14px}
+  .lead{margin-top:8px; color:var(--fg2)}
+
+  .three{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:20px}
+  @media (max-width:560px){ .three{grid-template-columns:1fr} }
+  .three div{background:var(--bg2); border-radius:8px; padding:14px 14px 13px}
+  .three b{display:block; font-size:22px; letter-spacing:-.02em; font-feature-settings:"palt" 1}
+  .three span{display:block; margin-top:3px; font-size:12.5px; color:var(--fg2); line-height:1.55}
+
+  section{margin-top:22px}
+  h2{font-size:16px; display:flex; align-items:baseline; gap:10px}
+  h2 .label{font-size:10px}
+
+  .flow{list-style:none; padding:0; margin-top:10px; counter-reset:f; display:grid; gap:7px}
+  .flow li{counter-increment:f; display:grid; grid-template-columns:24px minmax(0,1fr); gap:8px}
+  .flow li::before{content:counter(f); font-family:var(--mono); font-size:12px; color:var(--gold); padding-top:2px}
+
+  .ex{margin-top:10px; border:1px solid var(--line); border-radius:8px; padding:12px 14px; display:grid; gap:4px; max-width:420px}
+  .ex div{display:flex; justify-content:space-between; gap:16px}
+  .ex dd{margin:0; font-family:var(--mono); font-variant-numeric:tabular-nums}
+  .ex .sum{border-top:1px solid var(--line2); padding-top:6px; margin-top:2px; font-weight:700}
+  .exnote{margin-top:6px; font-size:12.5px; color:var(--fg2)}
+
+  .two{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px}
+  @media (max-width:560px){ .two{grid-template-columns:1fr} }
+  .dots{list-style:none; padding:0; margin-top:8px; display:grid; gap:5px}
+  .dots li{padding-left:14px; position:relative; font-size:13.5px}
+  .dots li::before{content:""; position:absolute; left:0; top:.8em; width:6px; height:1.5px; background:var(--fg3)}
+
+  .note{margin-top:22px; font-size:12px; color:var(--fg2); border-top:1px solid var(--line2); padding-top:12px}
+  .contact{margin-top:16px; display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; background:var(--bg2); border-radius:8px; padding:14px 16px}
+  .contact b{font-size:18px; font-variant-numeric:tabular-nums}
+  .contact span{font-size:12.5px; color:var(--fg2)}
+
+  @page{size:A4; margin:12mm}
+  @media print{
+    body{font-size:11.5px; line-height:1.6}
+    .sheet{max-width:none; padding:0}
+    .top{padding-bottom:12px}
+    h1{font-size:24px; margin-top:8px}
+    section{margin-top:13px}
+    .three{margin-top:13px}
+    .three div{padding:11px 12px 10px}
+    .flow{gap:4px; margin-top:7px}
+    .ex{margin-top:7px; padding:9px 12px}
+    .note{margin-top:14px; padding-top:9px}
+    .contact{margin-top:12px; padding:10px 14px}
+    .three div,.contact{background:var(--bg2); -webkit-print-color-adjust:exact; print-color-adjust:exact}
+    a{color:var(--fg); text-decoration:none}
+  }
+</style>
+</head>
+<body>
+<main class="sheet">
+  <div class="top">
+    <div>
+      <p class="label">店舗向けのご案内</p>
+      <h1>多言語お品書き</h1>
+      <p class="lead">外国から来たお客さまが、自分の言語でメニューを読み、アレルギーや「かつおだし」まで確かめてから注文できるようにします。</p>
+    </div>
+    <p class="brand"><span class="mk">京</span>京都ラボ</p>
+  </div>
+
+  <div class="three">
+    <div><b>0円</b><span>お店の持ち出し。初期費用も月額もいただきません</span></div>
+    <div><b>10%</b><span>多言語メニューから注文したお客さまに、サービス料としていただきます</span></div>
+    <div><b>4言語</b><span>日本語・英語・中国語（繁体字）・韓国語。紙のQRを1枚置くだけ</span></div>
+  </div>
+
+  <section>
+    <h2><span class="label">FLOW</span>しくみ</h2>
+    <ol class="flow">
+      <li><span>お店のメニューを、京都ラボが4言語にします。QRコードと店頭の掲示物も用意します。</span></li>
+      <li><span>お客さまがQRを読むと、その人の言語でメニューが開きます。注文する前に「サービス料10%がかかります」と、その人の言語で表示します。</span></li>
+      <li><span>お客さまは注文の画面を店員さんに見せます。料理名と数は大きな日本語で出て、小計・サービス料・合計も表示されます。</span></li>
+      <li><span>お会計で、サービス料を含めた合計を受け取ってください。お支払いの方法は、いまのお店のやり方のままです。</span></li>
+      <li><span>月末に、多言語メニューからのご注文のサービス料の分を、京都ラボへお支払いいただきます。お店の記録と照らし合わせて、請求書をお送りします。</span></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="label">EXAMPLE</span>3,000円のご注文の場合</h2>
+    <dl class="ex">
+      <div><dt>お食事（税込）</dt><dd>¥3,000</dd></div>
+      <div><dt>サービス料 10%</dt><dd>¥300</dd></div>
+      <div class="sum"><dt>お客さまのお支払い</dt><dd>¥3,300</dd></div>
+    </dl>
+    <p class="exnote">お店には3,000円がそのまま残り、月末に300円を京都ラボへお支払いいただきます。日本語のメニューで注文したお客さまには、サービス料はかかりません。</p>
+  </section>
+
+  <div class="two">
+    <section>
+      <h2><span class="label">PLEASE</span>ご用意いただくもの</h2>
+      <ul class="dots">
+        <li>いまのメニュー（紙でも写真でも）</li>
+        <li>料理ごとのアレルギーと食材（だし、酒・みりん、豚肉など）</li>
+        <li>お会計のとき、多言語メニューからのご注文だとわかる記録（レジのボタンや伝票の印など。やり方は一緒に決めます）</li>
+      </ul>
+    </section>
+    <section>
+      <h2><span class="label">NOT YET</span>いまはまだできないこと</h2>
+      <ul class="dots">
+        <li>お店の方がご自分でメニューを直すこと。値段や料理の変更はご連絡ください。京都ラボが直します</li>
+        <li>品切れを、お客さまの画面にその場で出すこと</li>
+        <li>メニューの画面の中でのカード払い</li>
+      </ul>
+    </section>
+  </div>
+
+  <p class="note">アレルギーと食材は、お店からいただいた内容をもとに表示します。変わったときはご連絡ください。サービス料の会計や税の扱いは、お店の税理士さんにもご確認ください。</p>
+
+  <div class="contact">
+    <div><span>お問い合わせ ／ 京都ラボ 二ノ宮</span><br><b><a href="tel:08069352240">080-6935-2240</a></b></div>
+    <span>デモ: <a href="https://kyotolab.github.io/tools/menu/">kyotolab.github.io/tools/menu/</a></span>
+  </div>
+</main>
+</body>
+</html>
