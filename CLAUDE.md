@@ -20,7 +20,8 @@
 | `en/index.html` | 英語トップ。日本語トップと同じ構成にする |
 | `profile/` | 代表プロフィール。`noindex, nofollow` で検索に出さない |
 | `articles/<slug>/index.html` | 記事。1記事1ファイルで、CSSもファイル内に書く |
-| `tools/menu/` | デモ: 多言語お品書き（QRから4言語、アレルギーで絞り込み） |
+| `tools/menu/` | デモ: 多言語お品書き（QRから4言語、アレルギーで絞り込み）。`shops/` は店舗向けのご案内（A4 1枚） |
+| `server/` | 店に出すお品書きのアプリ（Cloudflare Workers と D1）。GitHub Pages のサイトではない。下の「お品書きのサーバー」 |
 | `tools/sento/` | デモ: 銭湯の入り方を9手順・4言語で案内 |
 | `assets/` | 画像。`<名前>.jpg`（1600px幅）と、カード用の `<名前>@700.jpg` |
 | `console/` | 記事管理と Medium 投稿のツールの雛形（PyQt6）。中身はまだない。Medium の API は使えないので（下の「SNS」）、Medium への投稿はここではできない |
@@ -69,6 +70,17 @@
 - Medium: API は使えない（2025-01-01 から新しいトークンを発行していない）。サイトに出た記事の URL を https://medium.com/p/import に貼って取り込む。canonical はサイトに向く。
 - note: 公式の API がない。`social/note/<slug>.txt` の本文を手で貼る。非公式の API や自動操作は使わない。
 
+## お品書きのサーバー
+
+料金の形（2026-09-23 に決めた）: 店の持ち出しは0円。多言語メニュー（英・中・韓）から注文したお客さまに、サービス料10%（税込の小計の10%、1円未満切り捨て）をいただく。店がお会計で一緒に受け取り、月末にその分を京都ラボが店に請求する。日本語メニューにはかからない。あとで Stripe Connect のカード払いに進み、10%を決済の時点で自動で分ける予定。
+
+- お客さまの画面は `/s/<店のID>`、店の画面は `/staff/<店のID>`。店のメニューは `server/shops/<店のID>.json` に書き、`server/src/shops.js` に足す。メニューの変更は京都ラボが JSON を直して反映する。
+- 注文は、お客さまのスマホで店員が「注文を受けました」を押したときに記録する。金額はサーバーで計算し直す。月の区切りは日本時間。
+- 店の鍵は `node scripts/staff-key.mjs` でつくる。鍵は店に渡し、ハッシュだけを `STAFF_KEYS`（`{"<店のID>":"<ハッシュ>"}` の JSON）に入れる。`ADMIN_KEY_HASH` は京都ラボ用で、どの店の画面にも入れる。鍵をファイル、コミット、PR、ログに出さない。
+- 手元で動かす: `cd server && npm install && npm run dev`（鍵は `server/.dev.vars` に書く。このファイルはコミットしない）。テストは `npm test`。
+- Cloudflare に出す（オーナーのアカウントで）: `npx wrangler login` → `npx wrangler d1 create kyotolab-menu` の database_id を `wrangler.toml` に書く → `npx wrangler d1 migrations apply DB --remote` → `npx wrangler secret put STAFF_KEYS` と `npx wrangler secret put ADMIN_KEY_HASH` → `npx wrangler deploy`。
+- GitHub Pages は、お金のやりとりを伴う商用のサービスには使えない。店に出す画面は Cloudflare から配信し、`tools/menu/` はデモのままにする。
+
 ## 作業の進め方
 
 - 1つの変更を1コミットにする。件名は英語の命令形で、何をどう変えたかを具体的に書く（例: `Change the 背景 headline to 六年離れて、京都を学び直した。`）。
@@ -80,3 +92,4 @@
 - トップで「公開準備中」になっている記事が2本ある: 「上ル・下ル」の住所と地図アプリの話、銭湯の番台でのやりとりの話。どちらも 2026.10 と表示している。
 - シリーズ「京都を通る水」の画像は、オリジナルのイラストではなく写真。人が小さく写っているものがある（`articles/heian-jingu/otenmon.jpg`、`articles/kamogawa/noryo-yuka.jpg`、`articles/suirokaku/nanzenin-path.jpg`）。イラストに差し替える（2026-09-23 に決めた）。
 - Instagram の自動投稿は、GitHub の Secrets に `IG_ACCESS_TOKEN` を入れるまで動かない。`SECRETS_PAT` も入れると、トークンの更新まで自動になる。
+- お品書きのサーバー（`server/`）は、まだ Cloudflare に出していない。オーナーのアカウントで上の手順を行う。
