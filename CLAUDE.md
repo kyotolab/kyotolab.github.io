@@ -78,5 +78,6 @@
 ## 未完了（2026-09-22 時点。片づいたら消す）
 
 - トップで「公開準備中」になっている記事が2本ある: 「上ル・下ル」の住所と地図アプリの話、銭湯の番台でのやりとりの話。どちらも 2026.10 と表示している。
+- シリーズ「京都を通る水」の画像は、オリジナルのイラストではなく写真。人が小さく写っているものがある（`articles/heian-jingu/otenmon.jpg`、`articles/kamogawa/noryo-yuka.jpg`、`articles/suirokaku/nanzenin-path.jpg`）。イラストに差し替える（2026-09-23 に決めた）。
 - `tools/menu/` と `tools/sento/` には `og:image` がない。
 - Instagram の自動投稿は、GitHub の Secrets に `IG_ACCESS_TOKEN` を入れるまで動かない。`SECRETS_PAT` も入れると、トークンの更新まで自動になる。
