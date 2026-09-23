@@ -61,10 +61,28 @@ image: assets/<名前>.jpg
 
 ### note（手で貼る）
 
-`social/note/<slug>.txt` に、note に貼る本文を書く。オーナーがコピーして note に貼る。
+`social/note/<slug>.txt` に、note に貼る本文を書く。`main` に入ると、https://kyotolab.github.io/social/note/?a=<slug> がコピー用のページになる。オーナーはそこのボタンでタイトルと本文をコピーして、note（https://note.com/legal_sorrel6616）に貼る。
 
-- 1行目にタイトル、空行のあとに本文。見出しは1行で書き、貼ったあとで note の見出しに設定する。
+```
+title: タイトル
+image: assets/<名前>.jpg
+tags: 京都, 住所
+
+本文。段落は空行で分ける。
+
+## 大見出し
+
+### 小見出し
+
+- 箇条書き
+
+> 引用
+```
+
+- `image:`（見出し画像）と `tags:` はなくてもよい。タグはカンマか読点で区切る。
+- 本文の URL はリンクに、`**…**` は太字になる。本文は見出しを残したままコピーされる。
 - 最後に、サイトの記事への案内を入れる（例「この記事は京都ラボのサイトにも載せています。https://kyotolab.github.io/articles/<slug>/」）。
+- PR 本文に、コピー用のページの URL を書いておく。
 - 非公式の API や自動操作では投稿しない。
 
 ### Medium（URL を貼る）
