@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>銭湯の番台で交わされる、言葉より短いやりとり</title>
+<meta name="description" content="番台でのやりとりは数秒で終わる。料金、持ちもの、初めてかどうかまでが、ほとんど言葉を使わずに行き来している。その短さを外国から来たお客さんとのあいだでも保つには、何を訳せばいいのかを考えた。">
+<link rel="canonical" href="https://kyotolab.github.io/articles/bandai/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="銭湯の番台で交わされる、言葉より短いやりとり">
+<meta property="og:description" content="番台でのやりとりは数秒で終わる。料金、持ちもの、初めてかどうかまでが、ほとんど言葉を使わずに行き来している。その短さを外国から来たお客さんとのあいだでも保つには、何を訳せばいいのかを考えた。">
+<meta property="og:url" content="https://kyotolab.github.io/articles/bandai/">
+<meta property="og:site_name" content="京都ラボ">
+<meta property="og:image" content="https://kyotolab.github.io/articles/bandai/counter.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1066">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+  img{max-width:100%}
+  [hidden]:not([hidden="until-found"]){display:none!important}
+</style>
+</head>
+<body>
+<style>
+  :root{
+    color-scheme:light dark;
+    --paper:#FFFFFF;
+    --paper2:#F5F5F7;
+    --ink:#1D1D1F;
+    --ink2:#6E6E73;
+    --ink3:#86868B;
+    --rule:rgba(0,0,0,.12);
+    --rule2:rgba(0,0,0,.08);
+    --accent:#0066CC;     /* 触れるもの（HP準拠） */
+    --label:#A33A2C;      /* 朱。キッカーと通し番号 */
+    --wood:#8E6440;       /* 番台の木。節の区切りに使う */
+    --panel:#1D1D1F;
+    --panel-ink:#F5F5F7;
+    --panel-ink2:#98989D;
+    --panel-mark:#D9B98C;
+
+    --sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+
+    --gut:clamp(20px,5vw,40px);
+    --measure:34em;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --paper:#000000; --paper2:#1C1C1E;
+      --ink:#F5F5F7; --ink2:#98989D; --ink3:#6E6E73;
+      --rule:rgba(255,255,255,.16); --rule2:rgba(255,255,255,.1);
+      --accent:#0A84FF; --label:#FF6F5E; --wood:#C79E68;
+      --panel:#1C1C1E; --panel-ink:#F5F5F7; --panel-ink2:#98989D; --panel-mark:#D9B98C;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#000000; --paper2:#1C1C1E;
+    --ink:#F5F5F7; --ink2:#98989D; --ink3:#6E6E73;
+    --rule:rgba(255,255,255,.16); --rule2:rgba(255,255,255,.1);
+    --accent:#0A84FF; --label:#FF6F5E; --wood:#C79E68;
+    --panel:#1C1C1E; --panel-ink:#F5F5F7; --panel-ink2:#98989D; --panel-mark:#D9B98C;
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans);
+       font-size:17px; line-height:1.85; -webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:var(--sans); font-weight:700; letter-spacing:0; line-height:1.3;
+           margin:0; text-wrap:balance; font-feature-settings:"palt" 1}
+  p{margin:0}
+  .nb{display:inline-block}
+  a{color:var(--accent); text-underline-offset:3px}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:3px}
+
+  .col{max-width:var(--measure); margin-inline:auto; padding-inline:var(--gut)}
+  .wide{max-width:960px; margin-inline:auto; padding-inline:var(--gut)}
+
+  /* ── 見出し帯 ───────────────────────────── */
+  .top{border-bottom:1px solid var(--rule); padding-block:clamp(30px,6vw,58px) 0}
+  .kicker{font-family:var(--mono); font-size:11px; letter-spacing:.12em; color:var(--label);
+          display:flex; gap:10px; align-items:center}
+  .kicker::after{content:""; flex:1; height:1px; background:var(--rule)}
+  h1{font-size:clamp(26px,5vw,42px); margin-top:18px}
+  .standfirst{font-size:clamp(15px,1.9vw,17.5px); color:var(--ink2); margin-top:20px; line-height:1.9}
+  .byline{margin-top:26px; padding-block:14px; border-top:1px solid var(--rule2);
+          display:flex; flex-wrap:wrap; gap:6px 22px;
+          font-family:var(--mono); font-size:11px; letter-spacing:.06em; color:var(--ink3)}
+  .byline b{color:var(--ink2); font-weight:400}
+
+  /* ── 本文 ───────────────────────────────── */
+  article{padding-block:clamp(30px,5vw,48px) 0}
+  article p + p{margin-top:1.5em}
+  article p strong{font-weight:600; color:var(--ink);
+                   background:linear-gradient(transparent 62%,color-mix(in srgb,var(--label) 16%,transparent) 62%)}
+
+  /* 節の区切り＝番台の天板。四角い札と、木の縁 */
+  .lvl{display:flex; align-items:center; gap:12px; margin-top:2.6em; margin-bottom:1.1em}
+  .lvl::before{content:""; width:10px; height:10px; flex:none; background:var(--wood); border-radius:2px}
+  .lvl h2{font-size:clamp(18px,2.6vw,22px); flex:0 1 auto}
+  .lvl::after{content:""; flex:1; min-width:24px; height:2px; background:var(--rule2)}
+
+  /* 数秒のやりとりの内訳 */
+  .ex{margin:1.6em 0 0; display:grid; gap:1px; background:var(--rule2); border-block:1px solid var(--rule2)}
+  .ex div{background:var(--paper); display:grid; grid-template-columns:2.4em minmax(0,1fr); gap:10px; padding:14px 2px}
+  .ex em{font-family:var(--mono); font-style:normal; font-size:11px; color:var(--label); letter-spacing:.08em; padding-top:5px}
+  .ex b{display:block; font-size:15.5px; font-weight:700; font-feature-settings:"palt" 1}
+  .ex span{display:block; font-size:14.5px; color:var(--ink2); line-height:1.8; margin-top:2px}
+  article p.after{margin-top:1.6em}
+
+  /* ── 絵 ─────────────────────────────────── */
+  .plate{margin:2.6em 0 0}
+  .plate img{display:block; width:100%; height:auto; border-radius:3px}
+  .plate figcaption{font-family:var(--mono); font-size:11.5px; line-height:1.75; color:var(--ink3);
+                    margin-top:11px; padding-left:13px; border-left:2px solid var(--wood)}
+
+  /* ── 暗いパネル ─────────────────────────── */
+  .panel{background:var(--panel); color:var(--panel-ink); margin-top:2.8em;
+         padding-block:clamp(30px,5vw,46px); border-radius:4px}
+  .panel .col{max-width:calc(var(--measure) - 2em)}
+  .panel .lvl h2{color:var(--panel-ink)}
+  .panel .lvl::before{background:var(--panel-mark)}
+  .panel .lvl::after{background:#3A3A3C}
+  .panel .lvl{margin-top:0}
+  .panel p{color:var(--panel-ink2)}
+  .panel p strong{color:var(--panel-ink); background:linear-gradient(transparent 62%,rgba(217,185,140,.26) 62%)}
+  .panel .yr{font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--panel-mark); display:block; margin-bottom:14px}
+
+  /* ── 実用情報 ───────────────────────────── */
+  .facts{margin-top:2.8em; border-top:1.5px solid var(--ink); padding-top:16px}
+  .facts h2{font-size:15px; letter-spacing:.02em}
+  .facts dl{margin:14px 0 0; display:grid; grid-template-columns:7.5em minmax(0,1fr); gap:0}
+  @media (max-width:520px){ .facts dl{grid-template-columns:1fr} }
+  .facts dt{font-family:var(--mono); font-size:11px; letter-spacing:.06em; color:var(--label);
+            padding:11px 0; border-top:1px solid var(--rule2); align-self:start}
+  .facts dd{margin:0; font-size:14.5px; line-height:1.85; color:var(--ink2);
+            padding:11px 0; border-top:1px solid var(--rule2)}
+  @media (max-width:520px){ .facts dt{padding-bottom:0} .facts dd{border-top:none; padding-top:4px} }
+
+  /* ── 関連 ───────────────────────────────── */
+  .series{margin-top:3em; padding-block:26px 40px; border-top:1px solid var(--rule)}
+  .series .kicker{margin-bottom:16px}
+  .series ol{margin:0; padding:0; list-style:none; display:grid; gap:1px; background:var(--rule2)}
+  .series li{background:var(--paper); padding:14px 2px; display:grid; grid-template-columns:2.4em minmax(0,1fr); gap:10px; align-items:baseline}
+  .series li em{font-family:var(--mono); font-style:normal; font-size:11px; color:var(--ink3); letter-spacing:.08em}
+  .series li a{font-size:14.5px; font-weight:600; font-feature-settings:"palt" 1}
+  .series li i{display:block; font-style:normal; font-size:13px; color:var(--ink3); margin-top:3px; line-height:1.7}
+
+  footer{padding-block:22px 40px; border-top:1px solid var(--rule2)}
+  footer p{font-family:var(--mono); font-size:10.5px; letter-spacing:.09em; color:var(--ink3); line-height:1.9}
+
+  @media (prefers-reduced-motion:no-preference){
+    html{scroll-behavior:smooth}
+  }
+</style>
+
+<div class="top">
+  <div class="col">
+    <p class="kicker">観察 ／ 銭湯</p>
+    <h1><span class="nb">銭湯の番台で</span><span class="nb">交わされる、</span><span class="nb">言葉より短いやりとり</span></h1>
+    <p class="standfirst">番台でのやりとりは、数秒で終わります。小銭を置いて、軽く会釈をして、「どうも」のひとこと。それだけで、料金と、持ちものと、その人が初めてかどうかまでが、ほとんど言葉を使わずに行き来しています。</p>
+    <div class="byline">
+      <span>2026.09.23</span>
+      <span>京都ラボ ／ <b>二ノ宮 大知</b></span>
+      <span>京都の銭湯</span>
+      <span>読了 約5分</span>
+    </div>
+  </div>
+</div>
+
+<article>
+  <div class="col">
+    <p>京都には、番台の残る銭湯がまだあります。入口を入ったところ、男湯と女湯の脱衣所のあいだに、一段高い台がある。そこに座る人が料金を受け取り、両方の脱衣所を見渡している。台そのものも、そこに座る人も、番台と呼びます。</p>
+
+    <p>最近は入口にフロントを置く銭湯が増えて、番台は少なくなりました。それでも番台での数秒のやりとりには、銭湯という場所の仕組みがよく出ています。</p>
+
+    <div class="lvl"><h2><span class="nb">数秒のあいだに、</span><span class="nb">行き来しているもの</span></h2></div>
+
+    <p>番台の前でのやりとりをほどいてみると、あの数秒で、少なくとも4つのことが確かめられています。</p>
+
+    <div class="ex">
+      <div><em>01</em><p><b>料金</b><span>通い慣れた人は、料金ちょうどの小銭を台に置く。番台の人は数えるまでもなく、足りていると分かる。</span></p></div>
+      <div><em>02</em><p><b>持ちもの</b><span>手にタオルと石けんを持っているか。持っていなければ、番台の人のほうから「タオルは？」と聞く。タオルや小さい石けんは、たいてい番台で売っています。</span></p></div>
+      <div><em>03</em><p><b>初めてかどうか</b><span>顔なじみか、初めての人かを、番台の人はひと目で見分ける。初めての人には、ロッカーの場所や、湯に入る前に体を流すことを、ひとこと足す。</span></p></div>
+      <div><em>04</em><p><b>そのあと</b><span>番台が高いのは、脱衣所を見渡すためです。払い終わったあとも、番台の人は脱衣所を見ている。</span></p></div>
+    </div>
+
+    <p class="after">顔なじみに対しては、ほとんど何も言いません。言わなくていいことを、お互いに知っているからです。<strong>やりとりが短いのは、無愛想だからではなく、共有しているものが多いしるしです。</strong></p>
+  </div>
+
+  <div class="wide">
+    <figure class="plate">
+      <img src="counter.jpg" width="1600" height="1066" alt="番台の天板を正面から描いたイラスト。奥の壁の左に男湯、右に女湯の札が下がり、真ん中に柱時計。天板の上には小銭の入った盆、下足箱の木札、たたんだタオル、小さい石けんが並んでいる">
+      <figcaption>番台の上にあるのは、小銭の盆、下足箱の木札、たたんだタオル、小さい石けん。言葉の代わりに、物が行き来する。</figcaption>
+    </figure>
+  </div>
+
+  <div class="col">
+    <div class="lvl"><h2><span class="nb">初めての人のときだけ、</span><span class="nb">やりとりは長くなる</span></h2></div>
+
+    <p>日本人でも、初めて銭湯に来た人には、番台の人がひとこと足します。ひとことで足りるのは、足りない部分がそれだけだからです。湯船に入る前に体を洗うこと、タオルを湯に入れないこと。そのくらいのことは、たいていの日本人が、家の風呂や温泉で、いつのまにか覚えています。</p>
+
+    <p>外国から来たお客さんの場合は、足りない部分がずっと大きくなります。順番が丸ごと抜けていて、ひとことでは埋まらない。しかも、そのひとことが通じない。番台の人は、この人がどこでつまずくかをだいたい分かっているのに、それを先に伝える手段がありません。</p>
+
+    <p>そうなると、やりとりは2つに分かれます。身ぶり手ぶりで長くなるか、何も言わずに見送るか。どちらも、番台が本来やっていたことではありません。英語の貼り紙があっても脱衣所で立ち止まってしまう人がいるのは、この順番が抜けているからです。そのことは「<a href="../honyaku/">翻訳では直らない</a>」に書きました。</p>
+  </div>
+
+  <div class="panel">
+    <div class="col">
+      <div class="lvl"><h2><span class="nb">翻訳するなら、</span><span class="nb">何を訳すのか</span></h2></div>
+      <span class="yr">番台のひとことではなく、その後ろにあるもの</span>
+      <p>番台のやりとりを翻訳しようとすると、まず番台の人のひとことを外国語にすることを考えます。「タオルは？」「先に体を洗ってね」。けれどそれでは、番台の人が話す量が増えるだけで、混んでいる時間には続きません。</p>
+      <p>顔なじみに対して番台が何も言わなくていいのは、<strong>入ってから出るまでの順番を、お客さんがもう知っているから</strong>です。短いやりとりを支えているのは、言葉ではなく、共有された順番のほうです。</p>
+      <p>だから訳すべきなのは、番台のひとことではなく、そのひとことを要らなくしている順番です。<strong>やりとりを長くするのではなく、初めての人とでも短いままで済むようにする。</strong>翻訳の目標は、そこに置くべきだと考えています。</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="lvl"><h2><span class="nb">番台に、</span><span class="nb">指させるものを置く</span></h2></div>
+
+    <p>京都ラボがつくった<a href="../../tools/sento/">銭湯の手順案内</a>は、この考えで組んでいます。入ってから出るまでを9つの手順に並べて、4つの言語で出す。QRコードを1枚、入口か脱衣所に貼っておけば、お客さんの手元に順番が出ます。</p>
+
+    <p>番台の人がすることは、初めてのお客さんにQRを指さすことだけです。説明はそちらに任せて、やりとりはいつもどおり短いままでいい。</p>
+
+    <p>ただし、手順の案内が引き受けるのは、顔なじみなら言われなくても知っていることだけにしています。<strong>店ごとに違うことは、番台に残します。</strong>たとえば入れ墨（タトゥー）の扱いは銭湯によって違うので、案内の中でも「入る前に受付でたずねてください」としています。そこで交わされるのは、店とお客さんのあいだで本当に必要なやりとりです。</p>
+
+    <div class="facts">
+      <h2>実用情報</h2>
+      <dl>
+        <dt>料金</dt>
+        <dd>京都府内の銭湯の入浴料金は、府が上限を決めています。2025年4月からは、大人（12歳以上）550円、6歳以上12歳未満200円、6歳未満100円。変わることがあるので、各銭湯の案内で確認してください。</dd>
+        <dt>持ちもの</dt>
+        <dd>手ぶらでも入れます。タオルや小さい石けん・シャンプーは、番台やフロントで売っている銭湯が多いです。</dd>
+        <dt>支払い</dt>
+        <dd>現金だけの銭湯もあります。小銭を用意しておくと早いです。</dd>
+        <dt>入れ墨</dt>
+        <dd>銭湯によって扱いが違います。入る前に番台でたずねてください。</dd>
+        <dt>写真</dt>
+        <dd>脱衣所と浴室では撮りません。</dd>
+        <dt>探す</dt>
+        <dd>京都府浴場組合の公式サイト「<a href="https://1010.kyoto/">京都銭湯</a>」で、場所や営業時間を調べられます。</dd>
+      </dl>
+    </div>
+
+    <div class="series">
+      <p class="kicker">あわせて読む</p>
+      <ol>
+        <li><em>01</em><span><a href="../honyaku/">翻訳では直らない</a><i>銭湯と散髪屋で見た2件を分解した回</i></span></li>
+        <li><em>02</em><span><a href="../kamogawa/">鴨川は等間隔になる</a><i>書かれていないルールが、うまく機能している場所</i></span></li>
+        <li><em>03</em><span><a href="../../tools/sento/">銭湯のはいりかた（デモ）</a><i>入ってから出るまでを9つの手順で、4つの言語で</i></span></li>
+      </ol>
+    </div>
+
+    <footer>
+      <p>京都ラボ ／ 屋号 京都ラボ ／ 代表 二ノ宮 大知<br>京都の暮らしの側から、街の困りごとを見て、道具をつくっています。</p>
+    </footer>
+  </div>
+</article>
+
+
+</body>
+</html>

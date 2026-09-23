@@ -1,0 +1,21 @@
+image: articles/agaru-sagaru/reading.jpg
+
+「烏丸通四条上ル」。京都の住所は、それだけで道順になっています。烏丸通に面していて、四条通との交差点から北へ。上ルは北、下ルは南、東入は東、西入は西。
+
+ところが地図アプリが読んでいるのは、後ろの町名と番地だけ。道順の部分は読み飛ばされます。何が抜け落ちるのかと、店がすぐにできる3つのことを書きました。
+
+・地図のピンを、入口の前に合わせる
+・住所と一緒に、地図のリンクを渡す
+・上ル・下ルを、北・南に開いて添える
+
+自分の店の住所で5分で試せる手順も付けています。記事はプロフィールのリンクから。
+
+―
+
+In Kyoto, an address is a set of directions. "Karasuma-dori Shijo-agaru" means: on Karasuma Street, just north of the Shijo crossing. Agaru is north, sagaru is south, higashi-iru is east, nishi-iru is west.
+
+Map apps read only the neighbourhood name and lot number at the end, and skip the directions. We wrote about what gets lost, and three things a shop can do: set the map pin at the door, send a map link along with the address, and spell out agaru and sagaru as north and south.
+
+Full article (in Japanese) via the link in our profile.
+
+#京都 #京都の住所 #インバウンド #Kyoto #KyotoLab

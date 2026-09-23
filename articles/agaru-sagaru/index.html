@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>「上ル・下ル」で住所を書く街に、地図アプリはまだ追いついていない</title>
+<meta name="description" content="京都の住所は、通り名の交差点から「上ル（北）」「下ル（南）」と道順で書く。地図アプリが読んでいるのは、その道順ではなく町名と番地だけ。何が抜け落ちるのかと、店がすぐにできることを整理した。">
+<link rel="canonical" href="https://kyotolab.github.io/articles/agaru-sagaru/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「上ル・下ル」で住所を書く街に、地図アプリはまだ追いついていない">
+<meta property="og:description" content="京都の住所は、通り名の交差点から「上ル（北）」「下ル（南）」と道順で書く。地図アプリが読んでいるのは、その道順ではなく町名と番地だけ。何が抜け落ちるのかと、店がすぐにできることを整理した。">
+<meta property="og:url" content="https://kyotolab.github.io/articles/agaru-sagaru/">
+<meta property="og:site_name" content="京都ラボ">
+<meta property="og:image" content="https://kyotolab.github.io/articles/agaru-sagaru/reading.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1066">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+  img{max-width:100%}
+  [hidden]:not([hidden="until-found"]){display:none!important}
+</style>
+</head>
+<body>
+<style>
+  :root{
+    color-scheme:light;
+    --bg:#FFFFFF; --bg2:#F5F5F7; --bg3:#FAFAFB; --fg:#1D1D1F; --fg2:#6E6E73; --fg3:#86868B;
+    --line:rgba(0,0,0,.12); --line2:rgba(0,0,0,.08);
+    --accent:#0066CC; --accent-soft:#EAF2FD; --accent-brd:#B9D6F5;
+    --label:#A33A2C;
+    --warn:#8A5A14; --warn-soft:#FBF4E5;
+    --stop:#8E2F22; --stop-soft:#FBEEEC;
+    --panel:#1D1D1F; --panel-ink:#F5F5F7; --panel-ink2:#B6BCC0; --panel-label:#FF6F5E;
+    --sys:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --gut:clamp(22px,5vw,44px);
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--fg); font-family:var(--sys); font-size:16px; line-height:1.62;
+       -webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{margin:0; font-weight:700; letter-spacing:0; line-height:1.24; text-wrap:balance;
+              font-feature-settings:"palt" 1}
+  p{margin:0}
+  a{color:var(--accent); text-underline-offset:3px}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+  .wrap{max-width:860px; margin:0 auto; padding-inline:var(--gut)}
+  .eyebrow{font-size:14px; font-weight:600; color:var(--label); margin-bottom:12px}
+  .lead{font-size:clamp(16px,1.9vw,19px); color:var(--fg2); line-height:1.7}
+  .lead strong, p strong{color:var(--fg); font-weight:600}
+  .sub{margin-top:16px; max-width:38em}
+  .body{margin-top:18px; max-width:40em; color:var(--fg2); line-height:1.85}
+  .body + .body{margin-top:14px}
+
+  header{padding-block:clamp(44px,7vw,78px) 34px; border-bottom:1px solid var(--line)}
+  header h1{font-size:clamp(27px,5vw,46px); line-height:1.3}
+  header .lead{margin-top:20px; max-width:38em}
+  .meta{margin-top:26px; display:flex; gap:8px 26px; flex-wrap:wrap;
+        font-family:var(--mono); font-size:11.5px; color:var(--fg3); letter-spacing:.05em}
+
+  section{padding-block:clamp(40px,6vw,64px); border-bottom:1px solid var(--line2)}
+  h2{font-size:clamp(23px,3.6vw,34px); line-height:1.32}
+
+  /* 住所を4つに分ける */
+  .parts{margin-top:26px; border:1px solid var(--line); border-radius:14px; overflow:hidden}
+  .nb{display:inline-block}
+  .part{display:grid; grid-template-columns:minmax(0,11em) minmax(0,1fr); gap:6px 22px; padding:16px 20px;
+        border-top:1px solid var(--line2); align-items:baseline}
+  .part:first-child{border-top:none}
+  @media (max-width:560px){ .part{grid-template-columns:1fr} }
+  .part b{font-size:18px; font-weight:700; font-feature-settings:"palt" 1; overflow-wrap:anywhere}
+  .part b.hi{color:var(--label)}
+  .part > span{font-size:14.5px; color:var(--fg2); line-height:1.7}
+  .part > span em{display:block; font-style:normal; font-weight:600; color:var(--fg)}
+
+  .plate{margin:32px 0 0}
+  .plate img{display:block; width:100%; height:auto; border-radius:10px; border:1px solid var(--line2)}
+  .plate figcaption{font-size:13px; line-height:1.75; color:var(--fg3); margin-top:11px;
+                    padding-left:13px; border-left:2px solid var(--label)}
+
+  /* 核心 */
+  .core{background:var(--panel); color:var(--panel-ink); border-bottom:none}
+  .core h2{color:#FFF}
+  .core .eyebrow{color:var(--panel-label)}
+  .core p{color:var(--panel-ink2); max-width:40em; line-height:1.85}
+  .core p + p{margin-top:14px}
+  .core p strong{color:#FFF}
+  .core h2 + p{margin-top:20px}
+  .core .big{font-size:clamp(19px,2.6vw,25px); color:#FFF; font-weight:600;
+             line-height:1.6; margin-top:26px; padding-left:18px; border-left:3px solid var(--panel-label); max-width:30em;
+             font-feature-settings:"palt" 1}
+
+  /* 抜け落ちる3つ */
+  .q{margin-top:28px; display:grid; gap:1px; background:var(--line2); border:1px solid var(--line2); border-radius:14px; overflow:hidden}
+  .qr{background:var(--bg); padding:20px 22px; display:grid; grid-template-columns:auto minmax(0,1fr); gap:16px; align-items:start}
+  .qr .n{font-family:var(--mono); font-size:12px; color:var(--label); padding-top:4px; letter-spacing:.06em}
+  .qr h3{font-size:18px}
+  .qr p{font-size:14.5px; color:var(--fg2); margin-top:7px; line-height:1.75}
+  .qr .no{margin-top:11px; font-size:13.5px; color:var(--stop); background:var(--stop-soft);
+          padding:9px 13px; border-radius:9px; display:inline-block}
+
+  /* 店ができること */
+  .todo{margin-top:28px; display:grid; gap:16px}
+  .t{border:1px solid var(--line); border-radius:14px; padding:20px 22px 22px}
+  .t .n{font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--label)}
+  .t h3{font-size:clamp(18px,2.4vw,21px); margin-top:8px}
+  .t p{font-size:14.5px; color:var(--fg2); margin-top:9px; line-height:1.8; max-width:42em}
+  .t .ex{margin-top:12px; font-family:var(--mono); font-size:13px; color:var(--fg); background:var(--bg2);
+         border-radius:9px; padding:10px 13px; overflow-wrap:anywhere}
+
+  /* 確かめ方 */
+  .check{margin:26px 0 0; padding:0; list-style:none; counter-reset:c; display:grid; gap:10px}
+  .check li{counter-increment:c; display:grid; grid-template-columns:2.2em minmax(0,1fr); gap:12px;
+            border:1px solid var(--line); border-radius:12px; padding:15px 18px; background:var(--bg3)}
+  .check li::before{content:counter(c,decimal-leading-zero); font-family:var(--mono); font-size:12px;
+                    color:var(--label); padding-top:3px}
+  .check b{display:block; font-size:15.5px; font-feature-settings:"palt" 1}
+  .check span{display:block; margin-top:4px; font-size:14px; color:var(--fg2); line-height:1.7}
+
+  .note{margin-top:26px; border-left:2px solid var(--warn); background:var(--warn-soft);
+        padding:16px 20px; border-radius:0 12px 12px 0}
+  .note b{font-size:11px; font-family:var(--mono); letter-spacing:.1em; color:var(--warn); display:block; margin-bottom:8px}
+  .note p{font-size:14.5px; color:var(--fg2); max-width:42em; line-height:1.75}
+  .note p + p{margin-top:9px}
+
+  .more{margin-top:26px; font-size:15px}
+
+  footer{padding-block:32px 46px}
+  footer p{font-family:var(--mono); font-size:11px; color:var(--fg3); letter-spacing:.06em; line-height:1.9}
+</style>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">京都ラボ ／ 課題分析</p>
+    <h1><span class="nb">「上ル・下ル」で</span><span class="nb">住所を書く街に、</span><span class="nb">地図アプリは</span><span class="nb">まだ追いついていない</span></h1>
+    <p class="lead">京都の中心部の住所は、それ自体が道順になっています。「寺町通御池上る」なら、寺町通と御池通の交差点から北へ。地元の人とタクシーには、これ以上ない案内です。<strong>ところが地図アプリが読んでいるのは、この道順の部分ではありません。</strong></p>
+    <div class="meta">
+      <span>2026.09.23</span>
+      <span>読み方 ／ 地図が読む部分 ／ 店ができること</span>
+      <span>二ノ宮 大知</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">読み方</p>
+    <h2><span class="nb">住所が、</span><span class="nb">そのまま道順になっている。</span></h2>
+    <p class="lead sub">京都市役所の住所は「京都市中京区寺町通御池上る上本能寺前町488番地」です。長く見えますが、4つに分けると道順として読めます。</p>
+
+    <div class="parts">
+      <div class="part"><b>寺町通</b><span><em>建物が面している通り</em>最初に書く通りに、入口がある。</span></div>
+      <div class="part"><b>御池</b><span><em>いちばん近くで交わる通り</em>目印になる交差点。</span></div>
+      <div class="part"><b class="hi">上る</b><span><em>交差点からどちらへ進むか</em>上る（上ル）は北、下る（下ル）は南、東入は東、西入は西。</span></div>
+      <div class="part"><b><span class="nb">上本能寺前町</span><span class="nb">488番地</span></b><span><em>町名と番地</em>登記や住民登録に使う部分。</span></div>
+    </div>
+
+    <figure class="plate">
+      <img src="reading.jpg" width="1600" height="1066" alt="京都の住所の読み方の図。烏丸通と四条通の交差点から、烏丸通を北へ少し行ったところにピンが立っている。上ルは北、下ルは南、東入は東、西入は西を指す">
+      <figcaption>「烏丸通四条上ル」なら、烏丸通に面していて、四条通との交差点から北へ行ったところ。英語にするなら On Karasuma Street, just north of the Shijo crossing。</figcaption>
+    </figure>
+
+    <p class="body">決まりは1つだけで、<strong>先に書く通りに建物が面しています。</strong>同じ交差点の近くでも、「高倉通三条上ル」は高倉通に、「三条通高倉東入」は三条通に面している。北を「上る」と言うのは、北に御所があるから、あるいは北に向かって土地が高くなっているから、と説明されます。「上る」と「上ル」はどちらも使われていて、意味は同じです。</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">背景</p>
+    <h2><span class="nb">町名だけでは、</span><span class="nb">場所が決まらない。</span></h2>
+    <p class="body">通り名は飾りではありません。京都の中心部には、同じ名前の町がいくつもあります。たとえば「亀屋町」は、中京区の中だけで5か所あります。町名と番地だけでは、どの亀屋町なのかが決まらない。だから通り名を前に付けて、区別してきました。</p>
+    <p class="body">逆に、1つの町に通り名の書き方が何通りもあることもあります。日本郵便の郵便番号の一覧では、中京区の亀屋町の1つに「御幸町通御池上る」「押小路通寺町西入」など7通りの書き方が並んでいます。町が複数の通りに面していれば、どの通りから数えても正しい住所になるからです。</p>
+    <p class="body">京都市は、ほかの大都市のような「◯丁目◯番◯号」の住居表示を実施しておらず、住所は土地の地番で登録します。通り名を書かない住所も誤りではない、と京都市は説明しています。ただ住民登録は通り名を含めて行っているので、免許証などには通り名の入った住所が載ります。<strong>京都の人にとっては通り名のほうが本体で、町名を聞いても場所が浮かばないことは珍しくありません。</strong></p>
+  </div>
+</section>
+
+<section class="core">
+  <div class="wrap">
+    <p class="eyebrow">分解</p>
+    <h2><span class="nb">地図アプリが読むのは、</span><span class="nb">後ろ半分だけ。</span></h2>
+    <p>地図アプリや予約サイトの住所欄は、多くが「区＋町名＋番地」で書かれています。Google マップで京都の中心部の住所が町名だけで表示され、通り名が省かれていることは、2022年に報道もされました。住所を機械で扱うためのオープンソースのライブラリでも、京都の通り名は取り除いてから処理する作りになっています。</p>
+    <p>つまり機械の側では、<strong>通り名と「上ル・下ル」は、読み飛ばす部分</strong>として扱われています。</p>
+    <p class="big"><span class="nb">人は住所の前半で歩き、</span><span class="nb">機械は後半で探す。</span><br><span class="nb">1つの住所の中で、</span><span class="nb">読む場所が逆になっている。</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">抜け落ちるもの</p>
+    <h2><span class="nb">前半が落ちると、</span><span class="nb">3つのことが起きる。</span></h2>
+    <p class="lead sub">京都の住所を、通り名の決まりを知らない旅行者と地図アプリのあいだに置くと、次の3つが抜け落ちます。</p>
+    <div class="q">
+      <div class="qr">
+        <span class="n">01</span>
+        <div>
+          <h3>道順が消える</h3>
+          <p>地図アプリの画面に出るのは「上本能寺前町」のような町名です。一方で交差点の名前は、「四条烏丸」「河原町三条」のように、たいてい通り名の組み合わせでできています。歩きながら画面と街を照らし合わせる手がかりが、画面の側から消えます。</p>
+          <p class="no">画面の住所と、街で見える名前が一致しない → 頼れるのは地図のピンだけになる</p>
+        </div>
+      </div>
+      <div class="qr">
+        <span class="n">02</span>
+        <div>
+          <h3>同じ名前の町を取り違える</h3>
+          <p>町名と番地だけで検索すると、同じ区にある同じ名前の別の町が候補に出るおそれがあります。郵便番号は、同じ名前の町どうしでも別になっているので、区別の手がかりになります。</p>
+          <p class="no">住所を短くして入れるほど、取り違えやすくなる</p>
+        </div>
+      </div>
+      <div class="qr">
+        <span class="n">03</span>
+        <div>
+          <h3>意味が訳されない</h3>
+          <p>ローマ字にすると「Teramachi-dori Oike-agaru」。agaru は「上がる」という動詞で、北という意味は、京都の決まりを知らなければ出てきません。英語の住所欄に書き写しても、旅行者には読めない1行が増えるだけです。</p>
+          <p class="no">ローマ字にしても、道順としては伝わらない</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">店ができること</p>
+    <h2><span class="nb">住所を直すのではなく、</span><span class="nb">ピンを渡す。</span></h2>
+    <p class="lead sub">京都の住所は、通り名を知っている人への道案内としては完成しています。直すべきなのは住所ではなく、<strong>住所しか渡していないこと</strong>です。店の側でできることを、手間の少ない順に並べました。</p>
+
+    <div class="todo">
+      <div class="t">
+        <p class="n">01</p>
+        <h3><span class="nb">地図のピンを、</span><span class="nb">入口の前に合わせる</span></h3>
+        <p>Google ビジネスプロフィールでは、住所とは別に、地図の上のピンの位置を動かせます。ストリートビューで入口を見ながら、ピンを入口の前に合わせます。直しても元に戻ることがあるので、ときどき見直します。</p>
+      </div>
+      <div class="t">
+        <p class="n">02</p>
+        <h3><span class="nb">住所の文字と一緒に、</span><span class="nb">地図のリンクを渡す</span></h3>
+        <p>予約の確認メール、サイト、SNS のプロフィールに、地図アプリで開けるリンクを載せます。受け取った人は、住所を打ち込み直さずに済みます。打ち込まなければ、読み違えも起きません。</p>
+      </div>
+      <div class="t">
+        <p class="n">03</p>
+        <h3><span class="nb">上ル・下ルを、</span><span class="nb">北・南に開いて添える</span></h3>
+        <p>英語の案内には、道順を言葉で書きます。交差点の名前は信号のところの標識で確かめられるので、歩いている人の手がかりになります。タクシーには通り名の入った日本語の住所がそのまま通じるので、日本語の住所も1行残しておきます。</p>
+        <p class="ex">On Teramachi Street, just north of the Oike crossing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">確かめる</p>
+    <h2><span class="nb">自分の店の住所で、</span><span class="nb">5分で試せる。</span></h2>
+    <p class="lead sub">地図アプリの読み方は更新で変わるので、ここに結果を書いてもすぐ古くなります。代わりに、店の方が自分で確かめる手順を置いておきます。</p>
+    <ol class="check">
+      <li><div><b>通り名から番地まで、住所を全部入れて検索する</b><span>ピンが店の入口の前に立つか。</span></div></li>
+      <li><div><b>町名と番地だけで検索する</b><span>同じ名前の別の町に飛ばないか。郵便番号を足すと結果が変わるか。</span></div></li>
+      <li><div><b>サイトや予約ページの英語の住所を、そのまま貼って検索する</b><span>店にたどり着くか。</span></div></li>
+      <li><div><b>スマホの言語を英語にして、店の名前で検索する</b><span>英語の画面でも、同じ場所にピンが立つか。</span></div></li>
+    </ol>
+    <p class="more">どれかでずれたら、上の3つのどこから手をつければいいかが分かります。ご相談は<a href="../../#contact">お問い合わせ</a>からどうぞ。</p>
+
+    <div class="note">
+      <b>この記事について</b>
+      <p>事実は2026年9月時点で確かめました。地図アプリの表示や検索の結果は、アプリの更新で変わります。ピンの動かし方は、各サービスのヘルプで最新の手順を確認してください。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>京都ラボ ／ 課題分析 2026.09.23<br>住所の例には、京都市役所が公開している所在地を使った。同じ名前の町と郵便番号は、日本郵便の郵便番号の一覧で確かめた。</p>
+  </div>
+</footer>
+
+
+</body>
+</html>
