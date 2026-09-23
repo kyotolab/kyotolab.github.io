@@ -5,3 +5,8 @@ __pycache__/
 .DS_Store
 venv/
 .claude/settings.local.json
+
+# server/ (Cloudflare Workers)
+node_modules/
+server/.wrangler/
+server/.dev.vars

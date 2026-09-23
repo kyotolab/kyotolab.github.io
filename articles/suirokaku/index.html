@@ -105,8 +105,9 @@
   .lvl{display:flex; align-items:center; gap:12px; margin-top:2.6em; margin-bottom:1.1em}
   .lvl::before{content:""; width:9px; height:9px; flex:none; border:1.5px solid var(--water);
                border-radius:50%; background:transparent}
-  .lvl h2{font-size:clamp(18px,2.6vw,22px); flex:none}
-  .lvl::after{content:""; flex:1; height:1px;
+  .lvl h2{font-size:clamp(18px,2.6vw,22px); flex:0 1 auto; min-width:0}
+  .lvl h2 .nb{display:inline-block}
+  .lvl::after{content:""; flex:1; min-width:24px; height:1px;
               background:repeating-linear-gradient(90deg,var(--rule) 0 5px,transparent 5px 10px)}
 
   /* ── 写真プレート ───────────────────────── */
@@ -209,7 +210,7 @@
 
     <p>ここまでは、京都の大きな禅寺の、ごく順当な歴史です。おかしくなるのは、この先です。</p>
 
-    <div class="lvl"><h2>そして、レンガが横切っている</h2></div>
+    <div class="lvl"><h2><span class="nb">そして、</span><span class="nb">レンガが横切っている</span></h2></div>
 
     <p>三門の脇を抜けて奥へ進むと、突然、赤レンガのアーチが視界を塞ぎます。高さおよそ13メートル、全長およそ93メートル。<strong>水路閣</strong>です。1888年（明治21年）に建てられました。</p>
 
@@ -219,7 +220,7 @@
 
   <div class="panel">
     <div class="col">
-      <div class="lvl"><h2>これは景観ではなく、装置だった</h2></div>
+      <div class="lvl"><h2><span class="nb">これは景観ではなく、</span><span class="nb">装置だった</span></h2></div>
       <span class="yr">1885 — 1891</span>
       <p>前の記事に書いたとおり、明治のはじめに都の機能が東京へ移り、京都は沈みます。その京都が打った、もう一つの大きな手が<strong>琵琶湖疏水</strong>でした。</p>
       <p>琵琶湖から山を貫いて京都へ水を引く。当時の日本にとって桁外れの土木工事で、設計と現場を率いたのが<strong>田辺朔郎</strong>という若い技術者です。第一疏水は1890年に完成しました。水路閣は、その分線を南禅寺の境内越しに通すために架けられた水道橋です。</p>
@@ -229,7 +230,7 @@
   </div>
 
   <div class="col">
-    <div class="lvl"><h2>130年かけて、風景になった</h2></div>
+    <div class="lvl"><h2><span class="nb">130年かけて、</span><span class="nb">風景になった</span></h2></div>
 
     <p>当時、寺の境内にレンガの構造物を通すことにどれだけの議論があったのか、私は資料で確かめていません。ただ、想像はできます。700年続いた場所に、見たこともない西洋の建造物を突っ込むのです。歓迎一色だったはずがない。</p>
 
