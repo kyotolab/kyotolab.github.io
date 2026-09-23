@@ -48,7 +48,12 @@ def target_exists(page, href):
     return target.exists()
 
 
-pages = sorted(p for p in ROOT.rglob("*.html") if ".git" not in p.parts and ".claude" not in p.parts)
+# server/ は Cloudflare で配信するお品書きのアプリで、このサイトのページではない
+SKIP = {".git", ".claude", "node_modules"}
+pages = sorted(
+    p for p in ROOT.rglob("*.html")
+    if not SKIP.intersection(p.parts) and p.relative_to(ROOT).parts[0] != "server"
+)
 for page in pages:
     rel = page.relative_to(ROOT).as_posix()
     html = page.read_text(encoding="utf-8")
