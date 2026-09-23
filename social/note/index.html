@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>note に貼る — 京都ラボ</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="京都ラボの記事を note に貼るための、コピー用のページ。">
+<link rel="canonical" href="https://kyotolab.github.io/social/note/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="note に貼る — 京都ラボ">
+<meta property="og:description" content="京都ラボの記事を note に貼るための、コピー用のページ。">
+<meta property="og:url" content="https://kyotolab.github.io/social/note/">
+<meta property="og:site_name" content="京都ラボ">
+<meta property="og:image" content="https://kyotolab.github.io/assets/gion-street.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1066">
+
+<style>
+  img{max-width:100%}
+  [hidden]:not([hidden="until-found"]){display:none!important}
+</style>
+</head>
+<body>
+<style>
+  :root{
+    color-scheme:light;
+    --bg:#FFFFFF; --bg2:#F5F5F7; --fg:#1D1D1F; --fg2:#6E6E73; --fg3:#86868B;
+    --line:rgba(0,0,0,.12); --line2:rgba(0,0,0,.08);
+    --accent:#0066CC; --accent-soft:#EAF2FD; --accent-brd:#B9D6F5;
+    --label:#A33A2C;
+    --on-accent:#FFFFFF;
+    --ok:#1F6B43; --ok-soft:#EAF5EF;
+    --stop:#8E2F22; --stop-soft:#FBEEEC;
+    --sys:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --gut:clamp(16px,5vw,44px);
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--fg); font-family:var(--sys); font-size:16px; line-height:1.62;
+    -webkit-font-smoothing:antialiased; overflow-wrap:anywhere}
+  main{max-width:720px; margin:0 auto; padding:clamp(28px,6vw,56px) var(--gut) 72px}
+  .label{display:block; color:var(--label); font-size:12px; font-weight:600; letter-spacing:.08em}
+  h1{margin:6px 0 0; font-size:clamp(24px,5vw,30px); line-height:1.3; font-feature-settings:"palt"}
+  .lead{margin:10px 0 0; color:var(--fg2); font-size:14px}
+  section{margin-top:28px; padding-top:20px; border-top:1px solid var(--line2)}
+  .row{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px 16px}
+  .value{margin:6px 0 0; font-size:18px; font-weight:600; line-height:1.45; font-feature-settings:"palt"}
+  button,.btn{appearance:none; display:inline-flex; align-items:center; justify-content:center; min-height:44px;
+    padding:0 18px; border:1px solid var(--accent); border-radius:999px; background:var(--accent); color:var(--on-accent);
+    font:inherit; font-size:15px; font-weight:600; text-decoration:none; cursor:pointer}
+  button.sub,.btn.sub{background:var(--bg); color:var(--accent); border-color:var(--accent-brd)}
+  button.done{background:var(--ok); border-color:var(--ok); color:var(--on-accent)}
+  button.fail{background:var(--stop); border-color:var(--stop); color:var(--on-accent)}
+  a{color:var(--accent)}
+  ol.steps{margin:14px 0 0; padding-left:1.4em; color:var(--fg2); font-size:14px}
+  ol.steps li+li{margin-top:4px}
+  .preview{margin-top:14px; padding:4px 18px 8px; border:1px solid var(--line); border-radius:12px; background:var(--bg2)}
+  .preview h2{margin:22px 0 6px; font-size:20px; line-height:1.4; font-feature-settings:"palt"}
+  .preview h3{margin:18px 0 4px; font-size:17px; line-height:1.45; font-feature-settings:"palt"}
+  .preview p,.preview ul,.preview blockquote{margin:12px 0}
+  .preview blockquote{padding-left:12px; border-left:3px solid var(--line); color:var(--fg2)}
+  .cover{display:block; margin-top:12px; border-radius:10px; border:1px solid var(--line2)}
+  .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+  .tags button{min-height:36px; padding:0 14px; font-size:14px}
+  .hint{margin:8px 0 0; color:var(--fg3); font-size:13px}
+  ul.list{margin:14px 0 0; padding:0; list-style:none}
+  ul.list li{border-bottom:1px solid var(--line2)}
+  ul.list a{display:block; padding:14px 0; font-weight:600; text-decoration:none}
+  ul.list small{display:block; color:var(--fg3); font-weight:400}
+  .error{margin-top:20px; padding:14px 16px; border-radius:12px; background:var(--stop-soft); color:var(--stop)}
+</style>
+
+<main>
+  <span class="label">京都ラボ · note</span>
+  <h1 id="heading">note に貼る</h1>
+  <p class="lead" id="lead">サイトの記事を note に載せるためのページ。ボタンでコピーして、note のエディタに貼る。</p>
+
+  <div id="list" hidden>
+    <section>
+      <span class="label">記事を選ぶ</span>
+      <ul class="list" id="items"></ul>
+      <p class="hint" id="empty" hidden>まだ記事がない。</p>
+    </section>
+  </div>
+
+  <div id="item" hidden>
+    <section>
+      <div class="row">
+        <span class="label">手順</span>
+        <a class="btn sub" href="https://note.com/" target="_blank" rel="noopener">note を開く</a>
+      </div>
+      <ol class="steps">
+        <li>note で「投稿」→「テキスト」を開く。</li>
+        <li>下の「タイトルをコピー」を押して、タイトルの欄に貼る。</li>
+        <li>「本文をコピー」を押して、本文の欄に貼る。見出しが普通の文字になったら、その行を選んで見出しにする。</li>
+        <li>見出し画像とタグを入れて、公開する。</li>
+      </ol>
+    </section>
+
+    <section>
+      <div class="row">
+        <span class="label">タイトル</span>
+        <button type="button" id="copy-title">タイトルをコピー</button>
+      </div>
+      <p class="value" id="title"></p>
+    </section>
+
+    <section>
+      <div class="row">
+        <span class="label">本文</span>
+        <button type="button" id="copy-body">本文をコピー</button>
+      </div>
+      <div class="preview" id="body"></div>
+    </section>
+
+    <section id="cover-box" hidden>
+      <div class="row">
+        <span class="label">見出し画像</span>
+        <a class="btn sub" id="cover-link" target="_blank" rel="noopener">画像を開く</a>
+      </div>
+      <img class="cover" id="cover" alt="">
+      <p class="hint">スマホは画像を長押しして保存し、note の見出し画像に選ぶ。</p>
+    </section>
+
+    <section id="tags-box" hidden>
+      <span class="label">タグ</span>
+      <div class="tags" id="tags"></div>
+      <p class="hint">押すと1つずつコピーできる。</p>
+    </section>
+
+    <section>
+      <a href="./">記事の一覧に戻る</a>
+    </section>
+  </div>
+
+  <p class="error" id="error" hidden></p>
+</main>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const SLUG = /^[a-z0-9][a-z0-9-]*$/;
+  const IMAGE = /^[\w@/-]+\.jpe?g$/;
+  const LIST_API = "https://api.github.com/repos/kyotolab/kyotolab.github.io/contents/social/note";
+
+  // social/note/<slug>.txt を読む。先頭に「項目: 値」の行、空行のあとに本文
+  function parse(text) {
+    const src = text.replace(/\r\n?/g, "\n");
+    const cut = src.indexOf("\n\n");
+    if (cut < 0) throw new Error("title: の行のあとに空行がない");
+    const fields = {};
+    for (const line of src.slice(0, cut).split("\n")) {
+      const i = line.indexOf(":");
+      if (i < 0) throw new Error("読めない行: " + line);
+      fields[line.slice(0, i).trim()] = line.slice(i + 1).trim();
+    }
+    if (!fields.title) throw new Error("title: がない");
+    return {
+      title: fields.title,
+      image: fields.image || "",
+      tags: (fields.tags || "").split(/[,、]/).map((t) => t.trim().replace(/^#/, "")).filter(Boolean),
+      body: src.slice(cut + 2).trim(),
+    };
+  }
+
+  function escape(s) {
+    return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  }
+
+  // URL はリンクに、**…** は太字にする
+  function inline(s) {
+    return s.split(/(https?:\/\/[^\s<>"'。、）」]+)/).map((part, i) => {
+      if (i % 2) return `<a href='${escape(part)}'>${escape(part)}</a>`;
+      return escape(part).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+    }).join("");
+  }
+
+  // 本文の書き方: 空行で段落を分ける。「## 」は大見出し、「### 」は小見出し、「- 」は箇条書き、「> 」は引用
+  function toHtml(body) {
+    return body.split(/\n{2,}/).map((block) => {
+      const lines = block.split("\n");
+      if (block.startsWith("### ")) return "<h3>" + inline(block.slice(4)) + "</h3>";
+      if (block.startsWith("## ")) return "<h2>" + inline(block.slice(3)) + "</h2>";
+      if (lines.every((l) => l.startsWith("- "))) return "<ul>" + lines.map((l) => "<li>" + inline(l.slice(2)) + "</li>").join("") + "</ul>";
+      if (lines.every((l) => l.startsWith(">"))) return "<blockquote>" + lines.map((l) => inline(l.replace(/^> ?/, ""))).join("<br>") + "</blockquote>";
+      return "<p>" + lines.map(inline).join("<br>") + "</p>";
+    }).join("\n");
+  }
+
+  function toPlain(body) {
+    return body.split(/\n{2,}/).map((block) => block
+      .replace(/^#{2,3} /, "")
+      .replace(/^- /gm, "・")
+      .replace(/^> ?/gm, "")
+      .replace(/\*\*(.+?)\*\*/g, "$1")).join("\n\n");
+  }
+
+  function flash(button, text, cls) {
+    const label = button.dataset.label || (button.dataset.label = button.textContent);
+    button.textContent = text;
+    button.classList.add(cls);
+    clearTimeout(button._timer);
+    button._timer = setTimeout(() => {
+      button.textContent = label;
+      button.classList.remove(cls);
+    }, 2000);
+  }
+
+  function copyWithTextarea(text) {
+    const area = document.createElement("textarea");
+    area.value = text;
+    area.setAttribute("readonly", "");
+    area.style.position = "fixed";
+    area.style.opacity = "0";
+    document.body.appendChild(area);
+    area.select();
+    let ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+    area.remove();
+    return ok;
+  }
+
+  // 本文は見出しを残すため HTML でもコピーする。貼る側が HTML を受け付けなければ、ふつうの文字で入る
+  async function copy(button, plain, html) {
+    try {
+      if (html && window.ClipboardItem && navigator.clipboard && navigator.clipboard.write) {
+        await navigator.clipboard.write([new ClipboardItem({
+          "text/html": new Blob([html], { type: "text/html" }),
+          "text/plain": new Blob([plain], { type: "text/plain" }),
+        })]);
+      } else {
+        await navigator.clipboard.writeText(plain);
+      }
+      flash(button, "コピーした", "done");
+    } catch (e) {
+      if (copyWithTextarea(plain)) flash(button, "コピーした", "done");
+      else flash(button, "コピーできなかった", "fail");
+    }
+  }
+
+  function fail(message) {
+    $("error").textContent = message;
+    $("error").hidden = false;
+  }
+
+  async function fetchNote(slug) {
+    const res = await fetch(slug + ".txt", { cache: "no-cache" });
+    if (!res.ok) throw new Error(`「${slug}」の本文が見つからない（${res.status}）`);
+    return parse(await res.text());
+  }
+
+  async function showItem(slug) {
+    const note = await fetchNote(slug);
+    document.title = note.title + " — note に貼る";
+    $("heading").textContent = note.title;
+    $("lead").hidden = true;
+    $("title").textContent = note.title;
+    $("body").innerHTML = toHtml(note.body);
+    $("copy-title").addEventListener("click", (e) => copy(e.currentTarget, note.title));
+    $("copy-body").addEventListener("click", (e) => copy(e.currentTarget, toPlain(note.body), toHtml(note.body)));
+
+    if (note.image && IMAGE.test(note.image) && !note.image.includes("..")) {
+      const url = "../../" + note.image;
+      $("cover").src = url;
+      $("cover-link").href = url;
+      $("cover-box").hidden = false;
+    }
+    if (note.tags.length) {
+      for (const tag of note.tags) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "sub";
+        button.textContent = "#" + tag;
+        button.addEventListener("click", () => copy(button, tag));
+        $("tags").appendChild(button);
+      }
+      $("tags-box").hidden = false;
+    }
+    $("item").hidden = false;
+  }
+
+  async function showList() {
+    $("list").hidden = false;
+    const res = await fetch(LIST_API, { headers: { Accept: "application/vnd.github+json" } });
+    if (!res.ok) throw new Error(`記事の一覧を読めなかった（${res.status}）。記事ごとの URL（?a=記事名）で開く`);
+    const slugs = (await res.json())
+      .filter((f) => f.type === "file" && f.name.endsWith(".txt"))
+      .map((f) => f.name.slice(0, -4))
+      .filter((s) => SLUG.test(s));
+    $("empty").hidden = slugs.length > 0;
+    for (const slug of slugs) {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = "?a=" + slug;
+      a.textContent = slug;
+      li.appendChild(a);
+      $("items").appendChild(li);
+      fetchNote(slug).then((note) => {
+        a.textContent = note.title;
+        const small = document.createElement("small");
+        small.textContent = slug;
+        a.appendChild(small);
+      }).catch(() => {});
+    }
+  }
+
+  const slug = new URLSearchParams(location.search).get("a") || null;
+  if (slug !== null && !SLUG.test(slug)) {
+    fail("記事名が正しくない: " + slug);
+  } else {
+    (slug ? showItem(slug) : showList()).catch((e) => fail(e.message));
+  }
+})();
+</script>
+</body>
+</html>
