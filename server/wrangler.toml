@@ -1,0 +1,15 @@
+name = "kyotolab-menu"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+
+[assets]
+directory = "public"
+binding = "ASSETS"
+html_handling = "none"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "kyotolab-menu"
+# `wrangler d1 create kyotolab-menu` が出す database_id に置き換える
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
