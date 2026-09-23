@@ -76,6 +76,8 @@
   .point .k{font-family:var(--serif); font-size:15.5px; color:var(--accent-ink); font-weight:600}
   .point h3{font-size:15.5px; margin-bottom:5px}
   .point p{font-size:13.5px; color:var(--ink-soft); max-width:52ch}
+  .guidelink{margin-top:18px; font-size:14px}
+  .guidelink a{color:var(--accent-ink); text-decoration:underline; text-underline-offset:3px}
   .rail .callout{margin-top:24px; border-left:2px solid var(--ochre); background:var(--ochre-soft); padding:14px 18px; border-radius:0 3px 3px 0}
   .rail .callout .tag{display:block; color:var(--ochre); margin-bottom:6px}
   .rail .callout p{font-size:13px; color:var(--ink-soft); max-width:50ch}
@@ -178,7 +180,16 @@
   .qty button{width:40px; height:40px; border:1px solid var(--rule); border-radius:99px; font-size:19px; color:var(--accent-ink); line-height:1}
   .qty .n{font-family:var(--mono); font-size:26px; font-variant-numeric:tabular-nums; min-width:44px; text-align:center}
   .qty .u{font-family:var(--serif); font-size:17px; color:var(--muted)}
-  .order-note{margin-top:auto; padding-top:22px; text-align:center; font-size:12px; color:var(--muted)}
+  .bill{margin:auto 0 0; padding-top:18px; border-top:1px dashed var(--rule); display:grid; gap:5px}
+  .bill div{display:flex; justify-content:space-between; align-items:baseline; gap:12px}
+  .bill dt{font-size:12.5px; color:var(--ink-soft)}
+  .bill dd{margin:0; font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+  .bill .sum{margin-top:4px; padding-top:8px; border-top:1px solid var(--rule-soft)}
+  .bill .sum dt{font-size:14px; font-weight:700; color:var(--ink)}
+  .bill .sum dd{font-size:18px; font-weight:700}
+  .staffnote{margin-top:14px; padding:9px 12px; border:1px solid var(--rule); border-radius:3px; background:var(--paper); font-size:12.5px; line-height:1.6; text-align:center}
+  .order-note{margin-top:14px; text-align:center; font-size:12px; color:var(--muted)}
+  .feebar{margin-top:10px; padding:7px 10px; border:1px solid var(--rule); border-radius:3px; background:var(--paper); font-size:11.5px; line-height:1.55; color:var(--ink-soft)}
 
   footer{border-top:1px solid var(--rule); margin-top:56px; padding-top:22px}
   footer .stage-in{max-width:1160px; margin:0 auto; padding-inline:clamp(20px,4vw,48px); display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap}
@@ -199,13 +210,17 @@
 
   <div class="layout">
     <div class="rail">
-      <h2>店舗の方に、この5つを見せてください</h2>
+      <h2>店舗の方に、この6つを見せてください</h2>
       <p class="sub">機能の説明ではなく、いま店で起きている手間がどう消えるかの話をします。</p>
 
       <div class="points">
         <div class="point">
           <div class="k">導入</div>
           <div><h3>紙のQRを1枚置くだけ</h3><p>お客さま側のインストールも会員登録もありません。カメラを向ければその人の言語で開きます。</p></div>
+        </div>
+        <div class="point">
+          <div class="k">費用</div>
+          <div><h3>店の持ち出しは0円</h3><p>多言語メニューから注文したお客さまに、サービス料10%をいただきます。注文の前に、その人の言語で表示します。お会計で一緒に受け取り、月末にその分を京都ラボへお支払いいただきます。日本語メニューのお客さまは今までどおりです。</p></div>
         </div>
         <div class="point">
           <div class="k">管理</div>
@@ -221,12 +236,14 @@
         </div>
         <div class="point">
           <div class="k">品切れ</div>
-          <div><h3>タップ1回で全言語から消える</h3><p>下の切り替えで店舗モードにすると、品切れの操作を試せます。お客さま画面にすぐ反映されます。</p></div>
+          <div><h3>タップ1回で全言語から消える</h3><p>下の切り替えで店舗モードにすると、品切れの操作を試せます。この試作では同じ画面の中だけの反映で、お客さまのスマホにその場で出す仕組みはこれから作ります。</p></div>
         </div>
       </div>
 
+      <p class="guidelink"><a href="shops/">店舗向けのご案内（印刷用） ›</a></p>
+
       <div class="modeswitch">
-        <span class="lbl">画面を切り替えて、両側の見え方を確認できます。</span>
+        <span class="lbl">画面を切り替えて、両側の見え方を確認できます。言語を English などにすると、サービス料の表示が出ます。</span>
         <div class="segbtn" role="group" aria-label="表示モード">
           <button id="m-guest" aria-pressed="true">お客さま</button>
           <button id="m-store" aria-pressed="false">店舗</button>
@@ -316,6 +333,7 @@
         show:"店員に見せる", showOut:"品切れです",
         lead:"この画面を店員に見せてください。",
         note:"金額は税込です。写真はイメージではなく線画です。",
+        sub:"小計", total:"合計",
         storeTitle:"店舗モード", storeLead:"タップして品切れを切り替えます。お客さまの画面にすぐ反映されます。",
         emptyT:"条件に合う料理がありません", emptyB:"だしに鰹が使われている料理が多いためです。絞り込みを外すか、別の条件をお試しください。",
         avail:"提供中", unavail:"品切れ"},
@@ -328,7 +346,9 @@
         alcOk:"No alcohol", alcNo:"Contains mirin / sake",
         show:"Show this to the staff", showOut:"Sold out",
         lead:"Please show this screen to the staff.",
-        note:"Prices include tax. Illustrations, not photographs.",
+        note:"All amounts include tax. The service charge is paid together with your bill. Illustrations, not photographs.",
+        feeBar:"Ordering from this translated menu adds a 10% service charge.",
+        sub:"Subtotal", fee:"Service charge (10%)", total:"Total",
         storeTitle:"Staff mode", storeLead:"Tap to toggle sold out. Guests see it immediately.",
         emptyT:"No dishes match", emptyB:"Many dishes use bonito dashi. Try removing a filter.",
         avail:"Available", unavail:"Sold out"},
@@ -341,7 +361,9 @@
         alcOk:"不含酒精", alcNo:"含味醂・清酒",
         show:"出示給店員看", showOut:"已售完",
         lead:"請將此畫面出示給店員。",
-        note:"價格含稅。圖為線描插畫，非照片。",
+        note:"金額均含稅。服務費請與餐費一併結帳。圖為線描插畫，非照片。",
+        feeBar:"使用本翻譯菜單點餐，將另收10%服務費。",
+        sub:"小計", fee:"服務費（10%）", total:"合計",
         storeTitle:"店家模式", storeLead:"點一下即可切換售完狀態，顧客畫面會立即更新。",
         emptyT:"沒有符合條件的餐點", emptyB:"多數餐點使用柴魚高湯。請試著取消部分篩選條件。",
         avail:"供應中", unavail:"售完"},
@@ -354,7 +376,9 @@
         alcOk:"알코올 미사용", alcNo:"미림·청주 포함",
         show:"직원에게 보여주기", showOut:"품절입니다",
         lead:"이 화면을 직원에게 보여주세요.",
-        note:"가격은 세금 포함입니다. 사진이 아닌 선화입니다.",
+        note:"모든 금액은 세금 포함입니다. 서비스 요금은 식대와 함께 계산됩니다. 사진이 아닌 선화입니다.",
+        feeBar:"이 번역 메뉴로 주문하시면 10%의 서비스 요금이 추가됩니다.",
+        sub:"소계", fee:"서비스 요금(10%)", total:"합계",
         storeTitle:"매장 모드", storeLead:"탭하여 품절을 전환합니다. 손님 화면에 바로 반영됩니다.",
         emptyT:"조건에 맞는 메뉴가 없습니다", emptyB:"가쓰오 다시를 쓰는 메뉴가 많습니다. 필터를 해제해 보세요.",
         avail:"제공 중", unavail:"품절"}
@@ -438,6 +462,7 @@
       '<div class="shopname"><h2>'+esc(t("shop"))+'</h2><span class="qr">'+esc(t("scanned"))+'</span></div>' +
       '<div class="langrow">'+langs+'</div>' +
       '<div class="filterrow"><span class="flabel">'+esc(t("filter"))+'</span>'+fils+'</div>' +
+      (state.mode==="guest" && state.lang!=="ja" ? '<p class="feebar">'+esc(t("feeBar"))+'</p>' : '') +
     '</div>';
   }
 
@@ -528,6 +553,12 @@
   function renderOrder(){
     var d = state.current;
     if(!d) return;
+    var translated = state.lang!=="ja";
+    var sub = d.price*state.qty;
+    var fee = translated ? Math.floor(sub/10) : 0;
+    function row(label, amount, cls){
+      return '<div'+(cls?' class="'+cls+'"':'')+'><dt>'+esc(label)+'</dt><dd>'+esc(amount)+'</dd></div>';
+    }
     document.getElementById("order-kicker").textContent = t("order");
     document.getElementById("order-body").innerHTML =
       '<p class="order-lead">'+esc(t("lead"))+'</p>' +
@@ -541,7 +572,13 @@
           '<button data-qty="1" aria-label="plus">＋</button>' +
         '</div>' +
       '</div>' +
-      '<p class="order-note">'+esc(yen(d.price))+' × '+state.qty+' = '+esc(yen(d.price*state.qty))+'<br>'+esc(t("note"))+'</p>';
+      '<dl class="bill">' +
+        row(t("sub"), yen(d.price)+' × '+state.qty+' = '+yen(sub)) +
+        (translated ? row(t("fee"), yen(fee)) : '') +
+        row(t("total"), yen(sub+fee), "sum") +
+      '</dl>' +
+      (translated ? '<p class="staffnote">多言語メニューからのご注文です。お会計にサービス料10%を加えてください。</p>' : '') +
+      '<p class="order-note">'+esc(t("note"))+'</p>';
   }
 
   function openOrder(){
