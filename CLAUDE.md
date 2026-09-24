@@ -59,7 +59,7 @@
 
 ## SNS
 
-記事はこのサイトが原本で、SNS にはそこから広げる。手順は `/add-article` の「SNS に広げる」にある。
+新しい記事は note に先に出す（2026-09-25 に決めた）。サイトにすでにある記事は残し、note には転載する。note に先に出した記事をサイトにも載せるかは、記事ごとに決める。手順は `/add-article` の「SNS に広げる」にある。
 
 - Instagram: `social/instagram/` に投稿文を足した PR が `main` に入ると、GitHub Actions が投稿する。投稿は取り消せない。
   - GitHub の Secrets に `IG_ACCESS_TOKEN`（Instagram ログインの長期トークン）を入れる。トークンは60日で切れるので、`instagram-token.yml` が毎月1日と15日に期限を延ばす。
@@ -69,6 +69,8 @@
   - 60日のあいだコミットがないと、GitHub が定期実行を止める。止まったら Actions の画面で有効に戻す。
 - Medium: API は使えない（2025-01-01 から新しいトークンを発行していない）。サイトに出た記事の URL を https://medium.com/p/import に貼って取り込む。canonical はサイトに向く。
 - note: 公式の API がない。`social/note/<slug>.txt` の本文を手で貼る。非公式の API や自動操作は使わない。
+  - 朝7時ごろに出す。1日1本までにして、何本もまとめて出さない。書きためた記事は note の予約投稿を使う。
+  - シリーズはマガジンにまとめる（「秋の京都」「京都を通る水」など）。
 
 ## 作業の進め方
 
