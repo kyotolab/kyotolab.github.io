@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>金閣寺の攻略 ／ 京都ラボ</title>
+<meta name="description" content="金閣寺の見学は約20分の一方通行。朝一番に着くこと、金より先に1階を見ること。1955年の再建と、回り方。">
+<link rel="canonical" href="https://kyotolab.github.io/spots/kinkakuji/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="金閣寺の攻略 ／ 京都ラボ">
+<meta property="og:description" content="金閣寺の見学は約20分の一方通行。朝一番に着くこと、金より先に1階を見ること。1955年の再建と、回り方。">
+<meta property="og:url" content="https://kyotolab.github.io/spots/kinkakuji/">
+<meta property="og:site_name" content="京都ラボ">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://kyotolab.github.io/assets/kinkakuji.jpg">
+<meta property="og:image:width" content="700">
+<meta property="og:image:height" content="525">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#FFFFFF; --bg2:#F5F5F7; --fg:#1D1D1F; --fg2:#6E6E73; --fg3:#86868B;
+    --line:rgba(0,0,0,.12); --line2:rgba(0,0,0,.08);
+    --accent:#0066CC; --accent-soft:#EAF2FD; --accent-brd:#B9D6F5;
+    --gold:#A33A2C;
+    --tile:#1D1D1F; --tile-fg:#F5F5F7; --tile-fg2:#98989D; --tile-accent:#5AC8FA;
+    --sys:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --gut:clamp(20px,5vw,40px);
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--fg); font-family:var(--sys);
+       font-size:17px; line-height:1.75; -webkit-font-smoothing:antialiased}
+  h1,h2{margin:0; font-weight:700; line-height:1.25; font-feature-settings:"palt" 1; text-wrap:balance}
+  p{margin:0}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  img{max-width:100%}
+  .wrap{max-width:720px; margin:0 auto; padding-inline:var(--gut)}
+
+  .nav{position:sticky; top:0; z-index:10; height:48px; background:rgba(255,255,255,.88);
+       backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
+       border-bottom:1px solid var(--line2)}
+  .nav .wrap{max-width:1040px; height:100%; display:flex; align-items:center; justify-content:space-between; gap:16px}
+  .brand{display:inline-flex; align-items:center; gap:9px; color:var(--fg); white-space:nowrap}
+  .brand:hover{text-decoration:none; color:var(--accent)}
+  .brand .mk{width:25px; height:25px; display:grid; place-content:center; border:1px solid currentColor;
+             border-radius:2px; font-size:14px; line-height:1; padding-top:1px}
+  .brand .nm{font-size:18px; font-weight:700; letter-spacing:.06em}
+  .nav .back{font-size:13px; white-space:nowrap}
+
+  .head{padding-block:clamp(40px,7vw,72px) 0}
+  .eyebrow{font-size:11px; font-weight:650; color:var(--gold); letter-spacing:.12em; margin-bottom:14px}
+  .head h1{font-size:clamp(32px,7vw,52px)}
+  .ro{display:block; margin-top:8px; font-family:var(--mono); font-size:11px; letter-spacing:.14em; color:var(--fg3)}
+  .lead{margin-top:20px; font-size:clamp(18px,2.4vw,21px); line-height:1.6; color:var(--fg2)}
+
+  .art{margin:clamp(28px,5vw,44px) 0 0; border-radius:20px; overflow:hidden; background:var(--tile)}
+  .art img{display:block; width:100%; height:auto; aspect-ratio:4/3; object-fit:cover}
+  .best{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; padding:18px 22px 20px;
+        background:var(--tile); color:var(--tile-fg2); font-size:13px}
+  .best b{color:var(--tile-accent); font-size:22px; font-weight:600; white-space:nowrap}
+
+  section.part{padding-top:clamp(36px,6vw,52px)}
+  section.part h2{font-size:clamp(22px,4vw,28px); padding-top:16px; border-top:1px solid var(--line)}
+  section.part p{margin-top:16px; color:var(--fg)}
+  section.part p strong{font-weight:600}
+
+  .facts{margin:clamp(32px,5vw,44px) 0 0; border-top:1px solid var(--line)}
+  .facts div{display:grid; grid-template-columns:120px minmax(0,1fr); gap:16px; padding:12px 0;
+             border-bottom:1px solid var(--line2); font-size:15px}
+  .facts dt{color:var(--fg3)}
+  .facts dd{margin:0}
+
+  .more{margin-top:clamp(32px,5vw,44px); display:grid; gap:4px}
+  .more a{display:inline-flex; align-items:center; gap:5px; min-height:40px; font-size:16px}
+
+  .note{margin-top:clamp(28px,4vw,36px); padding:16px 18px; border-radius:14px; background:var(--bg2);
+        font-size:13px; line-height:1.7; color:var(--fg2)}
+
+  .others{margin-top:clamp(48px,7vw,72px); padding-block:28px 8px; border-top:1px solid var(--line)}
+  .others p{font-size:11px; font-weight:650; color:var(--gold); letter-spacing:.12em}
+  .others ul{margin:14px 0 0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px 16px}
+  .others li a{display:block; padding:8px 0; font-size:15px}
+  .others li span{display:block; padding:8px 0; font-size:15px; color:var(--fg3)}
+
+  footer{margin-top:clamp(40px,6vw,64px); background:var(--bg2); border-top:1px solid var(--line2);
+         padding-block:28px 36px; font-size:12px; color:var(--fg3)}
+  footer .wrap{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="../../" aria-label="京都ラボ ホーム"><span class="mk" aria-hidden="true">京</span><span class="nm">京都ラボ</span></a>
+    <a class="back" href="../../#spots">‹ 名所攻略の一覧へ</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="head">
+    <p class="eyebrow">名所攻略 05</p>
+    <h1>金閣寺</h1><span class="ro">KINKAKU-JI</span>
+    <p class="lead">見学は約20分。金より先に、足元の1階を見てください。</p>
+    <figure class="art">
+      <img src="../../assets/kinkakuji.jpg" width="700" height="525" decoding="async" alt="金閣寺。池の向こうに建つ金色の楼閣。最下層だけ金が貼られていない">
+      <figcaption class="best"><b>朝一番</b><span>11時ごろ、団体バスが重なる</span></figcaption>
+    </figure>
+  </header>
+
+  <section class="part">
+    <h2>いつ行くか</h2>
+    <p>見学は約20分の一方通行で、建物の中には入れません。朝一番に着かないと、11時ごろには団体バスが重なって、柵の前が列になります。</p>
+    <p>見学の時間が短いので、一日の中心にする場所ではありません。<strong>最初に寄る場所として組んでください。</strong></p>
+  </section>
+
+  <section class="part">
+    <h2>見るところ</h2>
+    <p>金より先に、足元の1階を見てください。<strong>1階には金が貼られていません。</strong>白木と白壁のままです。</p>
+    <p>3つの階は、それぞれ別の建築様式で建てられています。1階は公家の寝殿造、2階は武家造、3階は禅宗様。金が貼られているのは2階と3階です。1397年に足利義満が別荘として建て、義満の死後に寺になりました。</p>
+  </section>
+
+  <section class="part">
+    <h2>知っておくこと</h2>
+    <p>いま見ている金閣は、1955年に建て直されたものです。1950年7月2日に放火で焼け落ち、5年後に元の姿で再建されました。1987年の修復では、元の建物より厚い金箔が貼られています。</p>
+    <p>正式な名前は鹿苑寺です。「金閣寺」は通称ですが、案内板もバスの行き先も、この名前で書かれています。</p>
+  </section>
+
+  <section class="part">
+    <h2>回り方</h2>
+    <p>近くに鉄道の駅はなく、市バスで行くのが普通です。金閣寺へのバスは、京都でもとくに混む路線です。</p>
+    <p>龍安寺と仁和寺が同じ道沿いの南西にあり、半日でまとまります。銀閣寺と同じ日に組むと、市内を端から端まで横切ることになります。</p>
+  </section>
+
+  <div class="more">
+    <a href="../../articles/kinkakuji/">英語の解説を読む（English） <i aria-hidden="true">›</i></a>
+  </div>
+
+  <p class="note">画像は、写真ではなくオリジナルのイラストです。営業時間、料金、規則は変わるため、行く前に公式情報をご確認ください。</p>
+
+  <nav class="others" aria-label="ほかの名所">
+    <p>ほかの名所</p>
+    <ul>
+      <li><a href="../chikurin/">嵐山・竹林の道</a></li>
+      <li><a href="../kiyomizu/">清水寺</a></li>
+      <li><a href="../fushimi-inari/">伏見稲荷大社</a></li>
+      <li><a href="../togetsukyo/">渡月橋</a></li>
+      <li><span aria-current="page">金閣寺</span></li>
+      <li><a href="../ginkakuji/">銀閣寺</a></li>
+      <li><a href="../gion/">祇園</a></li>
+      <li><a href="../nishiki/">錦市場</a></li>
+    </ul>
+  </nav>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>京都ラボ ／ 京都市</span>
+    <a href="../../">京都ラボ トップへ戻る</a>
+  </div>
+</footer>
+
+</body>
+</html>
