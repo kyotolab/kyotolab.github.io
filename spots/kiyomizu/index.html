@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>清水寺の攻略 ／ 京都ラボ</title>
+<meta name="description" content="清水寺は年間を通して朝6時に開きます。京都の主要な寺でここだけ。行く時刻と、帰り道の坂の歩き方。">
+<link rel="canonical" href="https://kyotolab.github.io/spots/kiyomizu/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="清水寺の攻略 ／ 京都ラボ">
+<meta property="og:description" content="清水寺は年間を通して朝6時に開きます。京都の主要な寺でここだけ。行く時刻と、帰り道の坂の歩き方。">
+<meta property="og:url" content="https://kyotolab.github.io/spots/kiyomizu/">
+<meta property="og:site_name" content="京都ラボ">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://kyotolab.github.io/assets/kiyomizu.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="896">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#FFFFFF; --bg2:#F5F5F7; --fg:#1D1D1F; --fg2:#6E6E73; --fg3:#86868B;
+    --line:rgba(0,0,0,.12); --line2:rgba(0,0,0,.08);
+    --accent:#0066CC; --accent-soft:#EAF2FD; --accent-brd:#B9D6F5;
+    --gold:#A33A2C;
+    --tile:#1D1D1F; --tile-fg:#F5F5F7; --tile-fg2:#98989D; --tile-accent:#5AC8FA;
+    --sys:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --gut:clamp(20px,5vw,40px);
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--fg); font-family:var(--sys);
+       font-size:17px; line-height:1.75; -webkit-font-smoothing:antialiased}
+  h1,h2{margin:0; font-weight:700; line-height:1.25; font-feature-settings:"palt" 1; text-wrap:balance}
+  p{margin:0}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  img{max-width:100%}
+  .wrap{max-width:720px; margin:0 auto; padding-inline:var(--gut)}
+
+  .nav{position:sticky; top:0; z-index:10; height:48px; background:rgba(255,255,255,.88);
+       backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
+       border-bottom:1px solid var(--line2)}
+  .nav .wrap{max-width:1040px; height:100%; display:flex; align-items:center; justify-content:space-between; gap:16px}
+  .brand{display:inline-flex; align-items:center; gap:9px; color:var(--fg); white-space:nowrap}
+  .brand:hover{text-decoration:none; color:var(--accent)}
+  .brand .mk{width:25px; height:25px; display:grid; place-content:center; border:1px solid currentColor;
+             border-radius:2px; font-size:14px; line-height:1; padding-top:1px}
+  .brand .nm{font-size:18px; font-weight:700; letter-spacing:.06em}
+  .nav .back{font-size:13px; white-space:nowrap}
+
+  .head{padding-block:clamp(40px,7vw,72px) 0}
+  .eyebrow{font-size:11px; font-weight:650; color:var(--gold); letter-spacing:.12em; margin-bottom:14px}
+  .head h1{font-size:clamp(32px,7vw,52px)}
+  .ro{display:block; margin-top:8px; font-family:var(--mono); font-size:11px; letter-spacing:.14em; color:var(--fg3)}
+  .lead{margin-top:20px; font-size:clamp(18px,2.4vw,21px); line-height:1.6; color:var(--fg2)}
+
+  .art{margin:clamp(28px,5vw,44px) 0 0; border-radius:20px; overflow:hidden; background:var(--tile)}
+  .art img{display:block; width:100%; height:auto; aspect-ratio:4/3; object-fit:cover}
+  .best{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; padding:18px 22px 20px;
+        background:var(--tile); color:var(--tile-fg2); font-size:13px}
+  .best b{color:var(--tile-accent); font-size:22px; font-weight:600; white-space:nowrap}
+
+  section.part{padding-top:clamp(36px,6vw,52px)}
+  section.part h2{font-size:clamp(22px,4vw,28px); padding-top:16px; border-top:1px solid var(--line)}
+  section.part p{margin-top:16px; color:var(--fg)}
+  section.part p strong{font-weight:600}
+
+  .facts{margin:clamp(32px,5vw,44px) 0 0; border-top:1px solid var(--line)}
+  .facts div{display:grid; grid-template-columns:120px minmax(0,1fr); gap:16px; padding:12px 0;
+             border-bottom:1px solid var(--line2); font-size:15px}
+  .facts dt{color:var(--fg3)}
+  .facts dd{margin:0}
+
+  .more{margin-top:clamp(32px,5vw,44px); display:grid; gap:4px}
+  .more a{display:inline-flex; align-items:center; gap:5px; min-height:40px; font-size:16px}
+
+  .note{margin-top:clamp(28px,4vw,36px); padding:16px 18px; border-radius:14px; background:var(--bg2);
+        font-size:13px; line-height:1.7; color:var(--fg2)}
+
+  .others{margin-top:clamp(48px,7vw,72px); padding-block:28px 8px; border-top:1px solid var(--line)}
+  .others p{font-size:11px; font-weight:650; color:var(--gold); letter-spacing:.12em}
+  .others ul{margin:14px 0 0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px 16px}
+  .others li a{display:block; padding:8px 0; font-size:15px}
+  .others li span{display:block; padding:8px 0; font-size:15px; color:var(--fg3)}
+
+  footer{margin-top:clamp(40px,6vw,64px); background:var(--bg2); border-top:1px solid var(--line2);
+         padding-block:28px 36px; font-size:12px; color:var(--fg3)}
+  footer .wrap{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="../../" aria-label="京都ラボ ホーム"><span class="mk" aria-hidden="true">京</span><span class="nm">京都ラボ</span></a>
+    <a class="back" href="../../#spots">‹ 名所攻略の一覧へ</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="head">
+    <p class="eyebrow">名所攻略 02</p>
+    <h1>清水寺</h1><span class="ro">KIYOMIZU-DERA</span>
+    <p class="lead">京都の主要な寺で、朝6時に開くのはここだけです。</p>
+    <figure class="art">
+      <img src="../../assets/kiyomizu.jpg" srcset="../../assets/kiyomizu@700.jpg 700w, ../../assets/kiyomizu.jpg 1200w" sizes="(max-width:760px) 100vw, 680px" width="1200" height="896" decoding="async" alt="夕暮れの清水寺。紅葉に囲まれた舞台と、その下の懸造りの柱">
+      <figcaption class="best"><b>6:00開門</b><span>京都の主要寺院でここだけ</span></figcaption>
+    </figure>
+  </header>
+
+  <section class="part">
+    <h2>いつ行くか</h2>
+    <p>年間を通して朝6時に開きます。京都の主要な寺で、これほど早く開くところは他にありません。</p>
+    <p>舞台に人が10人といない時間帯があり、そこから市街が朝もやの下に見えます。11時に来れば、同じ舞台に数百人が立っています。<strong>同じ寺でも、6時と11時では別の場所です。</strong></p>
+  </section>
+
+  <section class="part">
+    <h2>見るところ</h2>
+    <p>舞台と、それを下から支える懸造りの柱です。舞台の上からは市街を、舞台の下からは柱の組み方を見てください。</p>
+    <p>帰りは清水坂を下って、三年坂・二年坂へ。7時ならまだ店は閉まっていて、代わりに石畳の道そのものが見えます。八坂の塔を坂の下から見上げる構図に誰も写り込まないのも、この時間だけです。</p>
+  </section>
+
+  <section class="part">
+    <h2>気をつけること</h2>
+    <p>大きなスーツケースを持ったまま清水坂を上るのは現実的ではありません。京都駅のロッカーは、観光シーズンには午前中で埋まります。駅の手荷物預かり所か、宿からホテルへの配送サービスを先に押さえてください。</p>
+  </section>
+
+  <dl class="facts">
+    <div><dt>開門</dt><dd>6:00</dd></div>
+    <div><dt>拝観料</dt><dd>500円（執筆時点）</dd></div>
+    <div><dt>滞在の目安</dt><dd>50分</dd></div>
+  </dl>
+
+  <div class="more">
+    <a href="../../articles/one-day/">朝6時の清水寺から始める、3区を1日で歩くルートを読む <i aria-hidden="true">›</i></a>
+  </div>
+
+  <p class="note">画像は、写真ではなくオリジナルのイラストです。営業時間、料金、規則は変わるため、行く前に公式情報をご確認ください。</p>
+
+  <nav class="others" aria-label="ほかの名所">
+    <p>ほかの名所</p>
+    <ul>
+      <li><a href="../chikurin/">嵐山・竹林の道</a></li>
+      <li><span aria-current="page">清水寺</span></li>
+      <li><a href="../fushimi-inari/">伏見稲荷大社</a></li>
+      <li><a href="../togetsukyo/">渡月橋</a></li>
+      <li><a href="../kinkakuji/">金閣寺</a></li>
+      <li><a href="../ginkakuji/">銀閣寺</a></li>
+      <li><a href="../gion/">祇園</a></li>
+      <li><a href="../nishiki/">錦市場</a></li>
+    </ul>
+  </nav>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>京都ラボ ／ 京都市</span>
+    <a href="../../">京都ラボ トップへ戻る</a>
+  </div>
+</footer>
+
+</body>
+</html>
