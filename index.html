@@ -181,20 +181,17 @@
            grid-template-columns:repeat(4,minmax(0,1fr))}
   @media (max-width:1100px){ .ascenes{grid-template-columns:repeat(2,minmax(0,1fr))} }
   @media (max-width:860px){ .ascenes{grid-template-columns:1fr; max-width:420px; margin-inline:auto} }
-  .ascene{margin:0; border-radius:20px; overflow:hidden; background:var(--tile); color:var(--tile-fg);
-          box-shadow:0 18px 40px -26px rgba(0,0,0,.45)}
+  .ascene{display:block; margin:0; border-radius:20px; overflow:hidden; background:var(--tile); color:var(--tile-fg);
+          box-shadow:0 18px 40px -26px rgba(0,0,0,.45); transition:transform .18s}
+  .ascene:hover{transform:translateY(-2px)}
   .ascene .art{display:block; width:100%; height:auto; aspect-ratio:4/3; object-fit:cover; background:var(--tile)}
-  .ascene .cap{padding:20px 22px 24px}
+  .ascene .cap{display:block; padding:20px 22px 22px}
   .ascene h3{font-size:20px; letter-spacing:-.016em; color:var(--tile-fg)}
   .ascene .ro{display:block; font-size:10.5px; color:var(--tile-fg2); font-family:var(--mono);
               letter-spacing:.14em; margin-top:4px}
-  .ascene p{margin-top:12px; font-size:14px; color:var(--tile-fg2); line-height:1.65}
-  .ascene .more{display:inline-block; margin-top:14px; font-size:13px; color:var(--tile-accent); text-decoration:none}
-  .ascene .more:hover{text-decoration:underline}
-  .best{margin-top:15px; padding-top:13px; border-top:1px solid var(--tile-line);
-        display:flex; align-items:baseline; gap:9px}
-  .best b{color:var(--tile-accent); font-size:17px; font-weight:600; letter-spacing:-.01em; white-space:nowrap}
-  .best span{font-size:12px; color:var(--tile-fg2)}
+  .ascene .go{display:block; margin-top:14px; padding-top:13px; border-top:1px solid var(--tile-line);
+              font-size:13px; color:var(--tile-accent)}
+  .ascene:hover .go{text-decoration:underline}
   .afoot{margin-top:clamp(28px,4vw,42px); display:flex; align-items:center; gap:20px; flex-wrap:wrap}
   .adisc{font-size:11.5px; color:var(--fg3); line-height:1.7}
 
@@ -445,79 +442,67 @@
       <p class="lead">京都の名所は、どこも同じ時間に混みます。偏るのは場所だけではありません。<strong>時間帯のほうが、もっと偏っています。</strong>同じ場所でも、朝7時と昼1時ではまったく別の場所です。私たちが観光客に伝えたいのは、行き先ではなく、行く時刻と、見る場所のほうです。</p>
 
       <div class="ascenes">
-        <figure class="ascene">
+        <a class="ascene" href="spots/chikurin/">
           <img class="art" src="assets/chikurin.jpg" srcset="assets/chikurin@700.jpg 700w, assets/chikurin.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="嵐山・竹林の道。両側から竹が覆いかぶさる石畳の小道">
-          <figcaption class="cap">
+          <div class="cap">
             <h3>嵐山・竹林の道</h3><span class="ro">ARASHIYAMA</span>
-            <p>竹林の道は、朝8時を過ぎると人の流れに押されて、歩くだけの場所になります。7時台なら、同じ道が音のない場所として残っています。</p>
-            <div class="best"><b>8:00前</b><span>人がいるかどうかが変わる境目</span></div>
-          </figcaption>
-        </figure>
-        <figure class="ascene">
+            <span class="go">攻略法を読む ›</span>
+          </div>
+        </a>
+        <a class="ascene" href="spots/kiyomizu/">
           <img class="art" src="assets/kiyomizu.jpg" srcset="assets/kiyomizu@700.jpg 700w, assets/kiyomizu.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="夕暮れの清水寺。紅葉に囲まれた舞台と、その下の懸造りの柱">
-          <figcaption class="cap">
+          <div class="cap">
             <h3>清水寺</h3><span class="ro">KIYOMIZU-DERA</span>
-            <p>年間を通して朝6時に開きます。京都の主要な寺で、これほど早く開くところは他にありません。舞台に人が10人といない時間帯があります。</p>
-            <div class="best"><b>6:00開門</b><span>京都の主要寺院でここだけ</span></div>
-          </figcaption>
-        </figure>
-        <figure class="ascene">
+            <span class="go">攻略法を読む ›</span>
+          </div>
+        </a>
+        <a class="ascene" href="spots/fushimi-inari/">
           <img class="art" src="assets/fushimi-inari.jpg" srcset="assets/fushimi-inari@700.jpg 700w, assets/fushimi-inari.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="伏見稲荷大社の千本鳥居。朱塗りの鳥居が連なる参道">
-          <figcaption class="cap">
+          <div class="cap">
             <h3>伏見稲荷大社</h3><span class="ro">FUSHIMI INARI</span>
-            <p>24時間いつでも参拝できます。だから千本鳥居は、昼に並ぶのではなく、夜か早朝に歩く場所です。朱色は暗いほうがよく見えます。</p>
-            <div class="best"><b>24時間</b><span>千本鳥居に人がいないのは夜と早朝</span></div>
-          </figcaption>
-        </figure>
+            <span class="go">攻略法を読む ›</span>
+          </div>
+        </a>
 
-        <figure class="ascene">
+        <a class="ascene" href="spots/togetsukyo/">
           <img class="art" src="assets/togetsukyo.jpg" srcset="assets/togetsukyo@700.jpg 700w, assets/togetsukyo.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="渡月橋と、色づいた嵐山。橋の下を桂川が流れる">
-          <figcaption class="cap">
+          <div class="cap">
             <h3>渡月橋</h3><span class="ro">TOGETSUKYO</span>
-            <p>紅葉の時期、橋の上は一方通行の人の列になります。対岸の中之島側から見るほうが、橋も山も一度に入ります。</p>
-            <div class="best"><b>対岸から</b><span>橋は渡るより、眺めるほうが早い</span></div>
-          </figcaption>
-        </figure>
+            <span class="go">攻略法を読む ›</span>
+          </div>
+        </a>
 
-        <figure class="ascene">
+        <a class="ascene" href="spots/kinkakuji/">
           <img class="art" src="assets/kinkakuji.jpg" width="700" height="525" loading="lazy" decoding="async" alt="金閣寺。池の向こうに建つ金色の楼閣。最下層だけ金が貼られていない">
-          <figcaption class="cap">
+          <div class="cap">
             <h3>金閣寺</h3><span class="ro">KINKAKU-JI</span>
-            <p>見学は約20分の一方通行で、中には入れません。朝一番に着かないと、昼前には団体バスが重なって柵の前が列になります。金より先に、足元の1階を見てください。そこには金が貼られていません。</p>
-            <div class="best"><b>朝一番</b><span>11時ごろ、団体バスが重なる</span></div>
-            <a class="more" href="articles/kinkakuji/">詳しく読む（English） ›</a>
-          </figcaption>
-        </figure>
+            <span class="go">攻略法を読む ›</span>
+          </div>
+        </a>
 
-        <figure class="ascene">
+        <a class="ascene" href="spots/ginkakuji/">
           <img class="art" src="assets/ginkakuji.jpg" width="700" height="525" loading="lazy" decoding="async" alt="銀閣寺。木々に囲まれた、濃い木肌の二層の楼閣と池">
-          <figcaption class="cap">
+          <div class="cap">
             <h3>銀閣寺</h3><span class="ro">GINKAKU-JI</span>
-            <p>銀は、最初から貼られていません。「銀閣」の名は後の時代につきました。見るべきは銀閣の向かいにある小さな東求堂で、その中の四畳半が、いまの和室の原型です。</p>
-            <div class="best"><b>東求堂</b><span>見るのは、銀閣の向かいの小さな堂</span></div>
-            <a class="more" href="articles/ginkakuji/">詳しく読む（English） ›</a>
-          </figcaption>
-        </figure>
+            <span class="go">攻略法を読む ›</span>
+          </div>
+        </a>
 
-        <figure class="ascene">
+        <a class="ascene" href="spots/gion/">
           <img class="art" src="assets/gion-yasaka.jpg" width="700" height="525" loading="lazy" decoding="async" alt="夕暮れの祇園の石畳の通り。突き当たりに八坂の塔、両側に灯りのともった町家">
-          <figcaption class="cap">
+          <div class="cap">
             <h3>祇園</h3><span class="ro">GION</span>
-            <p>花見小路まわりの路地の多くは私道です。地元の協議会は2019年から無許可の撮影を、2024年4月からは立ち入りそのものを禁じていて、看板には1万円と書かれています。花見小路そのものは公道で、撮影できます。どちらの道なのかは、地面のどこにも書かれていません。</p>
-            <div class="best"><b>¥10,000</b><span>私道の看板に書かれた金額</span></div>
-            <a class="more" href="articles/gion/">詳しく読む（English） ›</a>
-          </figcaption>
-        </figure>
+            <span class="go">攻略法を読む ›</span>
+          </div>
+        </a>
 
-        <figure class="ascene">
+        <a class="ascene" href="spots/nishiki/">
           <img class="art" src="assets/nishiki.jpg" width="700" height="525" loading="lazy" decoding="async" alt="錦市場のアーケード。色ガラスの天井の下に、食材を並べた店が続く">
-          <figcaption class="cap">
+          <div class="cap">
             <h3>錦市場</h3><span class="ro">NISHIKI MARKET</span>
-            <p>全長約390m、約126軒。約400年続く食材の市場で、食べ歩きは控えるよう求められています。買った店の前で食べて、串は返します。夕方は閉まる店が多いので、行くなら午前中です。</p>
-            <div class="best"><b>午前中</b><span>夕方は閉まる店が多い</span></div>
-            <a class="more" href="articles/nishiki/">詳しく読む（English） ›</a>
-          </figcaption>
-        </figure>
+            <span class="go">攻略法を読む ›</span>
+          </div>
+        </a>
       </div>
 
       <div class="afoot">
