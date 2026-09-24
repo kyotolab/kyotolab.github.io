@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>京都駅で、バスの列に並ばない</title>
+<meta name="description" content="京都駅のバス乗り場の列に並ばなくても、名所の多くは電車と少しの徒歩で行ける。清水寺、南禅寺、嵐山、金閣寺まで、行き先ごとの電車の使い方と、1日券が得になる日とならない日。">
+<link rel="canonical" href="https://kyotolab.github.io/articles/densha/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="京都駅で、バスの列に並ばない">
+<meta property="og:description" content="京都駅のバス乗り場の列に並ばなくても、名所の多くは電車と少しの徒歩で行ける。清水寺、南禅寺、嵐山、金閣寺まで、行き先ごとの電車の使い方と、1日券が得になる日とならない日。">
+<meta property="og:url" content="https://kyotolab.github.io/articles/densha/">
+<meta property="og:site_name" content="京都ラボ">
+<meta property="og:image" content="https://kyotolab.github.io/assets/fushimi-inari.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="896">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    color-scheme:light;
+    --bg:#FFFFFF; --bg2:#F5F5F7; --bg3:#FAFAFB; --fg:#1D1D1F; --fg2:#6E6E73; --fg3:#86868B;
+    --line:rgba(0,0,0,.12); --line2:rgba(0,0,0,.08);
+    --accent:#0066CC;
+    --gold:#A33A2C; --gold-soft:#FBEEEC;
+    --warn:#8A5A14; --warn-soft:#FBF4E5;
+    --dark:#1D1D1F; --dark-fg:#F5F5F7; --dark-fg2:#B6BCC0; --dark-gold:#FF6F5E;
+    --sys:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --gut:clamp(22px,5vw,44px);
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--fg); font-family:var(--sys); font-size:16px; line-height:1.72;
+       -webkit-font-smoothing:antialiased}
+  h1,h2,h3{margin:0; font-weight:700; line-height:1.3; font-feature-settings:"palt" 1; text-wrap:balance; word-break:auto-phrase}
+  p{margin:0}
+  a{color:var(--accent)}
+  img{max-width:100%; height:auto; display:block}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+  .wrap{max-width:860px; margin:0 auto; padding-inline:var(--gut)}
+  .eyebrow{font-size:14px; font-weight:600; color:var(--gold); margin-bottom:12px}
+  .lead{font-size:clamp(16px,1.9vw,18px); color:var(--fg2)}
+  .lead strong, p strong{color:var(--fg); font-weight:600}
+  .sub{margin-top:16px; max-width:38em}
+
+  header{padding-block:clamp(44px,7vw,78px) 34px; border-bottom:1px solid var(--line)}
+  header h1{font-size:clamp(30px,5.6vw,52px); line-height:1.22}
+  header .lead{margin-top:20px; max-width:38em}
+  .meta{margin-top:26px; display:flex; gap:8px 26px; flex-wrap:wrap;
+        font-family:var(--mono); font-size:11.5px; color:var(--fg3); letter-spacing:.05em}
+  .hero{margin:30px 0 0; border-radius:14px; overflow:hidden; border:1px solid var(--line2)}
+  .hero figcaption{font-size:12.5px; color:var(--fg3); padding:10px 14px; background:var(--bg3)}
+
+  section{padding-block:clamp(40px,6vw,64px); border-bottom:1px solid var(--line2)}
+  h2{font-size:clamp(23px,3.6vw,34px)}
+
+  /* 3つの原則 */
+  .rules{margin-top:28px; display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  @media (max-width:760px){ .rules{grid-template-columns:1fr} }
+  .rule{border:1px solid var(--line); border-radius:14px; padding:20px 20px 22px; background:var(--bg3)}
+  .rule .n{font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--gold)}
+  .rule h3{font-size:18px; margin-top:8px}
+  .rule p{font-size:14.5px; color:var(--fg2); margin-top:8px}
+
+  /* 時間割 */
+  .tt{margin-top:28px; display:grid; gap:1px; background:var(--line2); border:1px solid var(--line2); border-radius:14px; overflow:hidden}
+  .slot{background:var(--bg); padding:20px 22px; display:grid; grid-template-columns:6.2em minmax(0,1fr); gap:18px; align-items:start}
+  @media (max-width:560px){ .slot{grid-template-columns:1fr; gap:6px} }
+  .slot time{font-family:var(--mono); font-size:15px; font-weight:600; color:var(--gold); padding-top:2px}
+  .slot h3{font-size:18px}
+  .slot p{font-size:14.5px; color:var(--fg2); margin-top:7px}
+  .slot .tip{margin-top:10px; font-size:13.5px; color:var(--fg); background:var(--bg2); padding:9px 13px; border-radius:9px}
+  .slot.hot{background:var(--gold-soft)}
+
+  /* やらないこと */
+  .core{background:var(--dark); color:var(--dark-fg); border-bottom:none}
+  .core h2{color:var(--dark-fg)}
+  .core .eyebrow{color:var(--dark-gold)}
+  .donts{margin-top:26px; display:grid; gap:18px}
+  .dont{border-left:3px solid var(--dark-gold); padding-left:16px}
+  .dont h3{font-size:18px; color:var(--dark-fg)}
+  .dont p{font-size:14.5px; color:var(--dark-fg2); margin-top:6px; max-width:40em}
+
+  /* 表 */
+  .tbl{margin-top:26px; overflow-x:auto; border:1px solid var(--line); border-radius:14px}
+  table{border-collapse:collapse; width:100%; font-size:14.5px}
+  th,td{text-align:left; padding:13px 16px; border-bottom:1px solid var(--line2); vertical-align:top}
+  thead th{background:var(--bg2); font-size:12px; color:var(--fg3); font-weight:600}
+  tbody tr:last-child td{border-bottom:none}
+  td:first-child{font-weight:600; white-space:nowrap}
+  td small{display:block; font-weight:400; font-size:12.5px; color:var(--fg3); margin-top:2px}
+
+  .route td:first-child{white-space:normal; min-width:5.5em}
+  .route td{padding-inline:12px}
+  @media (max-width:560px){
+    .route thead{display:none}
+    .route tr{display:block; padding:14px 16px; border-bottom:1px solid var(--line2)}
+    .route tbody tr:last-child{border-bottom:none}
+    .route td{display:block; padding:0; border:none}
+    .route td:first-child{font-size:16px}
+    .route td + td{margin-top:4px; color:var(--fg2)}
+    .route td:last-child::before{content:"降りてから："; color:var(--fg3)}
+  }
+  .route small{display:block; color:var(--fg3); font-size:12.5px; margin-top:2px}
+  .list{margin:22px 0 0; padding-left:1.3em; color:var(--fg2); font-size:15px}
+  .list li + li{margin-top:8px}
+  .list b{color:var(--fg)}
+
+  .note{margin-top:26px; border-left:2px solid var(--warn); background:var(--warn-soft);
+        padding:16px 20px; border-radius:0 12px 12px 0}
+  .note b{font-size:12px; color:var(--warn); display:block; margin-bottom:6px}
+  .note p{font-size:14px; color:var(--fg2)}
+  .note p + p{margin-top:8px}
+
+  .next{margin-top:8px; display:flex; flex-wrap:wrap; gap:10px 22px; font-size:15px}
+  footer{padding-block:32px 46px}
+  footer p{font-family:var(--mono); font-size:11px; color:var(--fg3); letter-spacing:.06em; line-height:1.9}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">京都ラボ ／ 秋の京都 02</p>
+    <h1>京都駅で、<br>バスの列に並ばない。</h1>
+    <p class="lead">紅葉の季節の京都駅では、バス乗り場の列がいちばん長くなります。1台見送り、2台見送り、乗れても車内は満員です。でも、京都の名所の多くは、<strong>電車と少しの徒歩で行けます。</strong>京都で生まれ育った目で、行き先ごとの電車の使い方をまとめました。</p>
+    <div class="meta">
+      <span>2026.09.24</span>
+      <span>行き先9か所 ／ 嵐山の駅 ／ 1日券</span>
+      <span>二ノ宮 大知</span>
+    </div>
+    <figure class="hero">
+      <img src="../../assets/fushimi-inari.jpg" srcset="../../assets/fushimi-inari@700.jpg 700w, ../../assets/fushimi-inari.jpg 1200w" sizes="(max-width:860px) 92vw, 780px" width="1200" height="896" alt="伏見稲荷大社の千本鳥居。朱塗りの鳥居が連なる参道">
+      <figcaption>伏見稲荷大社。京都駅からJR奈良線で2駅、駅を出ればすぐ参道です。画像は写真ではなく、オリジナルのイラストです。</figcaption>
+    </figure>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">原則</p>
+    <h2>電車で近くまで行って、最後は歩く。</h2>
+    <p class="lead sub">京都のバスが混むのは、観光客の多くが京都駅から同じ路線に乗るからです。電車は時刻どおりに来て、道路の渋滞に巻き込まれません。<strong>電車で名所の近くの駅まで行き、残りを歩く</strong>と、着く時刻が読めるようになります。</p>
+    <div class="rules">
+      <div class="rule">
+        <span class="n">01</span>
+        <h3>JR奈良線と京阪で、東へ</h3>
+        <p>伏見稲荷、東福寺、清水寺、祇園。京都駅の東側と南東の名所は、JR奈良線と京阪の組み合わせで行けます。</p>
+      </div>
+      <div class="rule">
+        <span class="n">02</span>
+        <h3>地下鉄で、北と東山へ</h3>
+        <p>京都御所へは烏丸線で乗り換えなし。南禅寺、永観堂、平安神宮へは、烏丸御池で東西線に乗り換えます。</p>
+      </div>
+      <div class="rule">
+        <span class="n">03</span>
+        <h3>バスは、最後の短い区間だけ</h3>
+        <p>金閣寺のように駅から遠い場所だけ、電車で近くまで行ってからバスに乗ります。バスに乗る時間が短いほど、読み違いも小さくなります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">行き先ごとに</p>
+    <h2>京都駅から、電車で行く9か所。</h2>
+    <p class="lead sub">歩く時間は目安です。坂や人の多さで変わります。</p>
+    <div class="tbl route">
+      <table>
+        <thead><tr><th>行き先</th><th>電車の行き方</th><th>降りてから</th></tr></thead>
+        <tbody>
+          <tr><td>東福寺</td><td>JR奈良線で東福寺駅<small>京都駅から1駅</small></td><td>歩いてすぐ</td></tr>
+          <tr><td>伏見稲荷大社</td><td>JR奈良線で稲荷駅<small>京都駅から2駅</small></td><td>駅の前が参道</td></tr>
+          <tr><td>清水寺</td><td>JR奈良線で東福寺駅、京阪に乗り換えて清水五条駅</td><td>五条坂を上って25分ほど</td></tr>
+          <tr><td>祇園・八坂神社</td><td>同じく京阪で祇園四条駅</td><td>八坂神社まで5分ほど</td></tr>
+          <tr><td>南禅寺・永観堂</td><td>地下鉄烏丸線で烏丸御池駅、東西線に乗り換えて蹴上駅</td><td>南禅寺まで約10分、永観堂まで約15分</td></tr>
+          <tr><td>平安神宮・岡崎</td><td>同じく東西線で東山駅</td><td>10分ほど</td></tr>
+          <tr><td>京都御所</td><td>地下鉄烏丸線で今出川駅か丸太町駅<small>乗り換えなし</small></td><td>すぐに京都御苑</td></tr>
+          <tr><td>嵐山</td><td>JR嵯峨野線で嵯峨嵐山駅</td><td>渡月橋まで約10分</td></tr>
+          <tr><td>金閣寺</td><td>地下鉄烏丸線で北大路駅、北大路バスターミナルからバス</td><td>金閣寺道で降りる</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="list">
+      <li><b>東福寺駅での乗り換え</b>。JRから京阪へは、駅の中の乗り換え口で乗り換えます。京阪はおよそ10分おきに走っていて、東福寺から清水五条までは4分ほどです。</li>
+      <li><b>銀閣寺</b>は、電車の駅から離れています。南禅寺や永観堂まで地下鉄で行き、哲学の道を北へ歩くと着きます。紅葉を見ながら歩ける道なので、バスに乗るより秋らしい行き方です。</li>
+      <li><b>清水寺と祇園</b>は歩いてつなげます。清水寺から産寧坂、二年坂を下りると、八坂神社と祇園に出ます。</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">嵐山</p>
+    <h2>嵐山には、駅が3つある。</h2>
+    <p class="lead sub">嵐山にはJR、阪急、嵐電（京福電鉄）の3つの駅があります。紅葉の季節の夕方は、どの駅も帰る人で混みます。<strong>行きと帰りで、使う駅を変える</strong>と、並ぶ時間が短くなります。</p>
+    <div class="tt">
+      <div class="slot">
+        <time>JR</time>
+        <div>
+          <h3>嵯峨嵐山駅</h3>
+          <p>京都駅から乗り換えなしで行けるので、朝の行きに向いています。渡月橋までは歩いて10分ほどです。</p>
+        </div>
+      </div>
+      <div class="slot">
+        <time>阪急</time>
+        <div>
+          <h3>嵐山駅</h3>
+          <p>渡月橋の南、桂川の向こう側にあります。渡月橋まで歩いて5分ほどで、中之島の側から橋と山を眺める道の途中です。桂駅で乗り換えて、京都河原町や烏丸に出られます。</p>
+          <p class="tip">帰りに使うと、京都河原町駅で降りて、そのまま四条河原町や祇園に出られます。</p>
+        </div>
+      </div>
+      <div class="slot">
+        <time>嵐電</time>
+        <div>
+          <h3>嵐山駅</h3>
+          <p>渡月橋まで歩いて3分ほどの、いちばん中心にある駅です。四条大宮に出られるほか、帷子ノ辻で乗り換えれば北野白梅町にも出られます。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="core">
+  <div class="wrap">
+    <p class="eyebrow">切符</p>
+    <h2>1日券は、<br>電車の日には得にならない。</h2>
+    <div class="donts">
+      <div class="dont">
+        <h3>地下鉄・バス1日券は、地下鉄と市バスの券</h3>
+        <p>京都市交通局の「地下鉄・バス1日券」は大人1,100円で、市営地下鉄と市バスが1日乗り放題になります。ただし、JR、京阪、阪急、嵐電には使えません。この記事のようにJRと京阪を中心に動く日は、元が取れないことが多いです。</p>
+      </div>
+      <div class="dont">
+        <h3>電車中心の日は、交通系ICカードで乗る</h3>
+        <p>ICOCAやSuicaなどの交通系ICカードがあれば、JR、京阪、地下鉄、バスのどれにも、切符を買わずに乗れます。紅葉の季節は、券売機の前にも列ができます。</p>
+      </div>
+      <div class="dont">
+        <h3>バスを使うなら、朝か、停留所を絞った便</h3>
+        <p>土日祝日は、京都駅から清水寺や銀閣寺の近くまで停留所を絞って走る観光特急バス（大人500円）もあります。どのバスも、朝早い時間のほうが乗りやすくなります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">まとめ</p>
+    <h2>秋の1日を、電車で組む。</h2>
+    <p class="lead sub">前の記事「紅葉の京都は、時刻で空く」の時間割は、そのまま電車でつなげます。</p>
+    <ul class="list">
+      <li><b>朝</b>。JR奈良線で東福寺（8時半）か稲荷。清水寺（6時）へは、京阪の清水五条から。</li>
+      <li><b>昼</b>。地下鉄東西線で東山か蹴上へ。岡崎、南禅寺、永観堂、哲学の道を歩く。</li>
+      <li><b>夜</b>。蹴上から永観堂のライトアップへ。清水寺なら、京阪で清水五条へ戻る。</li>
+    </ul>
+    <p class="lead sub"><a href="../koyo/">紅葉の京都は、時刻で空く（秋の京都 01）を読む ›</a></p>
+
+    <div class="note">
+      <b>行く前に</b>
+      <p>運賃、運行日、所要時間は変わることがあります。ここに書いた金額と時間は、2026年9月の時点で調べた目安です。行く前に、京都市交通局、JR西日本、京阪、阪急、嵐電の公式情報で確かめてください。</p>
+      <p>京都市は、市バスの運賃を市民と市民以外で分ける「市民優先価格」を、2027年度中に始める計画を進めています。始まると、市民以外のバスの運賃が上がる見込みです。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>京都ラボ ／ 秋の京都 02 ／ 2026.09.24<br>画像は写真ではなく、オリジナルのイラストです。</p>
+  </div>
+</footer>
+
+</body>
+</html>
