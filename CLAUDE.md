@@ -82,5 +82,4 @@
 - トップで「公開準備中」になっている記事が2本ある: 「上ル・下ル」の住所と地図アプリの話、銭湯の番台でのやりとりの話。どちらも 2026.10 と表示している。
 - `articles/heian-jingu/` と `articles/kamogawa/` は画像を base64 で埋め込んでいる。記事のフォルダに JPEG として出す。
 - `tools/menu/` と `tools/sento/` には `og:image` がない。
-- 京都御所のイラストがまだない。トップの名所カードと `spots/gosho/` は暗い色の仮の枠で、`og:image` は `gion-street.jpg` を借りている。届いたら `assets/gosho.jpg`（と `@700`）に置いて差し替える。
 - Instagram の自動投稿は、GitHub の Secrets に `IG_ACCESS_TOKEN` を入れるまで動かない。`SECRETS_PAT` も入れると、トークンの更新まで自動になる。
