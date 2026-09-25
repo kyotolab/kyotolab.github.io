@@ -194,20 +194,17 @@
   .ascenes{margin-top:clamp(34px,5vw,56px); display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px}
   @media (max-width:1100px){ .ascenes{grid-template-columns:repeat(2,minmax(0,1fr))} }
   @media (max-width:860px){ .ascenes{grid-template-columns:1fr; max-width:420px; margin-inline:auto} }
-  .ascene{margin:0; border-radius:20px; overflow:hidden; background:var(--tile); color:var(--tile-fg);
-          box-shadow:0 18px 40px -26px rgba(0,0,0,.45)}
+  .ascene{display:block; margin:0; border-radius:20px; overflow:hidden; background:var(--tile); color:var(--tile-fg);
+          box-shadow:0 18px 40px -26px rgba(0,0,0,.45); transition:transform .18s}
+  .ascene:hover{transform:translateY(-2px); text-decoration:none}
   .ascene .art{display:block; width:100%; height:auto; aspect-ratio:4/3; object-fit:cover; background:var(--tile)}
-  .ascene .cap{padding:20px 22px 24px}
+  .ascene .cap{display:block; padding:20px 22px 22px}
   .ascene h3{font-size:20px; letter-spacing:-.016em; color:var(--tile-fg)}
   .ascene .ro{display:block; font-size:10.5px; color:var(--tile-fg2); font-family:var(--mono);
               letter-spacing:.14em; margin-top:4px}
-  .ascene p{margin-top:12px; font-size:14px; color:var(--tile-fg2); line-height:1.65}
-  .ascene .more{display:inline-block; margin-top:14px; font-size:13px; color:var(--tile-accent); text-decoration:none}
-  .ascene .more:hover{text-decoration:underline}
-  .best{margin-top:15px; padding-top:13px; border-top:1px solid var(--tile-line);
-        display:flex; align-items:baseline; gap:9px}
-  .best b{color:var(--tile-accent); font-size:17px; font-weight:600; letter-spacing:-.01em; white-space:nowrap}
-  .best span{font-size:12px; color:var(--tile-fg2)}
+  .ascene .go{display:block; margin-top:14px; padding-top:13px; border-top:1px solid var(--tile-line);
+              font-size:13px; color:var(--tile-accent)}
+  .ascene:hover .go{text-decoration:underline}
   .afoot{margin-top:clamp(28px,4vw,42px); display:flex; align-items:center; gap:20px; flex-wrap:wrap}
   .adisc{font-size:11.5px; color:var(--fg3); line-height:1.7}
 
@@ -434,81 +431,69 @@
       <p class="lead">Kyoto’s famous places all fill up at the same hours. But the place is not what is uneven — <strong>the hour is.</strong> The same spot at 7am and at 1pm are two different places. What is worth telling you is not just where to go, but when, and what to look at.</p>
 
       <div class="ascenes">
-        <figure class="ascene">
+        <a class="ascene" href="spots/chikurin/">
           <img class="art" src="../assets/chikurin.jpg" srcset="../assets/chikurin@700.jpg 700w, ../assets/chikurin.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="The bamboo path at Arashiyama, stalks closing overhead above a stone walkway">
-          <figcaption class="cap">
+          <div class="cap">
             <h3>Bamboo Grove</h3><span class="ro">ARASHIYAMA</span>
-            <p>After 8am the path becomes a queue you shuffle along. Before 8 it is still a place with no sound in it.</p>
-            <div class="best"><b>Before 8:00</b><span>The line between a place and a crowd</span></div>
-          </figcaption>
-        </figure>
+            <span class="go">Read the guide ›</span>
+          </div>
+        </a>
 
-        <figure class="ascene">
+        <a class="ascene" href="spots/kiyomizu/">
           <img class="art" src="../assets/kiyomizu.jpg" srcset="../assets/kiyomizu@700.jpg 700w, ../assets/kiyomizu.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="Kiyomizu-dera at dusk, its stage above a slope of red maples">
-          <figcaption class="cap">
+          <div class="cap">
             <h3>Kiyomizu-dera</h3><span class="ro">KIYOMIZU-DERA</span>
-            <p>Open from 6am all year — unusual for Kyoto, and almost nobody uses it. By ten the approach is shoulder to shoulder.</p>
-            <div class="best"><b>6:00</b><span>The one temple you can have to yourself</span></div>
-          </figcaption>
-        </figure>
+            <span class="go">Read the guide ›</span>
+          </div>
+        </a>
 
-        <figure class="ascene">
+        <a class="ascene" href="spots/fushimi-inari/">
           <img class="art" src="../assets/fushimi-inari.jpg" srcset="../assets/fushimi-inari@700.jpg 700w, ../assets/fushimi-inari.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="The vermilion torii tunnel at Fushimi Inari, lit by hanging lanterns">
-          <figcaption class="cap">
+          <div class="cap">
             <h3>Fushimi Inari</h3><span class="ro">FUSHIMI INARI</span>
-            <p>Never closes, never charges. So the torii tunnel is genuinely empty at night and before dawn — the only version of it without a queue.</p>
-            <div class="best"><b>Any hour</b><span>Open 24 hours, no admission</span></div>
-          </figcaption>
-        </figure>
+            <span class="go">Read the guide ›</span>
+          </div>
+        </a>
 
-        <figure class="ascene">
+        <a class="ascene" href="spots/togetsukyo/">
           <img class="art" src="../assets/togetsukyo.jpg" srcset="../assets/togetsukyo@700.jpg 700w, ../assets/togetsukyo.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="Togetsukyo bridge with autumn colour on the hills behind it">
-          <figcaption class="cap">
+          <div class="cap">
             <h3>Togetsukyo</h3><span class="ro">ARASHIYAMA</span>
-            <p>In leaf season the bridge is a one-way column of people. From the Nakanoshima bank you get the bridge and the hill in one frame.</p>
-            <div class="best"><b>Far bank</b><span>Faster to look at than to cross</span></div>
-          </figcaption>
-        </figure>
+            <span class="go">Read the guide ›</span>
+          </div>
+        </a>
 
-        <figure class="ascene">
+        <a class="ascene" href="spots/kinkakuji/">
           <img class="art" src="../assets/kinkakuji.jpg" width="700" height="525" loading="lazy" decoding="async" alt="The Golden Pavilion across the pond, its un-gilded ground floor beneath two gilded storeys">
-          <figcaption class="cap">
+          <div class="cap">
             <h3>Kinkaku-ji</h3><span class="ro">KINKAKU-JI</span>
-            <p>A one-way loop of about 20 minutes, and you cannot go inside. Arrive first thing: around 11am several tour coaches land together and the railing becomes a queue. Look at the ground floor before the gold — it is not gilded.</p>
-            <div class="best"><b>First thing</b><span>Tour coaches stack up around 11am</span></div>
-            <a class="more" href="../articles/kinkakuji/">Read the field note ›</a>
-          </figcaption>
-        </figure>
+            <span class="go">Read the guide ›</span>
+          </div>
+        </a>
 
-        <figure class="ascene">
+        <a class="ascene" href="spots/ginkakuji/">
           <img class="art" src="../assets/ginkakuji.jpg" width="700" height="525" loading="lazy" decoding="async" alt="Ginkaku-ji, a dark two-storey wooden pavilion among trees beside the pond">
-          <figcaption class="cap">
+          <div class="cap">
             <h3>Ginkaku-ji</h3><span class="ro">GINKAKU-JI</span>
-            <p>There was never any silver; the name came later. What to look at is the small Togu-do across from the pavilion — its four-and-a-half-mat room is the ancestor of the Japanese room.</p>
-            <div class="best"><b>Togu-do</b><span>The small hall across from the pavilion</span></div>
-            <a class="more" href="../articles/ginkakuji/">Read the field note ›</a>
-          </figcaption>
-        </figure>
+            <span class="go">Read the guide ›</span>
+          </div>
+        </a>
 
-        <figure class="ascene">
+        <a class="ascene" href="spots/gion/">
           <img class="art" src="../assets/gion-yasaka.jpg" width="700" height="525" loading="lazy" decoding="async" alt="A stone-paved Gion lane at dusk, the Yasaka pagoda at the end and lit machiya on both sides">
-          <figcaption class="cap">
+          <div class="cap">
             <h3>Gion</h3><span class="ro">GION</span>
-            <p>Most of the lanes around Hanamikoji are private. The local association has banned photography there without permission since 2019, and entry itself since April 2024; the signs name a ¥10,000 penalty. Hanamikoji itself is a public road and is fine. Nothing on the ground says which is which.</p>
-            <div class="best"><b>¥10,000</b><span>Penalty on the private-lane signs</span></div>
-            <a class="more" href="../articles/gion/">Read the field note ›</a>
-          </figcaption>
-        </figure>
+            <span class="go">Read the guide ›</span>
+          </div>
+        </a>
 
-        <figure class="ascene">
+        <a class="ascene" href="spots/nishiki/">
           <img class="art" src="../assets/nishiki.jpg" width="700" height="525" loading="lazy" decoding="async" alt="The Nishiki Market arcade under its coloured glass roof, stalls of food down both sides">
-          <figcaption class="cap">
+          <div class="cap">
             <h3>Nishiki Market</h3><span class="ro">NISHIKI MARKET</span>
-            <p>About 390 m and 126 shops, a market for some 400 years. Visitors are asked not to eat while walking: buy, eat at the shop, hand back the stick. Many shops close by late afternoon, so go in the morning.</p>
-            <div class="best"><b>Morning</b><span>Many shops close in the late afternoon</span></div>
-            <a class="more" href="../articles/nishiki/">Read the field note ›</a>
-          </figcaption>
-        </figure>
+            <span class="go">Read the guide ›</span>
+          </div>
+        </a>
       </div>
 
       <div class="afoot">
