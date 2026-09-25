@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>東福寺の攻略 ／ 京都ラボ</title>
+<meta name="description" content="東福寺は紅葉の名所。いちばん混む時期は通天橋の上で写真を撮れない。秋は平日の朝に。通天橋、三門、方丈の庭、回り方。">
+<link rel="canonical" href="https://kyotolab.github.io/spots/tofukuji/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="東福寺の攻略 ／ 京都ラボ">
+<meta property="og:description" content="東福寺は紅葉の名所。いちばん混む時期は通天橋の上で写真を撮れない。秋は平日の朝に。通天橋、三門、方丈の庭、回り方。">
+<meta property="og:url" content="https://kyotolab.github.io/spots/tofukuji/">
+<meta property="og:site_name" content="京都ラボ">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://kyotolab.github.io/assets/tofukuji.jpg">
+<meta property="og:image:width" content="700">
+<meta property="og:image:height" content="525">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#FFFFFF; --bg2:#F5F5F7; --fg:#1D1D1F; --fg2:#6E6E73; --fg3:#86868B;
+    --line:rgba(0,0,0,.12); --line2:rgba(0,0,0,.08);
+    --accent:#0066CC; --accent-soft:#EAF2FD; --accent-brd:#B9D6F5;
+    --gold:#A33A2C;
+    --tile:#1D1D1F; --tile-fg:#F5F5F7; --tile-fg2:#98989D; --tile-accent:#5AC8FA;
+    --sys:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --gut:clamp(20px,5vw,40px);
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--fg); font-family:var(--sys);
+       font-size:17px; line-height:1.75; -webkit-font-smoothing:antialiased}
+  h1,h2{margin:0; font-weight:700; line-height:1.25; font-feature-settings:"palt" 1; text-wrap:balance}
+  p{margin:0}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  img{max-width:100%}
+  .wrap{max-width:720px; margin:0 auto; padding-inline:var(--gut)}
+
+  .nav{position:sticky; top:0; z-index:10; height:48px; background:rgba(255,255,255,.88);
+       backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
+       border-bottom:1px solid var(--line2)}
+  .nav .wrap{max-width:1040px; height:100%; display:flex; align-items:center; justify-content:space-between; gap:16px}
+  .brand{display:inline-flex; align-items:center; gap:9px; color:var(--fg); white-space:nowrap}
+  .brand:hover{text-decoration:none; color:var(--accent)}
+  .brand .mk{width:25px; height:25px; display:grid; place-content:center; border:1px solid currentColor;
+             border-radius:2px; font-size:14px; line-height:1; padding-top:1px}
+  .brand .nm{font-size:18px; font-weight:700; letter-spacing:.06em}
+  .nav .back{font-size:13px; white-space:nowrap}
+
+  .head{padding-block:clamp(40px,7vw,72px) 0}
+  .eyebrow{font-size:11px; font-weight:650; color:var(--gold); letter-spacing:.12em; margin-bottom:14px}
+  .head h1{font-size:clamp(32px,7vw,52px)}
+  .ro{display:block; margin-top:8px; font-family:var(--mono); font-size:11px; letter-spacing:.14em; color:var(--fg3)}
+  .lead{margin-top:20px; font-size:clamp(18px,2.4vw,21px); line-height:1.6; color:var(--fg2)}
+
+  .art{margin:clamp(28px,5vw,44px) 0 0; border-radius:20px; overflow:hidden; background:var(--tile)}
+  .art img{display:block; width:100%; height:auto; aspect-ratio:4/3; object-fit:cover}
+  .best{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; padding:18px 22px 20px;
+        background:var(--tile); color:var(--tile-fg2); font-size:13px}
+  .best b{color:var(--tile-accent); font-size:22px; font-weight:600; white-space:nowrap}
+
+  section.part{padding-top:clamp(36px,6vw,52px)}
+  section.part h2{font-size:clamp(22px,4vw,28px); padding-top:16px; border-top:1px solid var(--line)}
+  section.part p{margin-top:16px; color:var(--fg)}
+  section.part p strong{font-weight:600}
+
+  .facts{margin:clamp(32px,5vw,44px) 0 0; border-top:1px solid var(--line)}
+  .facts div{display:grid; grid-template-columns:120px minmax(0,1fr); gap:16px; padding:12px 0;
+             border-bottom:1px solid var(--line2); font-size:15px}
+  .facts dt{color:var(--fg3)}
+  .facts dd{margin:0}
+
+  .more{margin-top:clamp(32px,5vw,44px); display:grid; gap:4px}
+  .more a{display:inline-flex; align-items:center; gap:5px; min-height:40px; font-size:16px}
+
+  .note{margin-top:clamp(28px,4vw,36px); padding:16px 18px; border-radius:14px; background:var(--bg2);
+        font-size:13px; line-height:1.7; color:var(--fg2)}
+
+  .others{margin-top:clamp(48px,7vw,72px); padding-block:28px 8px; border-top:1px solid var(--line)}
+  .others p{font-size:11px; font-weight:650; color:var(--gold); letter-spacing:.12em}
+  .others ul{margin:14px 0 0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px 16px}
+  .others li a{display:block; padding:8px 0; font-size:15px}
+  .others li span{display:block; padding:8px 0; font-size:15px; color:var(--fg3)}
+
+  footer{margin-top:clamp(40px,6vw,64px); background:var(--bg2); border-top:1px solid var(--line2);
+         padding-block:28px 36px; font-size:12px; color:var(--fg3)}
+  footer .wrap{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="../../" aria-label="京都ラボ ホーム"><span class="mk" aria-hidden="true">京</span><span class="nm">京都ラボ</span></a>
+    <a class="back" href="../../#spots">‹ 名所攻略の一覧へ</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="head">
+    <p class="eyebrow">名所攻略 13</p>
+    <h1>東福寺</h1><span class="ro">TOFUKU-JI</span>
+    <p class="lead">紅葉の名所ですが、いちばん混む時期は、橋の上で写真を撮れません。</p>
+    <figure class="art">
+      <img src="../../assets/tofukuji.jpg" width="700" height="525" decoding="async" alt="東福寺の通天橋。紅葉の谷に架かる屋根つきの木の橋">
+      <figcaption class="best"><b>秋は平日の朝</b><span>紅葉は11月中旬から12月上旬。多い日は1日3万人を超える</span></figcaption>
+    </figure>
+  </header>
+
+  <section class="part">
+    <h2>いつ行くか</h2>
+    <p>紅葉の見頃は、例年11月中旬から12月上旬です。この時期は多い日に1日3万人を超える人が来ます。<strong>秋に行くなら、週末を避けて平日の朝に着いてください。</strong>秋は開門が早まる年が多いので、前もって時刻を確かめてください。</p>
+    <p>休みの日はなく、予約も要りません。紅葉の時期を外せば、ずっと落ち着いて見られます。</p>
+  </section>
+
+  <section class="part">
+    <h2>見るところ</h2>
+    <p>通天橋です。1380年に、洗玉澗という谷をまたいで、仏殿と開山堂を結ぶために架けられました。まわりには約2千本のモミジとカエデがあります。いまの橋は、1959年の台風で倒れたあと1961年に建て直したものです。</p>
+    <p>国宝の三門は、禅寺の三門として残るいちばん古いものとされています。方丈の庭は1939年に重森三玲が作ったもので、苔と敷石の市松模様や、北斗七星をかたどった石柱があります。</p>
+  </section>
+
+  <section class="part">
+    <h2>知っておくこと</h2>
+    <p>2016年から、紅葉のいちばん混む時期は、<strong>通天橋と臥雲橋の上で写真を撮れません。</strong>橋の上で立ち止まる人が多く、危ないためです。期間と時間は年によって変わります。</p>
+    <p>名前は、奈良の東大寺と興福寺から1字ずつ取ったものです。1236年に九条道家が建てようと決めました。室町時代のトイレ（東司）が残っていて、重要文化財になっています。</p>
+  </section>
+
+  <section class="part">
+    <h2>回り方</h2>
+    <p>JR奈良線と京阪の東福寺駅から、歩いて10分ほどです。</p>
+    <p>伏見稲荷はJR奈良線で隣の稲荷駅です。朝に伏見稲荷、昼前に東福寺と組むと、南の2か所を半日で回れます。三十三間堂へは京阪で七条駅へ。</p>
+  </section>
+
+  <div class="more">
+    <a href="../fushimi-inari/">伏見稲荷大社の攻略を読む <i aria-hidden="true">›</i></a>
+  </div>
+
+  <p class="note">画像は、写真ではなくオリジナルのイラストです。営業時間、料金、規則は変わるため、行く前に公式情報をご確認ください。</p>
+
+  <nav class="others" aria-label="ほかの名所">
+    <p>ほかの名所</p>
+    <ul>
+      <li><a href="../chikurin/">嵐山・竹林の道</a></li>
+      <li><a href="../kiyomizu/">清水寺</a></li>
+      <li><a href="../fushimi-inari/">伏見稲荷大社</a></li>
+      <li><a href="../togetsukyo/">渡月橋</a></li>
+      <li><a href="../kinkakuji/">金閣寺</a></li>
+      <li><a href="../ginkakuji/">銀閣寺</a></li>
+      <li><a href="../gion/">祇園</a></li>
+      <li><a href="../nishiki/">錦市場</a></li>
+      <li><a href="../nijo/">二条城</a></li>
+      <li><a href="../gosho/">京都御所</a></li>
+      <li><a href="../sanjusangendo/">三十三間堂</a></li>
+      <li><a href="../nanzenji/">南禅寺</a></li>
+      <li><span aria-current="page">東福寺</span></li>
+    </ul>
+  </nav>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>京都ラボ ／ 京都市</span>
+    <a href="../../">京都ラボ トップへ戻る</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>南禅寺の攻略 ／ 京都ラボ</title>
+<meta name="description" content="南禅寺は朝8時40分から。境内と水路閣は無料で歩ける。水路閣の上の水は、北へ流れて哲学の道の疏水になる。三門と方丈、回り方。">
+<link rel="canonical" href="https://kyotolab.github.io/spots/nanzenji/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="南禅寺の攻略 ／ 京都ラボ">
+<meta property="og:description" content="南禅寺は朝8時40分から。境内と水路閣は無料で歩ける。水路閣の上の水は、北へ流れて哲学の道の疏水になる。三門と方丈、回り方。">
+<meta property="og:url" content="https://kyotolab.github.io/spots/nanzenji/">
+<meta property="og:site_name" content="京都ラボ">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://kyotolab.github.io/assets/nanzenji.jpg">
+<meta property="og:image:width" content="700">
+<meta property="og:image:height" content="525">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#FFFFFF; --bg2:#F5F5F7; --fg:#1D1D1F; --fg2:#6E6E73; --fg3:#86868B;
+    --line:rgba(0,0,0,.12); --line2:rgba(0,0,0,.08);
+    --accent:#0066CC; --accent-soft:#EAF2FD; --accent-brd:#B9D6F5;
+    --gold:#A33A2C;
+    --tile:#1D1D1F; --tile-fg:#F5F5F7; --tile-fg2:#98989D; --tile-accent:#5AC8FA;
+    --sys:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --gut:clamp(20px,5vw,40px);
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--fg); font-family:var(--sys);
+       font-size:17px; line-height:1.75; -webkit-font-smoothing:antialiased}
+  h1,h2{margin:0; font-weight:700; line-height:1.25; font-feature-settings:"palt" 1; text-wrap:balance}
+  p{margin:0}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  img{max-width:100%}
+  .wrap{max-width:720px; margin:0 auto; padding-inline:var(--gut)}
+
+  .nav{position:sticky; top:0; z-index:10; height:48px; background:rgba(255,255,255,.88);
+       backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
+       border-bottom:1px solid var(--line2)}
+  .nav .wrap{max-width:1040px; height:100%; display:flex; align-items:center; justify-content:space-between; gap:16px}
+  .brand{display:inline-flex; align-items:center; gap:9px; color:var(--fg); white-space:nowrap}
+  .brand:hover{text-decoration:none; color:var(--accent)}
+  .brand .mk{width:25px; height:25px; display:grid; place-content:center; border:1px solid currentColor;
+             border-radius:2px; font-size:14px; line-height:1; padding-top:1px}
+  .brand .nm{font-size:18px; font-weight:700; letter-spacing:.06em}
+  .nav .back{font-size:13px; white-space:nowrap}
+
+  .head{padding-block:clamp(40px,7vw,72px) 0}
+  .eyebrow{font-size:11px; font-weight:650; color:var(--gold); letter-spacing:.12em; margin-bottom:14px}
+  .head h1{font-size:clamp(32px,7vw,52px)}
+  .ro{display:block; margin-top:8px; font-family:var(--mono); font-size:11px; letter-spacing:.14em; color:var(--fg3)}
+  .lead{margin-top:20px; font-size:clamp(18px,2.4vw,21px); line-height:1.6; color:var(--fg2)}
+
+  .art{margin:clamp(28px,5vw,44px) 0 0; border-radius:20px; overflow:hidden; background:var(--tile)}
+  .art img{display:block; width:100%; height:auto; aspect-ratio:4/3; object-fit:cover}
+  .best{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; padding:18px 22px 20px;
+        background:var(--tile); color:var(--tile-fg2); font-size:13px}
+  .best b{color:var(--tile-accent); font-size:22px; font-weight:600; white-space:nowrap}
+
+  section.part{padding-top:clamp(36px,6vw,52px)}
+  section.part h2{font-size:clamp(22px,4vw,28px); padding-top:16px; border-top:1px solid var(--line)}
+  section.part p{margin-top:16px; color:var(--fg)}
+  section.part p strong{font-weight:600}
+
+  .facts{margin:clamp(32px,5vw,44px) 0 0; border-top:1px solid var(--line)}
+  .facts div{display:grid; grid-template-columns:120px minmax(0,1fr); gap:16px; padding:12px 0;
+             border-bottom:1px solid var(--line2); font-size:15px}
+  .facts dt{color:var(--fg3)}
+  .facts dd{margin:0}
+
+  .more{margin-top:clamp(32px,5vw,44px); display:grid; gap:4px}
+  .more a{display:inline-flex; align-items:center; gap:5px; min-height:40px; font-size:16px}
+
+  .note{margin-top:clamp(28px,4vw,36px); padding:16px 18px; border-radius:14px; background:var(--bg2);
+        font-size:13px; line-height:1.7; color:var(--fg2)}
+
+  .others{margin-top:clamp(48px,7vw,72px); padding-block:28px 8px; border-top:1px solid var(--line)}
+  .others p{font-size:11px; font-weight:650; color:var(--gold); letter-spacing:.12em}
+  .others ul{margin:14px 0 0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px 16px}
+  .others li a{display:block; padding:8px 0; font-size:15px}
+  .others li span{display:block; padding:8px 0; font-size:15px; color:var(--fg3)}
+
+  footer{margin-top:clamp(40px,6vw,64px); background:var(--bg2); border-top:1px solid var(--line2);
+         padding-block:28px 36px; font-size:12px; color:var(--fg3)}
+  footer .wrap{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="../../" aria-label="京都ラボ ホーム"><span class="mk" aria-hidden="true">京</span><span class="nm">京都ラボ</span></a>
+    <a class="back" href="../../#spots">‹ 名所攻略の一覧へ</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="head">
+    <p class="eyebrow">名所攻略 12</p>
+    <h1>南禅寺</h1><span class="ro">NANZEN-JI</span>
+    <p class="lead">水路閣の上を流れる水は、そのまま北へ流れて、哲学の道の疏水になります。</p>
+    <figure class="art">
+      <img src="../../assets/nanzenji.jpg" width="700" height="525" decoding="async" alt="南禅寺の水路閣。赤レンガのアーチが続く水道橋">
+      <figcaption class="best"><b>朝8時40分</b><span>境内と水路閣は無料。紅葉の時期は別格に混む</span></figcaption>
+    </figure>
+  </header>
+
+  <section class="part">
+    <h2>いつ行くか</h2>
+    <p>3月から11月は8時40分から17時、12月から2月は16時30分まで。受付は閉まる20分前までで、12月28日から31日は休みです。予約は要りません。</p>
+    <p>境内と水路閣は、お金を払わずに歩けます。三門、方丈、南禅院はそれぞれ別に拝観料がかかります。朝の早い時間がいちばん空いていて、紅葉の時期だけは別格に混みます。</p>
+  </section>
+
+  <section class="part">
+    <h2>見るところ</h2>
+    <p>三門は高さ22メートル。いまの門は1628年に藤堂高虎が建て直したものです。上の階に上がると、天井に狩野探幽の天人と鳳凰の絵があります。石川五右衛門が「絶景かな」と言った話は歌舞伎の創作で、五右衛門はこの門が建つ30年以上前に死んでいます。</p>
+    <p>方丈は国宝で、前の庭は「虎の子渡し」と呼ばれ、小堀遠州の作と伝わります。</p>
+  </section>
+
+  <section class="part">
+    <h2>水路閣</h2>
+    <p>三門の奥へ進むと、赤レンガのアーチが現れます。1888年にできた水道橋で、長さ約93メートル、高さ約13メートル。琵琶湖から京都へ水を引く疏水を、境内越しに通すために架けられました。設計したのは田辺朔郎です。</p>
+    <p><strong>いまも上を水が流れていて、その水は北へ向かい、銀閣寺へ続く哲学の道の横を流れる疏水になります。</strong></p>
+  </section>
+
+  <section class="part">
+    <h2>回り方</h2>
+    <p>地下鉄東西線の蹴上駅から歩いて10分ほどです。</p>
+    <p>哲学の道を北へ約2km歩くと銀閣寺です。銀閣寺から南禅寺へ下っても、南禅寺から銀閣寺へ上がっても、バスをほとんど使わずに半日で回れます。平安神宮も近くです。</p>
+  </section>
+
+  <div class="more">
+    <a href="../../articles/suirokaku/">水路閣の記事を読む <i aria-hidden="true">›</i></a>
+    <a href="../ginkakuji/">銀閣寺の攻略を読む <i aria-hidden="true">›</i></a>
+  </div>
+
+  <p class="note">画像は、写真ではなくオリジナルのイラストです。営業時間、料金、規則は変わるため、行く前に公式情報をご確認ください。</p>
+
+  <nav class="others" aria-label="ほかの名所">
+    <p>ほかの名所</p>
+    <ul>
+      <li><a href="../chikurin/">嵐山・竹林の道</a></li>
+      <li><a href="../kiyomizu/">清水寺</a></li>
+      <li><a href="../fushimi-inari/">伏見稲荷大社</a></li>
+      <li><a href="../togetsukyo/">渡月橋</a></li>
+      <li><a href="../kinkakuji/">金閣寺</a></li>
+      <li><a href="../ginkakuji/">銀閣寺</a></li>
+      <li><a href="../gion/">祇園</a></li>
+      <li><a href="../nishiki/">錦市場</a></li>
+      <li><a href="../nijo/">二条城</a></li>
+      <li><a href="../gosho/">京都御所</a></li>
+      <li><a href="../sanjusangendo/">三十三間堂</a></li>
+      <li><span aria-current="page">南禅寺</span></li>
+      <li><a href="../tofukuji/">東福寺</a></li>
+    </ul>
+  </nav>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>京都ラボ ／ 京都市</span>
+    <a href="../../">京都ラボ トップへ戻る</a>
+  </div>
+</footer>
+
+</body>
+</html>

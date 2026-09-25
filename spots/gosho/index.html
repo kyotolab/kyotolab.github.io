@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>京都御所の攻略 ／ 京都ラボ</title>
+<meta name="description" content="京都御所は予約なし、無料で入れる。月曜は休み。約500年、天皇が住んだ場所と、紫宸殿の見方、回り方。">
+<link rel="canonical" href="https://kyotolab.github.io/spots/gosho/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="京都御所の攻略 ／ 京都ラボ">
+<meta property="og:description" content="京都御所は予約なし、無料で入れる。月曜は休み。約500年、天皇が住んだ場所と、紫宸殿の見方、回り方。">
+<meta property="og:url" content="https://kyotolab.github.io/spots/gosho/">
+<meta property="og:site_name" content="京都ラボ">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://kyotolab.github.io/assets/gosho.jpg">
+<meta property="og:image:width" content="700">
+<meta property="og:image:height" content="525">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#FFFFFF; --bg2:#F5F5F7; --fg:#1D1D1F; --fg2:#6E6E73; --fg3:#86868B;
+    --line:rgba(0,0,0,.12); --line2:rgba(0,0,0,.08);
+    --accent:#0066CC; --accent-soft:#EAF2FD; --accent-brd:#B9D6F5;
+    --gold:#A33A2C;
+    --tile:#1D1D1F; --tile-fg:#F5F5F7; --tile-fg2:#98989D; --tile-accent:#5AC8FA;
+    --sys:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --gut:clamp(20px,5vw,40px);
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--fg); font-family:var(--sys);
+       font-size:17px; line-height:1.75; -webkit-font-smoothing:antialiased}
+  h1,h2{margin:0; font-weight:700; line-height:1.25; font-feature-settings:"palt" 1; text-wrap:balance}
+  p{margin:0}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  img{max-width:100%}
+  .wrap{max-width:720px; margin:0 auto; padding-inline:var(--gut)}
+
+  .nav{position:sticky; top:0; z-index:10; height:48px; background:rgba(255,255,255,.88);
+       backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
+       border-bottom:1px solid var(--line2)}
+  .nav .wrap{max-width:1040px; height:100%; display:flex; align-items:center; justify-content:space-between; gap:16px}
+  .brand{display:inline-flex; align-items:center; gap:9px; color:var(--fg); white-space:nowrap}
+  .brand:hover{text-decoration:none; color:var(--accent)}
+  .brand .mk{width:25px; height:25px; display:grid; place-content:center; border:1px solid currentColor;
+             border-radius:2px; font-size:14px; line-height:1; padding-top:1px}
+  .brand .nm{font-size:18px; font-weight:700; letter-spacing:.06em}
+  .nav .back{font-size:13px; white-space:nowrap}
+
+  .head{padding-block:clamp(40px,7vw,72px) 0}
+  .eyebrow{font-size:11px; font-weight:650; color:var(--gold); letter-spacing:.12em; margin-bottom:14px}
+  .head h1{font-size:clamp(32px,7vw,52px)}
+  .ro{display:block; margin-top:8px; font-family:var(--mono); font-size:11px; letter-spacing:.14em; color:var(--fg3)}
+  .lead{margin-top:20px; font-size:clamp(18px,2.4vw,21px); line-height:1.6; color:var(--fg2)}
+
+  .art{margin:clamp(28px,5vw,44px) 0 0; border-radius:20px; overflow:hidden; background:var(--tile)}
+  .art img{display:block; width:100%; height:auto; aspect-ratio:4/3; object-fit:cover}
+  .best{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; padding:18px 22px 20px;
+        background:var(--tile); color:var(--tile-fg2); font-size:13px}
+  .best b{color:var(--tile-accent); font-size:22px; font-weight:600; white-space:nowrap}
+
+  section.part{padding-top:clamp(36px,6vw,52px)}
+  section.part h2{font-size:clamp(22px,4vw,28px); padding-top:16px; border-top:1px solid var(--line)}
+  section.part p{margin-top:16px; color:var(--fg)}
+  section.part p strong{font-weight:600}
+
+  .facts{margin:clamp(32px,5vw,44px) 0 0; border-top:1px solid var(--line)}
+  .facts div{display:grid; grid-template-columns:120px minmax(0,1fr); gap:16px; padding:12px 0;
+             border-bottom:1px solid var(--line2); font-size:15px}
+  .facts dt{color:var(--fg3)}
+  .facts dd{margin:0}
+
+  .more{margin-top:clamp(32px,5vw,44px); display:grid; gap:4px}
+  .more a{display:inline-flex; align-items:center; gap:5px; min-height:40px; font-size:16px}
+
+  .note{margin-top:clamp(28px,4vw,36px); padding:16px 18px; border-radius:14px; background:var(--bg2);
+        font-size:13px; line-height:1.7; color:var(--fg2)}
+
+  .others{margin-top:clamp(48px,7vw,72px); padding-block:28px 8px; border-top:1px solid var(--line)}
+  .others p{font-size:11px; font-weight:650; color:var(--gold); letter-spacing:.12em}
+  .others ul{margin:14px 0 0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px 16px}
+  .others li a{display:block; padding:8px 0; font-size:15px}
+  .others li span{display:block; padding:8px 0; font-size:15px; color:var(--fg3)}
+
+  footer{margin-top:clamp(40px,6vw,64px); background:var(--bg2); border-top:1px solid var(--line2);
+         padding-block:28px 36px; font-size:12px; color:var(--fg3)}
+  footer .wrap{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="../../" aria-label="京都ラボ ホーム"><span class="mk" aria-hidden="true">京</span><span class="nm">京都ラボ</span></a>
+    <a class="back" href="../../#spots">‹ 名所攻略の一覧へ</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="head">
+    <p class="eyebrow">名所攻略 10</p>
+    <h1>京都御所</h1><span class="ro">KYOTO IMPERIAL PALACE</span>
+    <p class="lead">予約なし、無料で入れます。約500年、天皇が住んだ場所です。</p>
+    <figure class="art">
+      <img src="../../assets/gosho.jpg" width="700" height="525" decoding="async" alt="京都御所。白砂の庭の奥に建つ紫宸殿">
+      <figcaption class="best"><b>予約なしで無料</b><span>月曜は休み。入口は西側の清所門</span></figcaption>
+    </figure>
+  </header>
+
+  <section class="part">
+    <h2>いつ行くか</h2>
+    <p>予約は要りません。2016年から、申し込みなしで一年中入れるようになりました。入口は西側の清所門で、入るときに手荷物の検査があります。</p>
+    <p>開いている時間は季節で変わり、4月から8月は9時から17時、3月と9月は16時30分まで、10月から2月は16時までです。入れるのは閉まる40分前まで。<strong>月曜は休み</strong>（祝日なら翌日）で、年末年始と行事の日も入れません。</p>
+  </section>
+
+  <section class="part">
+    <h2>見るところ</h2>
+    <p>正殿の紫宸殿です。天皇の即位の儀式が行われた建物で、いまのものは1855年に、平安時代の内裏の姿にならって建て直されました。古く見えますが、江戸時代の終わりに、わざと古い様式で建てられたものです。</p>
+    <p>紫宸殿の前には、左に桜、右に橘が植えられています（左近の桜、右近の橘）。建物の中には入れず、外から見ていく順路です。</p>
+  </section>
+
+  <section class="part">
+    <h2>知っておくこと</h2>
+    <p>1331年に光厳天皇がここで即位してから、1869年に天皇が東京へ移るまで、<strong>約500年のあいだ天皇の住まいでした。</strong></p>
+    <p>写真は撮れますが、三脚やドローンは使えません。飲食と喫煙もできません。周りの京都御苑は約65ヘクタールの公園で、こちらはいつでも出入りできます。江戸時代には、ここに約140の宮家や公家の屋敷が並んでいました。</p>
+  </section>
+
+  <section class="part">
+    <h2>回り方</h2>
+    <p>地下鉄烏丸線の今出川駅から清所門まで、歩いて5分ほどです。丸太町駅からも行けます。</p>
+    <p>二条城から東へ歩いて20分ほどです。午前に二条城、昼から御所と組むと、どちらも地下鉄と徒歩で回れます。</p>
+  </section>
+
+  <div class="more">
+    <a href="../../articles/gosho/">英語の解説を読む（English） <i aria-hidden="true">›</i></a>
+  </div>
+
+  <p class="note">画像は、写真ではなくオリジナルのイラストです。営業時間、料金、規則は変わるため、行く前に公式情報をご確認ください。</p>
+
+  <nav class="others" aria-label="ほかの名所">
+    <p>ほかの名所</p>
+    <ul>
+      <li><a href="../chikurin/">嵐山・竹林の道</a></li>
+      <li><a href="../kiyomizu/">清水寺</a></li>
+      <li><a href="../fushimi-inari/">伏見稲荷大社</a></li>
+      <li><a href="../togetsukyo/">渡月橋</a></li>
+      <li><a href="../kinkakuji/">金閣寺</a></li>
+      <li><a href="../ginkakuji/">銀閣寺</a></li>
+      <li><a href="../gion/">祇園</a></li>
+      <li><a href="../nishiki/">錦市場</a></li>
+      <li><a href="../nijo/">二条城</a></li>
+      <li><span aria-current="page">京都御所</span></li>
+      <li><a href="../sanjusangendo/">三十三間堂</a></li>
+      <li><a href="../nanzenji/">南禅寺</a></li>
+      <li><a href="../tofukuji/">東福寺</a></li>
+    </ul>
+  </nav>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>京都ラボ ／ 京都市</span>
+    <a href="../../">京都ラボ トップへ戻る</a>
+  </div>
+</footer>
+
+</body>
+</html>
