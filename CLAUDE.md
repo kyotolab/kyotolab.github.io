@@ -82,4 +82,4 @@
 - トップで「公開準備中」になっている記事が2本ある: 「上ル・下ル」の住所と地図アプリの話、銭湯の番台でのやりとりの話。どちらも 2026.10 と表示している。
 - `articles/heian-jingu/` と `articles/kamogawa/` は画像を base64 で埋め込んでいる。記事のフォルダに JPEG として出す。
 - `tools/menu/` と `tools/sento/` には `og:image` がない。
-- Instagram の自動投稿は、GitHub の Secrets に `IG_ACCESS_TOKEN` を入れるまで動かない。`SECRETS_PAT` も入れると、トークンの更新まで自動になる。
+- Instagram の自動投稿は `IG_ACCESS_TOKEN` を登録して動作確認済み（2026-09-25）。`SECRETS_PAT` はまだ未登録で、入れるまでは60日ごと（次は2026年11月下旬ごろ）にトークンを手で取り直す必要がある。
