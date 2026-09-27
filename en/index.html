@@ -250,15 +250,6 @@
   .vgrid div{padding-top:20px; border-top:2px solid var(--accent)}
   .vgrid b{display:block; font-size:19px; font-weight:600; letter-spacing:-.016em}
   .vgrid span{display:block; margin-top:9px; font-size:14.5px; color:var(--fg2); line-height:1.65}
-  .goals{margin-top:clamp(38px,5vw,58px); padding-top:clamp(28px,4vw,40px); border-top:1px solid var(--line)}
-  .goals .gt{font-size:13px; color:var(--fg3); margin-bottom:22px; letter-spacing:.02em}
-  .gnums{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(20px,4vw,52px); max-width:660px}
-  @media (max-width:600px){ .gnums{grid-template-columns:1fr; gap:26px} }
-  .gnums b{display:block; font-size:clamp(40px,7vw,68px); font-weight:600; letter-spacing:-.03em;
-           line-height:1.04; color:var(--accent)}
-  .gnums b em{font-style:normal; font-size:.40em; margin-left:5px; letter-spacing:0}
-  .gnums span{display:block; margin-top:9px; font-size:15px; color:var(--fg2); line-height:1.6}
-  .gnote{margin-top:clamp(24px,3vw,32px); font-size:14.5px; color:var(--fg2); max-width:36em; line-height:1.7}
 
   /* ---------------- journal ---------------- */
   .journal{padding-block:clamp(60px,9vw,104px); border-top:1px solid var(--line2)}
@@ -412,11 +403,11 @@
     <ul>
       <li><a href="#why">Why</a></li>
       <li><a href="#vision">Vision</a></li>
-      <li><a href="#spots">Spot guide</a></li>
-      <li><a href="#journal">Field notes</a></li>
+      <li><a href="#shops">What we do</a></li>
       <li><a href="#product">Menu</a></li>
       <li><a href="#tejun">Bathhouse</a></li>
-      <li><a href="#shops">What we do</a></li>
+      <li><a href="#spots">Spot guide</a></li>
+      <li><a href="#journal">Field notes</a></li>
       <li><a href="#about">About</a></li>
     </ul>
     <div class="navend">
@@ -466,148 +457,6 @@
         <div><b>Build</b><span>No pointing out problems and walking off. We bring AI in, in a form that fits the shop, and see it through until it works.</span></div>
         <div><b>Stay</b><span>No installing and disappearing, either. We keep coming back to ask what didn&rsquo;t work until it sticks. It&rsquo;s our home town; we&rsquo;re not going anywhere.</span></div>
       </div>
-
-      <div class="goals">
-        <p class="gt">Five-year goals</p>
-        <div class="gnums">
-          <div><b>30<em>apps</em></b><span>built for Kyoto</span></div>
-          <div><b>100<em>articles</em></b><span>written about Kyoto</span></div>
-        </div>
-        <p class="gnote">A lab is where you try lots of things. Build thirty, then go and see how many are still in use on the shop floor.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="panel spots" id="spots">
-    <div class="wide">
-      <p class="eyebrow">Spot guide</p>
-      <h2>The hour changes<br>the place.</h2>
-      <p class="lead">Kyoto’s famous places all fill up at the same hours. But the place is not what is uneven — <strong>the hour is.</strong> The same spot at 7am and at 1pm are two different places. What is worth telling you is not just where to go, but when, and what to look at.</p>
-
-      <div class="ascenes">
-        <a class="ascene" href="spots/chikurin/">
-          <img class="art" src="../assets/chikurin.jpg" srcset="../assets/chikurin@700.jpg 700w, ../assets/chikurin.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="The bamboo path at Arashiyama, stalks closing overhead above a stone walkway">
-          <div class="cap">
-            <h3>Bamboo Grove</h3><span class="ro">ARASHIYAMA</span>
-            <span class="go">Read the guide ›</span>
-          </div>
-        </a>
-
-        <a class="ascene" href="spots/kiyomizu/">
-          <img class="art" src="../assets/kiyomizu.jpg" srcset="../assets/kiyomizu@700.jpg 700w, ../assets/kiyomizu.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="Kiyomizu-dera at dusk, its stage above a slope of red maples">
-          <div class="cap">
-            <h3>Kiyomizu-dera</h3><span class="ro">KIYOMIZU-DERA</span>
-            <span class="go">Read the guide ›</span>
-          </div>
-        </a>
-
-        <a class="ascene" href="spots/fushimi-inari/">
-          <img class="art" src="../assets/fushimi-inari.jpg" srcset="../assets/fushimi-inari@700.jpg 700w, ../assets/fushimi-inari.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="The vermilion torii tunnel at Fushimi Inari, lit by hanging lanterns">
-          <div class="cap">
-            <h3>Fushimi Inari</h3><span class="ro">FUSHIMI INARI</span>
-            <span class="go">Read the guide ›</span>
-          </div>
-        </a>
-
-        <a class="ascene" href="spots/togetsukyo/">
-          <img class="art" src="../assets/togetsukyo.jpg" srcset="../assets/togetsukyo@700.jpg 700w, ../assets/togetsukyo.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="Togetsukyo bridge with autumn colour on the hills behind it">
-          <div class="cap">
-            <h3>Togetsukyo</h3><span class="ro">ARASHIYAMA</span>
-            <span class="go">Read the guide ›</span>
-          </div>
-        </a>
-
-        <a class="ascene" href="spots/kinkakuji/">
-          <img class="art" src="../assets/kinkakuji.jpg" width="700" height="525" loading="lazy" decoding="async" alt="The Golden Pavilion across the pond, its un-gilded ground floor beneath two gilded storeys">
-          <div class="cap">
-            <h3>Kinkaku-ji</h3><span class="ro">KINKAKU-JI</span>
-            <span class="go">Read the guide ›</span>
-          </div>
-        </a>
-
-        <a class="ascene" href="spots/ginkakuji/">
-          <img class="art" src="../assets/ginkakuji.jpg" width="700" height="525" loading="lazy" decoding="async" alt="Ginkaku-ji, a dark two-storey wooden pavilion among trees beside the pond">
-          <div class="cap">
-            <h3>Ginkaku-ji</h3><span class="ro">GINKAKU-JI</span>
-            <span class="go">Read the guide ›</span>
-          </div>
-        </a>
-
-        <a class="ascene" href="spots/gion/">
-          <img class="art" src="../assets/gion-yasaka.jpg" width="700" height="525" loading="lazy" decoding="async" alt="A stone-paved Gion lane at dusk, the Yasaka pagoda at the end and lit machiya on both sides">
-          <div class="cap">
-            <h3>Gion</h3><span class="ro">GION</span>
-            <span class="go">Read the guide ›</span>
-          </div>
-        </a>
-
-        <a class="ascene" href="spots/nishiki/">
-          <img class="art" src="../assets/nishiki.jpg" width="700" height="525" loading="lazy" decoding="async" alt="The Nishiki Market arcade under its coloured glass roof, stalls of food down both sides">
-          <div class="cap">
-            <h3>Nishiki Market</h3><span class="ro">NISHIKI MARKET</span>
-            <span class="go">Read the guide ›</span>
-          </div>
-        </a>
-
-        <a class="ascene" href="spots/nijo/">
-          <img class="art" src="../assets/nijo.jpg" srcset="../assets/nijo@700.jpg 700w, ../assets/nijo.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="Nijo Castle’s Karamon gate, decorated in gold, with the palace behind it and the stone wall and moat to the left">
-          <div class="cap">
-            <h3>Nijo Castle</h3><span class="ro">NIJO-JO CASTLE</span>
-            <span class="go">Read the guide ›</span>
-          </div>
-        </a>
-
-        <a class="ascene" href="spots/gosho/">
-          <img class="art" src="../assets/gosho.jpg" srcset="../assets/gosho@700.jpg 700w, ../assets/gosho.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="A gate of the Kyoto Imperial Palace, with a palace hall beyond the white gravel">
-          <div class="cap">
-            <h3>Imperial Palace</h3><span class="ro">KYOTO GOSHO</span>
-            <span class="go">Read the guide ›</span>
-          </div>
-        </a>
-
-        <a class="ascene" href="spots/sanjusangendo/">
-          <img class="art" src="../assets/sanjusangendo.jpg" srcset="../assets/sanjusangendo@700.jpg 700w, ../assets/sanjusangendo.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="Sanjusangen-do: the long main hall stretching away behind white gravel">
-          <div class="cap">
-            <h3>Sanjusangen-do</h3><span class="ro">SANJUSANGEN-DO</span>
-            <span class="go">Read the guide ›</span>
-          </div>
-        </a>
-
-        <a class="ascene" href="spots/nanzenji/">
-          <img class="art" src="../assets/nanzenji.jpg" srcset="../assets/nanzenji@700.jpg 700w, ../assets/nanzenji.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="Nanzen-ji: the Sanmon gate on the left and the red-brick arches of the aqueduct on the right">
-          <div class="cap">
-            <h3>Nanzen-ji</h3><span class="ro">NANZEN-JI</span>
-            <span class="go">Read the guide ›</span>
-          </div>
-        </a>
-      </div>
-
-      <div class="afoot">
-        <a class="link" href="../articles/one-day/">Read the one-day route <i>›</i></a>
-        <a class="link" href="../articles/gosho/">Read about the Imperial Palace <i>›</i></a>
-        <p class="adisc">Images are original illustrations, not photographs. Opening hours and rules change — please also check each place’s official information before you go.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="journal" id="journal">
-    <div class="wrap">
-      <div class="jhead">
-        <h2>Field notes</h2>
-        <span class="pill live">Free to read</span>
-      </div>
-
-      <div class="jgrid">
-
-        <a class="jcard" href="../articles/shimogyo/">
-          <span class="cat">Neighbourhood ／ Standalone</span>
-          <h3>Living in Shimogyo</h3>
-          <p>The ward I was born in. A grid you cannot get lost in, lunch one street off Shijo, a river you can run along — and the practical reason to book your hotel here rather than somewhere famously beautiful.</p>
-          <div class="foot"><time datetime="2026-09-15">2026.09.15</time><span class="pill live">Live</span></div>
-        </a>
-      </div>
-
-      <p class="jseries" style="margin-top:22px"><b>Also in Japanese</b> — a series on the water that runs through Kyoto (the Kamo river, Heian Shrine, the aqueduct through Nanzen-ji). <a href="../">Read them on the Japanese site ›</a></p>
     </div>
   </section>
 
@@ -749,6 +598,139 @@
         <div class="tstep"><em>06</em><span>Small towel stays out of the water</span></div>
         <p class="tmore">THE FULL GUIDE HAS PICTURES FOR EACH STEP</p>
       </div>
+    </div>
+  </section>
+
+  <section class="panel spots" id="spots">
+    <div class="wide">
+      <p class="eyebrow">Spot guide</p>
+      <h2>The hour changes<br>the place.</h2>
+      <p class="lead">Kyoto’s famous places all fill up at the same hours. But the place is not what is uneven — <strong>the hour is.</strong> The same spot at 7am and at 1pm are two different places. What is worth telling you is not just where to go, but when, and what to look at.</p>
+
+      <div class="ascenes">
+        <a class="ascene" href="spots/chikurin/">
+          <img class="art" src="../assets/chikurin.jpg" srcset="../assets/chikurin@700.jpg 700w, ../assets/chikurin.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="The bamboo path at Arashiyama, stalks closing overhead above a stone walkway">
+          <div class="cap">
+            <h3>Bamboo Grove</h3><span class="ro">ARASHIYAMA</span>
+            <span class="go">Read the guide ›</span>
+          </div>
+        </a>
+
+        <a class="ascene" href="spots/kiyomizu/">
+          <img class="art" src="../assets/kiyomizu.jpg" srcset="../assets/kiyomizu@700.jpg 700w, ../assets/kiyomizu.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="Kiyomizu-dera at dusk, its stage above a slope of red maples">
+          <div class="cap">
+            <h3>Kiyomizu-dera</h3><span class="ro">KIYOMIZU-DERA</span>
+            <span class="go">Read the guide ›</span>
+          </div>
+        </a>
+
+        <a class="ascene" href="spots/fushimi-inari/">
+          <img class="art" src="../assets/fushimi-inari.jpg" srcset="../assets/fushimi-inari@700.jpg 700w, ../assets/fushimi-inari.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="The vermilion torii tunnel at Fushimi Inari, lit by hanging lanterns">
+          <div class="cap">
+            <h3>Fushimi Inari</h3><span class="ro">FUSHIMI INARI</span>
+            <span class="go">Read the guide ›</span>
+          </div>
+        </a>
+
+        <a class="ascene" href="spots/togetsukyo/">
+          <img class="art" src="../assets/togetsukyo.jpg" srcset="../assets/togetsukyo@700.jpg 700w, ../assets/togetsukyo.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="Togetsukyo bridge with autumn colour on the hills behind it">
+          <div class="cap">
+            <h3>Togetsukyo</h3><span class="ro">ARASHIYAMA</span>
+            <span class="go">Read the guide ›</span>
+          </div>
+        </a>
+
+        <a class="ascene" href="spots/kinkakuji/">
+          <img class="art" src="../assets/kinkakuji.jpg" width="700" height="525" loading="lazy" decoding="async" alt="The Golden Pavilion across the pond, its un-gilded ground floor beneath two gilded storeys">
+          <div class="cap">
+            <h3>Kinkaku-ji</h3><span class="ro">KINKAKU-JI</span>
+            <span class="go">Read the guide ›</span>
+          </div>
+        </a>
+
+        <a class="ascene" href="spots/ginkakuji/">
+          <img class="art" src="../assets/ginkakuji.jpg" width="700" height="525" loading="lazy" decoding="async" alt="Ginkaku-ji, a dark two-storey wooden pavilion among trees beside the pond">
+          <div class="cap">
+            <h3>Ginkaku-ji</h3><span class="ro">GINKAKU-JI</span>
+            <span class="go">Read the guide ›</span>
+          </div>
+        </a>
+
+        <a class="ascene" href="spots/gion/">
+          <img class="art" src="../assets/gion-yasaka.jpg" width="700" height="525" loading="lazy" decoding="async" alt="A stone-paved Gion lane at dusk, the Yasaka pagoda at the end and lit machiya on both sides">
+          <div class="cap">
+            <h3>Gion</h3><span class="ro">GION</span>
+            <span class="go">Read the guide ›</span>
+          </div>
+        </a>
+
+        <a class="ascene" href="spots/nishiki/">
+          <img class="art" src="../assets/nishiki.jpg" width="700" height="525" loading="lazy" decoding="async" alt="The Nishiki Market arcade under its coloured glass roof, stalls of food down both sides">
+          <div class="cap">
+            <h3>Nishiki Market</h3><span class="ro">NISHIKI MARKET</span>
+            <span class="go">Read the guide ›</span>
+          </div>
+        </a>
+
+        <a class="ascene" href="spots/nijo/">
+          <img class="art" src="../assets/nijo.jpg" srcset="../assets/nijo@700.jpg 700w, ../assets/nijo.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="Nijo Castle’s Karamon gate, decorated in gold, with the palace behind it and the stone wall and moat to the left">
+          <div class="cap">
+            <h3>Nijo Castle</h3><span class="ro">NIJO-JO CASTLE</span>
+            <span class="go">Read the guide ›</span>
+          </div>
+        </a>
+
+        <a class="ascene" href="spots/gosho/">
+          <img class="art" src="../assets/gosho.jpg" srcset="../assets/gosho@700.jpg 700w, ../assets/gosho.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="A gate of the Kyoto Imperial Palace, with a palace hall beyond the white gravel">
+          <div class="cap">
+            <h3>Imperial Palace</h3><span class="ro">KYOTO GOSHO</span>
+            <span class="go">Read the guide ›</span>
+          </div>
+        </a>
+
+        <a class="ascene" href="spots/sanjusangendo/">
+          <img class="art" src="../assets/sanjusangendo.jpg" srcset="../assets/sanjusangendo@700.jpg 700w, ../assets/sanjusangendo.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="Sanjusangen-do: the long main hall stretching away behind white gravel">
+          <div class="cap">
+            <h3>Sanjusangen-do</h3><span class="ro">SANJUSANGEN-DO</span>
+            <span class="go">Read the guide ›</span>
+          </div>
+        </a>
+
+        <a class="ascene" href="spots/nanzenji/">
+          <img class="art" src="../assets/nanzenji.jpg" srcset="../assets/nanzenji@700.jpg 700w, ../assets/nanzenji.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="Nanzen-ji: the Sanmon gate on the left and the red-brick arches of the aqueduct on the right">
+          <div class="cap">
+            <h3>Nanzen-ji</h3><span class="ro">NANZEN-JI</span>
+            <span class="go">Read the guide ›</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="afoot">
+        <a class="link" href="../articles/one-day/">Read the one-day route <i>›</i></a>
+        <a class="link" href="../articles/gosho/">Read about the Imperial Palace <i>›</i></a>
+        <p class="adisc">Images are original illustrations, not photographs. Opening hours and rules change — please also check each place’s official information before you go.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="journal" id="journal">
+    <div class="wrap">
+      <div class="jhead">
+        <h2>Field notes</h2>
+        <span class="pill live">Free to read</span>
+      </div>
+
+      <div class="jgrid">
+
+        <a class="jcard" href="../articles/shimogyo/">
+          <span class="cat">Neighbourhood ／ Standalone</span>
+          <h3>Living in Shimogyo</h3>
+          <p>The ward I was born in. A grid you cannot get lost in, lunch one street off Shijo, a river you can run along — and the practical reason to book your hotel here rather than somewhere famously beautiful.</p>
+          <div class="foot"><time datetime="2026-09-15">2026.09.15</time><span class="pill live">Live</span></div>
+        </a>
+      </div>
+
+      <p class="jseries" style="margin-top:22px"><b>Also in Japanese</b> — a series on the water that runs through Kyoto (the Kamo river, Heian Shrine, the aqueduct through Nanzen-ji). <a href="../">Read them on the Japanese site ›</a></p>
     </div>
   </section>
 
@@ -895,7 +877,7 @@
   (function(){
     if(reduce || !("IntersectionObserver" in window)) return;
     var targets = document.querySelectorAll(
-      ".why h2, .why .lead, .vision h2, .vision .lead, .vgrid div, .goals, .product .wide > div, .issue, .pillars h2, .pcard, .jhead, .jrow, .about h2, .arow, .contact .wrap > *"
+      ".why h2, .why .lead, .vision h2, .vision .lead, .vgrid div, .product .wide > div, .issue, .pillars h2, .pcard, .jhead, .jrow, .about h2, .arow, .contact .wrap > *"
     );
     var vh = window.innerHeight, list = [];
     for(var i=0;i<targets.length;i++){
