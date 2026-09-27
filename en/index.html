@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Kyoto Lab</title>
-<meta name="description" content="Easing the language gap between Kyoto’s shops and their visitors with AI and IT: shop guides, multilingual menus, and AI onboarding support. From Shimogyo, Kyoto.">
+<meta name="description" content="Kyoto Lab helps small businesses and independent shops in Kyoto adopt AI: serving overseas guests in their language, replying to enquiries and reviews, and summarising sales. From Shimogyo, Kyoto.">
 <link rel="canonical" href="https://kyotolab.github.io/en/">
 <link rel="alternate" hreflang="ja" href="https://kyotolab.github.io/">
 <link rel="alternate" hreflang="en" href="https://kyotolab.github.io/en/">
 <link rel="alternate" hreflang="x-default" href="https://kyotolab.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Kyoto Lab">
-<meta property="og:description" content="Solving Kyoto’s challenges. We ease the language gap between Kyoto’s shops and their visitors with AI and IT.">
+<meta property="og:description" content="Solving Kyoto’s challenges. We help small businesses and independent shops in Kyoto put AI to work.">
 <meta property="og:url" content="https://kyotolab.github.io/en/">
 <meta property="og:site_name" content="Kyoto Lab">
 <meta property="og:locale" content="en_GB">
@@ -189,6 +189,32 @@
   .pcard li{font-size:14px; color:var(--fg2); padding-left:16px; position:relative}
   .pcard li::before{content:""; position:absolute; left:0; top:.62em; width:7px; height:1.5px;
                     border-radius:2px; background:var(--accent)}
+  .pgoal{margin-top:clamp(32px,5vw,52px); background:var(--bg2); border-radius:20px; padding:32px 28px 30px}
+  .pgoal .eyebrow{margin-bottom:10px}
+  .pgoal h3{font-size:clamp(23px,3vw,30px); letter-spacing:-.018em}
+  .pgoal > p{margin-top:11px; font-size:15px; color:var(--fg2); line-height:1.6; max-width:40em}
+  .psteps{margin:22px 0 0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px}
+  @media (max-width:700px){ .psteps{grid-template-columns:1fr} }
+  .psteps li{border-top:1px solid var(--line); padding-top:14px; font-size:14px; color:var(--fg2); line-height:1.6}
+  .psteps em{display:block; font-style:normal; font-size:12px; font-weight:650; color:var(--gold); margin-bottom:4px}
+  .psteps b{display:block; font-size:16px; color:var(--fg); margin-bottom:2px}
+  .pmeans{margin-top:clamp(36px,5vw,52px); text-align:center}
+  .pmeans + .pgrid{margin-top:14px}
+
+  /* ---------------- use cases ---------------- */
+  .cases{padding-block:clamp(60px,9vw,104px); border-top:1px solid var(--line2)}
+  .cases h2{font-size:clamp(28px,4.2vw,46px); letter-spacing:-.024em; text-align:center}
+  .cases .lead{margin:16px auto 0; max-width:36em; text-align:center}
+  .cgrid{margin-top:clamp(32px,5vw,52px); display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px}
+  @media (max-width:800px){ .cgrid{grid-template-columns:1fr} }
+  .ccase{background:var(--bg2); border-radius:20px; padding:30px 28px 32px}
+  .ccase .eyebrow{margin-bottom:10px}
+  .ccase h3{font-size:23px; letter-spacing:-.018em}
+  .ccase > p{margin-top:8px; font-size:14px; color:var(--fg2); line-height:1.6}
+  .clist{margin:20px 0 0; padding:0; list-style:none}
+  .clist li{border-top:1px solid var(--line); padding:14px 0; font-size:14px; color:var(--fg2); line-height:1.6}
+  .clist li:last-child{padding-bottom:0}
+  .clist b{display:block; font-size:16px; color:var(--fg); margin-bottom:3px}
 
   /* ---------------- spots (white section, dark art tiles) ---------------- */
   .spots{padding-block:clamp(72px,11vw,126px); border-top:1px solid var(--line2)}
@@ -405,12 +431,13 @@
     <div class="wrap">
       <p class="eyebrow">Kyoto Lab ／ From Shimogyo, Kyoto</p>
       <h1>Solving Kyoto’s challenges.</h1>
-      <p class="sub">Kyoto Lab uses AI and IT to ease the language gap between Kyoto’s shops and the people who visit them: shop guides, multilingual menus, and AI onboarding support for shops.<br>Drawing on growing up in Shimogyo, Kyoto, we build only what works on the shop floor.</p>
+      <p class="sub">Kyoto Lab helps small businesses and independent shops in Kyoto put AI to work: serving overseas guests in their language, replying to enquiries and reviews, summarising sales. We start with whatever takes the most time today.<br>Drawing on growing up in Shimogyo, Kyoto, we build only what works on the shop floor.</p>
       <div class="cta">
         <a class="btn btn-fill" href="#spots">Read the spot guide</a>
         <a class="btn btn-line" href="#tejun">How to use a bathhouse <i>›</i></a>
+        <a class="btn btn-line" href="#products">For shops: AI adoption <i>›</i></a>
       </div>
-      <p class="hero-note">Kyoto, Japan ／ Field notes · Shop tools · Inbound support</p>
+      <p class="hero-note">Kyoto, Japan ／ AI adoption · Multilingual support · Field notes</p>
       <p class="hero-sns">Also on social ／ <a href="https://www.instagram.com/kyotolab923/">Instagram</a> · <a href="https://note.com/legal_sorrel6616">note</a> · <a href="https://medium.com/@sc0054sv">Medium</a></p>
     </div>
     <div class="hero-photo" aria-hidden="true">
@@ -586,15 +613,96 @@
   <section class="psintro" id="products">
     <div class="wide">
       <p class="eyebrow">Products and services</p>
-      <h2>Ready to use<br>in the shop.</h2>
-      <p class="lead">A multilingual menu and a step-by-step bathhouse guide. The shop sets them up once and can use them from that day on. We do not stop at building them; we help put them in place.</p>
+      <h2>Making AI<br>a tool for the shop.</h2>
+      <p class="lead">We help small businesses and independent shops put AI to work. We decide with each shop what AI should do, then build it as a website, an app, an Instagram account or writing on note and Medium. We stay until the shop uses it without us.</p>
+    </div>
+  </section>
+
+  <section class="pillars" id="shops">
+    <div class="wide">
+      <h2>Observe, build, bring it back.</h2>
+      <div class="pgoal">
+        <p class="eyebrow">The goal</p>
+        <h3>AI adoption for small businesses and independent shops</h3>
+        <p>What AI is good for differs from shop to shop. We look at the work as it is done today and start small where it is most likely to help. The tools are the means; the goal is less work for the shop.</p>
+        <ol class="psteps">
+          <li><em>01</em><b>Observe</b>Look at the work and find where AI helps</li>
+          <li><em>02</em><b>Build</b>Choose the means that fit the shop and make it</li>
+          <li><em>03</em><b>Stay</b>Keep advising after launch until it becomes routine</li>
+        </ol>
+      </div>
+      <p class="eyebrow pmeans">The means</p>
+      <div class="pgrid">
+        <div class="pcard">
+          <p class="eyebrow">Means 1</p>
+          <h3>Websites</h3>
+          <p>The shop's information in Japanese and other languages. AI takes the weight out of translating and updating, and the shop can edit it themselves.</p>
+          <ul><li>Shop pages in Japanese and other languages</li><li>Translation and updates with AI</li><li>Set up so the shop can edit it</li></ul>
+        </div>
+        <div class="pcard">
+          <p class="eyebrow">Means 2</p>
+          <h3>Apps and services</h3>
+          <p>Apps for shops that struggle with overseas visitors, ready to use from the day they are installed. The two below are prototypes.</p>
+          <ul><li>Multilingual menus</li><li>Reservations and queue management</li><li>Multilingual guides to shops and experiences</li></ul>
+        </div>
+        <div class="pcard">
+          <p class="eyebrow">Means 3</p>
+          <h3>Instagram</h3>
+          <p>AI takes the weight out of writing posts, so the shop can keep reaching overseas visitors.</p>
+          <ul><li>Posts written in other languages</li><li>Drafts prepared automatically</li><li>A posting routine that lasts</li></ul>
+        </div>
+        <div class="pcard">
+          <p class="eyebrow">Means 4</p>
+          <h3>Writing on note and Medium</h3>
+          <p>The shop's story and craft as articles, bringing in customers from search and social media.</p>
+          <ul><li>Articles about the shop</li><li>Writing in English</li><li>Shared on the website and social media</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cases" id="cases">
+    <div class="wide">
+      <p class="eyebrow" style="text-align:center">Use cases</p>
+      <h2>What it looks like in practice.</h2>
+      <p class="lead">Two examples of what AI can do. Both are hypothetical, not real companies or shops. We decide together with each business where to start. AI writes the drafts; a person checks them before they reach a customer.</p>
+      <div class="cgrid">
+        <div class="ccase">
+          <p class="eyebrow">Example A</p>
+          <h3>A small business</h3>
+          <p>A company of about ten people. Enquiries, quotes and month-end figures take up too much time.</p>
+          <ul class="clist">
+            <li><b>Replies to the contact form</b>AI sorts incoming enquiries by topic and drafts a reply. The person in charge checks it and sends it.</li>
+            <li><b>Sales and invoice reports</b>Sales and invoice data is turned into the same tables and charts every month, with no copying by hand.</li>
+            <li><b>Drafts of quotes and emails</b>AI drafts them from past quotes and standard wording.</li>
+            <li><b>Meeting notes and daily reports</b>Minutes are written from recordings or notes, with a list of decisions and who owns each one.</li>
+            <li><b>An internal help desk</b>AI reads the company's manuals and rules, and answers staff questions by pointing to the right section.</li>
+            <li><b>Overseas clients and customers</b>Emails in other languages are translated, and replies are drafted.</li>
+            <li><b>Website</b>A company site in Japanese and English, with news updates made easier by AI.</li>
+            <li><b>AI training for staff</b>Practice with the company's own work, so staff can use it the next day.</li>
+          </ul>
+        </div>
+        <div class="ccase">
+          <p class="eyebrow">Example B</p>
+          <h3>An independent restaurant</h3>
+          <p>Run by the owner and family. More overseas guests arrive, and service, social media and reviews are hard to keep up with.</p>
+          <ul class="clist">
+            <li><b>Serving overseas guests in their language</b>A multilingual menu shows each dish, allergens and ingredients such as fish stock in the guest's own language.</li>
+            <li><b>Replies to Google reviews</b>AI drafts a reply to each new review in the reviewer's language. The owner checks it and posts it.</li>
+            <li><b>Replies to bookings and questions</b>Drafts for the questions that keep coming: opening hours, bookings, vegetarian options.</li>
+            <li><b>Website and Google Maps</b>A one-page site in Japanese and other languages, and a tidy Google Maps listing.</li>
+            <li><b>Instagram posts</b>From a photo and a line of text, AI writes the post in English and Japanese.</li>
+            <li><b>Sales reports</b>Till data is summarised each week by day, time and dish, to plan prep and staffing.</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="product" id="product">
     <div class="wide">
       <div>
-        <p class="eyebrow">For visitors and shops</p>
+        <p class="eyebrow">Example app ／ Menu</p>
         <h2>A menu that<br>answers back.</h2>
         <p class="lead">Most Kyoto dishes sit on a base of fish stock, so a plate of vegetables is often not vegetarian. Our menu prototype lets a diner filter by what they cannot eat, in their own language, before anything is carried to the table.</p>
         <a class="link" href="../tools/menu/">Try the prototype <i>›</i></a>
@@ -626,7 +734,7 @@
   <section class="tools" id="tejun">
     <div class="wide">
       <div>
-        <p class="eyebrow">Practical</p>
+        <p class="eyebrow">Example app ／ Bathhouse guide</p>
         <h2>How to use<br>a bathhouse.</h2>
         <p class="lead">A sento is not a spa and not a hot spring resort. It is the neighbourhood bath, and the order of operations is the whole thing. We wrote it as a sequence you can follow without reading Japanese — and left a copy with the bathhouse, so the staff can point at it.</p>
         <a class="link" href="../tools/sento/">Open the guide <i>›</i></a>
@@ -643,38 +751,6 @@
     </div>
   </section>
 
-  <section class="pillars" id="shops">
-    <div class="wide">
-      <h2>Observe, build, bring it back.</h2>
-      <div class="pgrid">
-        <div class="pcard">
-          <p class="eyebrow">Build</p>
-          <h3>Apps for shops</h3>
-          <p>Apps for shops that struggle with overseas visitors, ready to use from the day they are installed.</p>
-          <ul><li>Multilingual menus</li><li>Reservations and queue management</li><li>Multilingual guides to shops and experiences</li></ul>
-        </div>
-        <div class="pcard">
-          <p class="eyebrow">Write</p>
-          <h3>Writing everyday Kyoto</h3>
-          <p>A record of Kyoto seen from daily life rather than from the guidebook. This is where we find the problems first-hand.</p>
-          <ul><li>Series on our own site</li><li>Republished on note and Medium</li><li>Written in English, Chinese and Korean</li></ul>
-        </div>
-        <div class="pcard">
-          <p class="eyebrow">Adopt</p>
-          <h3>AI for shops</h3>
-          <p>What AI is good for differs from shop to shop. We look at the work as it is done today and start small where it is most likely to help.</p>
-          <ul><li>Finding where AI fits</li><li>Automating translation and writing</li><li>Advice until it becomes routine</li></ul>
-        </div>
-        <div class="pcard">
-          <p class="eyebrow">Support</p>
-          <h3>Onboarding support</h3>
-          <p>We do not hand over a tool and leave. Translation, signs and day-to-day running — we set them up together with you.</p>
-          <ul><li>Initial setup and translation done for you</li><li>Signs and notices for the shop</li><li>Advice after launch</li></ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="about" id="about">
     <div class="wrap">
       <h2>About</h2>
@@ -683,7 +759,7 @@
         <div class="arow"><dt>Founder</dt><dd>Daichi Ninomiya<small>Born in Shimogyo, Kyoto. Works in AI and software; returned to Kyoto after six years away</small></dd></div>
         <div class="arow"><dt>Based in</dt><dd>Kyoto, Japan<small>Full address will be published once trading begins</small></dd></div>
         <div class="arow"><dt>Status</dt><dd>Preparing to open</dd></div>
-        <div class="arow"><dt>What we do</dt><dd>Inbound apps for shops ／ AI adoption for shops ／ Onboarding support for shops ／ Writing about Kyoto</dd></div>
+        <div class="arow"><dt>What we do</dt><dd>AI adoption for small businesses and independent shops<small>Through websites, apps and services, Instagram, and writing on note and Medium. We also run a local media site about Kyoto</small></dd></div>
         <div class="arow"><dt>Contact</dt><dd>+81 80-6935-2240<small>Japanese only by phone. Please use the form below for English</small></dd></div>
       </dl>
     </div>
@@ -724,9 +800,10 @@
   <div class="wide">
     <div class="fcols">
       <div><h4>Tools</h4><ul>
+        <li><a href="#shops">AI adoption</a></li>
+        <li><a href="#cases">Use cases</a></li>
         <li><a href="../tools/menu/">Menu prototype</a></li>
         <li><a href="../tools/sento/">Bathhouse guide</a></li>
-        <li><a href="#shops">What we do</a></li>
       </ul></div>
       <div><h4>Kyoto Lab</h4><ul>
         <li><a href="#why">Why</a></li>
