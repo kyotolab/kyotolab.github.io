@@ -115,9 +115,15 @@
   .btn-line{border:1px solid var(--accent-brd); color:var(--accent)}
   .btn-line:hover{background:var(--accent-soft)}
   .hero-note{margin-top:clamp(30px,4vw,44px); font-size:12px; color:var(--fg3); letter-spacing:.05em}
-  .hero-sns{margin-top:14px; font-size:13px; color:var(--fg3); letter-spacing:.02em}
-  .hero-sns a{color:var(--accent); font-weight:500}
-  .hero-sns a:hover{text-decoration:underline}
+  .hero-sns{margin-top:22px}
+  .hero-sns p{font-size:13px; color:var(--fg3); letter-spacing:.02em}
+  .sns-btns{margin-top:12px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+  .sns-btns a{display:inline-flex; align-items:center; justify-content:center; gap:6px; min-width:132px; min-height:48px;
+              padding:12px 22px; border-radius:980px; background:var(--accent); color:#FFFFFF;
+              font-size:16px; font-weight:600; transition:opacity .18s}
+  .sns-btns a:hover{opacity:.85}
+  .sns-btns i{font-style:normal; font-size:14px}
+  @media (max-width:480px){ .sns-btns{flex-wrap:nowrap; gap:8px} .sns-btns a{flex:1; min-width:0; padding:12px 8px; font-size:15px} .sns-btns i{display:none} }
 
   /* ---------------- product ---------------- */
   .psintro{padding-block:clamp(72px,10vw,120px) clamp(44px,6vw,76px); border-top:1px solid var(--line2)}
@@ -429,7 +435,14 @@
         <a class="btn btn-line" href="#products">For shops: AI adoption <i>›</i></a>
       </div>
       <p class="hero-note">Kyoto, Japan ／ AI adoption · Multilingual support · Field notes</p>
-      <p class="hero-sns">Also on social ／ <a href="https://www.instagram.com/kyotolab923/">Instagram</a> · <a href="https://note.com/legal_sorrel6616">note</a> · <a href="https://medium.com/@sc0054sv">Medium</a></p>
+      <div class="hero-sns">
+        <p>Also on social</p>
+        <div class="sns-btns">
+          <a href="https://www.instagram.com/kyotolab923/">Instagram <i>›</i></a>
+          <a href="https://note.com/legal_sorrel6616">note <i>›</i></a>
+          <a href="https://medium.com/@sc0054sv">Medium <i>›</i></a>
+        </div>
+      </div>
     </div>
     <div class="hero-photo" aria-hidden="true">
       <p class="hero-place">35.0116° N<br>135.7681° E<br><b>KYOTO, JAPAN</b></p>
