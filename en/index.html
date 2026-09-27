@@ -189,6 +189,17 @@
   .pcard li{font-size:14px; color:var(--fg2); padding-left:16px; position:relative}
   .pcard li::before{content:""; position:absolute; left:0; top:.62em; width:7px; height:1.5px;
                     border-radius:2px; background:var(--accent)}
+  .pgoal{margin-top:clamp(32px,5vw,52px); background:var(--bg2); border-radius:20px; padding:32px 28px 30px}
+  .pgoal .eyebrow{margin-bottom:10px}
+  .pgoal h3{font-size:clamp(23px,3vw,30px); letter-spacing:-.018em}
+  .pgoal > p{margin-top:11px; font-size:15px; color:var(--fg2); line-height:1.6; max-width:40em}
+  .psteps{margin:22px 0 0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px}
+  @media (max-width:700px){ .psteps{grid-template-columns:1fr} }
+  .psteps li{border-top:1px solid var(--line); padding-top:14px; font-size:14px; color:var(--fg2); line-height:1.6}
+  .psteps em{display:block; font-style:normal; font-size:12px; font-weight:650; color:var(--gold); margin-bottom:4px}
+  .psteps b{display:block; font-size:16px; color:var(--fg); margin-bottom:2px}
+  .pmeans{margin-top:clamp(36px,5vw,52px); text-align:center}
+  .pmeans + .pgrid{margin-top:14px}
 
   /* ---------------- spots (white section, dark art tiles) ---------------- */
   .spots{padding-block:clamp(72px,11vw,126px); border-top:1px solid var(--line2)}
@@ -586,15 +597,58 @@
   <section class="psintro" id="products">
     <div class="wide">
       <p class="eyebrow">Products and services</p>
-      <h2>Ready to use<br>in the shop.</h2>
-      <p class="lead">A multilingual menu and a step-by-step bathhouse guide. The shop sets them up once and can use them from that day on. We do not stop at building them; we help put them in place.</p>
+      <h2>Making AI<br>a tool for the shop.</h2>
+      <p class="lead">We help small businesses and independent shops put AI to work. We decide with each shop what AI should do, then build it as a website, an app, an Instagram account or writing on note and Medium. We stay until the shop uses it without us.</p>
+    </div>
+  </section>
+
+  <section class="pillars" id="shops">
+    <div class="wide">
+      <h2>Observe, build, bring it back.</h2>
+      <div class="pgoal">
+        <p class="eyebrow">The goal</p>
+        <h3>AI adoption for small businesses and independent shops</h3>
+        <p>What AI is good for differs from shop to shop. We look at the work as it is done today and start small where it is most likely to help. The tools are the means; the goal is less work for the shop.</p>
+        <ol class="psteps">
+          <li><em>01</em><b>Observe</b>Look at the work and find where AI helps</li>
+          <li><em>02</em><b>Build</b>Choose the means that fit the shop and make it</li>
+          <li><em>03</em><b>Stay</b>Keep advising after launch until it becomes routine</li>
+        </ol>
+      </div>
+      <p class="eyebrow pmeans">The means</p>
+      <div class="pgrid">
+        <div class="pcard">
+          <p class="eyebrow">Means 1</p>
+          <h3>Websites</h3>
+          <p>The shop's information in Japanese and other languages. AI takes the weight out of translating and updating, and the shop can edit it themselves.</p>
+          <ul><li>Shop pages in Japanese and other languages</li><li>Translation and updates with AI</li><li>Set up so the shop can edit it</li></ul>
+        </div>
+        <div class="pcard">
+          <p class="eyebrow">Means 2</p>
+          <h3>Apps and services</h3>
+          <p>Apps for shops that struggle with overseas visitors, ready to use from the day they are installed. The two below are prototypes.</p>
+          <ul><li>Multilingual menus</li><li>Reservations and queue management</li><li>Multilingual guides to shops and experiences</li></ul>
+        </div>
+        <div class="pcard">
+          <p class="eyebrow">Means 3</p>
+          <h3>Instagram</h3>
+          <p>AI takes the weight out of writing posts, so the shop can keep reaching overseas visitors.</p>
+          <ul><li>Posts written in other languages</li><li>Drafts prepared automatically</li><li>A posting routine that lasts</li></ul>
+        </div>
+        <div class="pcard">
+          <p class="eyebrow">Means 4</p>
+          <h3>Writing on note and Medium</h3>
+          <p>The shop's story and craft as articles, bringing in customers from search and social media.</p>
+          <ul><li>Articles about the shop</li><li>Writing in English</li><li>Shared on the website and social media</li></ul>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="product" id="product">
     <div class="wide">
       <div>
-        <p class="eyebrow">For visitors and shops</p>
+        <p class="eyebrow">Example app ／ Menu</p>
         <h2>A menu that<br>answers back.</h2>
         <p class="lead">Most Kyoto dishes sit on a base of fish stock, so a plate of vegetables is often not vegetarian. Our menu prototype lets a diner filter by what they cannot eat, in their own language, before anything is carried to the table.</p>
         <a class="link" href="../tools/menu/">Try the prototype <i>›</i></a>
@@ -626,7 +680,7 @@
   <section class="tools" id="tejun">
     <div class="wide">
       <div>
-        <p class="eyebrow">Practical</p>
+        <p class="eyebrow">Example app ／ Bathhouse guide</p>
         <h2>How to use<br>a bathhouse.</h2>
         <p class="lead">A sento is not a spa and not a hot spring resort. It is the neighbourhood bath, and the order of operations is the whole thing. We wrote it as a sequence you can follow without reading Japanese — and left a copy with the bathhouse, so the staff can point at it.</p>
         <a class="link" href="../tools/sento/">Open the guide <i>›</i></a>
@@ -643,38 +697,6 @@
     </div>
   </section>
 
-  <section class="pillars" id="shops">
-    <div class="wide">
-      <h2>Observe, build, bring it back.</h2>
-      <div class="pgrid">
-        <div class="pcard">
-          <p class="eyebrow">Build</p>
-          <h3>Apps for shops</h3>
-          <p>Apps for shops that struggle with overseas visitors, ready to use from the day they are installed.</p>
-          <ul><li>Multilingual menus</li><li>Reservations and queue management</li><li>Multilingual guides to shops and experiences</li></ul>
-        </div>
-        <div class="pcard">
-          <p class="eyebrow">Write</p>
-          <h3>Writing everyday Kyoto</h3>
-          <p>A record of Kyoto seen from daily life rather than from the guidebook. This is where we find the problems first-hand.</p>
-          <ul><li>Series on our own site</li><li>Republished on note and Medium</li><li>Written in English, Chinese and Korean</li></ul>
-        </div>
-        <div class="pcard">
-          <p class="eyebrow">Adopt</p>
-          <h3>AI for shops</h3>
-          <p>What AI is good for differs from shop to shop. We look at the work as it is done today and start small where it is most likely to help.</p>
-          <ul><li>Finding where AI fits</li><li>Automating translation and writing</li><li>Advice until it becomes routine</li></ul>
-        </div>
-        <div class="pcard">
-          <p class="eyebrow">Support</p>
-          <h3>Onboarding support</h3>
-          <p>We do not hand over a tool and leave. Translation, signs and day-to-day running — we set them up together with you.</p>
-          <ul><li>Initial setup and translation done for you</li><li>Signs and notices for the shop</li><li>Advice after launch</li></ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="about" id="about">
     <div class="wrap">
       <h2>About</h2>
@@ -683,7 +705,7 @@
         <div class="arow"><dt>Founder</dt><dd>Daichi Ninomiya<small>Born in Shimogyo, Kyoto. Works in AI and software; returned to Kyoto after six years away</small></dd></div>
         <div class="arow"><dt>Based in</dt><dd>Kyoto, Japan<small>Full address will be published once trading begins</small></dd></div>
         <div class="arow"><dt>Status</dt><dd>Preparing to open</dd></div>
-        <div class="arow"><dt>What we do</dt><dd>Inbound apps for shops ／ AI adoption for shops ／ Onboarding support for shops ／ Writing about Kyoto</dd></div>
+        <div class="arow"><dt>What we do</dt><dd>AI adoption for small businesses and independent shops<small>Through websites, apps and services, Instagram, and writing on note and Medium. We also run a local media site about Kyoto</small></dd></div>
         <div class="arow"><dt>Contact</dt><dd>+81 80-6935-2240<small>Japanese only by phone. Please use the form below for English</small></dd></div>
       </dl>
     </div>
@@ -724,9 +746,9 @@
   <div class="wide">
     <div class="fcols">
       <div><h4>Tools</h4><ul>
+        <li><a href="#shops">AI adoption</a></li>
         <li><a href="../tools/menu/">Menu prototype</a></li>
         <li><a href="../tools/sento/">Bathhouse guide</a></li>
-        <li><a href="#shops">What we do</a></li>
       </ul></div>
       <div><h4>Kyoto Lab</h4><ul>
         <li><a href="#why">Why</a></li>
