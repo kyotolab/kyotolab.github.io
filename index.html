@@ -184,6 +184,21 @@
   .pmeans{margin-top:clamp(36px,5vw,52px); text-align:center}
   .pmeans + .pgrid{margin-top:14px}
 
+  /* ---------------- use cases ---------------- */
+  .cases{padding-block:clamp(60px,9vw,104px); border-top:1px solid var(--line2)}
+  .cases h2{font-size:clamp(28px,4.2vw,46px); letter-spacing:-.024em; text-align:center}
+  .cases .lead{margin:16px auto 0; max-width:36em; text-align:center}
+  .cgrid{margin-top:clamp(32px,5vw,52px); display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px}
+  @media (max-width:800px){ .cgrid{grid-template-columns:1fr} }
+  .ccase{background:var(--bg2); border-radius:20px; padding:30px 28px 32px}
+  .ccase .eyebrow{margin-bottom:10px}
+  .ccase h3{font-size:23px; letter-spacing:-.018em}
+  .ccase > p{margin-top:8px; font-size:14px; color:var(--fg2); line-height:1.6}
+  .clist{margin:20px 0 0; padding:0; list-style:none}
+  .clist li{border-top:1px solid var(--line); padding:14px 0; font-size:14px; color:var(--fg2); line-height:1.6}
+  .clist li:last-child{padding-bottom:0}
+  .clist b{display:block; font-size:16px; color:var(--fg); margin-bottom:3px}
+
   /* ---------------- spots (white section, dark art tiles) ---------------- */
   .spots{padding-block:clamp(72px,11vw,126px); border-top:1px solid var(--line2)}
   .spots h2{font-size:clamp(30px,5vw,56px); letter-spacing:-.026em; line-height:1.18; max-width:15em}
@@ -683,6 +698,44 @@
     </div>
   </section>
 
+  <section class="cases" id="cases">
+    <div class="wide">
+      <p class="eyebrow" style="text-align:center">ユースケース</p>
+      <h2>たとえば、こう使う。</h2>
+      <p class="lead">AIで何ができるかを、2つの例で示します。どちらも想定の例で、実在の会社や店ではありません。何から始めるかは、店や会社ごとに一緒に決めます。AIがつくるのは下書きで、お客さまに出す前に人が確かめます。</p>
+      <div class="cgrid">
+        <div class="ccase">
+          <p class="eyebrow">例 A</p>
+          <h3>中小企業</h3>
+          <p>従業員10人ほどの会社。問い合わせ、見積もり、月末の集計に手が取られている。</p>
+          <ul class="clist">
+            <li><b>お問い合わせフォームの返信</b>届いた問い合わせをAIが内容ごとに振り分け、返信の下書きをつくる。担当者は確かめて送るだけにする。</li>
+            <li><b>売上・請求の集計</b>販売や請求のデータを、毎月決まった形の表とグラフにまとめる。手で転記する作業をなくす。</li>
+            <li><b>見積書・メールの下書き</b>過去の見積もりや定型文をもとに、AIが下書きをつくる。</li>
+            <li><b>会議の記録と日報のまとめ</b>録音やメモから議事録をつくり、決まったことと担当者を一覧にする。</li>
+            <li><b>社内の質問窓口</b>社内の手順書や規程をAIに読ませて、社員が質問すると該当箇所を示して答える。</li>
+            <li><b>海外の取引先・お客さまへの対応</b>外国語のメールを翻訳し、返信の下書きもつくる。</li>
+            <li><b>ホームページ</b>日本語と英語の会社案内をつくり、お知らせの更新をAIで軽くする。</li>
+            <li><b>社員向けのAI講習</b>自分たちの仕事を題材に、明日から使える使い方を練習する。</li>
+          </ul>
+        </div>
+        <div class="ccase">
+          <p class="eyebrow">例 B</p>
+          <h3>個人経営の飲食店</h3>
+          <p>店主と家族で回す店。外国人のお客さまが増え、接客とSNSとレビューに手が回らない。</p>
+          <ul class="clist">
+            <li><b>外国人のお客さまへの言語対応</b>多言語メニューで、料理の説明やアレルギー、出汁などの材料を、お客さまの言語で見られるようにする。</li>
+            <li><b>Googleレビューへの返信</b>新しいレビューに、AIがレビューと同じ言語で返信の下書きをつくる。店主が確かめて投稿する。</li>
+            <li><b>予約・問い合わせの返信</b>営業時間、予約、ベジタリアン対応のように、よく来る質問への返信の下書きをつくる。</li>
+            <li><b>店のホームページとGoogleマップ</b>日本語と外国語の1ページのホームページをつくり、Googleマップの店舗情報も整える。</li>
+            <li><b>Instagramの投稿</b>写真とひとことから、英語と日本語の投稿文をAIがつくる。</li>
+            <li><b>売上の集計</b>レジのデータを週ごとに、曜日、時間帯、メニュー別の表にまとめる。仕込みや人手の見直しに使う。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="product" id="product">
     <div class="wide">
       <div>
@@ -792,6 +845,7 @@
     <div class="fcols">
       <div><h4>製品・サービス</h4><ul>
         <li><a href="#pillars">AI導入支援</a></li>
+        <li><a href="#cases">ユースケース</a></li>
         <li><a href="#product">お品書き</a></li>
         <li><a href="#tejun">手順</a></li>
       </ul></div>

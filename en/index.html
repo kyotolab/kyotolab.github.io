@@ -201,6 +201,21 @@
   .pmeans{margin-top:clamp(36px,5vw,52px); text-align:center}
   .pmeans + .pgrid{margin-top:14px}
 
+  /* ---------------- use cases ---------------- */
+  .cases{padding-block:clamp(60px,9vw,104px); border-top:1px solid var(--line2)}
+  .cases h2{font-size:clamp(28px,4.2vw,46px); letter-spacing:-.024em; text-align:center}
+  .cases .lead{margin:16px auto 0; max-width:36em; text-align:center}
+  .cgrid{margin-top:clamp(32px,5vw,52px); display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px}
+  @media (max-width:800px){ .cgrid{grid-template-columns:1fr} }
+  .ccase{background:var(--bg2); border-radius:20px; padding:30px 28px 32px}
+  .ccase .eyebrow{margin-bottom:10px}
+  .ccase h3{font-size:23px; letter-spacing:-.018em}
+  .ccase > p{margin-top:8px; font-size:14px; color:var(--fg2); line-height:1.6}
+  .clist{margin:20px 0 0; padding:0; list-style:none}
+  .clist li{border-top:1px solid var(--line); padding:14px 0; font-size:14px; color:var(--fg2); line-height:1.6}
+  .clist li:last-child{padding-bottom:0}
+  .clist b{display:block; font-size:16px; color:var(--fg); margin-bottom:3px}
+
   /* ---------------- spots (white section, dark art tiles) ---------------- */
   .spots{padding-block:clamp(72px,11vw,126px); border-top:1px solid var(--line2)}
   .spots h2{font-size:clamp(30px,5vw,56px); letter-spacing:-.026em; line-height:1.18; max-width:15em}
@@ -645,6 +660,44 @@
     </div>
   </section>
 
+  <section class="cases" id="cases">
+    <div class="wide">
+      <p class="eyebrow" style="text-align:center">Use cases</p>
+      <h2>What it looks like in practice.</h2>
+      <p class="lead">Two examples of what AI can do. Both are hypothetical, not real companies or shops. We decide together with each business where to start. AI writes the drafts; a person checks them before they reach a customer.</p>
+      <div class="cgrid">
+        <div class="ccase">
+          <p class="eyebrow">Example A</p>
+          <h3>A small business</h3>
+          <p>A company of about ten people. Enquiries, quotes and month-end figures take up too much time.</p>
+          <ul class="clist">
+            <li><b>Replies to the contact form</b>AI sorts incoming enquiries by topic and drafts a reply. The person in charge checks it and sends it.</li>
+            <li><b>Sales and invoice reports</b>Sales and invoice data is turned into the same tables and charts every month, with no copying by hand.</li>
+            <li><b>Drafts of quotes and emails</b>AI drafts them from past quotes and standard wording.</li>
+            <li><b>Meeting notes and daily reports</b>Minutes are written from recordings or notes, with a list of decisions and who owns each one.</li>
+            <li><b>An internal help desk</b>AI reads the company's manuals and rules, and answers staff questions by pointing to the right section.</li>
+            <li><b>Overseas clients and customers</b>Emails in other languages are translated, and replies are drafted.</li>
+            <li><b>Website</b>A company site in Japanese and English, with news updates made easier by AI.</li>
+            <li><b>AI training for staff</b>Practice with the company's own work, so staff can use it the next day.</li>
+          </ul>
+        </div>
+        <div class="ccase">
+          <p class="eyebrow">Example B</p>
+          <h3>An independent restaurant</h3>
+          <p>Run by the owner and family. More overseas guests arrive, and service, social media and reviews are hard to keep up with.</p>
+          <ul class="clist">
+            <li><b>Serving overseas guests in their language</b>A multilingual menu shows each dish, allergens and ingredients such as fish stock in the guest's own language.</li>
+            <li><b>Replies to Google reviews</b>AI drafts a reply to each new review in the reviewer's language. The owner checks it and posts it.</li>
+            <li><b>Replies to bookings and questions</b>Drafts for the questions that keep coming: opening hours, bookings, vegetarian options.</li>
+            <li><b>Website and Google Maps</b>A one-page site in Japanese and other languages, and a tidy Google Maps listing.</li>
+            <li><b>Instagram posts</b>From a photo and a line of text, AI writes the post in English and Japanese.</li>
+            <li><b>Sales reports</b>Till data is summarised each week by day, time and dish, to plan prep and staffing.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="product" id="product">
     <div class="wide">
       <div>
@@ -747,6 +800,7 @@
     <div class="fcols">
       <div><h4>Tools</h4><ul>
         <li><a href="#shops">AI adoption</a></li>
+        <li><a href="#cases">Use cases</a></li>
         <li><a href="../tools/menu/">Menu prototype</a></li>
         <li><a href="../tools/sento/">Bathhouse guide</a></li>
       </ul></div>
