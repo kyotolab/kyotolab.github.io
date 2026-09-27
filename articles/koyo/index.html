@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>紅葉の京都は、時刻で空く</title>
+<meta name="description" content="紅葉の季節の京都は、場所より時刻で混み方が変わる。朝は名所、昼は広い場所、夜はライトアップを1つだけ。京都で生まれ育った目で組んだ、秋の京都の時間割。">
+<link rel="canonical" href="https://kyotolab.github.io/articles/koyo/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="紅葉の京都は、時刻で空く">
+<meta property="og:description" content="紅葉の季節の京都は、場所より時刻で混み方が変わる。朝は名所、昼は広い場所、夜はライトアップを1つだけ。京都で生まれ育った目で組んだ、秋の京都の時間割。">
+<meta property="og:url" content="https://kyotolab.github.io/articles/koyo/">
+<meta property="og:site_name" content="京都ラボ">
+<meta property="og:image" content="https://kyotolab.github.io/assets/kiyomizu.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="896">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    color-scheme:light;
+    --bg:#FFFFFF; --bg2:#F5F5F7; --bg3:#FAFAFB; --fg:#1D1D1F; --fg2:#6E6E73; --fg3:#86868B;
+    --line:rgba(0,0,0,.12); --line2:rgba(0,0,0,.08);
+    --accent:#0066CC;
+    --gold:#A33A2C; --gold-soft:#FBEEEC;
+    --warn:#8A5A14; --warn-soft:#FBF4E5;
+    --dark:#1D1D1F; --dark-fg:#F5F5F7; --dark-fg2:#B6BCC0; --dark-gold:#FF6F5E;
+    --sys:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --gut:clamp(22px,5vw,44px);
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--fg); font-family:var(--sys); font-size:16px; line-height:1.72;
+       -webkit-font-smoothing:antialiased}
+  h1,h2,h3{margin:0; font-weight:700; line-height:1.3; font-feature-settings:"palt" 1; text-wrap:balance; word-break:auto-phrase}
+  p{margin:0}
+  a{color:var(--accent)}
+  img{max-width:100%; height:auto; display:block}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+  .wrap{max-width:860px; margin:0 auto; padding-inline:var(--gut)}
+  .eyebrow{font-size:14px; font-weight:600; color:var(--gold); margin-bottom:12px}
+  .lead{font-size:clamp(16px,1.9vw,18px); color:var(--fg2)}
+  .lead strong, p strong{color:var(--fg); font-weight:600}
+  .sub{margin-top:16px; max-width:38em}
+
+  header{padding-block:clamp(44px,7vw,78px) 34px; border-bottom:1px solid var(--line)}
+  header h1{font-size:clamp(30px,5.6vw,52px); line-height:1.22}
+  header .lead{margin-top:20px; max-width:38em}
+  .meta{margin-top:26px; display:flex; gap:8px 26px; flex-wrap:wrap;
+        font-family:var(--mono); font-size:11.5px; color:var(--fg3); letter-spacing:.05em}
+  .hero{margin:30px 0 0; border-radius:14px; overflow:hidden; border:1px solid var(--line2)}
+  .hero figcaption{font-size:12.5px; color:var(--fg3); padding:10px 14px; background:var(--bg3)}
+
+  section{padding-block:clamp(40px,6vw,64px); border-bottom:1px solid var(--line2)}
+  h2{font-size:clamp(23px,3.6vw,34px)}
+
+  /* 3つの原則 */
+  .rules{margin-top:28px; display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  @media (max-width:760px){ .rules{grid-template-columns:1fr} }
+  .rule{border:1px solid var(--line); border-radius:14px; padding:20px 20px 22px; background:var(--bg3)}
+  .rule .n{font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--gold)}
+  .rule h3{font-size:18px; margin-top:8px}
+  .rule p{font-size:14.5px; color:var(--fg2); margin-top:8px}
+
+  /* 時間割 */
+  .tt{margin-top:28px; display:grid; gap:1px; background:var(--line2); border:1px solid var(--line2); border-radius:14px; overflow:hidden}
+  .slot{background:var(--bg); padding:20px 22px; display:grid; grid-template-columns:6.2em minmax(0,1fr); gap:18px; align-items:start}
+  @media (max-width:560px){ .slot{grid-template-columns:1fr; gap:6px} }
+  .slot time{font-family:var(--mono); font-size:15px; font-weight:600; color:var(--gold); padding-top:2px}
+  .slot h3{font-size:18px}
+  .slot p{font-size:14.5px; color:var(--fg2); margin-top:7px}
+  .slot .tip{margin-top:10px; font-size:13.5px; color:var(--fg); background:var(--bg2); padding:9px 13px; border-radius:9px}
+  .slot.hot{background:var(--gold-soft)}
+
+  /* やらないこと */
+  .core{background:var(--dark); color:var(--dark-fg); border-bottom:none}
+  .core h2{color:var(--dark-fg)}
+  .core .eyebrow{color:var(--dark-gold)}
+  .donts{margin-top:26px; display:grid; gap:18px}
+  .dont{border-left:3px solid var(--dark-gold); padding-left:16px}
+  .dont h3{font-size:18px; color:var(--dark-fg)}
+  .dont p{font-size:14.5px; color:var(--dark-fg2); margin-top:6px; max-width:40em}
+
+  /* 表 */
+  .tbl{margin-top:26px; overflow-x:auto; border:1px solid var(--line); border-radius:14px}
+  table{border-collapse:collapse; width:100%; font-size:14.5px}
+  th,td{text-align:left; padding:13px 16px; border-bottom:1px solid var(--line2); vertical-align:top}
+  thead th{background:var(--bg2); font-size:12px; color:var(--fg3); font-weight:600}
+  tbody tr:last-child td{border-bottom:none}
+  td:first-child{font-weight:600; white-space:nowrap}
+  td small{display:block; font-weight:400; font-size:12.5px; color:var(--fg3); margin-top:2px}
+
+  .list{margin:22px 0 0; padding-left:1.3em; color:var(--fg2); font-size:15px}
+  .list li + li{margin-top:8px}
+  .list b{color:var(--fg)}
+
+  .note{margin-top:26px; border-left:2px solid var(--warn); background:var(--warn-soft);
+        padding:16px 20px; border-radius:0 12px 12px 0}
+  .note b{font-size:12px; color:var(--warn); display:block; margin-bottom:6px}
+  .note p{font-size:14px; color:var(--fg2)}
+  .note p + p{margin-top:8px}
+
+  .next{margin-top:8px; display:flex; flex-wrap:wrap; gap:10px 22px; font-size:15px}
+  footer{padding-block:32px 46px}
+  footer p{font-family:var(--mono); font-size:11px; color:var(--fg3); letter-spacing:.06em; line-height:1.9}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">京都ラボ ／ 秋の京都 01</p>
+    <h1>紅葉の京都は、<br>時刻で空く。</h1>
+    <p class="lead">紅葉の季節、京都はどこへ行っても混んでいると言われます。でも、混み方は場所よりも時刻で決まります。<strong>同じ寺でも、朝8時と昼1時では別の場所です。</strong>京都で生まれ育った目で、秋の1日の時間割を組みました。</p>
+    <div class="meta">
+      <span>2026.09.24</span>
+      <span>原則3つ ／ 時間割 ／ 日の選び方</span>
+      <span>二ノ宮 大知</span>
+    </div>
+    <figure class="hero">
+      <img src="../../assets/kiyomizu.jpg" srcset="../../assets/kiyomizu@700.jpg 700w, ../../assets/kiyomizu.jpg 1200w" sizes="(max-width:860px) 92vw, 780px" width="1200" height="896" alt="夕暮れの清水寺。紅葉に囲まれた舞台と、その下の懸造りの柱">
+      <figcaption>清水寺。画像は写真ではなく、オリジナルのイラストです。</figcaption>
+    </figure>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">原則</p>
+    <h2>朝は名所、昼は広い場所、夜は1つだけ。</h2>
+    <p class="lead sub">京都の紅葉の見頃は、例年11月中旬から12月上旬です。この時期の混雑は、ほとんどが<strong>同じ数か所に、同じ時間帯に人が集まる</strong>ことで起きています。だから、行き先を変えるより先に、行く順番を変えます。</p>
+    <div class="rules">
+      <div class="rule">
+        <span class="n">01</span>
+        <h3>名所は開門に合わせる</h3>
+        <p>観光バスと団体が着くのは、だいたい9時半から11時です。その前に1か所目を見終えておけば、1日の半分はうまくいっています。</p>
+      </div>
+      <div class="rule">
+        <span class="n">02</span>
+        <h3>昼は、混んでも困らない場所へ</h3>
+        <p>昼の数時間は、どこへ行っても人は多いです。そのあいだは、道が広い場所や敷地の大きい場所にいれば、人が多くても歩きにくくなりません。</p>
+      </div>
+      <div class="rule">
+        <span class="n">03</span>
+        <h3>ライトアップは1つに絞る</h3>
+        <p>夜の拝観は、多くの寺が昼と入れ替え制です。2か所をはしごするより、1か所に早めに入るほうが、並ぶ時間が短くなります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">時間割</p>
+    <h2>紅葉の日の、1日の組み方。</h2>
+    <p class="lead sub">全部を回る必要はありません。朝の欄から1つ、昼の欄から1つ、夜の欄から1つ選べば1日になります。</p>
+    <div class="tt">
+      <div class="slot">
+        <time>6:00</time>
+        <div>
+          <h3>清水寺</h3>
+          <p>清水寺は1年を通して朝6時に開きます。京都の主要な寺で、これほど早く開くところはほかにありません。舞台を見たら、人が増える前に坂を下ります。</p>
+          <p class="tip">坂の店が開くのは、だいたい9時以降です。買い物は帰りではなく、別の日の朝か夕方に回します。</p>
+        </div>
+      </div>
+      <div class="slot">
+        <time>7:00</time>
+        <div>
+          <h3>嵐山・竹林の道</h3>
+          <p>竹林の道は、8時を過ぎると人の流れに押されて歩くだけの道になります。7時台なら、音のない道として残っています。渡月橋は渡るより、中之島の側から眺めるほうが、橋と山が一度に見えます。</p>
+        </div>
+      </div>
+      <div class="slot">
+        <time>8:30</time>
+        <div>
+          <h3>東福寺</h3>
+          <p>紅葉の季節、東福寺の通天橋は例年8時半に開きます。京都駅からJR奈良線か京阪で東福寺駅へ行けば、バスに乗らずに着きます。</p>
+          <p class="tip">通天橋と臥雲橋の上は、紅葉の時期に撮影が禁止されます（2016年から）。橋の上では立ち止まらずに歩き、写真は橋の外から撮ります。</p>
+        </div>
+      </div>
+      <div class="slot">
+        <time>いつでも</time>
+        <div>
+          <h3>伏見稲荷大社</h3>
+          <p>24時間いつでも参拝できます。千本鳥居に人が少ないのは、早朝か日が暮れたあとです。東福寺駅からJR奈良線で隣の稲荷駅なので、朝の2か所目にもできます。</p>
+        </div>
+      </div>
+      <div class="slot hot">
+        <time>11:00<br>〜15:00</time>
+        <div>
+          <h3>いちばん混む時間は、広い場所で過ごす</h3>
+          <p>この時間に東山の坂や嵐山の中心へ向かうと、人の列の中を歩くことになります。代わりに、次のような場所へ行きます。</p>
+          <ul class="list">
+            <li><b>岡崎</b>（平安神宮のまわり）。道が広いので、人が多くても混んで見えません。平安神宮は、有名な割に空いています。</li>
+            <li><b>南禅寺の水路閣</b>。岡崎から歩いて行けます。</li>
+            <li><b>京都御苑と京都御所</b>。御苑はいつでも入れる大きな公園です。御所は予約なしで無料で入れます（月曜は休み）。</li>
+            <li><b>鴨川</b>。河原を歩くだけで、秋の京都になります。</li>
+          </ul>
+          <p class="tip">昼ごはんは11時前に入るか、14時以降にずらします。12時台はどの店も並びます。</p>
+        </div>
+      </div>
+      <div class="slot">
+        <time>16:30</time>
+        <div>
+          <h3>日の入りの前後は、動かない</h3>
+          <p>11月下旬の京都は、17時前に日が沈みます。昼の拝観を終えた人がいっせいに駅やバス停へ向かうので、この1時間はどの乗り物も混みます。カフェで休むか、夜に行く場所の近くで待ちます。</p>
+        </div>
+      </div>
+      <div class="slot">
+        <time>17:30</time>
+        <div>
+          <h3>ライトアップを1か所</h3>
+          <p>清水寺の秋の夜間特別拝観は、2025年は11月22日から12月7日まで、17時半から21時（受付終了）でした。永観堂も同じ時間帯に夜の拝観があり、昼の拝観とは入れ替え制です。</p>
+          <p class="tip">入れ替え制の寺では、昼の拝観を終えたら一度外に出ます。昼からそのまま夜に残ることはできません。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="core">
+  <div class="wrap">
+    <p class="eyebrow">やらないこと</p>
+    <h2>秋の京都で、<br>時間を失う3つの動き。</h2>
+    <div class="donts">
+      <div class="dont">
+        <h3>昼前に、京都駅から東山行きのバスに乗る</h3>
+        <p>京都駅のバス乗り場は、紅葉の季節の昼前がいちばん長い列になります。清水寺や祇園へは、電車で京阪の清水五条駅や祇園四条駅まで行って歩けば、バスの列に並ばずに済みます。土日祝日は、京都駅から清水寺や銀閣寺の近くまで停留所を絞って走る観光特急バス（大人500円）もあります。</p>
+      </div>
+      <div class="dont">
+        <h3>有名な場所を、昼に2つ続ける</h3>
+        <p>昼に混む場所を2つ並べると、2回とも混雑の中を歩くことになります。混む場所は朝と夜に1つずつにして、昼は広い場所で挟みます。</p>
+      </div>
+      <div class="dont">
+        <h3>行く日を、紅葉の見頃の予想だけで決める</h3>
+        <p>見頃の予想は、同じ日を狙う人をいちばん多く集めます。色づきの具合と同じくらい、曜日と連休を見て日を選びます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">日の選び方</p>
+    <h2>見頃より、曜日を見る。</h2>
+    <p class="lead sub">2026年の紅葉の季節にある休日を並べました。<strong>11月21日から23日の3連休は、見頃と重なるいちばん混む3日間</strong>になりそうです。</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>日付</th><th>見方</th></tr></thead>
+        <tbody>
+          <tr><td>11月3日<small>火・祝</small></td><td>見頃の前。紅葉はまだ早い場所が多い</td></tr>
+          <tr><td>11月21日〜23日<small>土・日・月祝</small></td><td>3連休。見頃と重なるので、いちばん混む</td></tr>
+          <tr><td>11月28日・29日<small>土・日</small></td><td>見頃の後半。連休よりは落ち着く</td></tr>
+          <tr><td>平日<small>月〜金</small></td><td>休めるなら、11月中旬から下旬の平日がいちばん楽</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="lead sub">行く前日には、京都市の公式サイト「京都観光Navi」を見ます。<strong>「観光快適度」</strong>で、エリアと時間帯ごとの混み具合の予測がわかります。<strong>「紅葉だより」</strong>では、名所ごとの色づきが毎日更新されます。</p>
+
+    <div class="note">
+      <b>行く前に</b>
+      <p>拝観時間、料金、夜間拝観の期間、撮影の決まり、バスの運行は、年によって変わります。ここに書いた日付と時刻は、2025年までの実績と例年の傾向です。2026年の情報は、行く前に各寺社と京都市交通局の公式情報で確かめてください。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>京都ラボ ／ 秋の京都 01 ／ 2026.09.24<br>画像は写真ではなく、オリジナルのイラストです。</p>
+  </div>
+</footer>
+
+</body>
+</html>
