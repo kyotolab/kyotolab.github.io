@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Translation Won't Fix It</title>
+<meta name="description" content="Why travellers get stuck in Kyoto's small shops, taken apart from two scenes I actually saw. What is missing usually isn't English. You can only translate what has been written down.">
+<link rel="canonical" href="https://kyotolab.github.io/articles/beyond-translation/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Translation Won&#x27;t Fix It">
+<meta property="og:description" content="Why travellers get stuck in Kyoto's small shops, taken apart from two scenes I actually saw. What is missing usually isn't English. You can only translate what has been written down.">
+<meta property="og:url" content="https://kyotolab.github.io/articles/beyond-translation/">
+<meta property="og:site_name" content="京都ラボ">
+<meta property="og:image" content="https://kyotolab.github.io/assets/gion-street.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1066">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+  img{max-width:100%}
+  [hidden]:not([hidden="until-found"]){display:none!important}
+</style>
+</head>
+<body>
+<style>
+  :root{
+    color-scheme:light;
+    --bg:#FFFFFF; --bg2:#F5F5F7; --bg3:#FAFAFB; --fg:#1D1D1F; --fg2:#6E6E73; --fg3:#86868B;
+    --line:rgba(0,0,0,.12); --line2:rgba(0,0,0,.08);
+    --accent:#0066CC; --accent-soft:#EAF2FD; --accent-brd:#B9D6F5;
+    --label:#A33A2C;
+    --warn:#8A5A14; --warn-soft:#FBF4E5; --warn-brd:#E7D3AC;
+    --stop:#8E2F22; --stop-soft:#FBEEEC;
+    --ok:#1F6B43; --ok-soft:#EAF5EF;
+    --sys:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --gut:clamp(22px,5vw,44px);
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg); color:var(--fg); font-family:var(--sys); font-size:16px; line-height:1.62;
+       -webkit-font-smoothing:antialiased; letter-spacing:.004em}
+  h1,h2,h3,h4{margin:0; font-weight:700; letter-spacing:-.022em; line-height:1.16; text-wrap:balance}
+  p{margin:0}
+  a{color:var(--accent)}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+  .wrap{max-width:860px; margin:0 auto; padding-inline:var(--gut)}
+  .eyebrow{font-size:14px; font-weight:600; color:var(--label); margin-bottom:12px}
+  .lead{font-size:clamp(16px,1.9vw,19px); color:var(--fg2); line-height:1.62}
+  .lead strong, p strong{color:var(--fg); font-weight:600}
+  .sub{margin-top:16px; max-width:38em}
+
+  header{padding-block:clamp(44px,7vw,78px) 34px; border-bottom:1px solid var(--line)}
+  header h1{font-size:clamp(30px,5.6vw,54px); letter-spacing:-.028em; line-height:1.14}
+  header .lead{margin-top:20px; max-width:38em}
+  .meta{margin-top:26px; display:flex; gap:8px 26px; flex-wrap:wrap;
+        font-family:var(--mono); font-size:11.5px; color:var(--fg3); letter-spacing:.05em}
+
+  section{padding-block:clamp(40px,6vw,64px); border-bottom:1px solid var(--line2)}
+  h2{font-size:clamp(24px,3.8vw,38px); letter-spacing:-.024em; line-height:1.2}
+
+  /* 観察 2件 */
+  .obs{margin-top:28px; display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  @media (max-width:720px){ .obs{grid-template-columns:1fr} }
+  .ob{border:1px solid var(--line); border-radius:14px; padding:22px 22px 24px; background:var(--bg3)}
+  .ob .tag{font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--accent)}
+  .ob h3{font-size:18px; margin-top:9px; letter-spacing:-.016em}
+  .ob p{font-size:14.5px; color:var(--fg2); margin-top:9px; line-height:1.72}
+  .ob .verdict{margin-top:14px; padding-top:13px; border-top:1px solid var(--line2);
+               font-size:13.5px; font-weight:600; color:var(--fg)}
+
+  /* 核心 */
+  .core{background:var(--fg); color:#F5F5F7}
+  .core h2{color:#FFF}
+  .core .eyebrow{color:#FF6F5E}
+  .core p{color:#B6BCC0; max-width:40em}
+  .core p + p{margin-top:14px}
+  .core p strong{color:#FFF}
+  .core .big{font-size:clamp(19px,2.6vw,26px); color:#FFF; font-weight:600; letter-spacing:-.018em;
+             line-height:1.5; margin-top:24px; padding-left:18px; border-left:3px solid var(--accent); max-width:30em}
+
+  /* 3つの問い */
+  .q{margin-top:28px; display:grid; gap:1px; background:var(--line2); border:1px solid var(--line2); border-radius:14px; overflow:hidden}
+  .qr{background:var(--bg); padding:20px 22px; display:grid; grid-template-columns:auto minmax(0,1fr); gap:16px; align-items:start}
+  .qr .n{font-family:var(--mono); font-size:12px; color:var(--accent); padding-top:3px; letter-spacing:.06em}
+  .qr h3{font-size:18px; letter-spacing:-.016em}
+  .qr p{font-size:14.5px; color:var(--fg2); margin-top:7px; line-height:1.72}
+  .qr .no{margin-top:11px; font-size:13.5px; color:var(--stop); background:var(--stop-soft);
+          padding:9px 13px; border-radius:9px; display:inline-block}
+
+  /* 解決策 */
+  .sol{margin-top:30px; display:grid; gap:20px}
+  .s{border:1px solid var(--line); border-radius:16px; overflow:hidden}
+  .s > .hd{padding:22px 24px 20px; border-bottom:1px solid var(--line2)}
+  .s .badge{display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:11px;
+            letter-spacing:.1em; color:var(--accent); background:var(--accent-soft);
+            border:1px solid var(--accent-brd); padding:4px 10px; border-radius:20px}
+  .s h3{font-size:clamp(20px,2.8vw,26px); margin-top:13px; letter-spacing:-.02em}
+  .s .one{margin-top:10px; font-size:15.5px; color:var(--fg2); max-width:40em; line-height:1.7}
+  .s > .bd{padding:20px 24px 24px; display:grid; gap:16px}
+  .s .row{display:grid; grid-template-columns:6.5em minmax(0,1fr); gap:16px; align-items:baseline}
+  @media (max-width:620px){ .s .row{grid-template-columns:1fr; gap:5px} }
+  .s .row dt{font-family:var(--mono); font-size:11px; letter-spacing:.07em; color:var(--fg3)}
+  .s .row dd{margin:0; font-size:14.5px; color:var(--fg2); line-height:1.72}
+  .s .row dd b{color:var(--fg); font-weight:600}
+  .s .why{background:var(--accent-soft); border:1px solid var(--accent-brd); border-radius:11px;
+          padding:13px 16px; font-size:14.5px; color:var(--fg); line-height:1.7}
+  .s .why b{color:var(--accent)}
+  .s.pick{border-color:var(--accent); border-width:1.5px}
+  .s.pick > .hd{background:var(--accent-soft)}
+
+  /* 評価表 */
+  .tbl{margin-top:26px; overflow-x:auto; border:1px solid var(--line); border-radius:14px}
+  table{border-collapse:collapse; width:100%; min-width:600px; font-size:14.5px}
+  th,td{text-align:left; padding:14px 18px; border-bottom:1px solid var(--line2)}
+  thead th{background:var(--bg2); font-family:var(--mono); font-size:11px; letter-spacing:.08em;
+           color:var(--fg3); font-weight:400}
+  tbody tr:last-child td{border-bottom:none}
+  td:first-child{font-weight:600; white-space:nowrap}
+  .pill{display:inline-block; padding:3px 10px; border-radius:20px; font-size:12.5px; font-weight:600}
+  .p-hi{background:var(--ok-soft); color:var(--ok)}
+  .p-md{background:var(--warn-soft); color:var(--warn)}
+  .p-lo{background:var(--stop-soft); color:var(--stop)}
+
+  .note{margin-top:24px; border-left:2px solid var(--warn); background:var(--warn-soft);
+        padding:16px 20px; border-radius:0 12px 12px 0}
+  .note b{font-size:11px; font-family:var(--mono); letter-spacing:.1em; color:var(--warn); display:block; margin-bottom:8px}
+  .note p{font-size:14.5px; color:var(--fg2); max-width:42em; line-height:1.72}
+  .note p + p{margin-top:9px}
+
+  footer{padding-block:32px 46px}
+  footer p{font-family:var(--mono); font-size:11px; color:var(--fg3); letter-spacing:.08em; line-height:1.9}
+  footer a{font-family:var(--sys); font-size:14px; letter-spacing:0}
+</style>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Kyoto Lab ／ Field notes</p>
+    <h1>Translation won&rsquo;t fix it</h1>
+    <p class="lead">Travellers get stuck in Kyoto&rsquo;s small shops all the time. I took apart two scenes I saw with my own eyes to figure out why. Short version: in most places, what&rsquo;s missing isn&rsquo;t translation. <strong>You can only translate what has been written down.</strong></p>
+    <div class="meta">
+      <span>2026.09.28</span>
+      <span>2 scenes ／ 3 fixes ／ 1 prototype</span>
+      <span>Daichi Ninomiya</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">What I saw</p>
+    <h2>Two ways to get stuck.</h2>
+    <p class="lead sub">Not guesses. Both happened in front of me, here in Kyoto. And they are two different kinds of stuck.</p>
+    <div class="obs">
+      <div class="ob">
+        <p class="tag">CASE A ／ Public bathhouse</p>
+        <h3>The information is there. Nobody moves.</h3>
+        <p>The changing room of a neighbourhood bathhouse had its rules posted in English. Even so, a visitor from abroad was frozen in place. They could read the signs just fine. Reading them simply didn&rsquo;t tell them what to do next.</p>
+        <p>How much do you take off? Where do you wash? What happens to the towel? <b>Every rule was written down, one by one. The order was written nowhere.</b></p>
+        <p class="verdict">→ There are words, but no steps</p>
+      </div>
+      <div class="ob">
+        <p class="tag">CASE B ／ Barber</p>
+        <h3>There&rsquo;s no information at all.</h3>
+        <p>A traveller walked in and asked if they could get a haircut right now. The shop only takes bookings, so the owner said no. The owner doesn&rsquo;t speak English, so it all happened in gestures.</p>
+        <p>The traveller wasted a trip. The shop lost time it might have sold. <b>From outside the door, there was no way to tell whether they had a free chair.</b></p>
+        <p class="verdict">→ Before any steps, you can&rsquo;t even see the state of the shop</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="core">
+  <div class="wrap">
+    <p class="eyebrow">The point</p>
+    <h2>English isn&rsquo;t what&rsquo;s missing.</h2>
+    <p>A translation app fixes neither case. In Case A, the text was already in English. In Case B, there was no text to translate in the first place.</p>
+    <p>What they share is this: <strong>the things a shop assumes &ldquo;any Japanese person just knows&rdquo; are written down nowhere.</strong> The order of things, the customs nobody was ever taught but everyone picked up. None of it is on paper, so there is nothing to translate.</p>
+    <p class="big">Translation can&rsquo;t translate what was never written.<br>Add a translation tool, and the problem stays.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Breaking it down</p>
+    <h2>Three things a traveller wants to know at the door.</h2>
+    <p class="lead sub">Take the problems on the ground apart and they boil down to three questions. None of them gets answered by translating text.</p>
+    <div class="q">
+      <div class="qr">
+        <span class="n">Q1</span>
+        <div>
+          <h3>Can I come in?</h3>
+          <p>Do I need a booking, or can I just walk in? Are they open today? Is this a place I&rsquo;m allowed into? (Is it regulars only? Are kids OK? What about tattoos?)</p>
+          <p class="no">You can&rsquo;t tell from outside, so it&rsquo;s either give up or risk being a nuisance</p>
+        </div>
+      </div>
+      <div class="qr">
+        <span class="n">Q2</span>
+        <div>
+          <h3>What happens inside?</h3>
+          <p>The order of things from the door to the exit. Where you pay, what you take off, where you sit, what you mustn&rsquo;t do. How long it takes and roughly what it costs.</p>
+          <p class="no">A sign full of rules only tells you what not to do. What you should do is still a mystery</p>
+        </div>
+      </div>
+      <div class="qr">
+        <span class="n">Q3</span>
+        <div>
+          <h3>Should I go now?</h3>
+          <p>Is it busy right now? How long is the wait? If it&rsquo;s packed, is there something similar nearby?</p>
+          <p class="no">Nobody knows, so everyone ends up at the same famous spots at the same hour</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Fixes</p>
+    <h2>Three questions, three tools.</h2>
+    <p class="lead sub">One tool per question. But Kyoto Lab is run by one person, so the test isn&rsquo;t whether I can build it. It&rsquo;s <strong>whether it keeps working without putting any load on the shop.</strong></p>
+
+    <div class="sol">
+      <div class="s pick">
+        <div class="hd">
+          <span class="badge">Answers Q2 ／ Build first</span>
+          <h3>Steps: hand over what happens inside, in order</h3>
+          <p class="one">Stop listing rules. Rebuild the visit, from the door to the exit, as a numbered list of actions. The trick is to hand over the order, not the text. Stick up one QR code and the steps show up on the customer&rsquo;s phone, in their language.</p>
+        </div>
+        <div class="bd">
+          <dl class="row"><dt>Good for</dt><dd>Bathhouses, hot spring baths, restaurants with a way of doing things, sweet shops, temple visits, workshops</dd></dl>
+          <dl class="row"><dt>Shop effort</dt><dd><b>Once.</b> Set it up and it keeps running with the owner doing nothing</dd></dl>
+          <dl class="row"><dt>Customer effort</dt><dd>Scan the QR, pick a language, read from the top. That&rsquo;s it</dd></dl>
+          <dl class="row"><dt>Not for</dt><dd>Places where the steps change for every customer (mostly complex bookings or one-to-one service)</dd></dl>
+          <div class="why"><b>Why this comes first:</b> it&rsquo;s the only one of the three that <b>keeps working without the owner touching it every day.</b> When you run things alone, any tool that needs the shop&rsquo;s daily effort will stop sooner or later. And it solves, head-on, the bathhouse scene that got Kyoto Lab started.</div>
+        </div>
+      </div>
+
+      <div class="s">
+        <div class="hd">
+          <span class="badge">Answers Q1 ／ Second</span>
+          <h3>Now: put &ldquo;can I come in?&rdquo; outside the door</h3>
+          <p class="one">Not a booking system. The owner presses one of three buttons a few times a day: &ldquo;Come on in,&rdquo; &ldquo;About a 20-minute wait,&rdquo; &ldquo;Closed for today.&rdquo; That shows up on the QR code by the door and on the shop&rsquo;s map listing, in several languages.</p>
+        </div>
+        <div class="bd">
+          <dl class="row"><dt>Good for</dt><dd>Barbers, family-run restaurants, local massage clinics, small craft workshops</dd></dl>
+          <dl class="row"><dt>Shop effort</dt><dd><b>Every day.</b> This is the weak spot. Forget to press it and the information becomes a lie. Skip enough days and the whole tool dies</dd></dl>
+          <dl class="row"><dt>Customer effort</dt><dd>Scan the QR at the door, or check before heading out</dd></dl>
+          <dl class="row"><dt>Design rule</dt><dd>If updates stop, <b>fall back to &ldquo;no information&rdquo; automatically.</b> Showing stale information does more harm than showing nothing</dd></dl>
+          <div class="why"><b>Why it waits:</b> the payoff is big, but it leans on the owner&rsquo;s daily effort. Bring it in after the first shop already has Steps and there&rsquo;s a relationship with the owner, and it has a much better chance of lasting.</div>
+        </div>
+      </div>
+
+      <div class="s">
+        <div class="hd">
+          <span class="badge">Answers Q3 ／ Not an app</span>
+          <h3>Shift: spread the crowds across time and place</h3>
+          <p class="one">When people say Kyoto is crowded, what&rsquo;s actually crowded is the same handful of places at the same hours. For one person, <strong>handing out knowledge of the quiet hours and the alternatives</strong> is more realistic than measuring crowds.</p>
+        </div>
+        <div class="bd">
+          <dl class="row"><dt>For</dt><dd>Everyone who travels to Kyoto</dd></dl>
+          <dl class="row"><dt>Why not an app</dt><dd>One person can&rsquo;t realistically collect live crowd data, and an inaccurate crowd map is the kind of failure that <b>loses your trust in one go</b></dd></dl>
+          <dl class="row"><dt>Instead</dt><dd><b>Solve it with writing.</b> &ldquo;Kiyomizu-dera opens at 6 a.m.&rdquo; &ldquo;Okazaki&rsquo;s streets are wide, so it never looks crowded.&rdquo; Knowledge like that is faster, more accurate and slower to go stale as an article</dd></dl>
+          <dl class="row"><dt>The link</dt><dd>Every article spreads the crowds a little more. The more I write, the better it works</dd></dl>
+          <div class="why"><b>This one isn&rsquo;t a tool, it&rsquo;s publishing.</b> It&rsquo;s the only one of the three where not building anything was the right answer. The spot guides and field notes on this site are that fix in action. (Opening times change, so check official information before you go.)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Comparison</p>
+    <h2>Ranked by: can one person keep it running?</h2>
+    <p class="lead sub">The yardstick isn&rsquo;t how big the effect is, but <strong>whether it keeps running without stopping.</strong> If you&rsquo;re holding it up alone, that column matters most.</p>
+    <div class="tbl">
+      <table>
+        <thead>
+          <tr><th>Tool</th><th>Effect</th><th>Build effort</th><th>Daily shop effort</th><th>Staying power</th><th>Call</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Steps</td>
+            <td><span class="pill p-hi">Big</span></td>
+            <td><span class="pill p-md">Medium</span></td>
+            <td><span class="pill p-hi">None</span></td>
+            <td><span class="pill p-hi">High</span></td>
+            <td>Build first</td>
+          </tr>
+          <tr>
+            <td>Now</td>
+            <td><span class="pill p-hi">Big</span></td>
+            <td><span class="pill p-hi">Small</span></td>
+            <td><span class="pill p-lo">Daily</span></td>
+            <td><span class="pill p-lo">Low</span></td>
+            <td>From shop 2</td>
+          </tr>
+          <tr>
+            <td>Shift</td>
+            <td><span class="pill p-md">Medium</span></td>
+            <td><span class="pill p-lo">Big</span></td>
+            <td><span class="pill p-hi">None</span></td>
+            <td><span class="pill p-md">Medium</span></td>
+            <td>Write it</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <b>How to read this table</b>
+      <p>The interesting one is Now. It&rsquo;s the easiest to build, and it still comes second. <strong>Easy to build and easy to keep going are two different things.</strong> A tool the owner has to press every day doesn&rsquo;t get pressed on a busy day. Information that isn&rsquo;t updated becomes a lie. And a tool that lied to you once never gets used again.</p>
+      <p>In a one-person business, staying power ends up being the only yardstick that counts. A tool that stops working isn&rsquo;t worth zero. <strong>It&rsquo;s worth less than zero.</strong></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Kyoto Lab ／ Field notes 2026.09.28<br>Based on two scenes witnessed in Kyoto city. Priorities judged on the assumption that one person runs everything.</p>
+    <p style="margin-top:14px">Kyoto Lab helps small companies and independent shops in Kyoto adopt AI. <a href="../../en/#contact">Get in touch ›</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
