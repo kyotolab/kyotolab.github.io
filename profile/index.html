@@ -91,6 +91,8 @@
   @media (max-width:560px){ .prow{grid-template-columns:1fr; gap:3px} }
   .prow dt{font-size:13px; color:var(--fg3)}
   .prow dd{margin:0; font-size:15.5px}
+  .prow dd a{color:var(--accent)}
+  .prow dd a:hover{text-decoration:underline}
 
   /* ---------------- narrative sections ---------------- */
   .psec{padding-block:clamp(52px,8vw,86px); border-bottom:1px solid var(--line2)}
@@ -110,6 +112,17 @@
   .vgrid2 div{padding-top:18px; border-top:2px solid var(--accent)}
   .vgrid2 b{display:block; font-size:18px; font-weight:600; letter-spacing:-.014em}
   .vgrid2 span{display:block; margin-top:8px; font-size:14.5px; color:var(--fg2); line-height:1.7}
+
+  .works{margin:clamp(28px,4vw,40px) 0 0}
+  .work{display:grid; grid-template-columns:120px minmax(0,1fr); gap:22px;
+        padding:16px 0; border-top:1px solid var(--line2); align-items:baseline}
+  @media (max-width:560px){ .work{grid-template-columns:1fr; gap:6px} }
+  .work dt{font-size:12px; font-weight:650; color:var(--gold); letter-spacing:.08em}
+  .work dd{margin:0; min-width:0}
+  .work ul{list-style:none; margin:0; padding:0; display:grid; gap:14px}
+  .work a{color:var(--accent); font-size:16px; font-weight:600}
+  .work a:hover{text-decoration:underline}
+  .work li span{display:block; margin-top:3px; font-size:14px; line-height:1.7; color:var(--fg2)}
 
   .pclose{padding-block:clamp(64px,10vw,110px); text-align:center}
   .pclose h2{font-size:clamp(26px,4.2vw,44px); letter-spacing:-.024em; max-width:16em; margin-inline:auto}
@@ -146,6 +159,9 @@
         <div class="prow"><dt>生まれ</dt><dd>京都市下京区</dd></div>
         <div class="prow"><dt>学歴</dt><dd>立命館大学 卒業／立命館大学大学院 修了（応用化学専攻）</dd></div>
         <div class="prow"><dt>拠点</dt><dd>京都市</dd></div>
+        <div class="prow"><dt>対応エリア</dt><dd>京都市内（対面は下京区とその周辺）</dd></div>
+        <div class="prow"><dt>相談の方法</dt><dd>メール／対面／オンライン（無料・30分ほど）</dd></div>
+        <div class="prow"><dt>発信</dt><dd><a href="https://www.instagram.com/kyotolab923/">Instagram</a> ／ <a href="https://note.com/legal_sorrel6616">note</a> ／ <a href="https://medium.com/@sc0054sv">Medium</a></dd></div>
       </dl>
     </div>
   </section>
@@ -192,6 +208,29 @@
         <div><b>品質</b><span>現場で使えないものはつくらない。使ってもらって終わりにせず、うまくいかなかったところを聞きに戻る。</span></div>
         <div><b>スピード</b><span>指摘して終わりにしない。AIとITで、実際に使えるところまで早く形にする。</span></div>
       </div>
+    </div>
+  </section>
+
+  <section class="psec">
+    <div class="wrap col">
+      <p class="eyebrow">05 ／ 書いたもの、つくったもの</p>
+      <h2>店先で見たことを、<br>書いて、形にしています。</h2>
+      <p>京都ラボでは、京都の店で見た困りごとを記事に書き、そこから道具をつくっています。<strong>どんな考えで、何をつくる人なのか</strong>は、ここから確かめてください。</p>
+      <dl class="works">
+        <div class="work"><dt>記事</dt><dd><ul>
+          <li><a href="../articles/honyaku/">翻訳では直らない</a><span>銭湯と散髪屋で見た2件から、京都ラボが何をつくるかを決めた回。</span></li>
+          <li><a href="../articles/kamogawa/">鴨川は等間隔になる</a><span>シリーズ「京都を通る水」の1本目。平安神宮と、南禅寺の水路閣の回もあります。</span></li>
+          <li><a href="../articles/shimogyo/">Living in Shimogyo</a><span>生まれ育った下京区の話（English）。</span></li>
+        </ul></dd></div>
+        <div class="work"><dt>デモ</dt><dd><ul>
+          <li><a href="../tools/menu/">多言語お品書き</a><span>QRから4言語で開き、アレルギーで絞り込めます。</span></li>
+          <li><a href="../tools/sento/">銭湯の入り方</a><span>入ってから出るまでを、9つの手順と4つの言語で案内します。</span></li>
+        </ul></dd></div>
+        <div class="work"><dt>名所攻略</dt><dd><ul>
+          <li><a href="../#spots">12か所の名所攻略</a><span>どこへ行くかより、何時に行って、どこを見るか。</span></li>
+          <li><a href="../articles/one-day/">One Day in Kyoto</a><span>3つの区を1日で歩くルート（English）。</span></li>
+        </ul></dd></div>
+      </dl>
     </div>
   </section>
 
