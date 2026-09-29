@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>お品書き ／ Menu</title>
+<meta name="description" content="Menu in English, 中文, 한국어 and 日本語. Filter by allergens and diet, then show your order to the staff.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://kyotolab.github.io/tools/menu/app/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="お品書き ／ Menu">
+<meta property="og:description" content="Menu in English, 中文, 한국어 and 日本語. Filter by allergens and diet, then show your order to the staff.">
+<meta property="og:url" content="https://kyotolab.github.io/tools/menu/app/">
+<meta property="og:image" content="https://kyotolab.github.io/assets/menu.jpg">
+<meta property="og:site_name" content="京都ラボ">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1C1C1E" media="(prefers-color-scheme: dark)">
+<style>
+  :root{
+    --paper:#F5F5F7; --surface:#FFFFFF; --screen:#FFFFFF;
+    --ink:#1D1D1F; --ink-soft:#4A4A4E; --muted:#6E6E73;
+    --rule:rgba(0,0,0,.12); --rule-soft:rgba(0,0,0,.08);
+    --accent:#0066CC; --accent-ink:#0052A6; --accent-soft:#EAF2FD;
+    --gold:#A33A2C; --gold-soft:#FBEDEA;
+    --alert:#9C4A34; --alert-soft:#F4E3DE;
+    --ok:#2F6B3A; --ok-soft:#E6F2E8;
+    --shadow:0 -10px 30px -18px rgba(0,0,0,.35);
+    --sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#000000; --surface:#1C1C1E; --screen:#1C1C1E;
+      --ink:#F5F5F7; --ink-soft:#C7C7CC; --muted:#98989D;
+      --rule:rgba(255,255,255,.16); --rule-soft:rgba(255,255,255,.1);
+      --accent:#0A84FF; --accent-ink:#5AC8FA; --accent-soft:#12233A;
+      --gold:#FF6F5E; --gold-soft:#2B1512;
+      --alert:#DE9280; --alert-soft:#33211C;
+      --ok:#7FCB8C; --ok-soft:#15261A;
+      --shadow:0 -10px 30px -18px rgba(0,0,0,.9);
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased}
+  h1,h2,h3{margin:0; font-weight:700; line-height:1.3; font-feature-settings:"palt" 1; text-wrap:balance}
+  p{margin:0}
+  button{font:inherit; color:inherit; cursor:pointer; border:none; background:none; padding:0}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+  .app{max-width:560px; margin:0 auto; min-height:100vh; background:var(--screen); padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+  @media (min-width:600px){ .app{border-inline:1px solid var(--rule-soft)} }
+
+  /* 上の帯 */
+  .top{position:sticky; top:0; z-index:10; background:var(--screen); border-bottom:1px solid var(--rule-soft); padding:12px 16px 0}
+  .shoprow{display:flex; align-items:center; justify-content:space-between; gap:10px}
+  .shoprow h1{font-size:18px; min-width:0}
+  .preview{display:inline-block; font-size:11px; color:var(--gold); background:var(--gold-soft); border-radius:3px; padding:1px 7px; margin-left:6px; vertical-align:2px; font-weight:600}
+  .tools{display:flex; gap:6px; flex:none}
+  .iconbtn{display:inline-flex; align-items:center; gap:5px; min-height:36px; padding:0 12px; border:1px solid var(--rule); border-radius:99px; font-size:13px; color:var(--accent-ink); white-space:nowrap}
+  .iconbtn .n{min-width:18px; height:18px; border-radius:99px; background:var(--accent); color:var(--screen); font-size:11px; display:inline-grid; place-items:center; padding:0 5px}
+  .langs{display:flex; gap:6px; margin-top:10px; overflow-x:auto; scrollbar-width:none}
+  .langs::-webkit-scrollbar{display:none}
+  .langs button{flex:none; font-size:13px; min-height:34px; padding:0 13px; border:1px solid var(--rule); border-radius:99px; color:var(--muted)}
+  .langs button[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--screen)}
+  .cats{display:flex; gap:2px; margin:8px -16px 0; padding:0 10px; overflow-x:auto; scrollbar-width:none}
+  .cats::-webkit-scrollbar{display:none}
+  .cats a{flex:none; font-size:14px; color:var(--muted); text-decoration:none; padding:8px 8px 10px; border-bottom:2px solid transparent}
+  .cats a.on{color:var(--ink); border-bottom-color:var(--accent); font-weight:600}
+
+  .notice{margin:14px 16px 0; font-size:13px; color:var(--ink-soft); background:var(--paper); border-radius:6px; padding:10px 12px}
+  .notice .pay{display:block; color:var(--muted); font-size:12px; margin-top:2px}
+  .hidden-note{margin:12px 16px 0; font-size:13px; color:var(--ink-soft); display:flex; align-items:center; justify-content:space-between; gap:10px; border:1px dashed var(--rule); border-radius:6px; padding:8px 12px}
+  .hidden-note button{color:var(--accent-ink); font-size:13px; white-space:nowrap; min-height:32px}
+
+  section{scroll-margin-top:var(--hh,150px)}
+  .cat{font-size:13px; color:var(--gold); letter-spacing:.06em; padding:22px 16px 6px; border-bottom:1px solid var(--rule-soft); font-weight:600}
+
+  .dish{display:grid; grid-template-columns:64px minmax(0,1fr) auto; gap:12px; width:100%; text-align:left; padding:14px 16px; border-bottom:1px solid var(--rule-soft); align-items:start}
+  .dish:active{background:var(--paper)}
+  .art{width:64px; height:56px; border-radius:6px; overflow:hidden; display:grid; place-items:center; background:var(--paper)}
+  .art svg{width:52px; height:45px; stroke:var(--accent); fill:none; stroke-width:1.3; stroke-linecap:round; stroke-linejoin:round}
+  .art img{width:100%; height:100%; object-fit:cover; display:block}
+  .nm{display:block; font-weight:600; font-size:16px; line-height:1.45}
+  .ja{display:block; font-size:12.5px; color:var(--muted); margin-top:1px}
+  .desc{display:block; font-size:13px; color:var(--ink-soft); margin-top:4px; line-height:1.6}
+  .price{font-family:var(--mono); font-size:14px; font-variant-numeric:tabular-nums; white-space:nowrap; padding-top:2px; text-align:right}
+  .price .cnt{display:block; margin-top:6px; font-family:var(--sans); font-size:11px; color:var(--screen); background:var(--accent); border-radius:99px; padding:0 8px; text-align:center}
+  .flags{display:flex; gap:4px; flex-wrap:wrap; margin-top:7px}
+  .flag{font-size:11px; padding:0 7px; border-radius:3px; border:1px solid var(--rule); color:var(--muted); line-height:1.8; white-space:nowrap}
+  .flag.rec{color:var(--gold); border-color:color-mix(in srgb,var(--gold) 45%,transparent); background:var(--gold-soft)}
+  .flag.veg{color:var(--ok); border-color:color-mix(in srgb,var(--ok) 45%,transparent); background:var(--ok-soft)}
+  .flag.warn{color:var(--alert); border-color:color-mix(in srgb,var(--alert) 40%,transparent); background:var(--alert-soft)}
+  .dish.out{opacity:.5}
+  .dish.out .price span:first-child{text-decoration:line-through}
+
+  .empty{padding:40px 24px; text-align:center; color:var(--muted); font-size:14px}
+  .empty strong{display:block; color:var(--ink); font-size:16px; margin-bottom:6px}
+  .foot{padding:26px 16px 10px; font-size:12px; color:var(--muted); line-height:1.7}
+  .foot a{color:var(--accent-ink)}
+
+  /* 下の注文バー */
+  .bar{position:fixed; left:0; right:0; bottom:0; z-index:20; pointer-events:none}
+  .bar-in{max-width:560px; margin:0 auto; padding:10px 16px calc(10px + env(safe-area-inset-bottom)); background:var(--screen); border-top:1px solid var(--rule-soft); box-shadow:var(--shadow); pointer-events:auto; display:flex; gap:10px; align-items:center}
+  .bar-in .sum{flex:1; min-width:0; font-size:13px; color:var(--ink-soft); line-height:1.4}
+  .bar-in .sum b{display:block; font-family:var(--mono); font-size:17px; color:var(--ink)}
+  .primary{background:var(--accent); color:var(--screen); border-radius:10px; min-height:48px; padding:0 18px; font-size:16px; font-weight:700}
+  .primary[disabled]{background:var(--rule); color:var(--muted); cursor:not-allowed}
+  .secondary{border:1px solid var(--rule); border-radius:10px; min-height:48px; padding:0 16px; font-size:15px; color:var(--accent-ink)}
+
+  /* 下から出るシート */
+  dialog{border:none; padding:0; margin:auto auto 0; width:100%; max-width:560px; max-height:92vh; border-radius:16px 16px 0 0; background:var(--screen); color:var(--ink); overflow:auto; overscroll-behavior:contain}
+  dialog::backdrop{background:rgba(0,0,0,.45)}
+  dialog.full{max-height:100vh; height:100%; border-radius:0; margin:0 auto}
+  .sh-top{position:sticky; top:0; z-index:2; background:var(--screen); display:flex; justify-content:space-between; align-items:center; gap:10px; padding:12px 16px; border-bottom:1px solid var(--rule-soft)}
+  .sh-top h2{font-size:16px}
+  .x{min-height:36px; padding:0 14px; border:1px solid var(--rule); border-radius:99px; font-size:13px; color:var(--muted)}
+  .sh-body{padding:18px 16px calc(24px + env(safe-area-inset-bottom))}
+  .big-art{height:130px; display:grid; place-items:center; background:var(--paper); border-radius:10px; margin-bottom:16px; overflow:hidden}
+  .big-art svg{height:100px; width:auto; stroke:var(--accent); fill:none; stroke-width:1.2; stroke-linecap:round; stroke-linejoin:round}
+  .big-art.photo{height:auto; aspect-ratio:4/3}
+  .big-art img{width:100%; height:100%; object-fit:cover; display:block}
+  .d-name{font-size:22px}
+  .d-ja{font-size:14px; color:var(--muted); margin-top:2px}
+  .d-desc{margin-top:10px; font-size:14.5px; color:var(--ink-soft)}
+  .d-price{margin-top:12px; font-family:var(--mono); font-size:20px}
+  .d-price small{font-family:var(--sans); font-size:12px; color:var(--muted); margin-left:6px}
+  .blk{margin-top:20px; padding-top:14px; border-top:1px solid var(--rule-soft)}
+  .blk h3{font-size:13px; color:var(--muted); font-weight:600; margin-bottom:8px}
+  .chips{display:flex; flex-wrap:wrap; gap:6px}
+  .chips .flag{font-size:13px}
+  .yn{display:grid; gap:4px; font-size:14px; color:var(--ink-soft)}
+  .yn span b{display:inline-block; width:20px; font-family:var(--mono)}
+  .yn .y b{color:var(--ok)}
+  .yn .n b{color:var(--alert)}
+  .qtyrow{display:flex; align-items:center; gap:14px; margin-top:22px}
+  .stepper{display:flex; align-items:center; border:1px solid var(--rule); border-radius:10px}
+  .stepper button{width:46px; height:46px; font-size:20px; color:var(--accent-ink)}
+  .stepper span{min-width:36px; text-align:center; font-family:var(--mono); font-size:18px}
+  .qtyrow .primary{flex:1}
+  .warnbox{margin-top:14px; font-size:13px; background:var(--alert-soft); color:var(--alert); border-radius:8px; padding:10px 12px}
+
+  .sel{display:flex; flex-wrap:wrap; gap:8px}
+  .sel button{min-height:40px; padding:0 14px; border:1px solid var(--rule); border-radius:99px; font-size:14px; color:var(--ink-soft)}
+  .sel button[aria-pressed="true"]{background:var(--accent-soft); border-color:var(--accent); color:var(--accent-ink); font-weight:600}
+  .sel button[aria-pressed="true"]::before{content:"✓ "}
+  .fine{font-size:12.5px; color:var(--muted); margin-top:10px; line-height:1.7}
+  .row2{display:flex; gap:10px; margin-top:22px}
+  .row2 > *{flex:1}
+
+  .li{display:grid; grid-template-columns:minmax(0,1fr) auto; gap:10px; align-items:center; padding:12px 0; border-bottom:1px solid var(--rule-soft)}
+  .li .nm{font-size:15px}
+  .li .stepper button{width:40px; height:40px}
+  .total{display:flex; justify-content:space-between; font-size:15px; padding:14px 0 0}
+  .total b{font-family:var(--mono); font-size:19px}
+
+  /* 店員さんに見せる画面 */
+  .staff{padding:20px 20px calc(30px + env(safe-area-inset-bottom)); text-align:center}
+  .staff .lead{font-size:13px; color:var(--muted); padding-bottom:14px; border-bottom:1px dashed var(--rule)}
+  .staff .hello{font-size:17px; color:var(--ink-soft); margin-top:22px}
+  .staff ul{list-style:none; margin:14px 0 0; padding:0; text-align:left}
+  .staff li{display:flex; justify-content:space-between; align-items:baseline; gap:12px; padding:12px 2px; border-bottom:1px solid var(--rule-soft); font-size:22px; font-weight:700; line-height:1.4}
+  .staff li span:last-child{font-family:var(--mono); white-space:nowrap}
+  .staff .sum{margin-top:16px; font-size:18px; display:flex; justify-content:space-between}
+  .staff .sum b{font-family:var(--mono)}
+  .staff .alg{margin-top:20px; text-align:left; background:var(--alert-soft); color:var(--alert); border-radius:8px; padding:12px 14px; font-size:16px; font-weight:600; line-height:1.6}
+  .staff li small.ng{display:block; font-size:13px; color:var(--alert); font-weight:600}
+  .staff .thanks{margin-top:18px; font-size:17px; font-weight:600}
+
+  .phr{display:grid; gap:10px}
+  .phr button{text-align:left; border:1px solid var(--rule); border-radius:10px; padding:12px 14px}
+  .phr button b{display:block; font-size:17px}
+  .phr button span{font-size:13px; color:var(--muted)}
+  .bigjp{padding:36px 18px; text-align:center}
+  .bigjp p{font-size:32px; font-weight:800; line-height:1.45; font-feature-settings:"palt" 1}
+  .bigjp small{display:block; margin-top:14px; font-size:15px; color:var(--muted)}
+  .card{text-align:left; font-size:21px; font-weight:700; line-height:1.6}
+  .card p + p{margin-top:12px}
+  .card .list{color:var(--alert)}
+
+  .err{padding:60px 24px; text-align:center; color:var(--ink-soft)}
+  @media (prefers-reduced-motion: reduce){ *{animation:none!important; transition:none!important; scroll-behavior:auto!important} }
+</style>
+</head>
+<body>
+<div class="app" id="app"><p class="err">読み込み中… Loading…</p></div>
+
+<div class="bar" id="bar" hidden><div class="bar-in">
+  <div class="sum" id="bar-sum"></div>
+  <button class="primary" id="bar-btn"></button>
+</div></div>
+
+<dialog id="dlg" aria-labelledby="dlg-title">
+  <div class="sh-top"><h2 id="dlg-title"></h2><button class="x" id="dlg-x"></button></div>
+  <div id="dlg-body"></div>
+</dialog>
+
+<script src="../core.js"></script>
+<script>
+(function(){
+  "use strict";
+  var M = window.KLMenu, pick = M.pick, esc = M.esc, yen = M.yen;
+
+  var T = {
+    ja:{filters:"絞り込み", phrases:"ひとこと", rec:"おすすめ", soldout:"品切れ", vegetarian:"ベジタリアン", vegan:"ヴィーガン",
+        noPork:"豚肉なし", noBeef:"牛肉なし", noAlcohol:"アルコールなし", diet:"食事の制限", allergyT:"食べられないアレルゲン",
+        allergyReq:"表示義務のある8品目", allergyRec:"そのほか20品目", clear:"すべて外す", apply:"この条件で見る",
+        hidden:"{n}品を条件で隠しています", showAll:"条件を外す", add:"リストに入れる", update:"数を変える", remove:"外す",
+        myList:"注文リスト", viewList:"リストを見る", items:"{n}品", total:"合計", showStaff:"店員さんに見せる", lead:"この画面を店員さんに見せてください。",
+        empty:"まだ何も入っていません", allergens:"アレルゲン（28品目）", also:"ほかに入っているもの", none:"28品目のアレルゲンは使っていません（店の申告）",
+        canEat:"食べられるか", taxIn:"税込", taxEx:"税別", payT:"お支払い", cash:"現金", card:"カード", ic:"交通系IC", qr:"QR決済",
+        allergyCard:"アレルギーを伝えるカード", cardLead:"注文の前に、この画面を店員さんに見せてください。", noCard:"絞り込みでアレルゲンか食事の制限を選ぶと、カードが作れます。",
+        close:"閉じる", back:"戻る", loadErr:"お品書きを読み込めませんでした。電波のよい場所で開き直してください。", preview:"下書きのプレビュー",
+        match:"あなたの条件に合います", notMatch:"あなたの条件に合いません", noMatch:"条件に合う料理がありません",
+        disclaimer:"アレルゲンと食材は店の申告です。同じ調理場で作るため、ごく少量が混ざることがあります。重いアレルギーのある方は、注文の前に店員さんに伝えてください。",
+        powered:"多言語お品書き・京都ラボ"},
+    en:{filters:"Filters", phrases:"Phrases", rec:"Recommended", soldout:"Sold out", vegetarian:"Vegetarian", vegan:"Vegan",
+        noPork:"No pork", noBeef:"No beef", noAlcohol:"No alcohol", diet:"Diet", allergyT:"Allergens to avoid",
+        allergyReq:"Major 8 (labeling required in Japan)", allergyRec:"Other 20", clear:"Clear all", apply:"Show matching dishes",
+        hidden:"{n} dishes hidden by your filters", showAll:"Clear filters", add:"Add to my list", update:"Update", remove:"Remove",
+        myList:"My order", viewList:"View order", items:"{n} items", total:"Total", showStaff:"Show to staff", lead:"Please show this screen to the staff.",
+        empty:"Your list is empty", allergens:"Allergens (28 items)", also:"Also contains", none:"None of the 28 allergens (as declared by the shop)",
+        canEat:"Can I eat this?", taxIn:"tax incl.", taxEx:"plus tax", payT:"Payment", cash:"Cash", card:"Card", ic:"IC card (Suica etc.)", qr:"QR pay",
+        allergyCard:"Allergy card", cardLead:"Show this to the staff before you order.", noCard:"Choose allergens or a diet in Filters to make your card.",
+        close:"Close", back:"Back", loadErr:"Could not load the menu. Please reopen it where the signal is good.", preview:"Draft preview",
+        match:"Matches your filters", notMatch:"Does not match your filters", noMatch:"No dishes match your filters",
+        disclaimer:"Allergen and ingredient information is declared by the shop. Dishes are made in a shared kitchen, so traces may be present. If your allergy is severe, please tell the staff before ordering.",
+        powered:"Multilingual menu by Kyoto Lab"},
+    zh:{filters:"篩選", phrases:"常用句", rec:"推薦", soldout:"售完", vegetarian:"素食", vegan:"純素",
+        noPork:"不含豬肉", noBeef:"不含牛肉", noAlcohol:"不含酒精", diet:"飲食限制", allergyT:"要避開的過敏原",
+        allergyReq:"主要8項（日本規定標示）", allergyRec:"其他20項", clear:"全部取消", apply:"顯示符合的餐點",
+        hidden:"已依條件隱藏{n}道餐點", showAll:"取消篩選", add:"加入清單", update:"更新數量", remove:"移除",
+        myList:"點餐清單", viewList:"查看清單", items:"{n}項", total:"合計", showStaff:"出示給店員", lead:"請將此畫面出示給店員。",
+        empty:"清單是空的", allergens:"過敏原（28項）", also:"其他成分", none:"不含28項過敏原（店家申報）",
+        canEat:"可以吃嗎", taxIn:"含稅", taxEx:"未稅", payT:"付款方式", cash:"現金", card:"信用卡", ic:"交通IC卡", qr:"QR支付",
+        allergyCard:"過敏告知卡", cardLead:"點餐前請將此畫面出示給店員。", noCard:"在「篩選」選擇過敏原或飲食限制後即可產生告知卡。",
+        close:"關閉", back:"返回", loadErr:"無法載入菜單。請在訊號良好的地方重新開啟。", preview:"草稿預覽",
+        match:"符合您的條件", notMatch:"不符合您的條件", noMatch:"沒有符合條件的餐點",
+        disclaimer:"過敏原與食材資訊由店家申報。餐點在共用廚房製作，可能混入微量成分。過敏嚴重者請於點餐前告知店員。",
+        powered:"多語菜單・京都Lab"},
+    ko:{filters:"필터", phrases:"회화", rec:"추천", soldout:"품절", vegetarian:"채식", vegan:"비건",
+        noPork:"돼지고기 없음", noBeef:"소고기 없음", noAlcohol:"알코올 없음", diet:"식사 제한", allergyT:"피해야 할 알레르기 성분",
+        allergyReq:"주요 8품목 (일본 표시 의무)", allergyRec:"기타 20품목", clear:"모두 해제", apply:"맞는 메뉴 보기",
+        hidden:"조건에 따라 {n}개 메뉴를 숨겼습니다", showAll:"필터 해제", add:"목록에 담기", update:"수량 변경", remove:"빼기",
+        myList:"주문 목록", viewList:"목록 보기", items:"{n}개", total:"합계", showStaff:"직원에게 보여주기", lead:"이 화면을 직원에게 보여주세요.",
+        empty:"목록이 비어 있습니다", allergens:"알레르기 성분 (28품목)", also:"기타 포함", none:"28품목 알레르기 성분 없음 (가게 신고)",
+        canEat:"먹을 수 있나요", taxIn:"세금 포함", taxEx:"세금 별도", payT:"결제", cash:"현금", card:"카드", ic:"교통 IC카드", qr:"QR 결제",
+        allergyCard:"알레르기 카드", cardLead:"주문 전에 이 화면을 직원에게 보여주세요.", noCard:"필터에서 알레르기 성분이나 식사 제한을 고르면 카드가 만들어집니다.",
+        close:"닫기", back:"뒤로", loadErr:"메뉴를 불러오지 못했습니다. 신호가 좋은 곳에서 다시 열어 주세요.", preview:"초안 미리보기",
+        match:"조건에 맞습니다", notMatch:"조건에 맞지 않습니다", noMatch:"조건에 맞는 메뉴가 없습니다",
+        disclaimer:"알레르기 성분과 식재료 정보는 가게가 신고한 것입니다. 같은 주방에서 조리하므로 미량이 섞일 수 있습니다. 알레르기가 심한 분은 주문 전에 직원에게 알려 주세요.",
+        powered:"다국어 메뉴・교토랩"}
+  };
+
+  // 店員さんに見せるひとこと。大きく日本語で出す
+  var PHRASES = [
+    {ja:"お水をください。",          en:"Water, please.",               zh:"請給我水。",           ko:"물 좀 주세요."},
+    {ja:"お会計をお願いします。",     en:"The bill, please.",            zh:"麻煩結帳。",           ko:"계산해 주세요."},
+    {ja:"取り皿をください。",         en:"Could we have small plates?",  zh:"請給我小盤子。",       ko:"앞접시 좀 주세요."},
+    {ja:"おすすめはどれですか？",     en:"What do you recommend?",       zh:"推薦哪一道？",         ko:"추천 메뉴는 무엇인가요?"},
+    {ja:"カードで払えますか？",       en:"Can I pay by card?",           zh:"可以刷卡嗎？",         ko:"카드로 결제할 수 있나요?"},
+    {ja:"お手洗いはどこですか？",     en:"Where is the restroom?",       zh:"洗手間在哪裡？",       ko:"화장실은 어디인가요?"},
+    {ja:"ごちそうさまでした。",       en:"Thank you, it was delicious.", zh:"謝謝招待，很好吃。",   ko:"잘 먹었습니다."}
+  ];
+
+  var DIETS = [
+    {k:"vegetarian", ok:function(d){ return d.veg === "vegetarian" || d.veg === "vegan"; },
+     jp:"ベジタリアンです。肉と魚、魚のだし（かつお等）が食べられません。"},
+    {k:"vegan", ok:function(d){ return d.veg === "vegan"; },
+     jp:"ヴィーガンです。肉、魚、魚のだし、卵、乳、はちみつが食べられません。"},
+    {k:"noPork", ok:function(d){ return d.allergens.indexOf("pork") < 0; }, jp:"豚肉が食べられません（ラードやエキスも）。"},
+    {k:"noBeef", ok:function(d){ return d.allergens.indexOf("beef") < 0; }, jp:"牛肉が食べられません。"},
+    {k:"noAlcohol", ok:function(d){ return d.contains.indexOf("alcohol") < 0; }, jp:"アルコールがとれません（みりんや料理酒も）。"}
+  ];
+
+  var menu, shopId, isPreview, lang;
+  var st = {diet:{}, avoid:{}, list:{}};
+  var dlg = document.getElementById("dlg");
+
+  function t(k, n){ var s = (T[lang] || T.en)[k] || T.en[k]; return n == null ? s : s.replace("{n}", n); }
+  function store(k, v){ try{ if(v === undefined) return JSON.parse(localStorage.getItem("kl-menu-" + k)); localStorage.setItem("kl-menu-" + k, JSON.stringify(v)); }catch(e){ return null; } }
+  function sess(k, v){ try{ if(v === undefined) return JSON.parse(sessionStorage.getItem("kl-menu-" + k)); sessionStorage.setItem("kl-menu-" + k, JSON.stringify(v)); }catch(e){ return null; } }
+
+  function detectLang(){
+    var q = new URLSearchParams(location.search).get("lang");
+    if(T[q]) return q;
+    var saved = store("lang");
+    if(T[saved]) return saved;
+    var list = navigator.languages || [navigator.language || "en"];
+    for(var i = 0; i < list.length; i++){
+      var l = String(list[i]).toLowerCase().slice(0, 2);
+      if(T[l]) return l;
+    }
+    return "en";
+  }
+
+  function dishById(id){ return menu.dishes.filter(function(d){ return d.id === id; })[0]; }
+  function allergenName(k){ var a = M.ALLERGENS.filter(function(x){ return x.k === k; })[0]; return a ? a[lang] || a.en : k; }
+  function allergenJa(k){ var a = M.ALLERGENS.filter(function(x){ return x.k === k; })[0]; return a ? a.ja : k; }
+  function containsName(k){ var a = M.CONTAINS.filter(function(x){ return x.k === k; })[0]; return a ? a[lang] || a.en : k; }
+
+  function activeDiets(){ return DIETS.filter(function(x){ return st.diet[x.k]; }); }
+  function activeAvoid(){ return M.ALLERGENS.filter(function(a){ return st.avoid[a.k]; }).map(function(a){ return a.k; }); }
+  function filterCount(){ return activeDiets().length + activeAvoid().length; }
+  function passes(d){
+    var ok = activeDiets().every(function(x){ return x.ok(d); });
+    return ok && activeAvoid().every(function(k){ return d.allergens.indexOf(k) < 0; });
+  }
+  function listCount(){ var n = 0; for(var k in st.list) n += st.list[k]; return n; }
+  function listTotal(){ var s = 0; for(var k in st.list){ var d = dishById(k); if(d) s += d.price * st.list[k]; } return s; }
+  function save(){ sess("list-" + shopId, st.list); store("diet", st.diet); store("avoid", st.avoid); }
+
+  function artHtml(d, big){
+    if(d.img) return '<img src=\"../shops/' + esc(d.img) + '\" alt="" loading="lazy">';
+    return M.ICONS[d.icon] || M.ICONS.donburi;
+  }
+
+  function dishRow(d){
+    var out = !!d.soldout, n = st.list[d.id] || 0, f = "";
+    if(d.recommend) f += '<span class="flag rec">' + esc(t("rec")) + '</span>';
+    if(d.veg) f += '<span class="flag veg">' + esc(t(d.veg)) + '</span>';
+    if(d.contains.indexOf("dashi") > -1) f += '<span class="flag warn">' + esc(containsName("dashi")) + '</span>';
+    if(out) f += '<span class="flag warn">' + esc(t("soldout")) + '</span>';
+    return '<button class="dish' + (out ? " out" : "") + '" data-dish="' + esc(d.id) + '">' +
+      '<span class="art">' + artHtml(d) + '</span>' +
+      '<span><span class="nm">' + esc(pick(d.name, lang)) + '</span>' +
+        (lang !== "ja" && d.name.ja ? '<span class="ja">' + esc(d.name.ja) + '</span>' : '') +
+        (pick(d.desc, lang) ? '<span class="desc">' + esc(pick(d.desc, lang)) + '</span>' : '') +
+        (f ? '<span class="flags">' + f + '</span>' : '') + '</span>' +
+      '<span class="price"><span>' + yen(d.price) + '</span>' + (n ? '<span class="cnt">× ' + n + '</span>' : '') + '</span>' +
+    '</button>';
+  }
+
+  function render(){
+    document.documentElement.lang = lang === "zh" ? "zh-Hant" : lang;
+    var shopName = pick(menu.shop.name, lang);
+    document.title = shopName + (lang === "ja" ? " ／ お品書き" : " ／ Menu");
+    var fc = filterCount();
+    var cats = menu.categories.slice();
+    var known = {}; cats.forEach(function(c){ known[c.id] = 1; });
+    if(menu.dishes.some(function(d){ return !known[d.cat]; })) cats.push({id:"_other", name:{ja:"そのほか", en:"Other", zh:"其他", ko:"기타"}});
+
+    var hiddenN = 0, body = "";
+    cats.forEach(function(c){
+      var ds = menu.dishes.filter(function(d){ return (c.id === "_other" ? !known[d.cat] : d.cat === c.id); });
+      var shown = ds.filter(passes);
+      hiddenN += ds.length - shown.length;
+      if(!shown.length) return;
+      body += '<section id="c-' + esc(c.id) + '"><h2 class="cat">' + esc(pick(c.name, lang)) + '</h2>' + shown.map(dishRow).join("") + '</section>';
+    });
+    var visibleCats = cats.filter(function(c){ return body.indexOf('id="c-' + c.id + '"') > -1; });
+
+    var pay = (menu.shop.pay || []).map(function(p){ return t(p); }).filter(Boolean).join(" ・ ");
+    var notice = pick(menu.shop.notice, lang);
+
+    document.getElementById("app").innerHTML =
+      '<header class="top" id="top">' +
+        '<div class="shoprow"><h1>' + esc(shopName) + (isPreview ? '<span class="preview">' + esc(t("preview")) + '</span>' : '') + '</h1>' +
+          '<div class="tools">' +
+            '<button class="iconbtn" data-open="filters">' + esc(t("filters")) + (fc ? ' <span class="n">' + fc + '</span>' : '') + '</button>' +
+            '<button class="iconbtn" data-open="phrases">' + esc(t("phrases")) + '</button>' +
+          '</div></div>' +
+        '<div class="langs" role="group" aria-label="Language">' + M.LANGS.map(function(l){
+          return '<button data-lang="' + l.k + '" aria-pressed="' + (l.k === lang) + '" lang="' + l.k + '">' + l.n + '</button>';
+        }).join("") + '</div>' +
+        '<nav class="cats" id="cats">' + visibleCats.map(function(c){
+          return '<a href="#c-' + esc(c.id) + '">' + esc(pick(c.name, lang)) + '</a>';
+        }).join("") + '</nav>' +
+      '</header>' +
+      ((notice || pay) ? '<p class="notice">' + esc(notice) + (pay ? '<span class="pay">' + esc(t("payT")) + ': ' + esc(pay) + ' ・ ' + esc(menu.shop.taxIncluded ? t("taxIn") : t("taxEx")) + '</span>' : '') + '</p>' : '') +
+      (hiddenN ? '<div class="hidden-note"><span>' + esc(t("hidden", hiddenN)) + '</span><button data-clear="1">' + esc(t("showAll")) + '</button></div>' : '') +
+      (body || '<div class="empty"><strong>' + esc(t("noMatch")) + '</strong></div>') +
+      '<div class="foot"><p>' + esc(t("disclaimer")) + '</p>' +
+        (fc ? '<p style="margin-top:8px"><button class="iconbtn" data-open="card">' + esc(t("allergyCard")) + '</button></p>' : '') +
+        '<p style="margin-top:14px"><a href="https://kyotolab.github.io/" target="_blank" rel="noopener">' + esc(t("powered")) + '</a>' +
+        (menu.updated ? ' ・ ' + esc(menu.updated) : '') + '</p></div>';
+
+    var h = document.getElementById("top").offsetHeight;
+    document.documentElement.style.setProperty("--hh", (h + 4) + "px");
+    renderBar();
+    spy();
+  }
+
+  function renderBar(){
+    var n = listCount(), bar = document.getElementById("bar");
+    bar.hidden = !n;
+    if(!n) return;
+    document.getElementById("bar-sum").innerHTML = esc(t("myList")) + ' ・ ' + esc(t("items", n)) + '<b>' + yen(listTotal()) + '</b>';
+    document.getElementById("bar-btn").textContent = t("viewList");
+  }
+
+  // いま見ているカテゴリーのタブに下線を引く
+  function spy(){
+    var links = document.querySelectorAll("#cats a");
+    if(!links.length) return;
+    var hh = document.getElementById("top").offsetHeight + 10, cur = links[0];
+    links.forEach(function(a){
+      var s = document.getElementById(a.getAttribute("href").slice(1));
+      if(s && s.getBoundingClientRect().top <= hh) cur = a;
+    });
+    links.forEach(function(a){ a.classList.toggle("on", a === cur); });
+  }
+  window.addEventListener("scroll", spy, {passive:true});
+
+  /* ---- シート ---- */
+  var current = null;
+  function openDlg(kind, arg){
+    current = {kind: kind, arg: arg};
+    dlg.classList.toggle("full", kind === "staff" || kind === "phrase" || kind === "card");
+    drawDlg();
+    if(!dlg.open){
+      dlg.showModal();
+      try{ history.pushState({dlg:1}, ""); }catch(e){}
+    }
+    dlg.scrollTop = 0;
+  }
+  function closeDlg(fromPop){
+    if(!dlg.open) return;
+    dlg.close();
+    current = null;
+    if(!fromPop && history.state && history.state.dlg){ try{ history.back(); }catch(e){} }
+  }
+  window.addEventListener("popstate", function(){ if(dlg.open) closeDlg(true); });
+  dlg.addEventListener("cancel", function(e){ e.preventDefault(); closeDlg(); });
+  dlg.addEventListener("click", function(e){ if(e.target === dlg) closeDlg(); });
+  document.getElementById("dlg-x").addEventListener("click", function(){
+    if(current && (current.kind === "phrase")) return openDlg("phrases");
+    if(current && current.kind === "staff") return openDlg("list");
+    closeDlg();
+  });
+
+  function drawDlg(){
+    var k = current.kind, title = "", html = "", x = t("close");
+    if(k === "dish"){
+      var d = dishById(current.arg), n = st.list[d.id] || 0, q = current.qty || n || 1;
+      current.qty = q;
+      title = pick(menu.categories.filter(function(c){ return c.id === d.cat; }).map(function(c){ return c.name; })[0], lang);
+      var al = d.allergens.map(function(a){ return '<span class="flag' + (st.avoid[a] ? " warn" : "") + '">' + esc(allergenName(a)) + '</span>'; }).join("");
+      var co = d.contains.map(function(a){ return '<span class="flag warn">' + esc(containsName(a)) + '</span>'; }).join("");
+      var yn = DIETS.map(function(x){ var ok = x.ok(d); return '<span class="' + (ok ? "y" : "n") + '"><b>' + (ok ? "○" : "×") + '</b>' + esc(t(x.k)) + '</span>'; }).join("");
+      var fit = filterCount() ? '<p class="warnbox" style="' + (passes(d) ? "background:var(--ok-soft);color:var(--ok)" : "") + '">' + esc(passes(d) ? t("match") : t("notMatch")) + '</p>' : '';
+      html = '<div class="sh-body">' +
+        '<div class="big-art' + (d.img ? " photo" : "") + '">' + artHtml(d, true) + '</div>' +
+        '<h3 class="d-name">' + esc(pick(d.name, lang)) + '</h3>' +
+        (lang !== "ja" && d.name.ja ? '<p class="d-ja" lang="ja">' + esc(d.name.ja) + '</p>' : '') +
+        (pick(d.desc, lang) ? '<p class="d-desc">' + esc(pick(d.desc, lang)) + '</p>' : '') +
+        '<p class="d-price">' + yen(d.price) + '<small>' + esc(menu.shop.taxIncluded ? t("taxIn") : t("taxEx")) + '</small></p>' + fit +
+        (d.soldout ? '<p class="warnbox">' + esc(t("soldout")) + '</p>' :
+          '<div class="qtyrow"><div class="stepper"><button data-q="-1" aria-label="−">−</button><span>' + q + '</span><button data-q="1" aria-label="+">＋</button></div>' +
+          '<button class="primary" data-add="' + esc(d.id) + '">' + esc(n ? t("update") : t("add")) + '</button></div>' +
+          (n ? '<p style="margin-top:10px;text-align:right"><button class="x" data-rm="' + esc(d.id) + '">' + esc(t("remove")) + '</button></p>' : '')) +
+        '<div class="blk"><h3>' + esc(t("allergens")) + '</h3><div class="chips">' + (al || '<span class="fine" style="margin:0">' + esc(t("none")) + '</span>') + '</div></div>' +
+        (co ? '<div class="blk"><h3>' + esc(t("also")) + '</h3><div class="chips">' + co + '</div></div>' : '') +
+        '<div class="blk"><h3>' + esc(t("canEat")) + '</h3><div class="yn">' + yn + '</div></div>' +
+        '<p class="fine">' + esc(t("disclaimer")) + '</p>' +
+      '</div>';
+    }
+    if(k === "filters"){
+      title = t("filters");
+      function chip(kind, key, label){ var on = kind === "diet" ? st.diet[key] : st.avoid[key]; return '<button data-' + kind + '="' + key + '" aria-pressed="' + !!on + '">' + esc(label) + '</button>'; }
+      html = '<div class="sh-body">' +
+        '<div><h3 style="font-size:14px;margin-bottom:10px">' + esc(t("diet")) + '</h3><div class="sel">' + DIETS.map(function(x){ return chip("diet", x.k, t(x.k)); }).join("") + '</div></div>' +
+        '<div class="blk"><h3>' + esc(t("allergyT")) + ' ・ ' + esc(t("allergyReq")) + '</h3><div class="sel">' + M.ALLERGENS.filter(function(a){ return a.req; }).map(function(a){ return chip("avoid", a.k, a[lang] || a.en); }).join("") + '</div></div>' +
+        '<div class="blk"><h3>' + esc(t("allergyRec")) + '</h3><div class="sel">' + M.ALLERGENS.filter(function(a){ return !a.req; }).map(function(a){ return chip("avoid", a.k, a[lang] || a.en); }).join("") + '</div></div>' +
+        '<p class="fine">' + esc(t("disclaimer")) + '</p>' +
+        '<div class="row2"><button class="secondary" data-clear="1">' + esc(t("clear")) + '</button><button class="primary" data-done="1">' + esc(t("apply")) + '</button></div>' +
+        (filterCount() ? '<p style="margin-top:12px"><button class="secondary" style="width:100%" data-open="card">' + esc(t("allergyCard")) + '</button></p>' : '') +
+      '</div>';
+    }
+    if(k === "list"){
+      title = t("myList");
+      var rows = Object.keys(st.list).map(function(id){
+        var d = dishById(id); if(!d) return "";
+        return '<div class="li"><div><span class="nm">' + esc(pick(d.name, lang)) + '</span><span class="ja">' + yen(d.price) + (lang !== "ja" ? ' ・ ' + esc(d.name.ja) : '') + '</span>' +
+          (filterCount() && !passes(d) ? '<span class="flag warn" style="display:inline-block;margin-top:4px">' + esc(t("notMatch")) + '</span>' : '') + '</div>' +
+          '<div class="stepper"><button data-lq="-1" data-id="' + esc(id) + '" aria-label="−">−</button><span>' + st.list[id] + '</span><button data-lq="1" data-id="' + esc(id) + '" aria-label="+">＋</button></div></div>';
+      }).join("");
+      html = '<div class="sh-body">' + (rows ? rows + '<div class="total"><span>' + esc(t("total")) + ' <small>(' + esc(menu.shop.taxIncluded ? t("taxIn") : t("taxEx")) + ')</small></span><b>' + yen(listTotal()) + '</b></div>' +
+        '<p style="margin-top:18px"><button class="primary" style="width:100%" data-open="staff">' + esc(t("showStaff")) + '</button></p>' : '<p class="empty">' + esc(t("empty")) + '</p>') + '</div>';
+    }
+    if(k === "staff"){
+      title = t("showStaff"); x = t("back");
+      var li = Object.keys(st.list).map(function(id){ var d = dishById(id); return d ? '<li><span>' + esc(d.name.ja || pick(d.name, lang)) + (filterCount() && !passes(d) ? '<small class="ng">※ 下の条件に合わないかもしれません</small>' : '') + '</span><span>× ' + st.list[id] + '</span></li>' : ''; }).join("");
+      html = '<div class="staff" lang="ja"><p class="lead" lang="' + lang + '">' + esc(t("lead")) + '</p>' +
+        '<p class="hello">すみません、注文をお願いします。</p><ul>' + li + '</ul>' +
+        '<p class="sum"><span>合計（' + (menu.shop.taxIncluded ? "税込" : "税別") + '）</span><b>' + yen(listTotal()) + '</b></p>' +
+        (filterCount() ? '<p class="alg">' + cardLines().map(esc).join("<br>") + '</p>' : '') +
+        '<p class="thanks">よろしくお願いします。</p></div>';
+    }
+    if(k === "phrases"){
+      title = t("phrases");
+      html = '<div class="sh-body"><div class="phr">' + PHRASES.map(function(p, i){
+        return '<button data-phrase="' + i + '"><b lang="ja">' + esc(p.ja) + '</b>' + (lang !== "ja" ? '<span>' + esc(p[lang]) + '</span>' : '') + '</button>';
+      }).join("") + '<button data-open="card"><b>' + esc(t("allergyCard")) + '</b><span>' + esc(t("cardLead")) + '</span></button></div></div>';
+    }
+    if(k === "phrase"){
+      var p = PHRASES[current.arg]; title = t("phrases"); x = t("back");
+      html = '<div class="bigjp"><p lang="ja">' + esc(p.ja) + '</p>' + (lang !== "ja" ? '<small>' + esc(p[lang]) + '</small>' : '') + '</div>';
+    }
+    if(k === "card"){
+      title = t("allergyCard");
+      html = '<div class="sh-body">' + (filterCount() ?
+        '<p class="fine" style="margin:0 0 16px">' + esc(t("cardLead")) + '</p><div class="card" lang="ja">' +
+          '<p>すみません。</p>' + cardLines().map(function(l, i){ return '<p' + (i === 0 && activeAvoid().length ? ' class="list"' : '') + '>' + esc(l) + '</p>'; }).join("") +
+          '<p>食べられる料理を教えてください。</p></div>' :
+        '<p class="empty">' + esc(t("noCard")) + '</p><p><button class="primary" style="width:100%" data-open="filters">' + esc(t("filters")) + '</button></p>') + '</div>';
+    }
+    document.getElementById("dlg-title").textContent = title;
+    document.getElementById("dlg-x").textContent = x;
+    document.getElementById("dlg-body").innerHTML = html;
+  }
+
+  // 日本語で伝える文（アレルギーカードと注文画面で使う）
+  function cardLines(){
+    var out = [], av = activeAvoid();
+    if(av.length) out.push("食物アレルギーがあります（" + av.map(allergenJa).join("、") + "）。少量でも食べられません。");
+    activeDiets().forEach(function(x){ out.push(x.jp); });
+    return out;
+  }
+
+  document.addEventListener("click", function(e){
+    var b = e.target.closest("button, a");
+    if(!b) return;
+    var ds = b.dataset;
+    if(ds.lang){ lang = ds.lang; store("lang", lang); render(); if(current) drawDlg(); return; }
+    if(ds.dish){ openDlg("dish", ds.dish); return; }
+    if(ds.open){ openDlg(ds.open); return; }
+    if(ds.phrase){ openDlg("phrase", +ds.phrase); return; }
+    if(ds.q){ current.qty = Math.max(1, Math.min(20, current.qty + (+ds.q))); drawDlg(); return; }
+    if(ds.add){ st.list[ds.add] = current.qty; save(); render(); closeDlg(); return; }
+    if(ds.rm){ delete st.list[ds.rm]; save(); render(); closeDlg(); return; }
+    if(ds.lq){ var id = ds.id, v = (st.list[id] || 0) + (+ds.lq); if(v <= 0) delete st.list[id]; else st.list[id] = Math.min(20, v); save(); render(); if(!listCount()) closeDlg(); else drawDlg(); return; }
+    if(ds.diet){ st.diet[ds.diet] = !st.diet[ds.diet]; save(); render(); drawDlg(); return; }
+    if(ds.avoid){ st.avoid[ds.avoid] = !st.avoid[ds.avoid]; save(); render(); drawDlg(); return; }
+    if(ds.clear){ st.diet = {}; st.avoid = {}; save(); render(); if(current) drawDlg(); return; }
+    if(ds.done){ closeDlg(); return; }
+    if(b.id === "bar-btn"){ openDlg("list"); return; }
+  });
+
+  lang = detectLang();
+  M.load("../").then(function(r){
+    menu = r.menu; isPreview = r.preview; shopId = r.id || "preview";
+    st.diet = store("diet") || {}; st.avoid = store("avoid") || {};
+    var saved = sess("list-" + shopId) || {};
+    Object.keys(saved).forEach(function(id){ var d = dishById(id); if(d && !d.soldout) st.list[id] = saved[id]; });
+    render();
+    window.addEventListener("resize", function(){ var h = document.getElementById("top"); if(h) document.documentElement.style.setProperty("--hh", (h.offsetHeight + 4) + "px"); });
+  }).catch(function(){
+    document.getElementById("app").innerHTML = '<p class="err">' + esc(T.ja.loadErr) + '<br><br>' + esc(T.en.loadErr) + '</p>';
+  });
+})();
+</script>
+</body>
+</html>
