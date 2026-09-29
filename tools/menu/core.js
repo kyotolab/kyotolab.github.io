@@ -110,8 +110,65 @@
       .then(function(j){ return {menu: normalize(j), preview: false, id: id}; });
   }
 
+  /* ---- 品切れの受け口 ----
+     menu.live が Apps Script のURLなら、そこに品切れを問い合わせる（live/soldout.gs）。
+     "demo" なら、同じブラウザの中だけで切り替わる見本として動く。 */
+  var DEMO_KEY = "kyotolab-menu-live-demo";
+
+  function demoState(list){
+    if(list){ try{ localStorage.setItem(DEMO_KEY, JSON.stringify({soldout:list, updated:new Date().toISOString()})); }catch(e){} }
+    var s = null;
+    try{ s = JSON.parse(localStorage.getItem(DEMO_KEY)); }catch(e){}
+    return s || {soldout:null, updated:""};
+  }
+
+  function liveUrl(menu){
+    var u = menu && menu.live;
+    // 手元で試すときだけ localhost も通す
+    return (u === "demo" || /^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(u || "") ||
+      /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?\//.test(u || "")) ? u : "";
+  }
+
+  function liveGet(menu){
+    var u = liveUrl(menu);
+    if(!u) return Promise.reject(new Error("no live"));
+    if(u === "demo") return Promise.resolve(demoState());
+    return fetch(u + "?t=" + Date.now(), {cache:"no-store"}).then(function(r){ return r.json(); })
+      .then(function(j){ if(!j || !j.ok) throw new Error("live"); return j; });
+  }
+
+  // action: "check" | "set" | "clear"
+  function livePost(menu, body){
+    var u = liveUrl(menu);
+    if(!u) return Promise.reject(new Error("no live"));
+    if(u === "demo"){
+      if(String(body.pin) !== "0000") return Promise.resolve({ok:false, error:"pin"});
+      var cur = demoState().soldout;
+      if(!cur) cur = menu.dishes.filter(function(d){ return d.soldout; }).map(function(d){ return d.id; });
+      if(body.action === "set"){
+        cur = cur.filter(function(x){ return x !== body.id; });
+        if(body.soldout) cur.push(body.id);
+      }
+      if(body.action === "clear") cur = [];
+      var s = demoState(cur);
+      return Promise.resolve({ok:true, soldout:s.soldout, updated:s.updated});
+    }
+    // text/plain にして、ブラウザの事前確認（CORS のプリフライト）を起こさない
+    return fetch(u, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify(body)})
+      .then(function(r){ return r.json(); });
+  }
+
+  // 問い合わせた品切れを、お品書きのデータに重ねる
+  function applySoldout(menu, list){
+    if(!list) return;
+    menu.dishes.forEach(function(d){
+      if(list.indexOf(d.id) > -1) d.soldout = true; else delete d.soldout;
+    });
+  }
+
   root.KLMenu = {
     LANGS: LANGS, ALLERGENS: ALLERGENS, CONTAINS: CONTAINS, ICONS: ICONS,
-    pick: pick, esc: esc, yen: yen, normalize: normalize, load: load, DRAFT_KEY: DRAFT_KEY
+    pick: pick, esc: esc, yen: yen, normalize: normalize, load: load, DRAFT_KEY: DRAFT_KEY,
+    liveUrl: liveUrl, liveGet: liveGet, livePost: livePost, applySoldout: applySoldout, DEMO_KEY: DEMO_KEY
   };
 })(window);

@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>品切れの切り替え ／ 京都ラボ</title>
+<meta name="description" content="多言語お品書きの店員さん用の画面。料理をタップすると、お客さんのスマホで品切れと出ます。">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://kyotolab.github.io/tools/menu/staff/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="品切れの切り替え ／ 京都ラボ">
+<meta property="og:description" content="多言語お品書きの店員さん用の画面。料理をタップすると、お客さんのスマホで品切れと出ます。">
+<meta property="og:url" content="https://kyotolab.github.io/tools/menu/staff/">
+<meta property="og:image" content="https://kyotolab.github.io/assets/menu.jpg">
+<meta property="og:site_name" content="京都ラボ">
+<style>
+  :root{
+    --paper:#F5F5F7; --surface:#FFFFFF;
+    --ink:#1D1D1F; --ink-soft:#4A4A4E; --muted:#6E6E73;
+    --rule:rgba(0,0,0,.12); --rule-soft:rgba(0,0,0,.08);
+    --accent:#0066CC; --accent-ink:#0052A6; --accent-soft:#EAF2FD;
+    --gold:#A33A2C;
+    --alert:#9C4A34; --alert-soft:#F4E3DE;
+    --ok:#2F6B3A; --ok-soft:#E6F2E8;
+    --sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#000000; --surface:#1C1C1E;
+      --ink:#F5F5F7; --ink-soft:#C7C7CC; --muted:#98989D;
+      --rule:rgba(255,255,255,.16); --rule-soft:rgba(255,255,255,.1);
+      --accent:#0A84FF; --accent-ink:#5AC8FA; --accent-soft:#12233A;
+      --gold:#FF6F5E;
+      --alert:#DE9280; --alert-soft:#33211C;
+      --ok:#7FCB8C; --ok-soft:#15261A;
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased}
+  h1,h2{margin:0; line-height:1.3; font-feature-settings:"palt" 1}
+  p{margin:0}
+  button, input{font:inherit; color:inherit}
+  button{cursor:pointer}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+  .wrap{max-width:560px; margin:0 auto; min-height:100vh; background:var(--surface); padding-bottom:calc(40px + env(safe-area-inset-bottom))}
+  .top{position:sticky; top:0; z-index:5; background:var(--surface); border-bottom:1px solid var(--rule-soft); padding:14px 16px}
+  .top h1{font-size:18px}
+  .status{margin-top:4px; font-size:13px; color:var(--muted)}
+  .status.ok{color:var(--ok)}
+  .status.ng{color:var(--alert)}
+  .cat{font-size:13px; color:var(--gold); font-weight:600; padding:18px 16px 6px; border-bottom:1px solid var(--rule-soft)}
+  .sw{width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:64px; padding:10px 16px; border:none; border-bottom:1px solid var(--rule-soft); background:none; text-align:left; font-size:17px}
+  .sw small{display:block; font-size:13px; color:var(--muted)}
+  .sw[aria-pressed="true"]{background:var(--alert-soft)}
+  .sw[aria-pressed="true"] small{color:var(--alert); font-weight:600}
+  .sw .t{width:56px; height:32px; border-radius:99px; background:var(--rule); position:relative; flex:none}
+  .sw .t::after{content:""; position:absolute; top:3px; left:3px; width:26px; height:26px; border-radius:99px; background:var(--surface); box-shadow:0 1px 3px rgba(0,0,0,.25); transition:transform .15s}
+  .sw[aria-pressed="true"] .t{background:var(--alert)}
+  .sw[aria-pressed="true"] .t::after{transform:translateX(24px)}
+  .sw[aria-busy="true"]{opacity:.55}
+  .foot{padding:20px 16px; display:grid; gap:10px}
+  .btn{min-height:48px; border:1px solid var(--rule); border-radius:10px; background:var(--surface); color:var(--accent-ink); font-size:15px}
+  .btn.primary{background:var(--accent); border-color:var(--accent); color:var(--surface); font-weight:700}
+  .btn.quiet{border:none; color:var(--muted); font-size:13px; min-height:36px}
+  .pin{padding:32px 20px}
+  .pin h2{font-size:20px}
+  .pin p{margin-top:8px; color:var(--ink-soft); font-size:14px}
+  .pin input{display:block; width:100%; margin-top:18px; min-height:56px; padding:0 14px; border:1px solid var(--rule); border-radius:10px; background:var(--paper); font-family:var(--mono); font-size:24px; letter-spacing:.3em; text-align:center}
+  .pin .btn{width:100%; margin-top:14px}
+  .msg{padding:40px 20px; color:var(--ink-soft)}
+  .err{color:var(--alert); font-size:14px; margin-top:10px; min-height:1.6em}
+  .hint{font-size:12.5px; color:var(--muted); padding:0 16px}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"><p class="msg">読み込み中…</p></div>
+
+<script src="../core.js"></script>
+<script>
+(function(){
+  "use strict";
+  var K = window.KLMenu, esc = K.esc;
+  var menu, id, pin = "", busy = {}, lastUpdated = "", statusText = "", statusCls = "";
+  var app = document.getElementById("app");
+
+  function pinKey(){ return "kyotolab-menu-pin-" + id; }
+  function hhmm(iso){ if(!iso) return ""; var d = new Date(iso); return isNaN(d) ? "" : d.getHours() + ":" + String(d.getMinutes()).padStart(2, "0"); }
+  function setStatus(text, cls){ statusText = text; statusCls = cls || ""; var el = document.getElementById("status"); if(el){ el.textContent = text; el.className = "status " + statusCls; } }
+
+  function head(){
+    return '<header class="top"><h1>' + esc(K.pick(menu.shop.name, "ja")) + ' の品切れ</h1><p class="status ' + statusCls + '" id="status">' + esc(statusText) + '</p></header>';
+  }
+
+  function drawPin(err){
+    app.innerHTML = head() + '<form class="pin" id="pinform"><h2>店のPINを入れてください</h2>' +
+      '<p>はじめの1回だけです。この端末に覚えておきます。PINは京都ラボからお渡ししています。' + (menu.live === "demo" ? '（デモのPINは 0000）' : '') + '</p>' +
+      '<input id="pin" type="password" inputmode="numeric" autocomplete="off" aria-label="PIN" required>' +
+      '<p class="err" id="err">' + esc(err || "") + '</p>' +
+      '<button class="btn primary" type="submit">はじめる</button></form>';
+    document.getElementById("pinform").addEventListener("submit", function(e){
+      e.preventDefault();
+      var v = document.getElementById("pin").value.trim();
+      K.livePost(menu, {pin:v, action:"check"}).then(function(j){
+        if(!j.ok) return drawPin(j.error === "locked" ? "しばらく使えません。10分ほど待ってから入れ直してください。" : "PINがちがいます。");
+        pin = v;
+        try{ localStorage.setItem(pinKey(), v); }catch(err){}
+        apply(j); drawList();
+      }).catch(function(){ drawPin("つながりませんでした。電波を確かめて、もう一度押してください。"); });
+    });
+    document.getElementById("pin").focus();
+  }
+
+  function apply(j){
+    K.applySoldout(menu, j.soldout);
+    lastUpdated = j.updated || lastUpdated;
+    setStatus("お客さんの画面に出ています" + (lastUpdated ? "（最終更新 " + hhmm(lastUpdated) + "）" : ""), "ok");
+  }
+
+  function drawList(){
+    var cats = menu.categories.concat([{id:"_other", name:{ja:"そのほか"}}]);
+    var known = {}; menu.categories.forEach(function(c){ known[c.id] = 1; });
+    var h = head(), n = 0;
+    cats.forEach(function(c){
+      var ds = menu.dishes.filter(function(d){ return c.id === "_other" ? !known[d.cat] : d.cat === c.id; });
+      if(!ds.length) return;
+      h += '<p class="cat">' + esc(K.pick(c.name, "ja")) + '</p>' + ds.map(function(d){
+        if(d.soldout) n++;
+        return '<button class="sw" data-id="' + esc(d.id) + '" aria-pressed="' + !!d.soldout + '"' + (busy[d.id] ? ' aria-busy="true"' : '') + '>' +
+          '<span>' + esc(d.name.ja || d.id) + '<small>' + (d.soldout ? "品切れ中" : "出せる") + '</small></span><span class="t"></span></button>';
+      }).join("");
+    });
+    h += '<div class="foot">' +
+      '<button class="btn" id="clear"' + (n ? '' : ' disabled') + '>品切れを全部もどす（' + n + '品）</button>' +
+      '<a class="btn" style="display:grid;place-items:center;text-decoration:none" href="../app/?shop=' + encodeURIComponent(id) + '&amp;lang=ja" target="_blank" rel="noopener">お客さんの画面を見る</a>' +
+      '<button class="btn quiet" id="forget">この端末のPINを消す</button></div>' +
+      '<p class="hint">タップすると、お客さんのスマホにはおよそ1分以内に出ます。' + (menu.live === "demo" ? 'デモなので、この端末のブラウザの中だけで切り替わります。' : '') + '</p>';
+    app.innerHTML = h;
+  }
+
+  function post(body){
+    return K.livePost(menu, Object.assign({pin:pin}, body)).then(function(j){
+      if(!j.ok){
+        if(j.error === "pin"){ try{ localStorage.removeItem(pinKey()); }catch(e){} pin = ""; drawPin("PINが変わったようです。入れ直してください。"); }
+        throw new Error(j.error);
+      }
+      apply(j);
+      return j;
+    });
+  }
+
+  app.addEventListener("click", function(e){
+    var b = e.target.closest("button"); if(!b) return;
+    if(b.dataset.id){
+      var did = b.dataset.id, d = menu.dishes.filter(function(x){ return x.id === did; })[0];
+      if(!d || busy[did]) return;
+      var next = !d.soldout;
+      busy[did] = true;
+      if(next) d.soldout = true; else delete d.soldout;
+      setStatus("送っています…");
+      drawList();
+      post({action:"set", id:did, soldout:next}).then(function(){ delete busy[did]; drawList(); })
+        .catch(function(err){
+          delete busy[did];
+          if(next) delete d.soldout; else d.soldout = true;
+          if(pin){ setStatus("送れませんでした。電波を確かめて、もう一度タップしてください。", "ng"); drawList(); }
+        });
+    }
+    if(b.id === "clear"){
+      if(!confirm("品切れを全部もどして、すべて「出せる」にしますか？")) return;
+      setStatus("送っています…");
+      post({action:"clear"}).then(drawList).catch(function(){ if(pin){ setStatus("送れませんでした。もう一度押してください。", "ng"); drawList(); } });
+    }
+    if(b.id === "forget"){
+      if(!confirm("この端末からPINを消しますか？")) return;
+      try{ localStorage.removeItem(pinKey()); }catch(err){}
+      pin = ""; drawPin();
+    }
+  });
+
+  // ほかの端末で切り替えた分も拾う
+  function poll(){
+    if(!pin || document.hidden || Object.keys(busy).length) return;
+    K.liveGet(menu).then(function(j){ apply(j); drawList(); }).catch(function(){ setStatus("つながっていません。電波を確かめてください。", "ng"); });
+  }
+
+  var q = new URLSearchParams(location.search);
+  id = (q.get("shop") || "demo").replace(/[^a-z0-9-]/gi, "");
+  K.load("../").then(function(r){
+    menu = r.menu;
+    if(!K.liveUrl(menu)){
+      app.innerHTML = '<p class="msg">このお品書きは、まだ品切れの切り替えがつながっていません。京都ラボに連絡してください。</p>';
+      return;
+    }
+    try{ pin = localStorage.getItem(pinKey()) || ""; }catch(e){}
+    if(!pin) return drawPin();
+    post({action:"check"}).then(drawList).catch(function(){ if(pin){ setStatus("つながっていません。電波を確かめてください。", "ng"); drawList(); } });
+    setInterval(poll, 60000);
+    document.addEventListener("visibilitychange", poll);
+  }).catch(function(){
+    app.innerHTML = '<p class="msg">お品書きを読み込めませんでした。URLを確かめてください。</p>';
+  });
+})();
+</script>
+</body>
+</html>

@@ -537,6 +537,24 @@
     if(b.id === "bar-btn"){ openDlg("list"); return; }
   });
 
+  // 店がスマホで切り替えた品切れを、開いている間ときどき問い合わせる
+  function refreshLive(){
+    return M.liveGet(menu).then(function(j){
+      M.applySoldout(menu, j.soldout);
+      Object.keys(st.list).forEach(function(id){ var d = dishById(id); if(!d || d.soldout) delete st.list[id]; });
+      save();
+      render();
+      if(current && current.kind !== "staff") drawDlg();
+    }).catch(function(){ /* つながらないときは、お品書きのデータのまま出す */ });
+  }
+  function startLive(preview){
+    if(preview || !M.liveUrl(menu)) return;
+    refreshLive();
+    setInterval(function(){ if(!document.hidden) refreshLive(); }, 60000);
+    document.addEventListener("visibilitychange", function(){ if(!document.hidden) refreshLive(); });
+    window.addEventListener("storage", function(e){ if(e.key === M.DEMO_KEY) refreshLive(); });
+  }
+
   lang = detectLang();
   M.load("../").then(function(r){
     menu = r.menu; isPreview = r.preview; shopId = r.id || "preview";
@@ -544,6 +562,7 @@
     var saved = sess("list-" + shopId) || {};
     Object.keys(saved).forEach(function(id){ var d = dishById(id); if(d && !d.soldout) st.list[id] = saved[id]; });
     render();
+    startLive(r.preview);
     window.addEventListener("resize", function(){ var h = document.getElementById("top"); if(h) document.documentElement.style.setProperty("--hh", (h.offsetHeight + 4) + "px"); });
   }).catch(function(){
     document.getElementById("app").innerHTML = '<p class="err">' + esc(T.ja.loadErr) + '<br><br>' + esc(T.en.loadErr) + '</p>';

@@ -196,12 +196,19 @@
   function render(){
     renderTabs();
     var h = "";
-    if(tab === "soldout"){
+    if(tab === "soldout" && K.liveUrl(menu)){
+      var su = "../staff/?shop=" + encodeURIComponent(menu.id || "demo");
+      h = '<div class="card"><h2>品切れは、店員さん用の画面で切り替えます</h2>' +
+        '<p class="hint" style="font-size:14px;color:var(--ink-soft)">タップするとすぐ、お客さんのスマホで「品切れ」と出ます（およそ1分以内）。書き出しや京都ラボへの連絡はいりません。店のスマホのホーム画面に置いておくと便利です。</p>' +
+        '<p style="margin-top:12px"><a class="btn primary" style="display:inline-grid;place-items:center;text-decoration:none" href=\"' + su + '\" target="_blank" rel="noopener">品切れの切り替えを開く</a></p>' +
+        (menu.live === "demo" ? '<p class="hint">デモのPINは 0000 です。</p>' : '') + '</div>';
+    }
+    else if(tab === "soldout"){
       h = '<p class="intro">切れたらタップ。お客さんの画面では「品切れ」と出て、注文リストに入れられなくなります。</p><div class="swlist">' +
         menu.dishes.map(function(d, i){
           return '<button class="sw" data-sold="' + i + '" aria-pressed="' + !!d.soldout + '"><span>' + esc(d.name.ja || "（名前なし）") + '<small>' + yen(d.price) + ' ・ ' + (d.soldout ? "品切れ" : "出せる") + '</small></span><span class="t"></span></button>';
         }).join("") + '</div>' +
-        '<p class="hint" style="margin-top:12px">いまはこの端末の中だけで切り替わります。お客さんの画面に出すには「書き出す」から京都ラボに送ってください。</p>';
+        '<p class="hint" style="margin-top:12px">このお品書きは、まだ品切れの切り替えがつながっていません。ここで切り替えたものは「書き出す」から京都ラボに送ると反映されます。店のスマホからすぐ切り替えたいときは、京都ラボに設定を頼んでください。</p>';
     }
     if(tab === "dishes"){
       h = '<p class="intro">料理をタップすると開きます。日本語だけ入れておけば、訳は京都ラボで確かめてから入れることもできます。</p>';
@@ -230,7 +237,9 @@
         }).join("") + '</div>' +
         '<h3>値段</h3><div class="checks"><label><input type="checkbox" data-tax="1"' + (menu.shop.taxIncluded ? " checked" : "") + '>税込の値段を書いている</label></div>' +
         '<p class="hint">お客さんに見せる値段は、税込の総額で出すことが義務になっています（総額表示）。</p>' +
-        '<h3>お品書きのID</h3>' + inp("id", "英小文字と数字（QRコードのURLに入ります）", {ph:"例: gion-soba"}) + '</div>';
+        '<h3>お品書きのID</h3>' + inp("id", "英小文字と数字（QRコードのURLに入ります）", {ph:"例: gion-soba"}) +
+        '<h3>品切れの接続先（京都ラボが設定します）</h3>' + inp("live", "Google Apps Script のURL", {ph:"https://script.google.com/macros/s/…/exec"}) +
+        '<p class="hint">ここが入っていると、店員さん用の画面から品切れをすぐ切り替えられます。</p></div>';
     }
     if(tab === "check"){
       var is = issues();
@@ -287,6 +296,7 @@
     var out = [];
     if(!menu.shop.name.ja) out.push({lv:"err", msg:"店名（日本語）がありません"});
     if(!/^[a-z0-9-]+$/.test(menu.id || "")) out.push({lv:"err", msg:"お品書きのIDは英小文字・数字・ハイフンにしてください（店の情報）"});
+    if(menu.live && !K.liveUrl(menu)) out.push({lv:"err", msg:"品切れの接続先のURLの形がちがいます（店の情報）"});
     if(!menu.categories.length) out.push({lv:"err", msg:"分類がひとつもありません"});
     if(!menu.shop.taxIncluded) out.push({lv:"warn", msg:"値段が税別になっています。お客さんに見せる値段は税込の総額にしてください（店の情報）"});
     menu.dishes.forEach(function(d, i){
