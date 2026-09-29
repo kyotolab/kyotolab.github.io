@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[3]
 SITE = "https://kyotolab.github.io"
 REQUIRED = ["description", "canonical", "og:title", "og:description", "og:image"]
 # デモは og:image がまだない（CLAUDE.md の未完了を参照）
-OG_IMAGE_OPTIONAL = {"tools/menu/index.html", "tools/sento/index.html"}
+OG_IMAGE_OPTIONAL = {"tools/sento/index.html"}
 
 errors = warnings = 0
 
