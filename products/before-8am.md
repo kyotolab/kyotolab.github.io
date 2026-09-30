@@ -4,7 +4,7 @@
 
 - 形: PDF（イラスト入り、スマホで読める縦長）と、ピンを打った Google マップの保存リスト
 - 言語: 英語
-- 価格: 12ドル（案。まだ決めていない）
+- 価格: 12ドル（2026-09-30 にオーナーが決めた）
 - 売る場所: Gumroad など、海外の消費税を代わりに処理してくれる販売サイト（未登録）
 - 案内ページ: `en/guides/before-8am/`（販売サイトに登録したら、ここから販売ページへリンクする）
 
@@ -67,7 +67,7 @@ This guide is the quiet one, planned for you. Four half-day routes, each timed f
 
 **What you get**
 
-A PDF with our original illustrations, made to read on your phone, and a link to the Google Maps list.
+A PDF with our original illustrations, made to read on your phone, and a link to the Google Maps list. US$12.
 
 Opening hours and rules change. Please check the official information before you go.
 
