@@ -60,7 +60,7 @@
         border:1px solid var(--line); background:var(--bg); color:var(--fg2); font-size:14px; cursor:pointer}
   .chip i{width:14px; height:14px; border-radius:50%; background:var(--fg3); display:inline-block}
   .chip[data-k="care"] i{border-radius:4px}
-  .chip[data-k="food"] i{border-radius:2px; transform:rotate(45deg) scale(.85)}
+  .chip[data-k="food"] i{border-radius:4px}
   .chip[aria-pressed="true"]{color:var(--fg); border-color:var(--fg)}
   .chip[aria-pressed="true"][data-k="spot"] i{background:var(--gold)}
   .chip[aria-pressed="true"][data-k="care"] i{background:var(--care)}
@@ -112,7 +112,9 @@
   .best b{display:block; font-size:18px; font-weight:650}
   .best span{display:block; font-size:14px; color:var(--fg2); margin-top:2px}
   .card.care .best{background:var(--care-soft)}
-  .card.care .best b{font-size:15px; font-weight:400; line-height:1.55}
+  .card.food .best{background:var(--food-soft)}
+  .card.care .best b, .card.food .best b{font-size:15px; font-weight:400; line-height:1.55}
+  .card.food .tags li.yes{border-color:var(--food); color:var(--food)}
   .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; padding:0; list-style:none}
   .tags li{font-size:12px; padding:3px 9px; border-radius:999px; border:1px solid var(--line); color:var(--fg2)}
   .tags li.yes{border-color:var(--care); color:var(--care)}
@@ -174,7 +176,7 @@
     <div>
       <ol class="list" id="list"></ol>
       <noscript><p class="note">This map needs JavaScript. The guides are listed on the <a href="../../en/#spots">Kyoto Lab home page</a>.</p></noscript>
-      <p class="note" data-t="note">Each baby room was checked against the facility’s or the city’s official information on the date shown. Hours and facilities change, so please check before you go. Location is only used on your phone to sort the list; it is not sent anywhere.</p>
+      <p class="note" data-t="note">Each baby room was checked against the facility’s or the city’s official information on the date shown. Restaurants come from reviews and guide articles and have not been confirmed with the shops yet. Hours and facilities change, so please check before you go. Location is only used on your phone to sort the list; it is not sent anywhere.</p>
     </div>
   </div>
 </main>
@@ -298,9 +300,33 @@
       ja:{n:'嵐電嵐山駅観光トイレ', a:'嵐山', h:'嵐電の嵐山駅の観光トイレ。多機能トイレにおむつ交換台'}}
   ];
 
-  // Baby-friendly restaurants go here once each shop has confirmed what it offers.
-  // f: stroller = stroller can come in, chair = high chairs, diaper = changing table, zashiki = tatami or private room.
-  var FOOD = [];
+  // Baby-friendly restaurants. For now these come from reviews and guide articles, not from the shops themselves,
+  // so each card says so and links the article it came from. Replace src and c once a shop confirms.
+  // f: stroller = stroller can come in, chair = high chairs, diaper = changing table, zashiki = tatami or private room,
+  //    kids = kids' plates or menu, byo = own baby food allowed, steps = steps or gravel at the door.
+  var FOOD = [
+    {id:'oki', lat:35.0041, lng:135.7572, q:'野菜料理 OKI 四条', f:['diaper','stroller','kids'], src:'https://www.lemon8-app.com/kyoto_mamalife/7140244915530990085?region=jp', c:'2026-09-30',
+      en:{n:'Yasai Ryori OKI Shijo', a:'Shijo Karasuma', h:'Vegetable-led lunches. A changing table and a kids’ play corner; strollers can come in.'},
+      ja:{n:'野菜料理 OKI四条', a:'四条烏丸', h:'野菜中心のランチ。おむつ替えの台とキッズスペースがあり、ベビーカーのまま入れる'}},
+    {id:'together', o:[18,10], lat:35.0028, lng:135.7584, q:'Together & Co. Hilton Garden Inn Kyoto Shijo Karasuma', f:['stroller','chair','kids'], src:'https://www.ozmall.co.jp/restaurant/kyoto/area/kyoto-station/lunch/withchild/', c:'2026-09-30',
+      en:{n:'Together & Co. (Hilton Garden Inn)', a:'Shijo Karasuma', h:'A roomy hotel restaurant. Strollers are fine, and kids’ chairs and tableware are set out if you ask when booking.'},
+      ja:{n:'Together & Co.（ヒルトン・ガーデン・イン）', a:'四条烏丸', h:'広いホテルのレストラン。ベビーカーで入れて、子ども用の椅子と食器を予約時に頼める'}},
+    {id:'motoi', o:[-4,-22], lat:35.0054, lng:135.7652, q:'Gyoza Motoi Kyoto', f:['stroller'], src:'https://www.thetokyochapter.com/kyoto-restaurants-with-kids/', c:'2026-09-30',
+      en:{n:'Gyoza Motoi', a:'By Nishiki Market', h:'A gyoza shop a minute from Nishiki. Families welcome, with room to park a stroller while you eat.'},
+      ja:{n:'餃子 元（Gyoza Motoi）', a:'錦市場のすぐ近く', h:'錦市場から1分の餃子の店。子連れ歓迎で、食べるあいだベビーカーを置ける'}},
+    {id:'capricciosa', o:[16,14], lat:34.9871, lng:135.7597, q:'Capricciosa Yodobashi Kyoto', f:['chair','kids','byo'], src:'https://www.thetokyochapter.com/kyoto-restaurants-with-kids/', c:'2026-09-30',
+      en:{n:'Capricciosa, Yodobashi Kyoto', a:'Kyoto Station', h:'Pizza and pasta on the restaurant floor of Yodobashi. High chairs, kids’ plates and cutlery; you can bring your own baby food.'},
+      ja:{n:'カプリチョーザ ヨドバシ京都', a:'京都駅', h:'ヨドバシのレストラン街のピザとパスタ。子ども用の椅子とプラスチックの食器があり、離乳食の持ち込みができる'}},
+    {id:'tendan', lat:35.0042, lng:135.7722, q:'Tendan Gion', f:['diaper','zashiki','kids'], src:'https://www.ozmall.co.jp/restaurant/kyoto/area/gion/lunch/withchild/', c:'2026-09-30',
+      en:{n:'Tendan Gion', a:'Gion, by the Kamo River', h:'An old yakiniku house. A diaper-changing space, kids’ services and private rooms with sunken seating.'},
+      ja:{n:'天壇 祇園本店', a:'祇園・鴨川沿い', h:'老舗の焼肉店。おむつ替えのスペース、子ども向けのサービス、掘りごたつの個室がある'}},
+    {id:'excafe', o:[18,-20], lat:35.0162, lng:135.6772, q:'eX cafe Kyoto Arashiyama', f:['zashiki'], src:'https://comolib.com/features/1466', c:'2026-09-30',
+      en:{n:'eX cafe Kyoto Arashiyama', a:'Arashiyama', h:'A Japanese café with tables and tatami seating, so a baby can lie down.'},
+      ja:{n:'eXcafe 京都嵐山本店', a:'嵐山', h:'テーブル席と座敷がある和カフェ。座敷なら赤ちゃんを寝かせられる'}},
+    {id:'arashiyama-teien', o:[-20,26], lat:35.0150, lng:135.6756, q:'Bread, Espresso & Arashiyama Garden', f:['zashiki','steps'], src:'https://comolib.com/features/1466', c:'2026-09-30',
+      en:{n:'Bread, Espresso & Arashiyama Garden', a:'Arashiyama', h:'28 of the 36 seats are on tatami. The entrance is stone paving and the path is gravel, so a stroller is hard work.'},
+      ja:{n:'パンとエスプレッソと嵐山庭園', a:'嵐山', h:'36席のうち28席が座敷。入口が石畳で周りは砂利道なので、ベビーカーは押しにくい'}}
+  ];
 
   var ITEMS = []
     .concat(SPOTS.map(function(s, i){ s.k = 'spot'; s.no = i + 1; return s; }))
@@ -312,10 +338,12 @@
         lead:'Where to feed and change your baby, next to the sights and the hour worth visiting each. Tap a pin for directions in Google Maps.',
         kcare:'Nursing & diaper change', kfood:'Baby-friendly food', kspot:'Sights',
         near:'Sort by distance from me', cap:'A simplified map, not to exact scale. Use Google Maps for the route.',
-        note:'Each baby room was checked against the facility’s or the city’s official information on the date shown. Hours and facilities change, so please check before you go. Location is only used on your phone to sort the list; it is not sent anywhere.',
+        note:'Each baby room was checked against the facility’s or the city’s official information on the date shown. Restaurants come from reviews and guide articles and have not been confirmed with the shops yet. Hours and facilities change, so please check before you go. Location is only used on your phone to sort the list; it is not sent anywhere.',
         back:'All spot guides', go:'Directions', map:'Map', hide:'Close map', guide:'Guide ›',
         nearest:'Nearest baby room: ', checked:'Checked ', source:'Source',
-        tags:{nurse:'Nursing', diaper:'Diaper change', water:'Hot water', room:'Private, lockable', gate:'Inside ticket gates', ticket:'Admission needed', women:'Women only'},
+        tags:{nurse:'Nursing', diaper:'Diaper change', water:'Hot water', room:'Private, lockable', gate:'Inside ticket gates', ticket:'Admission needed', women:'Women only',
+              stroller:'Stroller OK', chair:'High chairs', zashiki:'Tatami or private room', kids:'Kids’ plates or menu', byo:'Own baby food OK', steps:'Steps or gravel'},
+        unconfirmed:'From reviews and guide articles; not yet confirmed with the shop, so please call ahead. ', found:'Found ',
         food:'Baby-friendly restaurants are coming. We are asking each shop directly about strollers, high chairs, changing tables and tatami rooms before we list it.',
         none:'Pick at least one layer above.',
         asking:'Finding where you are…', denied:'Location is off, so the list stays in the usual order.',
@@ -327,10 +355,12 @@
         lead:'授乳とおむつ替えができる場所を、名所と、それぞれ行くといい時間と一緒に。印を押すと Google マップで道順が開く。',
         kcare:'授乳・おむつ替え', kfood:'赤ちゃんと入れる店', kspot:'名所',
         near:'近い順に並べる', cap:'簡略化した地図で、縮尺は正確ではない。道順は Google マップで。',
-        note:'授乳室とおむつ替えの場所は、施設か京都市の公式情報で、書いてある日に確かめた。時間や設備は変わるため、行く前に確認してほしい。位置情報は手元で並べ替えに使うだけで、どこにも送らない。',
+        note:'授乳室とおむつ替えの場所は、施設か京都市の公式情報で、書いてある日に確かめた。飲食店は口コミや紹介記事から集めたもので、店にはまだ確かめていない。時間や設備は変わるため、行く前に確認してほしい。位置情報は手元で並べ替えに使うだけで、どこにも送らない。',
         back:'名所攻略の一覧', go:'道順', map:'地図', hide:'地図を閉じる', guide:'攻略法 ›',
         nearest:'いちばん近い授乳・おむつ替え: ', checked:'確認 ', source:'情報元',
-        tags:{nurse:'授乳', diaper:'おむつ替え', water:'お湯', room:'鍵つき個室', gate:'改札内', ticket:'入場料が必要', women:'女性のみ'},
+        tags:{nurse:'授乳', diaper:'おむつ替え', water:'お湯', room:'鍵つき個室', gate:'改札内', ticket:'入場料が必要', women:'女性のみ',
+              stroller:'ベビーカーOK', chair:'子ども用の椅子', zashiki:'座敷・個室', kids:'子ども用の食器・メニュー', byo:'離乳食の持ち込み可', steps:'段差・砂利あり'},
+        unconfirmed:'口コミや紹介記事から集めたもので、店にはまだ確かめていない。行く前に店に確認してほしい。', found:'調べた日 ',
         food:'赤ちゃんと入れる店は準備中。ベビーカー、子ども用の椅子、おむつ替えの台、座敷や個室について、店に直接確かめてから載せる。',
         none:'上の項目を1つ以上選んでください。',
         asking:'現在地を調べています…', denied:'位置情報がオフなので、いつもの順のままです。',
@@ -406,6 +436,8 @@
         g.appendChild(pin);
       });
     });
+    var on = g.querySelector('.pin.on');
+    if (on) g.appendChild(on);   // the chosen pin sits on top of its neighbours
   }
 
   function drawMe(){
@@ -455,10 +487,10 @@
         li.querySelector('.best b').textContent = d.h;
         li.querySelector('.best span').remove();
         var ul = document.createElement('ul'); ul.className = 'tags';
-        s.f.forEach(function(f){ var x = document.createElement('li'); x.textContent = t.tags[f]; if (f === 'nurse' || f === 'diaper' || f === 'water' || f === 'room') x.className = 'yes'; ul.appendChild(x); });
+        s.f.forEach(function(f){ var x = document.createElement('li'); x.textContent = t.tags[f]; if (f !== 'gate' && f !== 'ticket' && f !== 'women' && f !== 'steps') x.className = 'yes'; ul.appendChild(x); });
         li.appendChild(ul);
         var src = document.createElement('p'); src.className = 'src';
-        src.textContent = t.checked + s.c + ' · ';
+        src.textContent = (s.k === 'food' ? t.unconfirmed + t.found : t.checked) + s.c + ' · ';
         var a = document.createElement('a'); a.href = s.src; a.target = '_blank'; a.rel = 'noopener'; a.textContent = t.source;
         src.appendChild(a); li.appendChild(src);
       }
