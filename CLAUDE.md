@@ -24,6 +24,7 @@
 | `spots/<slug>/index.html` | 名所攻略のページ（日本語）。行く時刻、見るところ、回り方。トップの名所カードはイラストと名前だけで、ここへリンクする。英語の解説（`articles/<slug>/`）があればここからリンクする |
 | `en/spots/<slug>/index.html` | 名所攻略の英語版。日本語の `spots/` と同じ事実と節。英語トップの名所カードからリンクする |
 | `tools/menu/` | 多言語お品書き。`index.html` は店に見せる紹介、`app/?shop=<id>` がお客さんの画面、`admin/` が店の編集画面、`staff/?shop=<id>` が店員さんの品切れの切り替え、`print/?shop=<id>` がQRの札。店のデータは `shops/<id>.json`（1店1ファイル）。品切れは店ごとの Google Apps Script（`live/`、設定手順は `live/README.md`）が持つ。QRは `qr.js` で作る（外部ライブラリなし） |
+| `tools/map/` | 観光客向けの地図。名所攻略の15か所を簡略地図に置き、行く時刻と、Google マップの道順・地図（APIキーなしのリンクと埋め込み）、攻略ページへのリンクを出す。英語が既定で `?lang=ja` で日本語。現在地は並べ替えにだけ使う。名所を足したら `SPOTS` にも足す |
 | `tools/sento/` | デモ: 銭湯の入り方を9手順・4言語で案内 |
 | `assets/` | 画像。`<名前>.jpg`（1600px幅）と、カード用の `<名前>@700.jpg` |
 | `console/` | 記事管理と Medium 投稿のツールの雛形（PyQt6）。中身はまだない。Medium の API は使えないので（下の「SNS」）、Medium への投稿はここではできない |
