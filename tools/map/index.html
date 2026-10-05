@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kyoto with a baby: map ／ Kyoto Lab</title>
+<meta name="description" content="Nursing rooms and diaper-changing spots in Kyoto, on one map with the main sights and the hour to visit each. Directions open in Google Maps.">
+<link rel="canonical" href="https://kyotolab.github.io/tools/map/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kyoto with a baby: map ／ Kyoto Lab">
+<meta property="og:description" content="Nursing rooms and diaper-changing spots in Kyoto, on one map with the main sights and the hour to visit each. Directions open in Google Maps.">
+<meta property="og:url" content="https://kyotolab.github.io/tools/map/">
+<meta property="og:site_name" content="Kyoto Lab">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kyotolab.github.io/assets/kiyomizu.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#FFFFFF; --bg2:#F5F5F7; --fg:#1D1D1F; --fg2:#6E6E73; --fg3:#86868B;
+    --line:rgba(0,0,0,.12); --line2:rgba(0,0,0,.08);
+    --accent:#0066CC; --accent-soft:#EAF2FD; --accent-brd:#B9D6F5;
+    --gold:#A33A2C;
+    --care:#2F7D5B; --care-soft:#E7F2EC;
+    --food:#9A6200; --food-soft:#F7EEDD;
+    --land:#F5F5F7; --hill:#E9ECE6; --water:#CFE0EC; --rail:#B8B8BD;
+    --sys:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --gut:clamp(16px,5vw,40px);
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--fg); font-family:var(--sys);
+       font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased}
+  h1,h2,h3{margin:0; font-weight:700; line-height:1.25; font-feature-settings:"palt" 1; text-wrap:balance}
+  p{margin:0}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  button{font:inherit}
+  .wrap{max-width:1080px; margin:0 auto; padding-inline:var(--gut)}
+
+  .nav{position:sticky; top:0; z-index:20; height:48px; background:rgba(255,255,255,.9);
+       backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
+       border-bottom:1px solid var(--line2)}
+  .nav .wrap{height:100%; display:flex; align-items:center; justify-content:space-between; gap:12px}
+  .brand{display:inline-flex; align-items:center; gap:9px; color:var(--fg); white-space:nowrap}
+  .brand:hover{text-decoration:none; color:var(--accent)}
+  .brand .mk{width:25px; height:25px; display:grid; place-content:center; border:1px solid currentColor;
+             border-radius:2px; font-size:14px; line-height:1; padding-top:1px}
+  .brand .nm{font-size:18px; font-weight:700; letter-spacing:.06em}
+  .lang{border:1px solid var(--accent-brd); background:var(--bg); color:var(--accent); border-radius:999px;
+        min-height:32px; padding:0 14px; font-size:13px; cursor:pointer}
+
+  .head{padding-block:clamp(28px,5vw,52px) clamp(18px,3vw,24px)}
+  .eyebrow{font-size:11px; font-weight:650; color:var(--gold); letter-spacing:.12em; margin-bottom:10px}
+  .head h1{font-size:clamp(28px,6vw,46px); word-break:auto-phrase}
+  .lead{margin-top:12px; font-size:clamp(16px,2.2vw,19px); color:var(--fg2); max-width:36em}
+
+  .layers{display:flex; flex-wrap:wrap; gap:8px; margin-top:18px}
+  .chip{display:inline-flex; align-items:center; gap:8px; min-height:38px; padding:0 14px 0 10px; border-radius:999px;
+        border:1px solid var(--line); background:var(--bg); color:var(--fg2); font-size:14px; cursor:pointer}
+  .chip i{width:14px; height:14px; border-radius:50%; background:var(--fg3); display:inline-block}
+  .chip[data-k="care"] i{border-radius:4px}
+  .chip[data-k="food"] i{border-radius:4px}
+  .chip[aria-pressed="true"]{color:var(--fg); border-color:var(--fg)}
+  .chip[aria-pressed="true"][data-k="spot"] i{background:var(--gold)}
+  .chip[aria-pressed="true"][data-k="care"] i{background:var(--care)}
+  .chip[aria-pressed="true"][data-k="food"] i{background:var(--food)}
+
+  .tools{display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; margin-top:12px}
+  .btn{display:inline-flex; align-items:center; justify-content:center; gap:6px; min-height:40px; padding:0 16px;
+       border-radius:999px; border:1px solid var(--accent); background:var(--bg); color:var(--accent);
+       font-size:15px; cursor:pointer; white-space:nowrap}
+  .btn:hover{text-decoration:none; background:var(--accent-soft)}
+  .btn.fill{background:var(--accent); color:var(--bg)}
+  .btn.fill:hover{opacity:.9; background:var(--accent)}
+  .msg{font-size:13px; color:var(--fg2)}
+
+  .layout{display:grid; grid-template-columns:minmax(0,1fr); gap:20px; padding-bottom:56px}
+  @media (min-width:900px){
+    .layout{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); align-items:start}
+    .mapbox{position:sticky; top:64px}
+  }
+  .mapbox figure{margin:0; border:1px solid var(--line2); border-radius:18px; overflow:hidden; background:var(--land)}
+  .mapbox svg{display:block; width:100%; height:auto}
+  .mapbox figcaption{padding:10px 14px; font-size:12px; color:var(--fg3); border-top:1px solid var(--line2); background:var(--bg)}
+  .pin{cursor:pointer}
+  .pin .dot{stroke:var(--bg); stroke-width:3}
+  .pin.spot .dot{fill:var(--gold)}
+  .pin.care .dot{fill:var(--care)}
+  .pin.food .dot{fill:var(--food)}
+  .pin.on .dot{fill:var(--accent)}
+  .pin text{fill:var(--bg); font-size:22px; font-weight:700; text-anchor:middle; dominant-baseline:central; pointer-events:none; font-family:var(--sys)}
+  .pin .ring{fill:none; stroke:var(--accent); stroke-width:4; opacity:0}
+  .pin.on .ring{opacity:1}
+  .pin:focus{outline:none}
+  .pin:focus-visible .ring{opacity:1}
+  .lbl{fill:var(--fg3); font-size:21px; font-family:var(--sys); letter-spacing:.08em}
+  .rlbl{fill:var(--fg3); font-size:18px; font-style:italic; font-family:var(--sys)}
+
+  .list{list-style:none; margin:0; padding:0; display:grid; gap:12px}
+  .card{border:1px solid var(--line); border-radius:16px; padding:16px; background:var(--bg); scroll-margin-top:64px}
+  .card.on{border-color:var(--accent-brd); box-shadow:0 0 0 3px var(--accent-soft)}
+  .card .top{display:grid; grid-template-columns:30px minmax(0,1fr) auto; gap:12px; align-items:start}
+  .num{width:30px; height:30px; border-radius:50%; background:var(--gold); color:var(--bg); display:grid; place-content:center;
+       font-size:14px; font-weight:700; margin-top:1px}
+  .card.care .num{background:var(--care); border-radius:8px}
+  .card.food .num{background:var(--food); border-radius:8px}
+  .card h3{font-size:19px}
+  .area{display:block; margin-top:2px; font-size:12px; color:var(--fg3); letter-spacing:.06em}
+  .dist{font-size:13px; color:var(--fg2); white-space:nowrap; padding-top:4px}
+  .best{margin-top:12px; padding:10px 12px; border-radius:10px; background:var(--bg2)}
+  .best b{display:block; font-size:18px; font-weight:650}
+  .best span{display:block; font-size:14px; color:var(--fg2); margin-top:2px}
+  .card.care .best{background:var(--care-soft)}
+  .card.food .best{background:var(--food-soft)}
+  .card.care .best b, .card.food .best b{font-size:15px; font-weight:400; line-height:1.55}
+  .card.food .tags li.yes{border-color:var(--food); color:var(--food)}
+  .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; padding:0; list-style:none}
+  .tags li{font-size:12px; padding:3px 9px; border-radius:999px; border:1px solid var(--line); color:var(--fg2)}
+  .tags li.yes{border-color:var(--care); color:var(--care)}
+  .near{margin-top:10px; font-size:14px; color:var(--fg2)}
+  .near button{border:0; background:none; padding:0; color:var(--accent); cursor:pointer; text-align:left}
+  .near button:hover{text-decoration:underline}
+  .src{margin-top:10px; font-size:12px; color:var(--fg3)}
+  .acts{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+  .acts .btn{min-height:38px; font-size:14px; padding:0 14px}
+  .embed{margin-top:12px; border-radius:12px; overflow:hidden; border:1px solid var(--line2); aspect-ratio:4/3; background:var(--bg2)}
+  .embed iframe{display:block; width:100%; height:100%; border:0}
+  .empty{border:1px dashed var(--line); border-radius:16px; padding:16px; font-size:14px; color:var(--fg2)}
+
+  .note{margin-top:12px; padding:14px 16px; border-radius:14px; background:var(--bg2); font-size:13px; color:var(--fg2)}
+  footer{border-top:1px solid var(--line2); padding-block:22px; font-size:13px; color:var(--fg3)}
+  footer .wrap{display:flex; flex-wrap:wrap; gap:8px 20px; justify-content:space-between}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" id="home" href="../../en/" aria-label="Kyoto Lab home"><span class="mk" aria-hidden="true">京</span><span class="nm">Kyoto Lab</span></a>
+    <button class="lang" id="lang" type="button" lang="ja">日本語</button>
+  </div>
+</nav>
+
+<main>
+  <header class="head wrap">
+    <p class="eyebrow" data-t="eyebrow">Kyoto map</p>
+    <h1 data-t="h1">Kyoto with a baby, on one map.</h1>
+    <p class="lead" data-t="lead">Where to feed and change your baby, next to the sights and the hour worth visiting each. Tap a pin for directions in Google Maps.</p>
+    <div class="layers" role="group" aria-label="Show on the map">
+      <button class="chip" type="button" data-k="care" aria-pressed="true"><i></i><span data-t="kcare">Nursing &amp; diaper change</span></button>
+      <button class="chip" type="button" data-k="food" aria-pressed="true"><i></i><span data-t="kfood">Baby-friendly food</span></button>
+      <button class="chip" type="button" data-k="spot" aria-pressed="true"><i></i><span data-t="kspot">Sights</span></button>
+    </div>
+    <div class="tools">
+      <button class="btn fill" id="near" type="button" data-t="near">Sort by distance from me</button>
+      <span class="msg" id="msg" role="status"></span>
+    </div>
+  </header>
+
+  <div class="layout wrap">
+    <div class="mapbox">
+      <figure>
+        <svg id="map" viewBox="0 0 1000 725" role="group" aria-label="Map of Kyoto">
+          <rect width="1000" height="725" style="fill:var(--land)"/>
+          <path id="hills" style="fill:var(--hill)"/>
+          <g id="water" style="fill:none; stroke:var(--water)" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="marks"></g>
+          <g id="pins"></g>
+          <g id="me"></g>
+        </svg>
+        <figcaption data-t="cap">A simplified map, not to exact scale. Use Google Maps for the route.</figcaption>
+      </figure>
+    </div>
+
+    <div>
+      <ol class="list" id="list"></ol>
+      <noscript><p class="note">This map needs JavaScript. The guides are listed on the <a href="../../en/#spots">Kyoto Lab home page</a>.</p></noscript>
+      <p class="note" data-t="note">Each baby room was checked against the facility’s or the city’s official information on the date shown. Restaurants come from reviews and guide articles and have not been confirmed with the shops yet. Hours and facilities change, so please check before you go. Location is only used on your phone to sort the list; it is not sent anywhere.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Kyoto Lab ／ Kyoto</span>
+    <a id="back" href="../../en/#spots" data-t="back">All spot guides</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Map frame: longitude 135.655–135.815, latitude 34.955–35.050 → viewBox 1000 × 725
+  var W = 1000, H = 725, LNG0 = 135.655, LNG1 = 135.815, LAT0 = 34.955, LAT1 = 35.050;
+  function px(lat, lng){ return [ (lng - LNG0) / (LNG1 - LNG0) * W, (LAT1 - lat) / (LAT1 - LAT0) * H ]; }
+  function path(pts){ return pts.map(function(p, i){ var q = px(p[0], p[1]); return (i ? 'L' : 'M') + q[0].toFixed(1) + ' ' + q[1].toFixed(1); }).join(' '); }
+
+  // Sights: same order and numbers as the spot cards on the home pages.
+  // q is what Google Maps searches for; lat/lng only place the pin and sort by distance.
+  // o nudges a pin (in map units) so neighbours do not cover each other.
+  var SPOTS = [
+    {id:'chikurin', o:[-20,-10], lat:35.0170, lng:135.6718, q:'Arashiyama Bamboo Grove, Kyoto',
+      en:{n:'Bamboo Grove', a:'Arashiyama', b:'Before 8:00', s:'The line between a place and a crowd'},
+      ja:{n:'嵐山・竹林の道', a:'嵐山', b:'8:00前', s:'人がいるかどうかが変わる境目'}},
+    {id:'kiyomizu', o:[16,14], lat:34.9949, lng:135.7850, q:'Kiyomizu-dera, Kyoto',
+      en:{n:'Kiyomizu-dera', a:'Higashiyama', b:'Opens 6:00', s:'The only major temple that opens this early'},
+      ja:{n:'清水寺', a:'東山', b:'6:00開門', s:'京都の主要寺院でここだけ'}},
+    {id:'fushimi-inari', lat:34.9671, lng:135.7727, q:'Fushimi Inari Taisha, Kyoto',
+      en:{n:'Fushimi Inari', a:'Fushimi', b:'24 hours', s:'The torii tunnel is empty at night and at dawn'},
+      ja:{n:'伏見稲荷大社', a:'伏見', b:'24時間', s:'千本鳥居に人がいないのは夜と早朝'}},
+    {id:'togetsukyo', lat:35.0128, lng:135.6778, q:'Togetsukyo Bridge, Kyoto',
+      en:{n:'Togetsukyo', a:'Arashiyama', b:'Far bank', s:'Faster to look at than to cross'},
+      ja:{n:'渡月橋', a:'嵐山', b:'対岸から', s:'橋は渡るより、眺めるほうが早い'}},
+    {id:'kinkakuji', lat:35.0394, lng:135.7292, q:'Kinkaku-ji, Kyoto',
+      en:{n:'Kinkaku-ji', a:'Kita', b:'First thing', s:'Tour coaches stack up around 11am'},
+      ja:{n:'金閣寺', a:'北区', b:'朝一番', s:'11時ごろ、団体バスが重なる'}},
+    {id:'ginkakuji', o:[12,-20], lat:35.0270, lng:135.7982, q:'Ginkaku-ji, Kyoto',
+      en:{n:'Ginkaku-ji', a:'Sakyo', b:'Togu-do', s:'The small hall across from the pavilion'},
+      ja:{n:'銀閣寺', a:'左京区', b:'東求堂', s:'見るのは、銀閣の向かいの小さな堂'}},
+    {id:'gion', o:[16,12], lat:35.0037, lng:135.7750, q:'Hanamikoji Street, Kyoto',
+      en:{n:'Gion', a:'Higashiyama', b:'7am', s:'Private lanes are off-limits; ¥10,000 on the signs'},
+      ja:{n:'祇園', a:'東山', b:'朝7時', s:'私道は立入禁止。看板には¥10,000'}},
+    {id:'nishiki', o:[-16,-8], lat:35.0050, lng:135.7649, q:'Nishiki Market, Kyoto',
+      en:{n:'Nishiki Market', a:'Nakagyo', b:'Morning', s:'Many shops close in the late afternoon'},
+      ja:{n:'錦市場', a:'中京区', b:'午前中', s:'夕方は閉まる店が多い'}},
+    {id:'nijo', lat:35.0142, lng:135.7481, q:'Nijo Castle, Kyoto',
+      en:{n:'Nijo Castle', a:'Nakagyo', b:'8:45 opening', s:'Palace first; shoes off, one-way route'},
+      ja:{n:'二条城', a:'中京区', b:'開城の8時45分', s:'二の丸御殿を先に。靴を脱いで一方通行で歩く'}},
+    {id:'gosho', lat:35.0254, lng:135.7621, q:'Kyoto Imperial Palace, Kyoto',
+      en:{n:'Imperial Palace', a:'Kamigyo', b:'Free, no booking', s:'Closed Mondays; enter by the west gate'},
+      ja:{n:'京都御所', a:'上京区', b:'予約なしで無料', s:'月曜は休み。入口は西側の清所門'}},
+    {id:'sanjusangendo', lat:34.9880, lng:135.7718, q:'Sanjusangen-do, Kyoto',
+      en:{n:'Sanjusangen-do', a:'Higashiyama', b:'At opening', s:'8:30 from April to mid-November, 9:00 in winter'},
+      ja:{n:'三十三間堂', a:'東山', b:'開門すぐ', s:'4月から11月中旬は8時30分、冬は9時から'}},
+    {id:'nanzenji', lat:35.0110, lng:135.7940, q:'Nanzen-ji, Kyoto',
+      en:{n:'Nanzen-ji', a:'Sakyo', b:'8:40 opening', s:'Grounds and aqueduct are free; autumn leaves draw huge crowds'},
+      ja:{n:'南禅寺', a:'左京区', b:'朝8時40分', s:'境内と水路閣は無料。紅葉の時期は別格に混む'}},
+    {id:'tofukuji', lat:34.9767, lng:135.7740, q:'Tofuku-ji, Kyoto',
+      en:{n:'Tofuku-ji', a:'Higashiyama', b:'Weekday mornings in autumn', s:'Leaves peak mid-November to early December'},
+      ja:{n:'東福寺', a:'東山', b:'秋は平日の朝', s:'紅葉は11月中旬から12月上旬'}},
+    {id:'tetsugaku', o:[-10,14], lat:35.0230, lng:135.7945, q:'Philosopher\'s Path, Kyoto',
+      en:{n:'Philosopher’s Path', a:'Sakyo', b:'Before 8:00', s:'In cherry season the narrow path fills by midday'},
+      ja:{n:'哲学の道', a:'左京区', b:'朝8時まで', s:'桜の時期の昼は、細い道が人で詰まる'}},
+    {id:'sanneizaka', o:[-24,-20], lat:34.9960, lng:135.7810, q:'Sannenzaka, Kyoto',
+      en:{n:'Sannenzaka', a:'Higashiyama', b:'Before 8:00', s:'Before the shops open; walk down after Kiyomizu'},
+      ja:{n:'産寧坂・二年坂', a:'東山', b:'朝8時前', s:'店が開く前。清水寺の帰りに下る'}}
+  ];
+
+  // Baby care: only places whose own site (or the city's) says so. Each keeps its source and the day it was checked.
+  // f: nurse = nursing room, diaper = changing table, water = hot water for formula, room = lockable private room,
+  //    gate = inside the ticket gates, ticket = inside a place you pay to enter, women = in the women's toilet.
+  var CARE = [
+    {id:'isetan', lat:34.9853, lng:135.7578, q:'JR Kyoto Isetan', f:['nurse','diaper','water'], src:'https://www.mistore.jp/store/kyoto/service/nursingroom.html', c:'2026-09-30',
+      en:{n:'JR Kyoto Isetan, 7F', a:'Kyoto Station', h:'Baby rest area on 7F: nursing booths with curtains, 6 changing tables, hot water, microwave. Store hours.'},
+      ja:{n:'ジェイアール京都伊勢丹 7階', a:'京都駅', h:'7階のベビー休憩所。カーテンで仕切れる授乳室、おむつ替えシート6台、お湯、電子レンジ。営業時間内'}},
+    {id:'porta', o:[14,-12], lat:34.9866, lng:135.7597, q:'Kyoto Porta', f:['nurse','diaper'], src:'https://www.porta.co.jp/service', c:'2026-09-30',
+      en:{n:'Kyoto Porta (underground mall)', a:'Kyoto Station', h:'Two nursing rooms: in the Porta Information desk (11:00–20:30) and in the west women’s toilet (7:30–22:30).'},
+      ja:{n:'京都ポルタ（地下街）', a:'京都駅', h:'授乳室が2か所。ポルタインフォメーション内（11:00〜20:30）と、西の女子トイレ内（7:30〜22:30）'}},
+    {id:'daimaru', lat:35.0037, lng:135.7617, q:'Daimaru Kyoto', f:['nurse','diaper','water'], src:'https://www.daimaru.co.jp/kyoto/service/okosama.html', c:'2026-09-30',
+      en:{n:'Daimaru Kyoto, 6F', a:'Shijo Karasuma, near Nishiki', h:'Baby room on 6F, 10:00–19:00: nursing room, changing space, hot water for formula, a baby-food corner.'},
+      ja:{n:'大丸京都店 6階', a:'四条烏丸・錦市場の近く', h:'6階のベビールーム（10:00〜19:00）。授乳室、おむつ替え、ミルク用のお湯、離乳食のスペース'}},
+    {id:'takashimaya', lat:35.0035, lng:135.7690, q:'Takashimaya Kyoto', f:['nurse','diaper','water'], src:'https://faq.takashimaya.co.jp/takashimaya/faq/web/knowledge346.html', c:'2026-09-30',
+      en:{n:'Takashimaya Kyoto, 5F', a:'Shijo Kawaramachi', h:'Baby rest room on 5F with changing beds, hot water and a microwave. The nursing room is on 7F; ask at the concierge counter.'},
+      ja:{n:'京都高島屋 5階', a:'四条河原町', h:'5階のベビー休憩室に、おむつ替えベッド、お湯、電子レンジ。授乳室は7階で、コンシェルジュカウンターが案内する'}},
+    {id:'karasuma-oike', o:[20,10], lat:35.0106, lng:135.7596, q:'Karasuma Oike Station', f:['nurse','diaper','room','gate'], src:'https://www.sumunaramiyako.city.kyoto.lg.jp/topics/20250508-01/', c:'2026-09-30',
+      en:{n:'Karasuma Oike Station (subway)', a:'Nakagyo', h:'A lockable baby-care pod (mamaro) on the concourse, inside the ticket gates. 7:00–20:00, free.'},
+      ja:{n:'地下鉄 烏丸御池駅', a:'中京区', h:'コンコース階の改札内に、鍵のかかる個室のベビーケアルーム「mamaro」。7:00〜20:00、無料'}},
+    {id:'higashiyama-st', lat:35.0093, lng:135.7797, q:'Higashiyama Station, Kyoto', f:['nurse','diaper','room','gate'], src:'https://www.sumunaramiyako.city.kyoto.lg.jp/topics/20250508-01/', c:'2026-09-30',
+      en:{n:'Higashiyama Station (subway)', a:'Higashiyama', h:'A lockable baby-care pod (mamaro) on the concourse, inside the ticket gates. 7:00–20:00, free.'},
+      ja:{n:'地下鉄 東山駅', a:'東山', h:'コンコース階の改札内に、鍵のかかる個室のベビーケアルーム「mamaro」。7:00〜20:00、無料'}},
+    {id:'keage', o:[-6,14], lat:35.0063, lng:135.7907, q:'Keage Station, Kyoto', f:['nurse','diaper','room','gate'], src:'https://www.sumunaramiyako.city.kyoto.lg.jp/topics/20250508-01/', c:'2026-09-30',
+      en:{n:'Keage Station (subway)', a:'Near Nanzen-ji', h:'A lockable baby-care pod (mamaro) on the concourse, inside the ticket gates. 7:00–20:00, free.'},
+      ja:{n:'地下鉄 蹴上駅', a:'南禅寺の近く', h:'コンコース階の改札内に、鍵のかかる個室のベビーケアルーム「mamaro」。7:00〜20:00、無料'}},
+    {id:'manga', o:[-28,-6], lat:35.0117, lng:135.7593, q:'Kyoto International Manga Museum', f:['nurse','diaper','room','ticket'], src:'https://kyotomm.jp/en/news-en/mamaro/', c:'2026-09-30',
+      en:{n:'Kyoto International Manga Museum', a:'Karasuma Oike', h:'A private baby-care pod (mamaro) on 3F, 20 minutes per use, for mums and dads. A changing table in the 1F accessible toilet.'},
+      ja:{n:'京都国際マンガミュージアム', a:'烏丸御池', h:'3階に個室のベビーケアルーム「mamaro」（1回20分、男女とも可）。1階の多目的トイレにおむつ替えベッド'}},
+    {id:'kiyomizu-wc', o:[-4,26], lat:34.9953, lng:135.7843, q:'Kiyomizu-dera, Kyoto', f:['diaper'], src:'https://www.city.kyoto.lg.jp/kankyo/page/0000329491.html', c:'2026-09-30',
+      en:{n:'Kiyomizu-dera grounds public toilet', a:'Higashiyama', h:'The accessible toilet has a changing table and a baby chair. The car-park toilet on Kiyomizu-zaka has no changing table.'},
+      ja:{n:'清水寺境内公衆トイレ', a:'東山', h:'多機能トイレに、おむつ交換台とベビーチェア。清水坂観光駐車場のトイレには、おむつ交換台がない'}},
+    {id:'nijo-rest', o:[-8,22], lat:35.0138, lng:135.7466, q:'Nijo Castle, Kyoto', f:['nurse','diaper','ticket'], src:'https://nijo-jocastle.city.kyoto.lg.jp/service/', c:'2026-09-30',
+      en:{n:'Nijo Castle, Grand Rest Area', a:'Nakagyo', h:'A nursing room and diaper changing in the rest area inside the castle grounds.'},
+      ja:{n:'二条城 大休憩所', a:'中京区', h:'城内の大休憩所に授乳室とおむつ替え'}},
+    {id:'aquarium', lat:34.9876, lng:135.7478, q:'Kyoto Aquarium', f:['nurse','diaper','water','ticket'], src:'https://www.kyoto-aquarium.com/about/support/', c:'2026-09-30',
+      en:{n:'Kyoto Aquarium', a:'Umekoji Park', h:'Three nursing rooms with filtered hot water for formula, 8 changing tables. Dads can use them too.'},
+      ja:{n:'京都水族館', a:'梅小路公園', h:'授乳室が3か所（調乳用の浄水給湯あり）、おむつ交換台が8台。パパも使える'}},
+    {id:'railway', o:[-8,8], lat:34.9869, lng:135.7426, q:'Kyoto Railway Museum', f:['nurse','diaper','water','ticket'], src:'https://www.kyotorailwaymuseum.jp/guide/children/', c:'2026-09-30',
+      en:{n:'Kyoto Railway Museum', a:'Umekoji Park', h:'Nursing rooms around the museum with changing tables, hot water for formula and a sink.'},
+      ja:{n:'京都鉄道博物館', a:'梅小路公園', h:'館内の各所に授乳室。おむつ交換台、ミルク用のお湯、シンク'}},
+    {id:'zoo', lat:35.0123, lng:135.7827, q:'Kyoto City Zoo', f:['nurse','diaper','water','ticket'], src:'https://zoo.city.kyoto.lg.jp/zoo/visitor/accessible/', c:'2026-09-30',
+      en:{n:'Kyoto City Zoo', a:'Okazaki', h:'Three nursing rooms (main entrance, Otogi-no-kuni, east entrance) with formula water and changing tables.'},
+      ja:{n:'京都市動物園', a:'岡崎', h:'授乳室が3か所（正面エントランス、おとぎの国、東エントランス）。調乳用のお湯とベビーシート'}},
+    {id:'saga-wc', o:[20,-22], lat:35.0183, lng:135.6814, q:'Saga-Arashiyama Station', f:['diaper'], src:'https://www.city.kyoto.lg.jp/kankyo/page/0000330278.html', c:'2026-09-30',
+      en:{n:'JR Saga-Arashiyama Station public toilet', a:'Arashiyama', h:'The accessible toilet in front of the station has a changing table. Open all day.'},
+      ja:{n:'JR嵯峨嵐山駅前公衆トイレ', a:'嵐山', h:'駅前の公衆トイレ。多機能トイレにおむつ交換台'}},
+    {id:'kameyama-wc', o:[-16,32], lat:35.0145, lng:135.6735, q:'Kameyama Park, Kyoto', f:['diaper'], src:'https://www.city.kyoto.lg.jp/kankyo/page/0000330534.html', c:'2026-09-30',
+      en:{n:'Kameyama Park public toilet', a:'Arashiyama, by the bamboo grove', h:'The accessible toilet below Kameyama Park has a changing table.'},
+      ja:{n:'亀山公園下公衆トイレ', a:'嵐山・竹林の近く', h:'亀山公園の下の公衆トイレ。多機能トイレにおむつ交換台'}},
+    {id:'randen-wc', o:[24,-8], lat:35.0154, lng:135.6779, q:'Arashiyama Station, Randen', f:['diaper'], src:'https://www.city.kyoto.lg.jp/kankyo/page/0000330558.html', c:'2026-09-30',
+      en:{n:'Randen Arashiyama Station toilet', a:'Arashiyama', h:'The accessible toilet at the Randen (tram) station has a changing table.'},
+      ja:{n:'嵐電嵐山駅観光トイレ', a:'嵐山', h:'嵐電の嵐山駅の観光トイレ。多機能トイレにおむつ交換台'}}
+  ];
+
+  // Baby-friendly restaurants. For now these come from reviews and guide articles, not from the shops themselves,
+  // so each card says so and links the article it came from. Replace src and c once a shop confirms.
+  // f: stroller = stroller can come in, chair = high chairs, diaper = changing table, zashiki = tatami or private room,
+  //    kids = kids' plates or menu, byo = own baby food allowed, steps = steps or gravel at the door.
+  var FOOD = [
+    {id:'oki', lat:35.0041, lng:135.7572, q:'野菜料理 OKI 四条', f:['diaper','stroller','kids'], src:'https://www.lemon8-app.com/kyoto_mamalife/7140244915530990085?region=jp', c:'2026-09-30',
+      en:{n:'Yasai Ryori OKI Shijo', a:'Shijo Karasuma', h:'Vegetable-led lunches. A changing table and a kids’ play corner; strollers can come in.'},
+      ja:{n:'野菜料理 OKI四条', a:'四条烏丸', h:'野菜中心のランチ。おむつ替えの台とキッズスペースがあり、ベビーカーのまま入れる'}},
+    {id:'together', o:[18,10], lat:35.0028, lng:135.7584, q:'Together & Co. Hilton Garden Inn Kyoto Shijo Karasuma', f:['stroller','chair','kids'], src:'https://www.ozmall.co.jp/restaurant/kyoto/area/kyoto-station/lunch/withchild/', c:'2026-09-30',
+      en:{n:'Together & Co. (Hilton Garden Inn)', a:'Shijo Karasuma', h:'A roomy hotel restaurant. Strollers are fine, and kids’ chairs and tableware are set out if you ask when booking.'},
+      ja:{n:'Together & Co.（ヒルトン・ガーデン・イン）', a:'四条烏丸', h:'広いホテルのレストラン。ベビーカーで入れて、子ども用の椅子と食器を予約時に頼める'}},
+    {id:'motoi', o:[-4,-22], lat:35.0054, lng:135.7652, q:'Gyoza Motoi Kyoto', f:['stroller'], src:'https://www.thetokyochapter.com/kyoto-restaurants-with-kids/', c:'2026-09-30',
+      en:{n:'Gyoza Motoi', a:'By Nishiki Market', h:'A gyoza shop a minute from Nishiki. Families welcome, with room to park a stroller while you eat.'},
+      ja:{n:'餃子 元（Gyoza Motoi）', a:'錦市場のすぐ近く', h:'錦市場から1分の餃子の店。子連れ歓迎で、食べるあいだベビーカーを置ける'}},
+    {id:'capricciosa', o:[16,14], lat:34.9871, lng:135.7597, q:'Capricciosa Yodobashi Kyoto', f:['chair','kids','byo'], src:'https://www.thetokyochapter.com/kyoto-restaurants-with-kids/', c:'2026-09-30',
+      en:{n:'Capricciosa, Yodobashi Kyoto', a:'Kyoto Station', h:'Pizza and pasta on the restaurant floor of Yodobashi. High chairs, kids’ plates and cutlery; you can bring your own baby food.'},
+      ja:{n:'カプリチョーザ ヨドバシ京都', a:'京都駅', h:'ヨドバシのレストラン街のピザとパスタ。子ども用の椅子とプラスチックの食器があり、離乳食の持ち込みができる'}},
+    {id:'tendan', lat:35.0042, lng:135.7722, q:'Tendan Gion', f:['diaper','zashiki','kids'], src:'https://www.ozmall.co.jp/restaurant/kyoto/area/gion/lunch/withchild/', c:'2026-09-30',
+      en:{n:'Tendan Gion', a:'Gion, by the Kamo River', h:'An old yakiniku house. A diaper-changing space, kids’ services and private rooms with sunken seating.'},
+      ja:{n:'天壇 祇園本店', a:'祇園・鴨川沿い', h:'老舗の焼肉店。おむつ替えのスペース、子ども向けのサービス、掘りごたつの個室がある'}},
+    {id:'excafe', o:[18,-20], lat:35.0162, lng:135.6772, q:'eX cafe Kyoto Arashiyama', f:['zashiki'], src:'https://comolib.com/features/1466', c:'2026-09-30',
+      en:{n:'eX cafe Kyoto Arashiyama', a:'Arashiyama', h:'A Japanese café with tables and tatami seating, so a baby can lie down.'},
+      ja:{n:'eXcafe 京都嵐山本店', a:'嵐山', h:'テーブル席と座敷がある和カフェ。座敷なら赤ちゃんを寝かせられる'}},
+    {id:'arashiyama-teien', o:[-20,26], lat:35.0150, lng:135.6756, q:'Bread, Espresso & Arashiyama Garden', f:['zashiki','steps'], src:'https://comolib.com/features/1466', c:'2026-09-30',
+      en:{n:'Bread, Espresso & Arashiyama Garden', a:'Arashiyama', h:'28 of the 36 seats are on tatami. The entrance is stone paving and the path is gravel, so a stroller is hard work.'},
+      ja:{n:'パンとエスプレッソと嵐山庭園', a:'嵐山', h:'36席のうち28席が座敷。入口が石畳で周りは砂利道なので、ベビーカーは押しにくい'}}
+  ];
+
+  var ITEMS = []
+    .concat(SPOTS.map(function(s, i){ s.k = 'spot'; s.no = i + 1; return s; }))
+    .concat(CARE.map(function(s, i){ s.k = 'care'; s.no = i + 1; return s; }))
+    .concat(FOOD.map(function(s, i){ s.k = 'food'; s.no = i + 1; return s; }));
+
+  var T = {
+    en:{eyebrow:'Kyoto map', h1:'Kyoto with a baby, on one map.',
+        lead:'Where to feed and change your baby, next to the sights and the hour worth visiting each. Tap a pin for directions in Google Maps.',
+        kcare:'Nursing & diaper change', kfood:'Baby-friendly food', kspot:'Sights',
+        near:'Sort by distance from me', cap:'A simplified map, not to exact scale. Use Google Maps for the route.',
+        note:'Each baby room was checked against the facility’s or the city’s official information on the date shown. Restaurants come from reviews and guide articles and have not been confirmed with the shops yet. Hours and facilities change, so please check before you go. Location is only used on your phone to sort the list; it is not sent anywhere.',
+        back:'All spot guides', go:'Directions', map:'Map', hide:'Close map', guide:'Guide ›',
+        nearest:'Nearest baby room: ', checked:'Checked ', source:'Source',
+        tags:{nurse:'Nursing', diaper:'Diaper change', water:'Hot water', room:'Private, lockable', gate:'Inside ticket gates', ticket:'Admission needed', women:'Women only',
+              stroller:'Stroller OK', chair:'High chairs', zashiki:'Tatami or private room', kids:'Kids’ plates or menu', byo:'Own baby food OK', steps:'Steps or gravel'},
+        unconfirmed:'From reviews and guide articles; not yet confirmed with the shop, so please call ahead. ', found:'Found ',
+        food:'Baby-friendly restaurants are coming. We are asking each shop directly about strollers, high chairs, changing tables and tatami rooms before we list it.',
+        none:'Pick at least one layer above.',
+        asking:'Finding where you are…', denied:'Location is off, so the list stays in the usual order.',
+        far:'You look far from Kyoto; distances are straight-line.', sorted:'Nearest first. Distances are straight-line.',
+        km:' km', m:' m', station:'Kyoto Sta.', you:'You',
+        areas:[['ARASHIYAMA',35.024,135.664],['HIGASHIYAMA',35.000,135.791],['DOWNTOWN',35.002,135.733],['FUSHIMI',34.962,135.748]],
+        rivers:[['Kamo River',35.040,135.772],['Katsura River',34.985,135.693]]},
+    ja:{eyebrow:'京都マップ', h1:'赤ちゃんと、京都を歩く。',
+        lead:'授乳とおむつ替えができる場所を、名所と、それぞれ行くといい時間と一緒に。印を押すと Google マップで道順が開く。',
+        kcare:'授乳・おむつ替え', kfood:'赤ちゃんと入れる店', kspot:'名所',
+        near:'近い順に並べる', cap:'簡略化した地図で、縮尺は正確ではない。道順は Google マップで。',
+        note:'授乳室とおむつ替えの場所は、施設か京都市の公式情報で、書いてある日に確かめた。飲食店は口コミや紹介記事から集めたもので、店にはまだ確かめていない。時間や設備は変わるため、行く前に確認してほしい。位置情報は手元で並べ替えに使うだけで、どこにも送らない。',
+        back:'名所攻略の一覧', go:'道順', map:'地図', hide:'地図を閉じる', guide:'攻略法 ›',
+        nearest:'いちばん近い授乳・おむつ替え: ', checked:'確認 ', source:'情報元',
+        tags:{nurse:'授乳', diaper:'おむつ替え', water:'お湯', room:'鍵つき個室', gate:'改札内', ticket:'入場料が必要', women:'女性のみ',
+              stroller:'ベビーカーOK', chair:'子ども用の椅子', zashiki:'座敷・個室', kids:'子ども用の食器・メニュー', byo:'離乳食の持ち込み可', steps:'段差・砂利あり'},
+        unconfirmed:'口コミや紹介記事から集めたもので、店にはまだ確かめていない。行く前に店に確認してほしい。', found:'調べた日 ',
+        food:'赤ちゃんと入れる店は準備中。ベビーカー、子ども用の椅子、おむつ替えの台、座敷や個室について、店に直接確かめてから載せる。',
+        none:'上の項目を1つ以上選んでください。',
+        asking:'現在地を調べています…', denied:'位置情報がオフなので、いつもの順のままです。',
+        far:'京都から離れているようです。距離は直線です。', sorted:'近い順。距離は直線です。',
+        km:'km', m:'m', station:'京都駅', you:'現在地',
+        areas:[['嵐山',35.024,135.664],['東山',35.000,135.791],['中心部',35.002,135.733],['伏見',34.962,135.748]],
+        rivers:[['鴨川',35.040,135.772],['桂川',34.985,135.693]]}
+  };
+
+  var params = new URLSearchParams(location.search);
+  var lang = params.get('lang') === 'ja' ? 'ja' : 'en';
+  var show = {spot:true, care:true, food:true};
+  var order = ITEMS.map(function(s, i){ return i; });
+  var dist = null, selected = null, openMap = null, here = null;
+  var ns = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs, text){ var e = document.createElementNS(ns, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; return e; }
+  function km(a, b, c, d){
+    var r = Math.PI / 180, x = (d - b) * r * Math.cos((a + c) / 2 * r), y = (c - a) * r;
+    return Math.sqrt(x * x + y * y) * 6371;
+  }
+  function fmt(v){ var t = T[lang]; return v < 1 ? Math.round(v * 100) * 10 + t.m : v.toFixed(1) + t.km; }
+
+  // For every sight, the closest baby-care place.
+  ITEMS.forEach(function(s){
+    if (s.k !== 'spot') return;
+    var best = null, bd = Infinity;
+    ITEMS.forEach(function(c, j){ if (c.k !== 'care') return; var d = km(s.lat, s.lng, c.lat, c.lng); if (d < bd){ bd = d; best = j; } });
+    s.care = best; s.careKm = bd;
+  });
+
+  // Base map: hills to the east, north and west, the two rivers, the station.
+  document.getElementById('hills').setAttribute('d',
+    path([[35.050,135.785],[35.035,135.795],[35.020,135.793],[35.005,135.788],[34.990,135.787],[34.970,135.783],[34.955,135.781],[34.955,135.815],[35.050,135.815]]) + 'Z ' +
+    path([[35.050,135.655],[35.050,135.735],[35.045,135.728],[35.040,135.715],[35.030,135.700],[35.020,135.683],[35.012,135.672],[35.005,135.660],[34.995,135.655]]) + 'Z');
+  var water = document.getElementById('water');
+  [[[35.050,135.765],[35.040,135.768],[35.030,135.771]],
+   [[35.050,135.786],[35.040,135.779],[35.030,135.771]],
+   [[35.030,135.771],[35.0165,135.7715],[35.0038,135.7717],[34.9888,135.7695],[34.975,135.764],[34.955,135.757]],
+   [[35.020,135.655],[35.015,135.672],[35.0128,135.6778],[35.000,135.685],[34.980,135.695],[34.955,135.705]]]
+  .forEach(function(r, i){ water.appendChild(el('path', {d:path(r), 'stroke-width': i < 2 ? 7 : 11})); });
+
+  function drawMarks(){
+    var g = document.getElementById('marks'); g.textContent = '';
+    var t = T[lang];
+    var st = px(34.9858, 135.7588);
+    g.appendChild(el('path', {d:path([[34.9858,135.690],[34.9858,135.815]]), style:'stroke:var(--rail); fill:none', 'stroke-width':3, 'stroke-dasharray':'10 6'}));
+    g.appendChild(el('rect', {x:st[0]-9, y:st[1]-9, width:18, height:18, rx:3, style:'fill:var(--fg)'}));
+    g.appendChild(el('text', {x:st[0]-40, y:st[1]+34, class:'lbl', 'font-weight':600, style:'fill:var(--fg)'}, t.station));
+    t.areas.forEach(function(a){ var p = px(a[1], a[2]); g.appendChild(el('text', {x:p[0], y:p[1], class:'lbl'}, a[0])); });
+    t.rivers.forEach(function(a){ var p = px(a[1], a[2]); g.appendChild(el('text', {x:p[0]+10, y:p[1], class:'rlbl'}, a[0])); });
+  }
+
+  function drawPins(){
+    var g = document.getElementById('pins'); g.textContent = '';
+    // Draw sights first so baby places sit on top of them.
+    ['spot','food','care'].forEach(function(k){
+      ITEMS.forEach(function(s, i){
+        if (s.k !== k || !show[k]) return;
+        var p = px(s.lat, s.lng);
+        if (s.o){ p[0] += s.o[0]; p[1] += s.o[1]; }
+        var pin = el('g', {class:'pin ' + k + (selected === i ? ' on' : ''), tabindex:0, role:'button', 'aria-label':s.no + '. ' + s[lang].n});
+        pin.appendChild(el('circle', {cx:p[0], cy:p[1], r:34, style:'fill:transparent'}));
+        if (k === 'spot'){
+          pin.appendChild(el('circle', {class:'ring', cx:p[0], cy:p[1], r:30}));
+          pin.appendChild(el('circle', {class:'dot', cx:p[0], cy:p[1], r:22}));
+        } else {
+          pin.appendChild(el('rect', {class:'ring', x:p[0]-28, y:p[1]-28, width:56, height:56, rx:14}));
+          pin.appendChild(el('rect', {class:'dot', x:p[0]-20, y:p[1]-20, width:40, height:40, rx:9}));
+        }
+        pin.appendChild(el('text', {x:p[0], y:p[1] + 1}, s.no));
+        pin.addEventListener('click', function(){ pick(i, true); });
+        pin.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); pick(i, true); } });
+        g.appendChild(pin);
+      });
+    });
+    var on = g.querySelector('.pin.on');
+    if (on) g.appendChild(on);   // the chosen pin sits on top of its neighbours
+  }
+
+  function drawMe(){
+    var g = document.getElementById('me'); g.textContent = '';
+    if (!here) return;
+    var p = px(here[0], here[1]);
+    if (p[0] < 0 || p[0] > W || p[1] < 0 || p[1] > H) return;
+    g.appendChild(el('circle', {cx:p[0], cy:p[1], r:13, style:'fill:var(--fg); stroke:var(--bg)', 'stroke-width':4}));
+    g.appendChild(el('text', {x:p[0] + 18, y:p[1] + 6, class:'lbl', 'font-weight':600, style:'fill:var(--fg)'}, T[lang].you));
+  }
+
+  function gm(kind, s){
+    var q = encodeURIComponent(s.q), hl = lang === 'ja' ? 'ja' : 'en';
+    if (kind === 'dir') return 'https://www.google.com/maps/dir/?api=1&destination=' + q + '&travelmode=transit';
+    return 'https://maps.google.com/maps?q=' + q + '&hl=' + hl + '&z=16&output=embed';
+  }
+  function guideHref(s){ return (lang === 'ja' ? '../../spots/' : '../../en/spots/') + s.id + '/'; }
+
+  function drawList(){
+    var list = document.getElementById('list'); list.textContent = '';
+    var t = T[lang], any = false;
+    order.forEach(function(i){
+      var s = ITEMS[i], d = s[lang];
+      if (!show[s.k]) return;
+      any = true;
+      var li = document.createElement('li');
+      li.className = 'card ' + s.k + (selected === i ? ' on' : '');
+      li.id = s.k + '-' + s.id;
+      li.innerHTML =
+        '<div class="top"><span class="num">' + s.no + '</span>' +
+        '<div><h3></h3><span class="area"></span></div>' +
+        '<span class="dist">' + (dist ? fmt(dist[i]) : '') + '</span></div>' +
+        '<p class="best"><b></b><span></span></p>';
+      li.querySelector('h3').textContent = d.n;
+      li.querySelector('.area').textContent = d.a;
+      if (s.k === 'spot'){
+        li.querySelector('.best b').textContent = d.b;
+        li.querySelector('.best span').textContent = d.s;
+        if (s.care != null && show.care){
+          var c = ITEMS[s.care], p = document.createElement('p'), b = document.createElement('button');
+          p.className = 'near'; p.textContent = t.nearest;
+          b.type = 'button'; b.textContent = c[lang].n + ' (' + fmt(s.careKm) + ')';
+          b.addEventListener('click', function(){ pick(s.care, true); });
+          p.appendChild(b); li.appendChild(p);
+        }
+      } else {
+        li.querySelector('.best b').textContent = d.h;
+        li.querySelector('.best span').remove();
+        var ul = document.createElement('ul'); ul.className = 'tags';
+        s.f.forEach(function(f){ var x = document.createElement('li'); x.textContent = t.tags[f]; if (f !== 'gate' && f !== 'ticket' && f !== 'women' && f !== 'steps') x.className = 'yes'; ul.appendChild(x); });
+        li.appendChild(ul);
+        var src = document.createElement('p'); src.className = 'src';
+        src.textContent = (s.k === 'food' ? t.unconfirmed + t.found : t.checked) + s.c + ' · ';
+        var a = document.createElement('a'); a.href = s.src; a.target = '_blank'; a.rel = 'noopener'; a.textContent = t.source;
+        src.appendChild(a); li.appendChild(src);
+      }
+      var acts = document.createElement('div'); acts.className = 'acts';
+      acts.innerHTML = '<a class="btn fill" target="_blank" rel="noopener">' + t.go + '</a>' +
+        '<button class="btn" type="button">' + (openMap === i ? t.hide : t.map) + '</button>' +
+        (s.k === 'spot' ? '<a class="btn">' + t.guide + '</a>' : '');
+      var btns = acts.querySelectorAll('.btn');
+      btns[0].href = gm('dir', s);
+      btns[1].addEventListener('click', function(){ openMap = openMap === i ? null : i; selected = i; drawPins(); drawList(); });
+      if (btns[2]) btns[2].href = guideHref(s);
+      li.appendChild(acts);
+      if (openMap === i){
+        var box = document.createElement('div'); box.className = 'embed';
+        var f = document.createElement('iframe');
+        f.src = gm('embed', s); f.loading = 'lazy'; f.title = d.n; f.referrerPolicy = 'no-referrer-when-downgrade';
+        box.appendChild(f); li.appendChild(box);
+      }
+      list.appendChild(li);
+    });
+    if (show.food && !FOOD.length){
+      var e = document.createElement('li'); e.className = 'empty'; e.textContent = t.food; list.appendChild(e); any = true;
+    }
+    if (!any){
+      var n = document.createElement('li'); n.className = 'empty'; n.textContent = t.none; list.appendChild(n);
+    }
+  }
+
+  function pick(i, scroll){
+    selected = i; openMap = i;
+    var k = ITEMS[i].k;
+    if (!show[k]){ show[k] = true; syncChips(); }
+    drawPins(); drawList();
+    if (scroll){
+      var c = document.getElementById(k + '-' + ITEMS[i].id);
+      var wide = matchMedia('(min-width:900px)').matches;
+      c.scrollIntoView({behavior:'smooth', block: wide ? 'nearest' : 'start'});
+    }
+  }
+
+  function syncChips(){
+    document.querySelectorAll('.chip').forEach(function(b){ b.setAttribute('aria-pressed', show[b.getAttribute('data-k')] ? 'true' : 'false'); });
+  }
+  document.querySelectorAll('.chip').forEach(function(b){
+    b.addEventListener('click', function(){ var k = b.getAttribute('data-k'); show[k] = !show[k]; syncChips(); drawPins(); drawList(); });
+  });
+
+  document.getElementById('near').addEventListener('click', function(){
+    var msg = document.getElementById('msg');
+    if (!navigator.geolocation){ msg.textContent = T[lang].denied; return; }
+    msg.textContent = T[lang].asking;
+    navigator.geolocation.getCurrentPosition(function(pos){
+      here = [pos.coords.latitude, pos.coords.longitude];
+      dist = ITEMS.map(function(s){ return km(here[0], here[1], s.lat, s.lng); });
+      order.sort(function(a, b){ return dist[a] - dist[b]; });
+      msg.textContent = Math.min.apply(null, dist) > 30 ? T[lang].far : T[lang].sorted;
+      drawMe(); drawList();
+    }, function(){ msg.textContent = T[lang].denied; }, {enableHighAccuracy:false, timeout:10000, maximumAge:300000});
+  });
+
+  function setLang(l){
+    lang = l;
+    var t = T[l];
+    document.documentElement.lang = l;
+    document.querySelectorAll('[data-t]').forEach(function(e){ e.textContent = t[e.getAttribute('data-t')]; });
+    var b = document.getElementById('lang');
+    b.textContent = l === 'ja' ? 'English' : '日本語';
+    b.lang = l === 'ja' ? 'en' : 'ja';
+    document.getElementById('home').href = l === 'ja' ? '../../' : '../../en/';
+    document.getElementById('back').href = l === 'ja' ? '../../#spots' : '../../en/#spots';
+    document.getElementById('msg').textContent = dist ? t.sorted : '';
+    var u = new URL(location.href);
+    if (l === 'ja') u.searchParams.set('lang', 'ja'); else u.searchParams.delete('lang');
+    history.replaceState(null, '', u);
+    drawMarks(); drawPins(); drawMe(); drawList();
+  }
+  document.getElementById('lang').addEventListener('click', function(){ setLang(lang === 'ja' ? 'en' : 'ja'); });
+
+  syncChips();
+  setLang(lang);
+})();
+</script>
+</body>
+</html>
