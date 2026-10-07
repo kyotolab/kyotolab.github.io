@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>京都市が抱える課題の因果関係</title>
+<meta name="description" content="若者世帯の流出、財政難、古い体質、オーバーツーリズム。京都の4つの課題を1枚の因果の図にすると、2つの悪循環が見えてくる。">
+<link rel="canonical" href="https://kyotolab.github.io/articles/kadai-map/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="京都市が抱える課題の因果関係">
+<meta property="og:description" content="若者世帯の流出、財政難、古い体質、オーバーツーリズム。京都の4つの課題を1枚の因果の図にすると、2つの悪循環が見えてくる。">
+<meta property="og:url" content="https://kyotolab.github.io/articles/kadai-map/">
+<meta property="og:site_name" content="京都ラボ">
+<meta property="og:image" content="https://kyotolab.github.io/articles/kadai-map/map.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1068">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    color-scheme:light;
+    --bg:#FFFFFF; --bg2:#F5F5F7; --bg3:#FAFAFB; --fg:#1D1D1F; --fg2:#6E6E73; --fg3:#86868B;
+    --line:rgba(0,0,0,.12); --line2:rgba(0,0,0,.08);
+    --accent:#0066CC; --accent-soft:#EAF2FD; --accent-brd:#B9D6F5;
+    --label:#A33A2C;
+    --sys:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --gut:clamp(22px,5vw,44px);
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--fg); font-family:var(--sys); font-size:16px; line-height:1.62;
+       -webkit-font-smoothing:antialiased; letter-spacing:.004em}
+  h1,h2,h3{margin:0; font-weight:700; line-height:1.25; text-wrap:balance; font-feature-settings:"palt"}
+  p{margin:0}
+  a{color:var(--accent)}
+  img{max-width:100%; height:auto}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+  .wrap{max-width:760px; margin:0 auto; padding-inline:var(--gut)}
+  .eyebrow{font-size:14px; font-weight:600; color:var(--label); margin-bottom:12px}
+
+  header{padding-block:clamp(44px,7vw,78px) 34px; border-bottom:1px solid var(--line)}
+  header h1{font-size:clamp(26px,4.8vw,44px); line-height:1.25}
+  header .lead{margin-top:20px; max-width:38em; font-size:clamp(16px,1.9vw,18px); color:var(--fg2); line-height:1.75}
+  .meta{margin-top:26px; display:flex; gap:8px 26px; flex-wrap:wrap;
+        font-family:var(--mono); font-size:11.5px; color:var(--fg3); letter-spacing:.05em}
+
+  .prose{padding-block:clamp(28px,5vw,48px) clamp(40px,6vw,64px); border-bottom:1px solid var(--line2)}
+  .prose p{margin-top:16px; line-height:1.9}
+  .prose h2{font-size:clamp(21px,3.2vw,28px); margin-top:clamp(40px,6vw,56px); padding-top:clamp(28px,4vw,36px); border-top:1px solid var(--line2)}
+  .prose h2:first-child{margin-top:0; padding-top:0; border-top:0}
+  .prose h3{font-size:clamp(17px,2.4vw,20px); margin-top:30px}
+  .prose ul,.prose ol{margin:16px 0 0; padding-left:1.4em; line-height:1.85}
+  .prose li + li{margin-top:6px}
+  .prose figure{margin:28px 0 0}
+  .prose figure img{display:block; border:1px solid var(--line); border-radius:12px}
+  .prose figcaption{margin-top:8px; font-size:13px; color:var(--fg3)}
+  .prose strong{font-weight:600}
+  .more{margin-top:36px; background:var(--accent-soft); border:1px solid var(--accent-brd); border-radius:14px; padding:18px 22px}
+  .more b{display:block; font-size:15px; margin-bottom:6px}
+  .more p{margin:0; font-size:14.5px; color:var(--fg2); line-height:1.75}
+  .src{margin-top:36px; font-size:14px; color:var(--fg3)}
+
+  footer{padding-block:32px 46px}
+  footer p{font-family:var(--mono); font-size:11px; color:var(--fg3); letter-spacing:.08em; line-height:1.9}
+  footer a{font-family:var(--sys); font-size:14px; letter-spacing:0}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">京都ラボ ／ 京都の日常</p>
+    <h1>京都市が抱える課題の因果関係</h1>
+    <p class="lead">若者世帯の流出、財政難、古い体質、オーバーツーリズム。京都の4つの課題を1枚の因果の図にすると、2つの悪循環が見えてくる。</p>
+    <div class="meta">
+      <span>2026.10.02</span>
+      <span>京都ラボのこと</span>
+      <span>Daichi Ninomiya</span>
+    </div>
+  </div>
+</header>
+
+<section class="prose">
+  <div class="wrap">
+      <p>京都4課題の因果マップ</p>
+      <p><strong>京都ラボの最終目標</strong><br>京都で生まれた人が、京都に住み続けたいと思う環境をつくる。</p>
+      <p>そのために解決したい課題は4つです。</p>
+      <ul><li>若者世帯の流出</li><li>財政難</li><li>古い体質</li><li>オーバーツーリズム</li></ul>
+      <h2>結論：4つの課題は、2つの悪循環でつながっている</h2>
+      <ul><li>中心は「若者世帯の流出」</li></ul>
+      <p>一番多くの矢印が集まる課題です。財政難とも古い体質とも輪になって、互いを悪くしています。流出を止めることは、最終目標そのものと重なります。</p>
+      <ul><li>オーバーツーリズムは、輪の外から押し込む力</li></ul>
+      <p>地価の上昇と暮らしにくさの2つの道で、流出を早めています。</p>
+      <ul><li>京都ラボが崩すべきは「古い体質」</li></ul>
+      <p>仕事・観光・税収の3方向に矢印が出ている起点で、4つの課題の中で京都ラボが一番直接さわれます。住宅価格や税の仕組みは行政の仕事なので、そこは任せます。</p>
+      <figure><img src="map.jpg" width="1600" height="1068" alt="京都の課題　相関図"><figcaption>京都の課題　相関図</figcaption></figure>
+      <p><strong>図の見方</strong><br>矢印は「AがBを悪くする」という意味です。実線は市の資料や報道で指摘されている因果、破線はまだ確かめていない仮説です。<br>悪循環とは、矢印をたどると元の場所に戻ってくる輪のこと。外から手を入れない限り、悪くなり続けます。</p>
+      <p><strong>悪循環①（人口と財政）</strong><br>流出で納税者が減る → 財政が苦しくなる → 子育て・住宅支援に予算を回せない → さらに流出する</p>
+      <p><strong>悪循環②（人と体質）</strong><br>流出で働き手が減る → 変える人がいなくなり体質が固まる → 仕事に魅力が出ない → さらに流出する</p>
+      <div class="more"><b>この続きは note で</b><p>ここから先は note の有料部分（300円）です。<a href="https://note.com/legal_sorrel6616/n/na9463d478900">note で続きを読む ›</a></p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>京都ラボ ／ 京都の日常 2026.10.02</p>
+    <p style="margin-top:14px"><a href="../../">京都ラボのトップへ ›</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
