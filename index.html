@@ -232,14 +232,6 @@
   .jhead{display:flex; align-items:baseline; justify-content:space-between; gap:20px; flex-wrap:wrap}
   .jhead h2{font-size:clamp(27px,4vw,44px); letter-spacing:-.035em}
   .jlist{margin-top:clamp(26px,4vw,40px)}
-  .jrow{display:grid; grid-template-columns:112px minmax(0,1fr) auto; gap:clamp(14px,3vw,28px);
-        align-items:start; padding:22px 0; border-top:1px solid var(--line2)}
-  @media (max-width:640px){ .jrow{grid-template-columns:1fr; gap:7px} }
-  .jgrid .jrow{grid-column:1/-1}
-  .jrow time{font-size:13px; color:var(--fg3); font-family:var(--mono); padding-top:3px}
-  .jrow h3{font-size:20px; letter-spacing:-.02em; line-height:1.35}
-  .jrow p{margin-top:7px; font-size:14.5px; color:var(--fg2); line-height:1.6; max-width:52em}
-  a.jrow:hover h3{color:var(--accent)}
   .jlangs{display:block; margin-top:9px; font-size:11.5px; color:var(--accent); font-family:var(--mono); letter-spacing:.04em}
   .pill{font-size:11px; border-radius:980px; padding:3px 11px; line-height:1.7; white-space:nowrap;
         border:1px solid var(--line); color:var(--fg3)}
@@ -831,24 +823,6 @@
         </a>
 
         
-
-        <div class="jrow">
-          <time datetime="2026-10">2026.10</time>
-          <div>
-            <h3>「上ル・下ル」で住所を書く街に、地図アプリはまだ追いついていない</h3>
-            <p>通り名の交差から南北を示す京都の住所表記が、海外のサービスで何をどう取りこぼすのかを実際に試して確かめる。</p>
-          </div>
-          <span class="pill">公開準備中</span>
-        </div>
-
-        <div class="jrow">
-          <time datetime="2026-10">2026.10</time>
-          <div>
-            <h3>銭湯の番台で交わされる、言葉より短いやりとり</h3>
-            <p>説明しなくても伝わっている作法がある。それを翻訳するとしたら何が必要になるのかを考える。</p>
-          </div>
-          <span class="pill">公開準備中</span>
-        </div>
       </div>
     </div>
   </section>
@@ -1000,7 +974,6 @@
   (function(){
     if(reduce || !("IntersectionObserver" in window)) return;
     var targets = document.querySelectorAll(
-      ".why h2, .why .lead, .vision h2, .vision .lead, .vgrid div, .product .wide > div, .pillars h2, .jhead, .jrow, .about h2, .arow, .contact .wrap > *"
     );
     var vh = window.innerHeight, list = [];
     for(var i=0;i<targets.length;i++){
