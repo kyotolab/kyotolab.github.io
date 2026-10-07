@@ -183,16 +183,6 @@
   /* ---------------- pillars ---------------- */
   .pillars{padding-block:clamp(60px,9vw,104px); border-top:1px solid var(--line2)}
   .pillars h2{font-size:clamp(28px,4.2vw,46px); letter-spacing:-.024em; text-align:center}
-  .pgrid{margin-top:clamp(32px,5vw,52px); display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px}
-  @media (max-width:700px){ .pgrid{grid-template-columns:1fr} }
-  .pcard{background:var(--bg2); border-radius:20px; padding:30px 28px 34px}
-  .pcard .eyebrow{margin-bottom:10px}
-  .pcard h3{font-size:23px; letter-spacing:-.018em}
-  .pcard p{margin-top:11px; font-size:15px; color:var(--fg2); line-height:1.6}
-  .pcard ul{margin:18px 0 0; padding:0; list-style:none; display:grid; gap:8px}
-  .pcard li{font-size:14px; color:var(--fg2); padding-left:16px; position:relative}
-  .pcard li::before{content:""; position:absolute; left:0; top:.62em; width:7px; height:1.5px;
-                    border-radius:2px; background:var(--accent)}
   .pgoal{margin-top:clamp(32px,5vw,52px); background:var(--bg2); border-radius:20px; padding:32px 28px 30px}
   .pgoal .eyebrow{margin-bottom:10px}
   .pgoal h3{font-size:clamp(23px,3vw,30px); letter-spacing:-.018em}
@@ -202,8 +192,6 @@
   .psteps li{border-top:1px solid var(--line); padding-top:14px; font-size:14px; color:var(--fg2); line-height:1.6}
   .psteps em{display:block; font-style:normal; font-size:12px; font-weight:650; color:var(--gold); margin-bottom:4px}
   .psteps b{display:block; font-size:16px; color:var(--fg); margin-bottom:2px}
-  .pmeans{margin-top:clamp(36px,5vw,52px); text-align:center}
-  .pmeans + .pgrid{margin-top:14px}
 
   /* ---------------- use cases ---------------- */
   .cases{padding-block:clamp(60px,9vw,104px); border-top:1px solid var(--line2)}
@@ -491,33 +479,6 @@
           <li><em>02</em><b>Build</b>Choose the means that fit the shop and make it</li>
           <li><em>03</em><b>Stay</b>Keep advising after launch until it becomes routine</li>
         </ol>
-      </div>
-      <p class="eyebrow pmeans">The means</p>
-      <div class="pgrid">
-        <div class="pcard">
-          <p class="eyebrow">Means 1</p>
-          <h3>Websites</h3>
-          <p>The shop's information in Japanese and other languages. AI takes the weight out of translating and updating, and the shop can edit it themselves.</p>
-          <ul><li>Shop pages in Japanese and other languages</li><li>Translation and updates with AI</li><li>Set up so the shop can edit it</li></ul>
-        </div>
-        <div class="pcard">
-          <p class="eyebrow">Means 2</p>
-          <h3>Apps and services</h3>
-          <p>Apps for shops that struggle with overseas visitors, ready to use from the day they are installed. The two below are prototypes.</p>
-          <ul><li>Multilingual menus</li><li>Reservations and queue management</li><li>Multilingual guides to shops and experiences</li></ul>
-        </div>
-        <div class="pcard">
-          <p class="eyebrow">Means 3</p>
-          <h3>Instagram</h3>
-          <p>AI takes the weight out of writing posts, so the shop can keep reaching overseas visitors.</p>
-          <ul><li>Posts written in other languages</li><li>Drafts prepared automatically</li><li>A posting routine that lasts</li></ul>
-        </div>
-        <div class="pcard">
-          <p class="eyebrow">Means 4</p>
-          <h3>Writing on note and Medium</h3>
-          <p>The shop's story and craft as articles, bringing in customers from search and social media.</p>
-          <ul><li>Articles about the shop</li><li>Writing in English</li><li>Shared on the website and social media</li></ul>
-        </div>
       </div>
     </div>
   </section>
@@ -942,7 +903,7 @@
   (function(){
     if(reduce || !("IntersectionObserver" in window)) return;
     var targets = document.querySelectorAll(
-      ".why h2, .why .lead, .vision h2, .vision .lead, .vgrid div, .product .wide > div, .issue, .pillars h2, .pcard, .jhead, .jrow, .about h2, .arow, .contact .wrap > *"
+      ".why h2, .why .lead, .vision h2, .vision .lead, .vgrid div, .product .wide > div, .issue, .pillars h2, .jhead, .jrow, .about h2, .arow, .contact .wrap > *"
     );
     var vh = window.innerHeight, list = [];
     for(var i=0;i<targets.length;i++){
