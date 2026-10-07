@@ -240,22 +240,6 @@
            letter-spacing:.04em; line-height:1.75}
   .jseries b{color:var(--gold); font-weight:400; letter-spacing:.1em}
 
-  /* ---------------- 手順 ---------------- */
-  .tools{padding-block:clamp(72px,11vw,132px); border-top:1px solid var(--line2)}
-  .tools .wide{display:grid; grid-template-columns:1fr minmax(0,360px);
-               gap:clamp(36px,6vw,80px); align-items:center}
-  @media (max-width:900px){ .tools .wide{grid-template-columns:1fr; justify-items:center; text-align:center} }
-  .tools h2{font-size:clamp(32px,5.6vw,62px); line-height:1.16; letter-spacing:-.026em}
-  .tools .lead{margin-top:22px; max-width:26em}
-  .tools .link{margin-top:26px; display:inline-flex}
-  .tsteps{width:100%; max-width:360px; background:var(--bg2); border:1px solid var(--line);
-          border-radius:20px; padding:20px 22px; text-align:left}
-  .tstep{display:grid; grid-template-columns:24px minmax(0,1fr); gap:12px; align-items:baseline;
-         padding:10px 0; border-bottom:1px solid var(--line2); font-size:14.5px; color:var(--fg2)}
-  .tstep:last-of-type{border-bottom:none}
-  .tstep em{font-family:var(--mono); font-style:normal; font-size:11px; color:var(--accent)}
-  .tmore{margin-top:14px; padding-top:13px; border-top:1px solid var(--line);
-         font-size:11.5px; color:var(--fg3); font-family:var(--mono); text-align:center; letter-spacing:.04em}
 
   /* ---------------- about ---------------- */
   .about{padding-block:clamp(60px,9vw,104px); border-top:1px solid var(--line2)}
@@ -500,15 +484,15 @@
   <section class="product" id="product">
     <div class="wide">
       <div>
-        <p class="eyebrow">アプリの例 ／ お品書き</p>
-        <h2>QRひとつ。<br>4つの言語。</h2>
-        <p class="lead">店頭に紙を1枚置くだけ。お客さんはアプリのインストールも会員登録もいらない。カメラを向ければ、その人の言葉でお品書きが開く。値段を直すのは1回だけで、4か国語ぜんぶに反映される。</p>
+        <p class="eyebrow">AI導入デモ</p>
+        <h2>何が軽くなるか、<br>画面で見せる。</h2>
+        <p class="lead">AIを入れると、店の何が楽になるのか。説明するより、触ってもらうほうが早い。架空の食堂「京都ラボ デモ食堂」を例に、4か国語のメニュー、外国語の口コミへの返信、SNSの投稿文、店のきまりの案内を、スマホの画面で並べた。<strong>どれもAIが下書きをつくって、店は確かめるだけ。</strong></p>
         <div class="spec">
           <div><b>4</b><span>言語対応</span></div>
+          <div><b>5</b><span>画面で一通り</span></div>
           <div><b>0</b><span>インストール</span></div>
-          <div><b>1</b><span>タップで品切れ反映</span></div>
         </div>
-        <a class="link" href="tools/menu/">実際に触ってみる <i>›</i></a>
+        <a class="link" href="tools/demo/">デモを触ってみる <i>›</i></a>
       </div>
 
       <div class="phone">
@@ -525,31 +509,6 @@
     </div>
   </section>
 
-  <section class="tools" id="tejun">
-    <div class="wide">
-      <div>
-        <p class="eyebrow">アプリの例 ／ 手順</p>
-        <h2>貼り紙は、<br>順番を教えない。</h2>
-        <p class="lead">脱衣所で外国から来たお客さんが固まってしまうのは、英語が読めないからじゃない。<strong>何を、どの順番でやればいいのか、どこにも書いていないからだ。</strong>だから禁止事項の一覧はやめて、入ってから出るまでを、番号つきの順番で渡す。店の人がやるのは最初の1回だけ。毎日ボタンを押す必要もない。</p>
-        <div class="spec">
-          <div><b>4</b><span>言語対応</span></div>
-          <div><b>9</b><span>手順に分解</span></div>
-          <div><b>0</b><span>店側の毎日の操作</span></div>
-        </div>
-        <a class="link" href="tools/sento/">実際に触ってみる <i>&rsaquo;</i></a>
-      </div>
-
-      <div class="tsteps">
-        <div class="tstep"><em>1</em><span>靴を脱いで下駄箱へ</span></div>
-        <div class="tstep"><em>2</em><span>受付で払う</span></div>
-        <div class="tstep"><em>3</em><span>のれんの色で男女を確認</span></div>
-        <div class="tstep"><em>4</em><span>脱衣所で全部脱ぐ</span></div>
-        <div class="tstep"><em>5</em><span>小さいタオルだけ持って浴室へ</span></div>
-        <div class="tstep"><em>6</em><span>座って体を洗う</span></div>
-        <p class="tmore">＋ あと3ステップ ／ 4言語で表示</p>
-      </div>
-    </div>
-  </section>
 
   <section class="panel spots" id="spots">
     <div class="wide">
@@ -883,8 +842,7 @@
       <div><h4>製品・サービス</h4><ul>
         <li><a href="#pillars">AI導入支援</a></li>
         <li><a href="#cases">ユースケース</a></li>
-        <li><a href="#product">お品書き</a></li>
-        <li><a href="#tejun">手順</a></li>
+        <li><a href="#product">AI導入デモ</a></li>
       </ul></div>
       <div><h4>京都ラボ</h4><ul>
         <li><a href="#about">事業概要</a></li>

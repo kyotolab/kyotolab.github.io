@@ -264,22 +264,6 @@
            letter-spacing:.04em; line-height:1.75}
   .jseries b{color:var(--gold); font-weight:400; letter-spacing:.1em}
 
-  /* ---------------- 手順 ---------------- */
-  .tools{padding-block:clamp(72px,11vw,132px); border-top:1px solid var(--line2)}
-  .tools .wide{display:grid; grid-template-columns:1fr minmax(0,360px);
-               gap:clamp(36px,6vw,80px); align-items:center}
-  @media (max-width:900px){ .tools .wide{grid-template-columns:1fr; justify-items:center; text-align:center} }
-  .tools h2{font-size:clamp(32px,5.6vw,62px); line-height:1.16; letter-spacing:-.026em}
-  .tools .lead{margin-top:22px; max-width:26em}
-  .tools .link{margin-top:26px; display:inline-flex}
-  .tsteps{width:100%; max-width:360px; background:var(--bg2); border:1px solid var(--line);
-          border-radius:20px; padding:20px 22px; text-align:left}
-  .tstep{display:grid; grid-template-columns:24px minmax(0,1fr); gap:12px; align-items:baseline;
-         padding:10px 0; border-bottom:1px solid var(--line2); font-size:14.5px; color:var(--fg2)}
-  .tstep:last-of-type{border-bottom:none}
-  .tstep em{font-family:var(--mono); font-style:normal; font-size:11px; color:var(--accent)}
-  .tmore{margin-top:14px; padding-top:13px; border-top:1px solid var(--line);
-         font-size:11.5px; color:var(--fg3); font-family:var(--mono); text-align:center; letter-spacing:.04em}
 
   /* ---------------- about ---------------- */
   .about{padding-block:clamp(60px,9vw,104px); border-top:1px solid var(--line2)}
@@ -396,8 +380,8 @@
       <li><a href="#why">Why</a></li>
       <li><a href="#vision">Vision</a></li>
       <li><a href="#shops">What we do</a></li>
-      <li><a href="#product">Menu</a></li>
-      <li><a href="#tejun">Bathhouse</a></li>
+      <li><a href="#product">AI demo</a></li>
+      <li><a href="../tools/sento/">Bathhouse</a></li>
       <li><a href="#spots">Spot guide</a></li>
       <li><a href="#journal">Field notes</a></li>
       <li><a href="#about">About</a></li>
@@ -417,7 +401,7 @@
       <p class="sub">For Kyoto&rsquo;s small companies and independent shops: meet your new sidekick, AI. Chatting with guests from abroad, answering enquiries and reviews, adding up the month&rsquo;s sales &mdash; hand over the tedious bits, one at a time.<br>Born and raised in Shimogyo, we only build what fits the shops of this city.</p>
       <div class="cta">
         <a class="btn btn-fill" href="#spots">Read the spot guide</a>
-        <a class="btn btn-fill" href="#tejun">How to use a bathhouse <i>›</i></a>
+        <a class="btn btn-fill" href="../tools/sento/">How to use a bathhouse <i>›</i></a>
         <a class="btn btn-fill" href="#products">For shops: AI adoption <i>›</i></a>
       </div>
       <p class="hero-note">Kyoto, Japan ／ AI adoption · Multilingual support · Field notes</p>
@@ -524,13 +508,13 @@
   <section class="product" id="product">
     <div class="wide">
       <div>
-        <p class="eyebrow">Example app ／ Menu</p>
-        <h2>A menu that<br>answers back.</h2>
-        <p class="lead">Most Kyoto dishes sit on a base of fish stock, so a plate of vegetables is often not vegetarian. Our menu prototype lets a diner filter by what they cannot eat, in their own language, before anything is carried to the table.</p>
-        <a class="link" href="../tools/menu/">Try the prototype <i>›</i></a>
+        <p class="eyebrow">AI adoption demo</p>
+        <h2>See what gets<br>lighter.</h2>
+        <p class="lead">What does AI actually take off a shop&rsquo;s plate? Easier to show than to explain. Using a made-up diner, the Kyoto Lab Demo Shokudo, the demo lines up a four-language menu, replies to reviews written in other languages, social posts and the house rules, one phone screen each. <strong>AI writes the draft; the shop just checks it.</strong></p>
+        <a class="link" href="../tools/demo/">Try the demo (in Japanese) <i>›</i></a>
         <div class="spec">
           <div><b>4</b><span>languages</span></div>
-          <div><b>2 of 8</b><span>dishes survive a vegetarian filter</span></div>
+          <div><b>5</b><span>screens, end to end</span></div>
           <div><b>0</b><span>apps to install</span></div>
         </div>
       </div>
@@ -553,25 +537,6 @@
     </div>
   </section>
 
-  <section class="tools" id="tejun">
-    <div class="wide">
-      <div>
-        <p class="eyebrow">Example app ／ Bathhouse guide</p>
-        <h2>How to use<br>a bathhouse.</h2>
-        <p class="lead">A sento is not a spa and not a hot spring resort. It is the neighbourhood bath, and the order of operations is the whole thing. We wrote it as a sequence you can follow without reading Japanese — and left a copy with the bathhouse, so the staff can point at it.</p>
-        <a class="link" href="../tools/sento/">Open the guide <i>›</i></a>
-      </div>
-      <div class="tsteps">
-        <div class="tstep"><em>01</em><span>Shoes off at the door, into the locker</span></div>
-        <div class="tstep"><em>02</em><span>Pay at the desk, take a small towel</span></div>
-        <div class="tstep"><em>03</em><span>Undress completely in the changing room</span></div>
-        <div class="tstep"><em>04</em><span>Rinse before you get in — this is the one</span></div>
-        <div class="tstep"><em>05</em><span>Sit to wash. Never in the bath</span></div>
-        <div class="tstep"><em>06</em><span>Small towel stays out of the water</span></div>
-        <p class="tmore">THE FULL GUIDE HAS PICTURES FOR EACH STEP</p>
-      </div>
-    </div>
-  </section>
 
   <section class="panel spots" id="spots">
     <div class="wide">
@@ -809,7 +774,7 @@
       <div><h4>Tools</h4><ul>
         <li><a href="#shops">AI adoption</a></li>
         <li><a href="#cases">Use cases</a></li>
-        <li><a href="../tools/menu/">Menu prototype</a></li>
+        <li><a href="../tools/demo/">AI demo (Japanese)</a></li>
         <li><a href="../tools/sento/">Bathhouse guide</a></li>
       </ul></div>
       <div><h4>Kyoto Lab</h4><ul>
