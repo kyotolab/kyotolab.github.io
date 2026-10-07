@@ -166,16 +166,6 @@
   /* ---------------- pillars ---------------- */
   .pillars{padding-block:clamp(60px,9vw,104px); border-top:1px solid var(--line2)}
   .pillars h2{font-size:clamp(28px,4.2vw,46px); letter-spacing:-.024em; text-align:center}
-  .pgrid{margin-top:clamp(32px,5vw,52px); display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px}
-  @media (max-width:700px){ .pgrid{grid-template-columns:1fr} }
-  .pcard{background:var(--bg2); border-radius:20px; padding:30px 28px 34px}
-  .pcard .eyebrow{margin-bottom:10px}
-  .pcard h3{font-size:23px; letter-spacing:-.018em}
-  .pcard p{margin-top:11px; font-size:15px; color:var(--fg2); line-height:1.6}
-  .pcard ul{margin:18px 0 0; padding:0; list-style:none; display:grid; gap:8px}
-  .pcard li{font-size:14px; color:var(--fg2); padding-left:16px; position:relative}
-  .pcard li::before{content:""; position:absolute; left:0; top:.62em; width:7px; height:1.5px;
-                    border-radius:2px; background:var(--accent)}
   .pgoal{margin-top:clamp(32px,5vw,52px); background:var(--bg2); border-radius:20px; padding:32px 28px 30px}
   .pgoal .eyebrow{margin-bottom:10px}
   .pgoal h3{font-size:clamp(23px,3vw,30px); letter-spacing:-.018em}
@@ -185,8 +175,6 @@
   .psteps li{border-top:1px solid var(--line); padding-top:14px; font-size:14px; color:var(--fg2); line-height:1.6}
   .psteps em{display:block; font-style:normal; font-size:12px; font-weight:650; color:var(--gold); margin-bottom:4px}
   .psteps b{display:block; font-size:16px; color:var(--fg); margin-bottom:2px}
-  .pmeans{margin-top:clamp(36px,5vw,52px); text-align:center}
-  .pmeans + .pgrid{margin-top:14px}
 
   /* ---------------- use cases ---------------- */
   .cases{padding-block:clamp(60px,9vw,104px); border-top:1px solid var(--line2)}
@@ -476,33 +464,6 @@
           <li><em>03</em><b>居続ける</b>使い方が根づくまで、導入後も相談にのる</li>
         </ol>
       </div>
-      <p class="eyebrow pmeans">手段</p>
-      <div class="pgrid">
-        <div class="pcard">
-          <p class="eyebrow">手段 1</p>
-          <h3>ホームページ制作</h3>
-          <p>店の案内を、日本語と外国語で。翻訳や更新はAIで軽くして、店の人が自分で直せる形で渡します。</p>
-          <ul><li>日本語と外国語の店舗ページ</li><li>AIを使った翻訳と更新</li><li>店の人が自分で直せる仕組み</li></ul>
-        </div>
-        <div class="pcard">
-          <p class="eyebrow">手段 2</p>
-          <h3>アプリ・サービス制作</h3>
-          <p>外国から来たお客さんとのやりとりに困っている店に、入れたその日から使えるアプリを。下の2つは試作品です。</p>
-          <ul><li>多言語メニュー</li><li>予約・順番待ち管理</li><li>店舗と体験の多言語案内</li></ul>
-        </div>
-        <div class="pcard">
-          <p class="eyebrow">手段 3</p>
-          <h3>Instagram運用</h3>
-          <p>投稿文づくりはAIに手伝ってもらって、外国のお客さんに届く発信を、無理なく続けよう。</p>
-          <ul><li>外国語の投稿文づくり</li><li>下書きの自動化</li><li>無理なく続く投稿の段取り</li></ul>
-        </div>
-        <div class="pcard">
-          <p class="eyebrow">手段 4</p>
-          <h3>note・Mediumでの発信</h3>
-          <p>店のこと、仕事のことを記事にして、検索やSNSからお客さんを呼ぶ。</p>
-          <ul><li>店の話を記事にする</li><li>英語での発信</li><li>ホームページとSNSへの展開</li></ul>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -741,8 +702,6 @@
       </div>
 
       <div class="afoot">
-        <a class="link" href="articles/one-day/">3区を1日で歩くルートを読む <i>›</i></a>
-        <a class="link" href="articles/gosho/">京都御所を読む（English） <i>›</i></a>
         <p class="adisc">画像は、写真ではなくオリジナルのイラストです。営業時間や規則は変わるため、行く前に各所の公式情報もご確認ください。</p>
       </div>
     </div>
@@ -897,7 +856,6 @@
       <div><h4>読みもの</h4><ul>
         <li><a href="#journal">京都の日常</a></li>
         <li><a href="#spots">名所攻略</a></li>
-        <li><a href="articles/one-day/">京都1日ルート</a></li>
         <li><a href="https://note.com/legal_sorrel6616">note</a></li>
         <li><a href="https://medium.com/@sc0054sv">Medium</a></li>
       </ul></div>
@@ -979,7 +937,7 @@
   (function(){
     if(reduce || !("IntersectionObserver" in window)) return;
     var targets = document.querySelectorAll(
-      ".why h2, .why .lead, .vision h2, .vision .lead, .vgrid div, .product .wide > div, .pillars h2, .pcard, .jhead, .jrow, .about h2, .arow, .contact .wrap > *"
+      ".why h2, .why .lead, .vision h2, .vision .lead, .vgrid div, .product .wide > div, .pillars h2, .jhead, .jrow, .about h2, .arow, .contact .wrap > *"
     );
     var vh = window.innerHeight, list = [];
     for(var i=0;i<targets.length;i++){
