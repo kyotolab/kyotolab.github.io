@@ -1,4 +1,5 @@
 # social/instagram/ に新しい投稿文が main に入ったら、Instagram に投稿する。
+# date: を書いた投稿文は、その日の朝7時（日本時間）に毎日の定期実行が投稿する。
 # PR では投稿文を確かめるだけ。手で動かすときは、投稿する前まで確かめるのが既定。
 name: Instagram
 
@@ -11,6 +12,8 @@ on:
     branches: [main]
     paths:
       - "social/instagram/**"
+  schedule:
+    - cron: "0 22 * * *" # 日本時間の朝7時
   workflow_dispatch:
     inputs:
       file:
@@ -30,7 +33,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: git fetch --depth=1 origin main
       - run: python3 social/instagram.py check
+        env:
+          BASE_REF: FETCH_HEAD
 
   post:
     if: github.event_name != 'pull_request' && github.repository == 'kyotolab/kyotolab.github.io'
@@ -50,6 +56,8 @@ jobs:
         run: |
           if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ]; then
             list="$INPUT_FILE"
+          elif [ "$GITHUB_EVENT_NAME" = schedule ]; then
+            list=""
           else
             # 足したファイルだけを投稿する。直しただけのファイルは、もう一度は投稿しない
             git cat-file -e "$BEFORE^{commit}" 2>/dev/null || BEFORE="$GITHUB_SHA^"
@@ -57,14 +65,22 @@ jobs:
           fi
           echo "投稿文: ${list:-なし}"
           echo "list=$list" >> "$GITHUB_OUTPUT"
+      - name: 予約した投稿文を投稿する
+        if: github.event_name == 'schedule'
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: python3 social/instagram.py due
       - name: 投稿する
         if: steps.files.outputs.list != '' || github.event_name == 'workflow_dispatch'
         env:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           FILES: ${{ steps.files.outputs.list }}
           PUBLISH: ${{ github.event_name == 'push' || inputs.publish }}
+          EVENT: ${{ github.event_name }}
         run: |
           args=(post)
           [ "$PUBLISH" = true ] || args+=(--dry-run)
+          # 手で動かしたときは、date: の予約を待たずに出す
+          [ "$EVENT" = workflow_dispatch ] && args+=(--now)
           # shellcheck disable=SC2086
           python3 social/instagram.py "${args[@]}" $FILES

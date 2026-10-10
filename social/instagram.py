@@ -3,19 +3,32 @@
   python3 social/instagram.py check [FILE ...]            投稿文を確かめる（ネットにつながない）
   python3 social/instagram.py post [--dry-run] [FILE ...]  投稿する。--dry-run は投稿の直前で止める。
                                                           FILE がなければ、トークンが使えるかだけを見る
+  python3 social/instagram.py due [--dry-run]              date: が今日（日本時間）の投稿文を投稿する
   python3 social/instagram.py refresh                      トークンの期限を60日先に延ばす
 
-投稿文は social/instagram/<slug>.txt。1行目に画像のパス、空行のあとにキャプションを書く。
+投稿文は social/instagram/<slug>.txt。頭に項目を書き、空行のあとにキャプションを書く。
 
     image: assets/kamogawa.jpg
 
     キャプション
+
+カルーセル（スワイプで見る複数枚、2枚から10枚）にするときは、image: のかわりに images: に
+画像をカンマで並べる。画像は social/slides.py で作る。
+
+    images: assets/ig/kamogawa/1.jpg, assets/ig/kamogawa/2.jpg
+
+date: を書いた投稿文は、main に入ってもその日まで出ない。その日の朝7時（日本時間）に
+毎日の定期実行（due）が投稿する。1日1本ずつ、日をずらして並べる。その日を過ぎてから main に
+入ったものは、入ったときに出る。同じキャプションがもう投稿されていたら、二度は出さない。
+
+    date: 2026-10-12
 
 post と refresh は、環境変数 IG_ACCESS_TOKEN（Instagram ログインの長期トークン）を使う。
 ふだんは GitHub Actions（.github/workflows/instagram*.yml）から動く。
 """
 
 import argparse
+import datetime
 import json
 import os
 import re
@@ -40,7 +53,9 @@ MIN_WIDTH = 320
 GOOD_WIDTH = 1080
 MIN_RATIO, MAX_RATIO = 4 / 5, 1.91
 MAX_CAPTION = 2200
-MAX_HASHTAGS = 30
+MAX_HASHTAGS = 5  # 2025年12月から、1投稿5個まで
+MAX_SLIDES = 10
+JST = datetime.timezone(datetime.timedelta(hours=9))
 MAX_MENTIONS = 20
 
 
@@ -71,8 +86,12 @@ def jpeg_size(data):
     return None
 
 
+def today():
+    return datetime.datetime.now(JST).date()
+
+
 def load(name):
-    """投稿文を読んで (表示用のパス, 画像のパス, キャプション) を返す。"""
+    """投稿文を読んで (表示用のパス, 画像のパスの一覧, キャプション, 投稿日か None) を返す。"""
     path = (ROOT / name).resolve()
     if path.parent != QUEUE or path.suffix != ".txt":
         raise Fail("social/instagram/ の .txt ではない")
@@ -87,17 +106,42 @@ def load(name):
         if not colon:
             raise Fail(f"読めない行: {line}")
         fields[key.strip()] = value.strip()
-    unknown = sorted(set(fields) - {"image"})
+    unknown = sorted(set(fields) - {"image", "images", "date"})
     if unknown:
         raise Fail(f"知らない項目: {', '.join(unknown)}")
-    if not fields.get("image"):
-        raise Fail("image: がない")
-    return path.relative_to(ROOT).as_posix(), fields["image"], caption.strip()
+    if fields.get("image") and fields.get("images"):
+        raise Fail("image: と images: は、どちらか一つにする")
+    if fields.get("images"):
+        images = [s.strip() for s in fields["images"].split(",") if s.strip()]
+        if not 2 <= len(images) <= MAX_SLIDES:
+            raise Fail(f"images: は2枚から{MAX_SLIDES}枚。いまは {len(images)} 枚")
+    elif fields.get("image"):
+        images = [fields["image"]]
+    else:
+        raise Fail("image: か images: がない")
+    date = None
+    if "date" in fields:
+        try:
+            date = datetime.date.fromisoformat(fields["date"])
+        except ValueError:
+            raise Fail(f"date: は 2026-10-12 の形にする（いまは {fields['date']}）") from None
+    return path.relative_to(ROOT).as_posix(), images, caption.strip(), date
 
 
-def problems(image, caption):
+def problems(images, caption):
     """(エラーの一覧, 注意の一覧) を返す。"""
     errors, warnings = [], []
+    for image in images:
+        image_problems(image, errors, warnings)
+    if len(images) > 1:
+        sizes = {jpeg_size((ROOT / i).read_bytes()) for i in images if (ROOT / i).is_file()}
+        if len(sizes) > 1:
+            errors.append("カルーセルの画像の大きさがそろっていない")
+    caption_problems(caption, errors, warnings)
+    return errors, warnings
+
+
+def image_problems(image, errors, warnings):
     path = (ROOT / image).resolve()
     if ROOT not in path.parents or not path.is_file():
         errors.append(f"画像がない: {image}")
@@ -117,17 +161,19 @@ def problems(image, caption):
                 warnings.append(f"幅が {width}px。{GOOD_WIDTH}px 未満は粗く見える（@700 ではなく大きいほうを使う）")
         if len(data) > MAX_BYTES:
             errors.append(f"画像が {len(data) // 1024}KB。8MB 以下にする")
+
+
+def caption_problems(caption, errors, warnings):
     if not caption:
         errors.append("キャプションがない")
     if len(caption) > MAX_CAPTION:
         errors.append(f"キャプションが {len(caption)} 字。{MAX_CAPTION} 字以下にする")
     tags = re.findall(r"#[^\s#]+", caption)
     if len(tags) > MAX_HASHTAGS:
-        errors.append(f"ハッシュタグが {len(tags)} 個。{MAX_HASHTAGS} 個以下にする")
+        warnings.append(f"ハッシュタグが {len(tags)} 個。Instagram は2025年12月から {MAX_HASHTAGS} 個までになった")
     mentions = re.findall(r"(?<!\w)@[\w.]+", caption)
     if len(mentions) > MAX_MENTIONS:
         errors.append(f"@ が {len(mentions)} 個。{MAX_MENTIONS} 個以下にする")
-    return errors, warnings
 
 
 def check(names):
@@ -136,12 +182,14 @@ def check(names):
     failed = 0
     for name in names:
         try:
-            rel, image, caption = load(name)
+            rel, images, caption, date = load(name)
         except Fail as e:
             print(f"ERROR {name}: {e}")
             failed += 1
             continue
-        errors, warnings = problems(image, caption)
+        errors, warnings = problems(images, caption)
+        if date and fresh(name) and date < today():
+            errors.append(f"date: が {date} で、もう過ぎている")
         for msg in errors:
             print(f"ERROR {rel}: {msg}")
         for msg in warnings:
@@ -149,6 +197,15 @@ def check(names):
         failed += bool(errors)
     print(f"{len(names)} 件を確かめた。エラーは {failed} 件")
     return failed == 0
+
+
+def fresh(name):
+    """まだ main に入っていない投稿文なら True（PR の確かめで、日付が過ぎていないかを見るため）。"""
+    base = os.environ.get("BASE_REF")
+    if not base:
+        return False
+    res = subprocess.run(["git", "cat-file", "-e", f"{base}:{name}"], cwd=ROOT, capture_output=True)
+    return res.returncode != 0
 
 
 def token():
@@ -201,6 +258,24 @@ def wait_for_image(url, timeout=600):
         time.sleep(15)
 
 
+def container_for(user, images, caption):
+    """画像を Instagram に渡して、投稿の入れ物（コンテナ）の ID を返す。"""
+    urls = [f"{SITE}/{urllib.parse.quote(i, safe='/@')}" for i in images]
+    for url in urls:
+        wait_for_image(url)
+    if len(urls) == 1:
+        container = post_form(f"{user}/media", image_url=urls[0], caption=caption)["id"]
+    else:
+        children = []
+        for url in urls:
+            child = post_form(f"{user}/media", image_url=url, is_carousel_item="true")["id"]
+            wait_for_container(child)
+            children.append(child)
+        container = post_form(f"{user}/media", media_type="CAROUSEL", children=",".join(children), caption=caption)["id"]
+    wait_for_container(container)
+    return container
+
+
 def wait_for_container(container, timeout=120):
     deadline = time.time() + timeout
     while True:
@@ -215,7 +290,17 @@ def wait_for_container(container, timeout=120):
         time.sleep(5)
 
 
-def publish(names, dry_run):
+def posted_captions(user):
+    """最近の投稿のキャプション。同じ投稿文を二度出さないために使う。"""
+    res = get(f"{user}/media", fields="caption", limit=50)
+    return {same(m.get("caption", "")) for m in res.get("data", [])}
+
+
+def same(caption):
+    return " ".join(caption.split())[:300]
+
+
+def publish(names, dry_run, now=False):
     me = get("me", fields="user_id,username")
     user = me.get("user_id") or me["id"]
     if not names:
@@ -223,16 +308,20 @@ def publish(names, dry_run):
         return True
     print(f"@{me.get('username')} に{'投稿する前まで確かめる' if dry_run else '投稿する'}")
     failed = 0
+    posted = posted_captions(user)
     for name in names:
         try:
-            rel, image, caption = load(name)
-            errors, _ = problems(image, caption)
+            rel, images, caption, date = load(name)
+            if date and date > today() and not now:
+                print(f"SKIP  {rel}: {date} の朝7時に投稿する予約（date:）。いまは出さない")
+                continue
+            if same(caption) in posted:
+                print(f"SKIP  {rel}: もう投稿してある")
+                continue
+            errors, _ = problems(images, caption)
             if errors:
                 raise Fail("、".join(errors))
-            url = f"{SITE}/{urllib.parse.quote(image, safe='/@')}"
-            wait_for_image(url)
-            container = post_form(f"{user}/media", image_url=url, caption=caption)["id"]
-            wait_for_container(container)
+            container = container_for(user, images, caption)
             if dry_run:
                 print(f"OK    {rel}: Instagram が画像を受け付けた。投稿はしていない")
                 continue
@@ -243,6 +332,22 @@ def publish(names, dry_run):
             print(f"ERROR {name}: {e}")
             failed += 1
     return failed == 0
+
+
+def due(dry_run):
+    """date: が今日（日本時間）の投稿文を投稿する。毎日の定期実行から動く。"""
+    names = []
+    for path in sorted(QUEUE.glob("*.txt")):
+        name = path.relative_to(ROOT).as_posix()
+        try:
+            if load(name)[3] == today():
+                names.append(name)
+        except Fail as e:
+            print(f"ERROR {name}: {e}")
+    if not names:
+        print(f"{today()} に予約した投稿文はない")
+        return True
+    return publish(names, dry_run)
 
 
 def refresh():
@@ -276,14 +381,18 @@ def main():
     sub.add_parser("check").add_argument("files", nargs="*")
     post = sub.add_parser("post")
     post.add_argument("--dry-run", action="store_true")
+    post.add_argument("--now", action="store_true", help="date: の予約を無視して、すぐに投稿する")
     post.add_argument("files", nargs="*")
+    sub.add_parser("due").add_argument("--dry-run", action="store_true")
     sub.add_parser("refresh")
     args = parser.parse_args()
     try:
         if args.command == "check":
             ok = check(args.files)
         elif args.command == "post":
-            ok = publish(args.files, args.dry_run)
+            ok = publish(args.files, args.dry_run, now=args.now)
+        elif args.command == "due":
+            ok = due(args.dry_run)
         else:
             ok = refresh()
     except Fail as e:
