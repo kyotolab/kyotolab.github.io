@@ -161,8 +161,8 @@
   <div class="layout wrap">
     <div class="mapbox">
       <figure>
-        <svg id="map" viewBox="0 0 1000 725" role="group" aria-label="Map of Kyoto">
-          <rect width="1000" height="725" style="fill:var(--land)"/>
+        <svg id="map" viewBox="0 0 1000 801" role="group" aria-label="Map of Kyoto">
+          <rect width="1000" height="801" style="fill:var(--land)"/>
           <path id="hills" style="fill:var(--hill)"/>
           <g id="water" style="fill:none; stroke:var(--water)" stroke-linecap="round" stroke-linejoin="round"></g>
           <g id="marks"></g>
@@ -190,8 +190,8 @@
 
 <script>
 (function(){
-  // Map frame: longitude 135.655–135.815, latitude 34.955–35.050 → viewBox 1000 × 725
-  var W = 1000, H = 725, LNG0 = 135.655, LNG1 = 135.815, LAT0 = 34.955, LAT1 = 35.050;
+  // Map frame: longitude 135.655–135.815, latitude 34.955–35.060 → viewBox 1000 × 801
+  var W = 1000, H = 801, LNG0 = 135.655, LNG1 = 135.815, LAT0 = 34.955, LAT1 = 35.060;
   function px(lat, lng){ return [ (lng - LNG0) / (LNG1 - LNG0) * W, (LAT1 - lat) / (LAT1 - LAT0) * H ]; }
   function path(pts){ return pts.map(function(p, i){ var q = px(p[0], p[1]); return (i ? 'L' : 'M') + q[0].toFixed(1) + ' ' + q[1].toFixed(1); }).join(' '); }
 
@@ -243,7 +243,19 @@
       ja:{n:'哲学の道', a:'左京区', b:'朝8時まで', s:'桜の時期の昼は、細い道が人で詰まる'}},
     {id:'sanneizaka', o:[-24,-20], lat:34.9960, lng:135.7810, q:'Sannenzaka, Kyoto',
       en:{n:'Sannenzaka', a:'Higashiyama', b:'Before 8:00', s:'Before the shops open; walk down after Kiyomizu'},
-      ja:{n:'産寧坂・二年坂', a:'東山', b:'朝8時前', s:'店が開く前。清水寺の帰りに下る'}}
+      ja:{n:'産寧坂・二年坂', a:'東山', b:'朝8時前', s:'店が開く前。清水寺の帰りに下る'}},
+    {id:'heian-jingu', o:[-6,-20], lat:35.0160, lng:135.7824, q:'Heian Jingu Shrine, Kyoto',
+      en:{n:'Heian Jingu', a:'Okazaki', b:'Grounds from 6:00', s:'Grounds free; the garden opens 8:30, paid'},
+      ja:{n:'平安神宮', a:'岡崎', b:'境内は6時から', s:'境内は無料。庭の神苑は8時30分から、有料'}},
+    {id:'shimogamo', lat:35.0390, lng:135.7728, q:'Shimogamo Shrine, Kyoto',
+      en:{n:'Shimogamo Shrine', a:'Sakyo', b:'Opens 6:30', s:'Grounds free; walk in through the forest from Demachiyanagi'},
+      ja:{n:'下鴨神社', a:'左京区', b:'朝6時30分から', s:'境内は無料。出町柳駅から糺の森を歩いて行く'}},
+    {id:'umekoji', o:[0,-30], lat:34.9873, lng:135.7462, q:'Umekoji Park, Kyoto',
+      en:{n:'Umekoji Park', a:'Shimogyo', b:'Weekday mornings', s:'Lawns free; Suzaku Garden and Inochi no Mori 200 yen together'},
+      ja:{n:'梅小路公園', a:'下京区', b:'平日の朝', s:'芝生は無料。朱雀の庭といのちの森は共通200円'}},
+    {id:'botanical', o:[-16,10], lat:35.0495, lng:135.7660, q:'Kyoto Botanical Gardens',
+      en:{n:'Kyoto Botanical Gardens', a:'Sakyo', b:'9:00 opening', s:'500 yen, greenhouse included'},
+      ja:{n:'京都府立植物園', a:'左京区', b:'開園の9時', s:'入園500円で温室にも入れる'}}
   ];
 
   // Baby care: only places whose own site (or the city's) says so. Each keeps its source and the day it was checked.
@@ -299,6 +311,15 @@
       en:{n:'Randen Arashiyama Station toilet', a:'Arashiyama', h:'The accessible toilet at the Randen (tram) station has a changing table.'},
       ja:{n:'嵐電嵐山駅観光トイレ', a:'嵐山', h:'嵐電の嵐山駅の観光トイレ。多機能トイレにおむつ交換台'}}
   ];
+
+  CARE.push(
+    {id:'botanical-care', o:[18,22], lat:35.0495, lng:135.7660, q:'Kyoto Botanical Gardens', f:['nurse','diaper','water','ticket'], src:'https://www.pref.kyoto.jp/plant/usageguidance.html', c:'2026-10-10',
+      en:{n:'Kyoto Botanical Gardens', a:'Sakyo', h:'Three nursing rooms with hot water for formula: at the Kitayama Gate, in the Botanical Hall (first-aid room) and in the toilet south of the big lawn.'},
+      ja:{n:'京都府立植物園', a:'左京区', h:'授乳室が3か所（北山門、植物園会館の救護室、大芝生地の南側トイレ）。ミルク用のお湯がある'}},
+    {id:'kitayama-st', o:[16,-14], lat:35.0520, lng:135.7685, q:'Kitayama Station, Kyoto', f:['nurse','diaper','room'], src:'https://www.sumunaramiyako.city.kyoto.lg.jp/topics/20250508-01/', c:'2026-10-10',
+      en:{n:'Kitayama Station (subway)', a:'By the Botanical Gardens', h:'A lockable baby-care pod (mamaro) on the concourse, outside the ticket gates, so no ticket is needed. 7:00–20:00, free.'},
+      ja:{n:'地下鉄 北山駅', a:'植物園のそば', h:'コンコース階の改札の外に、鍵のかかる個室のベビーケアルーム「mamaro」。切符なしで使える。7:00〜20:00、無料'}}
+  );
 
   // Baby-friendly restaurants. For now these come from reviews and guide articles, not from the shops themselves,
   // so each card says so and links the article it came from. Replace src and c once a shop confirms.
@@ -393,11 +414,11 @@
 
   // Base map: hills to the east, north and west, the two rivers, the station.
   document.getElementById('hills').setAttribute('d',
-    path([[35.050,135.785],[35.035,135.795],[35.020,135.793],[35.005,135.788],[34.990,135.787],[34.970,135.783],[34.955,135.781],[34.955,135.815],[35.050,135.815]]) + 'Z ' +
-    path([[35.050,135.655],[35.050,135.735],[35.045,135.728],[35.040,135.715],[35.030,135.700],[35.020,135.683],[35.012,135.672],[35.005,135.660],[34.995,135.655]]) + 'Z');
+    path([[35.060,135.775],[35.055,135.782],[35.050,135.785],[35.035,135.795],[35.020,135.793],[35.005,135.788],[34.990,135.787],[34.970,135.783],[34.955,135.781],[34.955,135.815],[35.060,135.815]]) + 'Z ' +
+    path([[35.060,135.655],[35.060,135.750],[35.055,135.745],[35.050,135.735],[35.045,135.728],[35.040,135.715],[35.030,135.700],[35.020,135.683],[35.012,135.672],[35.005,135.660],[34.995,135.655]]) + 'Z');
   var water = document.getElementById('water');
-  [[[35.050,135.765],[35.040,135.768],[35.030,135.771]],
-   [[35.050,135.786],[35.040,135.779],[35.030,135.771]],
+  [[[35.060,135.758],[35.050,135.765],[35.040,135.768],[35.030,135.771]],
+   [[35.060,135.792],[35.050,135.786],[35.040,135.779],[35.030,135.771]],
    [[35.030,135.771],[35.0165,135.7715],[35.0038,135.7717],[34.9888,135.7695],[34.975,135.764],[34.955,135.757]],
    [[35.020,135.655],[35.015,135.672],[35.0128,135.6778],[35.000,135.685],[34.980,135.695],[34.955,135.705]]]
   .forEach(function(r, i){ water.appendChild(el('path', {d:path(r), 'stroke-width': i < 2 ? 7 : 11})); });
