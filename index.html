@@ -3,13 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>京都ラボ</title>
+<title>京都ラボ｜京都の個人店にAIを入れる、下京区のAI導入支援</title>
 <meta name="description" content="京都の中小企業と個人店に、AIの導入をお手伝いします。外国人のお客さまへの言語対応、問い合わせやレビューへの返信、売上の集計など、手間のかかる仕事からAIに任せます。京都市下京区から。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="京都ラボ">
 <meta property="og:description" content="京都の課題を解決する。京都の中小企業と個人店に、AIの導入をお手伝いします。">
 <meta property="og:url" content="https://kyotolab.github.io/">
 <meta property="og:locale" content="ja_JP">
+<meta property="og:site_name" content="京都ラボ">
 <meta property="og:image" content="https://kyotolab.github.io/assets/gion-street.jpg">
 <meta property="og:image:width" content="1600">
 <meta property="og:image:height" content="1066">
@@ -24,6 +25,26 @@
   img{max-width:100%}
   [hidden]:not([hidden="until-found"]){display:none!important}
 </style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Organization",
+ "name": "京都ラボ",
+ "alternateName": "Kyoto Lab",
+ "url": "https://kyotolab.github.io/",
+ "description": "京都の中小企業と個人店に、AIの導入をお手伝いします。",
+ "areaServed": {
+  "@type": "City",
+  "name": "Kyoto"
+ },
+ "sameAs": [
+  "https://www.instagram.com/kyotolab923/",
+  "https://note.com/legal_sorrel6616",
+  "https://medium.com/@sc0054sv"
+ ],
+ "inLanguage": "ja"
+}
+</script>
 </head>
 <body>
 <style>
@@ -129,11 +150,6 @@
   .product h2{font-size:clamp(30px,5.2vw,56px); line-height:1.08; letter-spacing:-.035em}
   .product .lead{margin-top:22px; max-width:26em}
   .product .link{margin-top:26px; display:inline-flex}
-  .spec{margin-top:34px; display:flex; gap:clamp(20px,4vw,44px); flex-wrap:wrap}
-  @media (max-width:900px){ .spec{justify-content:center} }
-  .spec div b{display:block; font-family:var(--disp); font-size:clamp(28px,3.6vw,38px);
-              font-weight:700; letter-spacing:-.03em; line-height:1.15}
-  .spec div span{display:block; font-size:12px; color:var(--fg3); margin-top:3px}
 
   .phone{width:min(340px,88vw); border-radius:44px; padding:9px;
          background:linear-gradient(160deg,#C9C9CE,#5C5C61 45%,#A8A8AE);
@@ -166,16 +182,6 @@
   /* ---------------- pillars ---------------- */
   .pillars{padding-block:clamp(60px,9vw,104px); border-top:1px solid var(--line2)}
   .pillars h2{font-size:clamp(28px,4.2vw,46px); letter-spacing:-.024em; text-align:center}
-  .pgrid{margin-top:clamp(32px,5vw,52px); display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px}
-  @media (max-width:700px){ .pgrid{grid-template-columns:1fr} }
-  .pcard{background:var(--bg2); border-radius:20px; padding:30px 28px 34px}
-  .pcard .eyebrow{margin-bottom:10px}
-  .pcard h3{font-size:23px; letter-spacing:-.018em}
-  .pcard p{margin-top:11px; font-size:15px; color:var(--fg2); line-height:1.6}
-  .pcard ul{margin:18px 0 0; padding:0; list-style:none; display:grid; gap:8px}
-  .pcard li{font-size:14px; color:var(--fg2); padding-left:16px; position:relative}
-  .pcard li::before{content:""; position:absolute; left:0; top:.62em; width:7px; height:1.5px;
-                    border-radius:2px; background:var(--accent)}
   .pgoal{margin-top:clamp(32px,5vw,52px); background:var(--bg2); border-radius:20px; padding:32px 28px 30px}
   .pgoal .eyebrow{margin-bottom:10px}
   .pgoal h3{font-size:clamp(23px,3vw,30px); letter-spacing:-.018em}
@@ -185,8 +191,6 @@
   .psteps li{border-top:1px solid var(--line); padding-top:14px; font-size:14px; color:var(--fg2); line-height:1.6}
   .psteps em{display:block; font-style:normal; font-size:12px; font-weight:650; color:var(--gold); margin-bottom:4px}
   .psteps b{display:block; font-size:16px; color:var(--fg); margin-bottom:2px}
-  .pmeans{margin-top:clamp(36px,5vw,52px); text-align:center}
-  .pmeans + .pgrid{margin-top:14px}
 
   /* ---------------- use cases ---------------- */
   .cases{padding-block:clamp(60px,9vw,104px); border-top:1px solid var(--line2)}
@@ -244,14 +248,6 @@
   .jhead{display:flex; align-items:baseline; justify-content:space-between; gap:20px; flex-wrap:wrap}
   .jhead h2{font-size:clamp(27px,4vw,44px); letter-spacing:-.035em}
   .jlist{margin-top:clamp(26px,4vw,40px)}
-  .jrow{display:grid; grid-template-columns:112px minmax(0,1fr) auto; gap:clamp(14px,3vw,28px);
-        align-items:start; padding:22px 0; border-top:1px solid var(--line2)}
-  @media (max-width:640px){ .jrow{grid-template-columns:1fr; gap:7px} }
-  .jgrid .jrow{grid-column:1/-1}
-  .jrow time{font-size:13px; color:var(--fg3); font-family:var(--mono); padding-top:3px}
-  .jrow h3{font-size:20px; letter-spacing:-.02em; line-height:1.35}
-  .jrow p{margin-top:7px; font-size:14.5px; color:var(--fg2); line-height:1.6; max-width:52em}
-  a.jrow:hover h3{color:var(--accent)}
   .jlangs{display:block; margin-top:9px; font-size:11.5px; color:var(--accent); font-family:var(--mono); letter-spacing:.04em}
   .pill{font-size:11px; border-radius:980px; padding:3px 11px; line-height:1.7; white-space:nowrap;
         border:1px solid var(--line); color:var(--fg3)}
@@ -260,22 +256,6 @@
            letter-spacing:.04em; line-height:1.75}
   .jseries b{color:var(--gold); font-weight:400; letter-spacing:.1em}
 
-  /* ---------------- 手順 ---------------- */
-  .tools{padding-block:clamp(72px,11vw,132px); border-top:1px solid var(--line2)}
-  .tools .wide{display:grid; grid-template-columns:1fr minmax(0,360px);
-               gap:clamp(36px,6vw,80px); align-items:center}
-  @media (max-width:900px){ .tools .wide{grid-template-columns:1fr; justify-items:center; text-align:center} }
-  .tools h2{font-size:clamp(32px,5.6vw,62px); line-height:1.16; letter-spacing:-.026em}
-  .tools .lead{margin-top:22px; max-width:26em}
-  .tools .link{margin-top:26px; display:inline-flex}
-  .tsteps{width:100%; max-width:360px; background:var(--bg2); border:1px solid var(--line);
-          border-radius:20px; padding:20px 22px; text-align:left}
-  .tstep{display:grid; grid-template-columns:24px minmax(0,1fr); gap:12px; align-items:baseline;
-         padding:10px 0; border-bottom:1px solid var(--line2); font-size:14.5px; color:var(--fg2)}
-  .tstep:last-of-type{border-bottom:none}
-  .tstep em{font-family:var(--mono); font-style:normal; font-size:11px; color:var(--accent)}
-  .tmore{margin-top:14px; padding-top:13px; border-top:1px solid var(--line);
-         font-size:11.5px; color:var(--fg3); font-family:var(--mono); text-align:center; letter-spacing:.04em}
 
   /* ---------------- about ---------------- */
   .about{padding-block:clamp(60px,9vw,104px); border-top:1px solid var(--line2)}
@@ -476,33 +456,6 @@
           <li><em>03</em><b>居続ける</b>使い方が根づくまで、導入後も相談にのる</li>
         </ol>
       </div>
-      <p class="eyebrow pmeans">手段</p>
-      <div class="pgrid">
-        <div class="pcard">
-          <p class="eyebrow">手段 1</p>
-          <h3>ホームページ制作</h3>
-          <p>店の案内を、日本語と外国語で。翻訳や更新はAIで軽くして、店の人が自分で直せる形で渡します。</p>
-          <ul><li>日本語と外国語の店舗ページ</li><li>AIを使った翻訳と更新</li><li>店の人が自分で直せる仕組み</li></ul>
-        </div>
-        <div class="pcard">
-          <p class="eyebrow">手段 2</p>
-          <h3>アプリ・サービス制作</h3>
-          <p>外国から来たお客さんとのやりとりに困っている店に、入れたその日から使えるアプリを。下の2つは試作品です。</p>
-          <ul><li>多言語メニュー</li><li>予約・順番待ち管理</li><li>店舗と体験の多言語案内</li></ul>
-        </div>
-        <div class="pcard">
-          <p class="eyebrow">手段 3</p>
-          <h3>Instagram運用</h3>
-          <p>投稿文づくりはAIに手伝ってもらって、外国のお客さんに届く発信を、無理なく続けよう。</p>
-          <ul><li>外国語の投稿文づくり</li><li>下書きの自動化</li><li>無理なく続く投稿の段取り</li></ul>
-        </div>
-        <div class="pcard">
-          <p class="eyebrow">手段 4</p>
-          <h3>note・Mediumでの発信</h3>
-          <p>店のこと、仕事のことを記事にして、検索やSNSからお客さんを呼ぶ。</p>
-          <ul><li>店の話を記事にする</li><li>英語での発信</li><li>ホームページとSNSへの展開</li></ul>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -547,15 +500,10 @@
   <section class="product" id="product">
     <div class="wide">
       <div>
-        <p class="eyebrow">アプリの例 ／ お品書き</p>
-        <h2>QRひとつ。<br>4つの言語。</h2>
-        <p class="lead">店頭に紙を1枚置くだけ。お客さんはアプリのインストールも会員登録もいらない。カメラを向ければ、その人の言葉でお品書きが開く。値段を直すのは1回だけで、4か国語ぜんぶに反映される。</p>
-        <div class="spec">
-          <div><b>4</b><span>言語対応</span></div>
-          <div><b>0</b><span>インストール</span></div>
-          <div><b>1</b><span>タップで品切れ反映</span></div>
-        </div>
-        <a class="link" href="tools/menu/">実際に触ってみる <i>›</i></a>
+        <p class="eyebrow">AI導入デモ</p>
+        <h2>何が軽くなるか、<br>画面で見せる。</h2>
+        <p class="lead">AIを入れると、店の何が楽になるのか。説明するより、触ってもらうほうが早い。架空の食堂「京都ラボ デモ食堂」を例に、4か国語のメニュー、外国語の口コミへの返信、SNSの投稿文、店のきまりの案内を、スマホの画面で並べた。<strong>どれもAIが下書きをつくって、店は確かめるだけ。</strong></p>
+        <a class="link" href="tools/demo/">デモを触ってみる <i>›</i></a>
       </div>
 
       <div class="phone">
@@ -572,31 +520,6 @@
     </div>
   </section>
 
-  <section class="tools" id="tejun">
-    <div class="wide">
-      <div>
-        <p class="eyebrow">アプリの例 ／ 手順</p>
-        <h2>貼り紙は、<br>順番を教えない。</h2>
-        <p class="lead">脱衣所で外国から来たお客さんが固まってしまうのは、英語が読めないからじゃない。<strong>何を、どの順番でやればいいのか、どこにも書いていないからだ。</strong>だから禁止事項の一覧はやめて、入ってから出るまでを、番号つきの順番で渡す。店の人がやるのは最初の1回だけ。毎日ボタンを押す必要もない。</p>
-        <div class="spec">
-          <div><b>4</b><span>言語対応</span></div>
-          <div><b>9</b><span>手順に分解</span></div>
-          <div><b>0</b><span>店側の毎日の操作</span></div>
-        </div>
-        <a class="link" href="tools/sento/">実際に触ってみる <i>&rsaquo;</i></a>
-      </div>
-
-      <div class="tsteps">
-        <div class="tstep"><em>1</em><span>靴を脱いで下駄箱へ</span></div>
-        <div class="tstep"><em>2</em><span>受付で払う</span></div>
-        <div class="tstep"><em>3</em><span>のれんの色で男女を確認</span></div>
-        <div class="tstep"><em>4</em><span>脱衣所で全部脱ぐ</span></div>
-        <div class="tstep"><em>5</em><span>小さいタオルだけ持って浴室へ</span></div>
-        <div class="tstep"><em>6</em><span>座って体を洗う</span></div>
-        <p class="tmore">＋ あと3ステップ ／ 4言語で表示</p>
-      </div>
-    </div>
-  </section>
 
   <section class="panel spots" id="spots">
     <div class="wide">
@@ -722,12 +645,42 @@
             <span class="go">攻略法を読む ›</span>
           </div>
         </a>
+
+        <a class="ascene" href="spots/heian-jingu/">
+          <img class="art" src="assets/heian-jingu.jpg" srcset="assets/heian-jingu@700.jpg 700w, assets/heian-jingu.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="平安神宮の應天門。緑の瓦をのせた朱色の二層の門">
+          <div class="cap">
+            <h3>平安神宮</h3><span class="ro">HEIAN JINGU</span>
+            <span class="go">攻略法を読む ›</span>
+          </div>
+        </a>
+
+        <a class="ascene" href="spots/shimogamo/">
+          <img class="art" src="assets/shimogamo.jpg" srcset="assets/shimogamo@700.jpg 700w, assets/shimogamo.jpg 1200w" sizes="(max-width:860px) 92vw, 25vw" width="1200" height="896" loading="lazy" decoding="async" alt="下鴨神社の楼門。朱色の二層の門と回廊、左に「下鴨神社」の石柱">
+          <div class="cap">
+            <h3>下鴨神社</h3><span class="ro">SHIMOGAMO-JINJA</span>
+            <span class="go">攻略法を読む ›</span>
+          </div>
+        </a>
+
+        <a class="ascene" href="spots/umekoji/">
+          <img class="art" src="assets/umekoji.jpg" srcset="assets/umekoji@700.jpg 700w, assets/umekoji.jpg 760w" sizes="(max-width:860px) 92vw, 25vw" width="760" height="567" loading="lazy" decoding="async" alt="梅小路公園のイラスト。芝生の奥に黒い蒸気機関車、右に大きな屋根の建物と塔">
+          <div class="cap">
+            <h3>梅小路公園</h3><span class="ro">UMEKOJI PARK</span>
+            <span class="go">攻略法を読む ›</span>
+          </div>
+        </a>
+
+        <a class="ascene" href="spots/botanical/">
+          <img class="art" src="assets/botanical.jpg" srcset="assets/botanical@700.jpg 700w, assets/botanical.jpg 760w" sizes="(max-width:860px) 92vw, 25vw" width="760" height="567" loading="lazy" decoding="async" alt="京都府立植物園のイラスト。ガラスの大きな温室と池、手前にアジサイと花壇">
+          <div class="cap">
+            <h3>京都府立植物園</h3><span class="ro">KYOTO BOTANICAL GARDENS</span>
+            <span class="go">攻略法を読む ›</span>
+          </div>
+        </a>
       </div>
 
       <div class="afoot">
         <a class="link" href="tools/map/?lang=ja">赤ちゃん連れの地図（授乳室・おむつ替えと名所） <i>›</i></a>
-        <a class="link" href="articles/one-day/">3区を1日で歩くルートを読む <i>›</i></a>
-        <a class="link" href="articles/gosho/">京都御所を読む（English） <i>›</i></a>
         <p class="adisc">画像は、写真ではなくオリジナルのイラストです。営業時間や規則は変わるため、行く前に各所の公式情報もご確認ください。</p>
       </div>
     </div>
@@ -793,25 +746,70 @@
           <div class="foot"><time datetime="2026-09-27">2026.09.27</time><span class="pill live">公開中</span></div>
         </a>
 
+        <a class="jcard" href="articles/jikoshokai/">
+          <span class="cat">京都ラボのこと</span>
+          <h3>京都の「課題」をAIとITで解決する。</h3>
+          <p>京都ラボの自己紹介。下京区で生まれ、6年離れて戻ってきた代表が、何を見て、何をつくっているのか。</p>
+          <div class="foot"><time datetime="2026-09-25">2026.09.25</time><span class="pill live">公開中</span></div>
+        </a>
+
+        <a class="jcard" href="articles/sumitsuzukeru/">
+          <span class="cat">京都ラボのこと</span>
+          <h3>京都に住み続けたいと思える街を</h3>
+          <p>京都市の人口はこの5年で約3万2千人減った。若い世代が京都を離れる5つの理由を市の資料と報道から整理して、京都ラボが何から手をつけるかを書いた。</p>
+          <div class="foot"><time datetime="2026-10-02">2026.10.02</time><span class="pill live">公開中</span></div>
+        </a>
+
+        <a class="jcard" href="articles/kadai-map/">
+          <span class="cat">京都ラボのこと</span>
+          <h3>京都市が抱える課題の因果関係</h3>
+          <p>若者世帯の流出、財政難、古い体質、オーバーツーリズム。4つの課題を1枚の図にすると、2つの悪循環が見えてくる。続きは note（有料）で。</p>
+          <div class="foot"><time datetime="2026-10-02">2026.10.02</time><span class="pill live">公開中</span></div>
+        </a>
+
+        <a class="jcard" href="articles/family-areas/">
+          <span class="cat">京都で暮らす 01</span>
+          <h3>二条、桂、北山。子どもと暮らすならこの3駅</h3>
+          <p>ほしいのは芝生と、夕方に寄れるスーパーと、ベビーカーで乗れる電車。家族で住むなら、どの駅のどのあたりか。</p>
+          <div class="foot"><time datetime="2026-10-01">2026.10.01</time><span class="pill live">公開中</span></div>
+        </a>
+
+        <a class="jcard" href="articles/single-areas/">
+          <span class="cat">京都で暮らす 02</span>
+          <h3>ひとり暮らしなら、出町柳、西院、五条</h3>
+          <p>川のそばでのんびりか、飲んで帰れる街か、なんでもそろう真ん中か。性格のまるで違う3駅から、自分に合うほうを。</p>
+          <div class="foot"><time datetime="2026-10-08">2026.10.08</time><span class="pill live">公開中</span></div>
+        </a>
+
+        <a class="jcard" href="articles/autumn-timing/">
+          <span class="cat">秋の京都 01</span>
+          <h3>紅葉の混雑は「時刻」で避ける</h3>
+          <p>同じ寺でも、朝8時と昼1時では別の場所。朝は名所、昼は広い場所、夜は1つだけ。紅葉の季節の旅の時間割。</p>
+          <div class="foot"><time datetime="2026-09-24">2026.09.24</time><span class="pill live">公開中</span></div>
+        </a>
+
+        <a class="jcard" href="articles/autumn-train/">
+          <span class="cat">秋の京都 02</span>
+          <h3>京都駅でバスの列に並ばない</h3>
+          <p>名所の多くは電車と少しの徒歩で行ける。京都駅からバスを使わずに行く9か所と、嵐山の3つの駅の使い分け。</p>
+          <div class="foot"><time datetime="2026-09-24">2026.09.24</time><span class="pill live">公開中</span></div>
+        </a>
+
+        <a class="jcard" href="articles/autumn-course/">
+          <span class="cat">秋の京都 03</span>
+          <h3>紅葉の日の1日モデルコース2本</h3>
+          <p>東山を歩く日と、嵐山から始める日。時刻と電車の乗り方つきの行程は note（有料）で。</p>
+          <div class="foot"><time datetime="2026-09-25">2026.09.25</time><span class="pill live">公開中</span></div>
+        </a>
+
+        <a class="jcard" href="articles/shimogyo-stay/">
+          <span class="cat">単発</span>
+          <h3>京都に泊まるなら、まず下京区から</h3>
+          <p>京都駅も四条通も下京区にある。碁盤の目で迷わず、一本入れば安い店があり、鴨川沿いは信号なしで走れる。宿をまず下京区で探してほしい理由。</p>
+          <div class="foot"><time datetime="2026-09-23">2026.09.23</time><span class="pill live">公開中</span></div>
+        </a>
+
         
-
-        <div class="jrow">
-          <time datetime="2026-10">2026.10</time>
-          <div>
-            <h3>「上ル・下ル」で住所を書く街に、地図アプリはまだ追いついていない</h3>
-            <p>通り名の交差から南北を示す京都の住所表記が、海外のサービスで何をどう取りこぼすのかを実際に試して確かめる。</p>
-          </div>
-          <span class="pill">公開準備中</span>
-        </div>
-
-        <div class="jrow">
-          <time datetime="2026-10">2026.10</time>
-          <div>
-            <h3>銭湯の番台で交わされる、言葉より短いやりとり</h3>
-            <p>説明しなくても伝わっている作法がある。それを翻訳するとしたら何が必要になるのかを考える。</p>
-          </div>
-          <span class="pill">公開準備中</span>
-        </div>
       </div>
     </div>
   </section>
@@ -872,8 +870,7 @@
       <div><h4>製品・サービス</h4><ul>
         <li><a href="#pillars">AI導入支援</a></li>
         <li><a href="#cases">ユースケース</a></li>
-        <li><a href="#product">お品書き</a></li>
-        <li><a href="#tejun">手順</a></li>
+        <li><a href="#product">AI導入デモ</a></li>
       </ul></div>
       <div><h4>京都ラボ</h4><ul>
         <li><a href="#about">事業概要</a></li>
@@ -882,7 +879,6 @@
       <div><h4>読みもの</h4><ul>
         <li><a href="#journal">京都の日常</a></li>
         <li><a href="#spots">名所攻略</a></li>
-        <li><a href="articles/one-day/">京都1日ルート</a></li>
         <li><a href="https://note.com/legal_sorrel6616">note</a></li>
         <li><a href="https://medium.com/@sc0054sv">Medium</a></li>
       </ul></div>
@@ -964,7 +960,6 @@
   (function(){
     if(reduce || !("IntersectionObserver" in window)) return;
     var targets = document.querySelectorAll(
-      ".why h2, .why .lead, .vision h2, .vision .lead, .vgrid div, .product .wide > div, .pillars h2, .pcard, .jhead, .jrow, .about h2, .arow, .contact .wrap > *"
     );
     var vh = window.innerHeight, list = [];
     for(var i=0;i<targets.length;i++){

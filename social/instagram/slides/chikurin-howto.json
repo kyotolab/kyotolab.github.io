@@ -1,0 +1,11 @@
+{
+  "image": "assets/chikurin.jpg",
+  "label": "KYOTO SPOT GUIDE",
+  "title": "Arashiyama Bamboo Grove: get there before 8",
+  "cards": [
+    {"label": "WHEN TO GO", "head": "Quiet: 7 to 8 a.m.", "body": "Busy from about 8 a.m., when the path turns into a slow line."},
+    {"label": "OPEN", "head": "Always open, and free", "body": "No gate, no ticket. Whoever arrives early wins."},
+    {"label": "TIP", "head": "Take your photos while it is quiet", "body": "At busy times, stopping on the narrow path blocks everyone behind you."},
+    {"label": "PLAN", "head": "Give Arashiyama its own morning", "body": "It is on the opposite side of the city from Gion and Kiyomizu. Walk on to Togetsukyo Bridge after."}
+  ]
+}

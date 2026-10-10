@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>下鴨神社の攻略 ／ 京都ラボ</title>
+<meta name="description" content="下鴨神社は朝6時30分から、境内は無料。糺の森を歩いて朱の楼門へ。鏡の形の絵馬に化粧をする河合神社、みたらし団子の発祥、夏の足つけ神事と回り方。">
+<link rel="canonical" href="https://kyotolab.github.io/spots/shimogamo/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="下鴨神社の攻略 ／ 京都ラボ">
+<meta property="og:description" content="下鴨神社は朝6時30分から、境内は無料。糺の森を歩いて朱の楼門へ。鏡の形の絵馬に化粧をする河合神社、みたらし団子の発祥、夏の足つけ神事と回り方。">
+<meta property="og:url" content="https://kyotolab.github.io/spots/shimogamo/">
+<meta property="og:site_name" content="京都ラボ">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://kyotolab.github.io/assets/shimogamo.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="896">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#FFFFFF; --bg2:#F5F5F7; --fg:#1D1D1F; --fg2:#6E6E73; --fg3:#86868B;
+    --line:rgba(0,0,0,.12); --line2:rgba(0,0,0,.08);
+    --accent:#0066CC; --accent-soft:#EAF2FD; --accent-brd:#B9D6F5;
+    --gold:#A33A2C;
+    --tile:#1D1D1F; --tile-fg:#F5F5F7; --tile-fg2:#98989D; --tile-accent:#5AC8FA;
+    --sys:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --gut:clamp(20px,5vw,40px);
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--fg); font-family:var(--sys);
+       font-size:17px; line-height:1.75; -webkit-font-smoothing:antialiased}
+  h1,h2{margin:0; font-weight:700; line-height:1.25; font-feature-settings:"palt" 1; text-wrap:balance}
+  p{margin:0}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  img{max-width:100%}
+  .wrap{max-width:720px; margin:0 auto; padding-inline:var(--gut)}
+
+  .nav{position:sticky; top:0; z-index:10; height:48px; background:rgba(255,255,255,.88);
+       backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px);
+       border-bottom:1px solid var(--line2)}
+  .nav .wrap{max-width:1040px; height:100%; display:flex; align-items:center; justify-content:space-between; gap:16px}
+  .brand{display:inline-flex; align-items:center; gap:9px; color:var(--fg); white-space:nowrap}
+  .brand:hover{text-decoration:none; color:var(--accent)}
+  .brand .mk{width:25px; height:25px; display:grid; place-content:center; border:1px solid currentColor;
+             border-radius:2px; font-size:14px; line-height:1; padding-top:1px}
+  .brand .nm{font-size:18px; font-weight:700; letter-spacing:.06em}
+  .nav .back{font-size:13px; white-space:nowrap}
+
+  .head{padding-block:clamp(40px,7vw,72px) 0}
+  .eyebrow{font-size:11px; font-weight:650; color:var(--gold); letter-spacing:.12em; margin-bottom:14px}
+  .head h1{font-size:clamp(32px,7vw,52px)}
+  .ro{display:block; margin-top:8px; font-family:var(--mono); font-size:11px; letter-spacing:.14em; color:var(--fg3)}
+  .lead{margin-top:20px; font-size:clamp(18px,2.4vw,21px); line-height:1.6; color:var(--fg2)}
+
+  .art{margin:clamp(28px,5vw,44px) 0 0; border-radius:20px; overflow:hidden; background:var(--tile)}
+  .art img{display:block; width:100%; height:auto; aspect-ratio:4/3; object-fit:cover}
+  .best{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; padding:18px 22px 20px;
+        background:var(--tile); color:var(--tile-fg2); font-size:13px}
+  .best b{color:var(--tile-accent); font-size:22px; font-weight:600; white-space:nowrap}
+
+  section.part{padding-top:clamp(36px,6vw,52px)}
+  section.part h2{font-size:clamp(22px,4vw,28px); padding-top:16px; border-top:1px solid var(--line)}
+  section.part p{margin-top:16px; color:var(--fg)}
+  section.part p strong{font-weight:600}
+
+  .facts{margin:clamp(32px,5vw,44px) 0 0; border-top:1px solid var(--line)}
+  .facts div{display:grid; grid-template-columns:120px minmax(0,1fr); gap:16px; padding:12px 0;
+             border-bottom:1px solid var(--line2); font-size:15px}
+  .facts dt{color:var(--fg3)}
+  .facts dd{margin:0}
+
+  .more{margin-top:clamp(32px,5vw,44px); display:grid; gap:4px}
+  .more a{display:inline-flex; align-items:center; gap:5px; min-height:40px; font-size:16px}
+
+  .note{margin-top:clamp(28px,4vw,36px); padding:16px 18px; border-radius:14px; background:var(--bg2);
+        font-size:13px; line-height:1.7; color:var(--fg2)}
+
+  .others{margin-top:clamp(48px,7vw,72px); padding-block:28px 8px; border-top:1px solid var(--line)}
+  .others p{font-size:11px; font-weight:650; color:var(--gold); letter-spacing:.12em}
+  .others ul{margin:14px 0 0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px 16px}
+  .others li a{display:block; padding:8px 0; font-size:15px}
+  .others li span{display:block; padding:8px 0; font-size:15px; color:var(--fg3)}
+
+  footer{margin-top:clamp(40px,6vw,64px); background:var(--bg2); border-top:1px solid var(--line2);
+         padding-block:28px 36px; font-size:12px; color:var(--fg3)}
+  footer .wrap{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="../../" aria-label="京都ラボ ホーム"><span class="mk" aria-hidden="true">京</span><span class="nm">京都ラボ</span></a>
+    <a class="back" href="../../#spots">‹ 名所攻略の一覧へ</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="head">
+    <p class="eyebrow">名所攻略 17</p>
+    <h1>下鴨神社</h1><span class="ro">SHIMOGAMO-JINJA</span>
+    <p class="lead">朱の楼門の手前に、森がまるごと一つあります。駅から森を歩いて入るのがいちばんの見どころです。</p>
+    <figure class="art">
+      <img src="../../assets/shimogamo.jpg" width="1200" height="896" decoding="async" alt="下鴨神社の楼門。朱色の二層の門と回廊、左に「下鴨神社」の石柱。門の奥に社殿">
+      <figcaption class="best"><b>朝6時30分から</b><span>境内は無料。出町柳駅から糺の森を歩いて行く</span></figcaption>
+    </figure>
+  </header>
+
+  <section class="part">
+    <h2>いつ行くか</h2>
+    <p>境内は朝6時30分から17時まで開いていて、お金はかかりません。団体が来る前の朝は、森の参道も楼門の前もほとんど人がいません。</p>
+    <p>5月15日の葵祭と、7月下旬のみたらし祭（足つけ神事）の期間は混みます。みたらし祭では、境内の御手洗池に膝まで足をつけて、無病息災を祈れます。日程は年によって変わるので、公式の案内で確かめてください。</p>
+  </section>
+
+  <section class="part">
+    <h2>見るところ</h2>
+    <p>まず、参道を囲む糺（ただす）の森です。広さは約12万4千平方メートル。樹齢200年から600年の木が約600本あります。<strong>京都の街なかに、これだけ大きな森が残っている場所はほかにありません。</strong></p>
+    <p>森を抜けると、高さ約30メートルの朱の楼門です。1628年に建て直されたもので、くぐると本殿の前に出ます。</p>
+    <p>森の入口近くの河合神社には、手鏡の形をした「鏡絵馬」があります。<strong>描かれた顔を自分の顔に見立てて、自分の化粧道具で化粧をして奉納します。</strong>美麗の神様として知られる社です。</p>
+  </section>
+
+  <section class="part">
+    <h2>知っておくこと</h2>
+    <p>正式な名前は賀茂御祖（かもみおや）神社です。北にある上賀茂神社とあわせて賀茂社と呼ばれ、1994年に「古都京都の文化財」のひとつとして世界遺産に登録されました。</p>
+    <p>みたらし団子は、この神社が発祥とされています。御手洗池に湧く水の泡をかたどったもので、ひと串5つのうち、ひとつだけ離して刺してあります。門前の甘味処で食べられます。</p>
+  </section>
+
+  <section class="part">
+    <h2>回り方</h2>
+    <p>京阪の出町柳駅から、河合橋を渡って糺の森を抜け、楼門まで歩いて12分ほどです。<strong>バスで神社の前まで行くより、駅から森を歩いて入ってください。</strong>京都駅からなら市バスの4系統か205系統で「下鴨神社前」です。</p>
+    <p>出町柳駅の前は、鴨川と高野川が合流する鴨川デルタです。神社のあとは川べりを南へ歩けば、京都御所の東側に出ます。</p>
+  </section>
+
+  <div class="more">
+    <a href="../gosho/">京都御所の攻略を読む <i aria-hidden="true">›</i></a>
+    <a href="../../articles/kamogawa/">鴨川の記事を読む <i aria-hidden="true">›</i></a>
+  </div>
+
+  <p class="note">画像は、写真ではなくオリジナルのイラストです。営業時間、料金、規則は変わるため、行く前に公式情報をご確認ください。</p>
+
+  <nav class="others" aria-label="ほかの名所">
+    <p>ほかの名所</p>
+    <ul>
+      <li><a href="../chikurin/">嵐山・竹林の道</a></li>
+      <li><a href="../kiyomizu/">清水寺</a></li>
+      <li><a href="../fushimi-inari/">伏見稲荷大社</a></li>
+      <li><a href="../togetsukyo/">渡月橋</a></li>
+      <li><a href="../kinkakuji/">金閣寺</a></li>
+      <li><a href="../ginkakuji/">銀閣寺</a></li>
+      <li><a href="../gion/">祇園</a></li>
+      <li><a href="../nishiki/">錦市場</a></li>
+      <li><a href="../nijo/">二条城</a></li>
+      <li><a href="../gosho/">京都御所</a></li>
+      <li><a href="../sanjusangendo/">三十三間堂</a></li>
+      <li><a href="../nanzenji/">南禅寺</a></li>
+      <li><a href="../tofukuji/">東福寺</a></li>
+      <li><a href="../tetsugaku/">哲学の道</a></li>
+      <li><a href="../sanneizaka/">産寧坂・二年坂</a></li>
+      <li><a href="../heian-jingu/">平安神宮</a></li>
+      <li><span aria-current="page">下鴨神社</span></li>
+      <li><a href="../umekoji/">梅小路公園</a></li>
+      <li><a href="../botanical/">京都府立植物園</a></li>
+    </ul>
+  </nav>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>京都ラボ ／ 京都市</span>
+    <a href="../../">京都ラボ トップへ戻る</a>
+  </div>
+</footer>
+
+</body>
+</html>

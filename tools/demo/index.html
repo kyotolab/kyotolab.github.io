@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>京都ラボ AI導入デモ</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="店先でスマホを見せながら、AIを入れると店の何が軽くなるかを5つの画面で見せるデモ。多言語メニュー、口コミの返信、SNSの投稿、店頭の案内、導入前に測る数字。">
+<link rel="canonical" href="https://kyotolab.github.io/tools/demo/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="京都ラボ AI導入デモ">
+<meta property="og:description" content="店先でスマホを見せながら、AIを入れると店の何が軽くなるかを5つの画面で見せるデモ。">
+<meta property="og:url" content="https://kyotolab.github.io/tools/demo/">
+<meta property="og:image" content="https://kyotolab.github.io/assets/menu.jpg">
+<meta property="og:site_name" content="京都ラボ">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    --paper:#F5F5F7; --surface:#FFFFFF;
+    --ink:#1D1D1F; --ink-soft:#4A4A4E; --muted:#6E6E73;
+    --rule:rgba(0,0,0,.12); --rule-soft:rgba(0,0,0,.07);
+    --accent:#0066CC; --accent-ink:#0052A6; --accent-soft:#EAF2FD;
+    --gold:#A33A2C; --gold-soft:#FBEDEA;
+    --board:#2B2620; --board-ink:#F2EDE3;
+    --sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#000000; --surface:#1C1C1E;
+      --ink:#F5F5F7; --ink-soft:#C7C7CC; --muted:#98989D;
+      --rule:rgba(255,255,255,.16); --rule-soft:rgba(255,255,255,.09);
+      --accent:#0A84FF; --accent-ink:#5AC8FA; --accent-soft:#12233A;
+      --gold:#FF6F5E; --gold-soft:#2B1512;
+      --board:#2B2620; --board-ink:#F2EDE3;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#000000; --surface:#1C1C1E;
+    --ink:#F5F5F7; --ink-soft:#C7C7CC; --muted:#98989D;
+    --rule:rgba(255,255,255,.16); --rule-soft:rgba(255,255,255,.09);
+    --accent:#0A84FF; --accent-ink:#5AC8FA; --accent-soft:#12233A;
+    --gold:#FF6F5E; --gold-soft:#2B1512;
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased; padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+  h1,h2,h3{font-weight:800; margin:0; line-height:1.25; font-feature-settings:"palt" 1; text-wrap:balance}
+  p{margin:0}
+  button,input,textarea,select{font-family:inherit; font-size:inherit; color:inherit}
+  button{cursor:pointer}
+  .wrap{max-width:560px; margin:0 auto; padding:18px 16px 28px}
+  .label{font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; color:var(--gold); text-transform:uppercase}
+  .num{color:var(--gold); font-family:var(--mono); font-weight:700}
+  .note{font-size:12.5px; color:var(--muted); line-height:1.6}
+  .card{background:var(--surface); border:1px solid var(--rule); border-radius:14px; padding:16px}
+  .stack > * + *{margin-top:14px}
+
+  /* 上の帯 */
+  .top{display:flex; justify-content:space-between; align-items:center; gap:10px; padding:10px 16px; border-bottom:1px solid var(--rule); background:var(--surface); position:sticky; top:0; z-index:5}
+  .top .shop{font-weight:700; font-size:14px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .top .shop small{display:block; font-weight:400; font-size:11px; color:var(--muted)}
+  .btn{display:inline-flex; align-items:center; justify-content:center; gap:6px; border:1px solid var(--accent); color:var(--accent-ink); background:var(--surface); border-radius:999px; padding:9px 16px; font-weight:600; font-size:14px; text-decoration:none; min-height:42px}
+  .btn.fill{background:var(--accent); color:#fff}
+  .btn.small{padding:5px 12px; font-size:12.5px; min-height:32px}
+  .btn[disabled]{opacity:.45; cursor:default}
+  .row{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+
+  /* 下のタブ */
+  nav.tabs{position:fixed; left:0; right:0; bottom:0; z-index:6; background:var(--surface); border-top:1px solid var(--rule); padding-bottom:env(safe-area-inset-bottom)}
+  nav.tabs .in{max-width:560px; margin:0 auto; display:grid; grid-template-columns:repeat(6,1fr)}
+  nav.tabs button{border:0; background:none; padding:8px 2px 9px; font-size:11px; color:var(--muted); display:flex; flex-direction:column; align-items:center; gap:2px; min-height:58px}
+  nav.tabs button b{font-family:var(--mono); font-size:13px; font-weight:700}
+  nav.tabs button[aria-selected="true"]{color:var(--accent-ink)}
+  nav.tabs button[aria-selected="true"] b{color:var(--accent)}
+
+  .hero h1{font-size:26px; margin-top:6px}
+  .hero p{margin-top:10px; color:var(--ink-soft)}
+  .menu4{display:grid; gap:10px; margin-top:18px}
+  .menu4 button{display:grid; grid-template-columns:34px 1fr auto; gap:12px; align-items:center; text-align:left; padding:14px; border:1px solid var(--rule); border-radius:14px; background:var(--surface)}
+  .menu4 button h3{font-size:16px}
+  .menu4 button p{font-size:12.5px; color:var(--ink-soft); line-height:1.5; margin-top:2px}
+  .menu4 button i{font-style:normal; color:var(--accent); font-size:20px}
+
+  .seg{display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--rule); border-radius:999px; padding:3px; background:var(--surface)}
+  .seg button{border:0; background:none; border-radius:999px; padding:8px; font-weight:600; font-size:13.5px; color:var(--ink-soft)}
+  .seg button[aria-pressed="true"]{background:var(--accent); color:#fff}
+  .langs{display:flex; gap:6px; flex-wrap:wrap}
+  .langs button{border:1px solid var(--rule); background:var(--surface); border-radius:999px; padding:5px 13px; font-size:13px}
+  .langs button[aria-pressed="true"]{border-color:var(--accent); color:var(--accent-ink); background:var(--accent-soft); font-weight:700}
+
+  /* いまの品書き（黒板ふう） */
+  .board{background:var(--board); color:var(--board-ink); border-radius:14px; padding:20px 18px}
+  .board .bt{font-size:12px; opacity:.7; margin-bottom:8px}
+  .board li{display:flex; justify-content:space-between; gap:12px; padding:6px 0; border-bottom:1px dashed rgba(242,237,227,.25); font-size:16px}
+  .board ul{list-style:none; margin:0; padding:0}
+  .bubble{margin-top:12px; border-left:2px solid var(--gold); background:var(--gold-soft); padding:10px 14px; border-radius:0 10px 10px 0; font-size:13.5px; color:var(--ink-soft)}
+
+  .dish{display:grid; grid-template-columns:52px 1fr; gap:12px; padding:12px 0; border-bottom:1px solid var(--rule-soft)}
+  .dish:last-child{border-bottom:0}
+  .dish svg{width:52px; height:46px; fill:none; stroke:var(--ink-soft); stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round}
+  .dish .nm{font-weight:700; display:flex; justify-content:space-between; gap:10px}
+  .dish .ds{font-size:13px; color:var(--ink-soft); line-height:1.55; margin-top:2px}
+  .dish .al{font-size:11.5px; color:var(--muted); margin-top:4px}
+  .rec{font-size:10.5px; color:var(--gold); border:1px solid currentColor; border-radius:3px; padding:0 5px; margin-left:6px; white-space:nowrap; vertical-align:2px}
+
+  /* 口コミ */
+  .rv .meta{display:flex; justify-content:space-between; align-items:center; gap:8px; font-size:12.5px; color:var(--muted)}
+  .stars{color:var(--gold); letter-spacing:1px}
+  .rv .body{margin-top:6px; font-size:14px}
+  .rv .ja{margin-top:4px; font-size:12.5px; color:var(--muted)}
+  .draft{margin-top:12px; border-radius:12px; background:var(--accent-soft); padding:12px 14px; font-size:14px; white-space:pre-wrap}
+  .draft .who{font-size:11px; font-weight:700; color:var(--accent-ink); margin-bottom:4px; letter-spacing:.04em}
+  .draft .tr{margin-top:8px; padding-top:8px; border-top:1px solid var(--rule-soft); font-size:12.5px; color:var(--ink-soft)}
+  .caret::after{content:"▍"; color:var(--accent); animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  textarea,input[type=text],input[type=number]{width:100%; border:1px solid var(--rule); border-radius:10px; padding:10px 12px; background:var(--surface); line-height:1.6}
+  textarea{min-height:110px; resize:vertical}
+
+  /* SNS */
+  .ig{background:var(--surface); border:1px solid var(--rule); border-radius:14px; overflow:hidden}
+  .ig .hd{display:flex; align-items:center; gap:8px; padding:10px 12px; font-size:13px; font-weight:700}
+  .ig .av{width:28px; height:28px; border-radius:50%; background:var(--gold-soft); color:var(--gold); display:grid; place-items:center; font-size:12px}
+  .ig .ph{aspect-ratio:4/3; background:var(--paper); display:grid; place-items:center; border-block:1px solid var(--rule-soft)}
+  .ig .ph svg{width:38%; fill:none; stroke:var(--ink-soft); stroke-width:1.2; stroke-linecap:round; stroke-linejoin:round}
+  .ig .cap{padding:12px; font-size:13.5px; white-space:pre-wrap; min-height:120px}
+  select{width:100%; border:1px solid var(--rule); border-radius:10px; padding:9px 10px; background:var(--surface)}
+
+  /* 店頭の案内 */
+  .rules label{display:flex; gap:10px; align-items:flex-start; padding:9px 0; border-bottom:1px solid var(--rule-soft); font-size:14px}
+  .rules label:last-child{border-bottom:0}
+  .rules input[type=checkbox]{width:20px; height:20px; margin-top:3px; accent-color:var(--accent); flex:none}
+  .pop{background:#fff; color:#1D1D1F; border:2px solid #1D1D1F; border-radius:6px; padding:14px 16px}
+  .pop .pt{font-weight:800; font-size:15px; border-bottom:2px solid #1D1D1F; padding-bottom:6px; margin-bottom:6px}
+  .pop .it{padding:7px 0; border-bottom:1px solid #ddd; font-size:12.5px; line-height:1.5}
+  .pop .it:last-child{border-bottom:0}
+  .pop .it b{font-size:13.5px}
+  .pop .it span{display:block; color:#4A4A4E}
+
+  /* 測る */
+  .fields label{display:block; margin-top:12px; font-size:13.5px; font-weight:600}
+  .fields label small{display:block; font-weight:400; color:var(--muted); font-size:12px}
+  .fields input,.fields textarea{margin-top:5px}
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+  .who2 .card h3{font-size:15px; margin-bottom:6px}
+  .who2 ul{margin:0; padding-left:1.2em; font-size:13.5px; color:var(--ink-soft)}
+  @media (max-width:420px){ .split{grid-template-columns:1fr} }
+
+  .toast{position:fixed; left:50%; bottom:90px; transform:translateX(-50%); background:var(--ink); color:var(--paper); padding:8px 16px; border-radius:999px; font-size:13px; opacity:0; transition:opacity .2s; pointer-events:none; z-index:9}
+  .toast.on{opacity:1}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+  @media (prefers-reduced-motion: reduce){ *{animation:none!important; transition:none!important} }
+  [hidden]{display:none!important}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="shop" id="topShop">読み込み中…</div>
+  <div class="row">
+    <button class="btn small" id="openBtn" type="button">店を選ぶ</button>
+    <input type="file" id="file" accept=".json,application/json" hidden>
+  </div>
+</header>
+
+<main class="wrap" id="view" aria-live="polite"></main>
+
+<nav class="tabs" aria-label="画面">
+  <div class="in" id="tabs" role="tablist"></div>
+</nav>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="../menu/core.js"></script>
+<script>
+(function(){
+  "use strict";
+  var M = window.KLMenu, esc = M.esc, pick = M.pick;
+  var PACK_KEY = "kyotolab-demo-pack";
+  var MEASURE_KEY = "kyotolab-demo-measure";
+
+  /* ---- 店頭の案内の項目（aipack の pop と同じ文） ---- */
+  var RULES = [
+    {k:"otoshi", ja:"席料として「お通し」（小鉢）が出ます。", en:"A small appetizer (otoshi) is served as a table charge.", zh:"入座時會提供小菜（お通し），作為座位費。", ko:"자리값으로 작은 안주(오토시)가 나옵니다."},
+    {k:"order", ja:"お一人さま1品1ドリンクのご注文をお願いします。", en:"Please order at least one dish and one drink per person.", zh:"每人請至少點一道菜和一杯飲料。", ko:"1인당 요리 1개, 음료 1잔 이상 주문해 주세요."},
+    {k:"time", ja:"混雑時のご利用は{n}分までです。", en:"When busy, seating is limited to {n} minutes.", zh:"客滿時用餐時間限{n}分鐘。", ko:"혼잡 시 이용 시간은 {n}분까지입니다."},
+    {k:"reserve", ja:"予約のお客さまが優先です。", en:"Guests with reservations are seated first.", zh:"有預約的客人優先入座。", ko:"예약 손님이 우선입니다."},
+    {k:"photo", ja:"料理の写真はどうぞ。ほかのお客さまと店員は撮らないでください。", en:"Feel free to photograph your food, but please do not photograph other guests or staff.", zh:"歡迎拍攝餐點，但請勿拍攝其他客人與店員。", ko:"음식 사진은 괜찮지만, 다른 손님과 직원은 찍지 말아 주세요."},
+    {k:"nophoto", ja:"店内の撮影はご遠慮ください。", en:"No photography inside, please.", zh:"店內請勿拍照。", ko:"가게 안에서는 촬영을 삼가 주세요."},
+    {k:"outside", ja:"外からの飲食物の持ち込みはできません。", en:"Outside food and drinks are not allowed.", zh:"禁止攜帶外食與飲料入內。", ko:"외부 음식과 음료는 반입할 수 없습니다."},
+    {k:"cash", ja:"お支払いは現金のみです。", en:"Cash only.", zh:"僅收現金。", ko:"현금만 받습니다."},
+    {k:"line", ja:"お待ちの方は、通りをふさがないよう一列にお並びください。", en:"If you are waiting, please form a single line and keep the street clear.", zh:"等候時請排成一列，不要擋住道路。", ko:"기다리실 때는 길을 막지 않도록 한 줄로 서 주세요."},
+    {k:"luggage", ja:"大きな荷物は置き場所が限られます。", en:"Space for large luggage is limited.", zh:"大型行李的放置空間有限。", ko:"큰 짐을 둘 공간이 부족합니다."},
+    {k:"smoke", ja:"店内は禁煙です。", en:"No smoking inside.", zh:"店內全面禁菸。", ko:"가게 안은 금연입니다."},
+    {k:"menu", ja:"多言語のメニューは、席のQRコードから見られます。", en:"Scan the QR code at your table for the menu in English, Chinese and Korean.", zh:"掃描座位上的QR碼即可查看中文菜單。", ko:"자리의 QR 코드로 한국어 메뉴를 볼 수 있습니다."}
+  ];
+
+  /* ---- 架空の店（デモ食堂）の口コミと投稿。メニューは ../menu/shops/demo.json ---- */
+  var DEMO_EXTRA = {
+    reviews: [
+      {lang:"en", stars:5,
+       text:"Found this little place near the station by accident. The yuba rice bowl was amazing and the staff were so kind even though we spoke no Japanese.",
+       ja:"駅の近くで偶然見つけた。湯葉の丼がとてもおいしく、日本語が話せなくても店員さんが親切だった。",
+       reply:"Thank you so much for finding us! We're happy the yuba bowl was a hit. Yuba is a Kyoto specialty, so if you come back, try it with our dashimaki on the side. We hope to see you again.",
+       replyJa:"見つけてくださってありがとうございます。湯葉の丼を気に入ってもらえてうれしいです。湯葉は京都の名物なので、次はだし巻きと一緒にどうぞ。またお待ちしています。"},
+      {lang:"en", stars:3,
+       text:"Food was good but we waited 40 minutes outside and nobody told us how long it would take.",
+       ja:"料理はよかったが、外で40分待った。どれくらいかかるか誰も教えてくれなかった。",
+       reply:"Thank you for your review, and we're sorry about the long wait. Lunch gets very busy between 12 and 1, so we've started giving waiting guests a rough time when they arrive. Coming a little before noon is usually quieter. We hope you'll give us another try.",
+       replyJa:"ありがとうございます。長くお待たせしてすみません。12時から13時は特に混むので、並んでいる方に目安の時間をお伝えするようにしました。正午より少し前は比較的空いています。またぜひお越しください。"},
+      {lang:"zh", stars:5,
+       text:"抹茶蕨餅很好吃！菜單有中文，點餐很方便。",
+       ja:"抹茶わらび餅がおいしい。メニューに中国語があって、注文しやすかった。",
+       reply:"感謝您的光臨與好評！很高興您喜歡抹茶蕨餅。下次也歡迎搭配熱的焙茶一起享用。期待您再次光臨。",
+       replyJa:"来てくださってありがとうございます。抹茶わらび餅を気に入ってもらえてうれしいです。次は温かいほうじ茶と一緒にどうぞ。またお待ちしています。"}
+    ]
+  };
+
+  var LANGS = M.LANGS;
+  var LANG_JA = {ja:"日本語", en:"英語", zh:"中国語", ko:"韓国語"};
+  var TABS = [
+    {k:"home", n:"はじめに"}, {k:"menu", n:"メニュー"}, {k:"review", n:"口コミ"},
+    {k:"sns", n:"SNS"}, {k:"pop", n:"店頭"}, {k:"measure", n:"測る"}
+  ];
+
+  var st = {tab:"home", pack:null, menuMode:"before", lang:"en", typing:null, postDish:"", rules:null, minutes:90};
+
+  /* ---- 読み込み ---- */
+  // 店ごとのファイルは2つの形を受ける: お品書きのJSONそのもの、または {menu, reviews, posts, rules}
+  function toPack(j){
+    if(!j || typeof j !== "object") throw new Error("形式");
+    var menu = j.menu ? j.menu : j;
+    if(!menu.dishes) throw new Error("料理がない");
+    return {
+      menu: M.normalize(menu),
+      reviews: j.reviews || [],
+      posts: j.posts || [],
+      rules: j.rules || null,
+      minutes: j.minutes || 90,
+      file: true
+    };
+  }
+
+  function loadDemo(){
+    return fetch("../menu/shops/demo.json", {cache:"no-cache"})
+      .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(j){
+        var p = toPack(j);
+        p.reviews = DEMO_EXTRA.reviews; p.file = false;
+        p.rules = ["order", "photo", "line", "menu"];
+        return p;
+      });
+  }
+
+  function start(){
+    var saved = null;
+    try{ saved = JSON.parse(localStorage.getItem(PACK_KEY)); }catch(e){}
+    if(saved){
+      try{ setPack(toPack(saved)); return; }catch(e){}
+    }
+    loadDemo().then(setPack).catch(function(){
+      view.innerHTML = '<div class="card">デモの店を読み込めませんでした。電波のあるところで開き直してください。</div>';
+    });
+  }
+
+  function setPack(p){
+    st.pack = p;
+    st.rules = p.rules || ["order", "photo", "menu"];
+    st.minutes = p.minutes || 90;
+    var rec = p.menu.dishes.filter(function(d){ return d.recommend; })[0] || p.menu.dishes[0];
+    st.postDish = rec ? rec.id : "";
+    var nm = pick(p.menu.shop.name, "ja");
+    document.getElementById("topShop").innerHTML = esc(nm) +
+      '<small>' + (p.file ? "この店のための見本" : "架空の店のデモ") + '</small>';
+    render();
+  }
+
+  var fileIn = document.getElementById("file");
+  document.getElementById("openBtn").addEventListener("click", function(){
+    var useDemo = st.pack && st.pack.file && confirm("デモの店に戻しますか？\n（キャンセルで、別の店のファイルを開きます）");
+    if(useDemo){
+      try{ localStorage.removeItem(PACK_KEY); }catch(e){}
+      loadDemo().then(setPack);
+      return;
+    }
+    fileIn.click();
+  });
+  fileIn.addEventListener("change", function(){
+    var f = fileIn.files && fileIn.files[0];
+    if(!f) return;
+    var rd = new FileReader();
+    rd.onload = function(){
+      try{
+        var j = JSON.parse(rd.result);
+        var p = toPack(j);
+        try{ localStorage.setItem(PACK_KEY, JSON.stringify(j)); }catch(e){}
+        st.tab = "home";
+        setPack(p);
+        toast("読み込みました");
+      }catch(e){ alert("このファイルは読めませんでした（" + e.message + "）"); }
+      fileIn.value = "";
+    };
+    rd.readAsText(f);
+  });
+
+  /* ---- 共通 ---- */
+  var view = document.getElementById("view");
+  var tabsEl = document.getElementById("tabs");
+  var toastEl = document.getElementById("toast"), toastT;
+  function toast(s){
+    toastEl.textContent = s; toastEl.classList.add("on");
+    clearTimeout(toastT); toastT = setTimeout(function(){ toastEl.classList.remove("on"); }, 1800);
+  }
+  function shopJa(){ return pick(st.pack.menu.shop.name, "ja"); }
+  function shopEn(){ return pick(st.pack.menu.shop.name, "en"); }
+  function dishById(id){ return st.pack.menu.dishes.filter(function(d){ return d.id === id; })[0]; }
+  function icon(d){ return M.ICONS[d && d.icon] || M.ICONS.donburi; }
+  function stars(n){ n = Math.max(0, Math.min(5, n || 0)); return "★★★★★".slice(0, n) + "☆☆☆☆☆".slice(0, 5 - n); }
+  function copy(text){
+    var done = function(){ toast("コピーしました"); };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done, function(){ fallbackCopy(text); done(); });
+    }else{ fallbackCopy(text); done(); }
+  }
+  function fallbackCopy(text){
+    var t = document.createElement("textarea"); t.value = text; document.body.appendChild(t);
+    t.select(); try{ document.execCommand("copy"); }catch(e){} t.remove();
+  }
+  function stopTyping(){ if(st.typing){ clearInterval(st.typing.timer); st.typing.finish(); st.typing = null; } }
+
+  // 下書きを1文字ずつ出す。タップで最後まで飛ばせる
+  function typeInto(el, text, onDone){
+    stopTyping();
+    var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var i = 0;
+    el.classList.add("caret");
+    function finish(){ el.textContent = text; el.classList.remove("caret"); if(onDone) onDone(); }
+    if(reduce){ finish(); return; }
+    var timer = setInterval(function(){
+      i += 2; el.textContent = text.slice(0, i);
+      if(i >= text.length){ clearInterval(timer); st.typing = null; finish(); }
+    }, 22);
+    st.typing = {timer:timer, finish:finish};
+    el.addEventListener("click", stopTyping, {once:true});
+  }
+
+  function aiLinks(prompt){
+    return '<div class="row" style="margin-top:10px">' +
+      '<button class="btn small" type="button" data-copy="' + esc(prompt) + '">指示文をコピー</button>' +
+      '<a class="btn small fill" target="_blank" rel="noopener" href="https://claude.ai/new?q=' + encodeURIComponent(prompt) + '">Claudeで開く</a>' +
+      '<a class="btn small" target="_blank" rel="noopener" href="https://chatgpt.com/?q=' + encodeURIComponent(prompt) + '">ChatGPTで開く</a>' +
+      '</div>';
+  }
+
+  /* ---- タブ ---- */
+  function renderTabs(){
+    tabsEl.innerHTML = TABS.map(function(t, i){
+      return '<button type="button" role="tab" data-tab="' + t.k + '" aria-selected="' + (st.tab === t.k) + '"><b>' + (i ? String(i).padStart(2, "0") : "—") + '</b>' + t.n + '</button>';
+    }).join("");
+  }
+  tabsEl.addEventListener("click", function(e){
+    var b = e.target.closest("[data-tab]"); if(!b) return;
+    go(b.getAttribute("data-tab"));
+  });
+  function go(k){ stopTyping(); st.tab = k; render(); window.scrollTo(0, 0); }
+
+  function render(){
+    if(!st.pack) return;
+    renderTabs();
+    ({home:home, menu:menuView, review:reviewView, sns:snsView, pop:popView, measure:measureView})[st.tab]();
+  }
+
+  /* ---- 00 はじめに ---- */
+  function home(){
+    var items = [
+      {k:"menu", n:"01", h:"メニューが4か国語に", p:"英語・中国語・韓国語。アレルギーも一緒に出ます。"},
+      {k:"review", n:"02", h:"口コミの返信を下書き", p:"外国語の口コミにも、同じ言葉で返せます。"},
+      {k:"sns", n:"03", h:"SNSの投稿を下書き", p:"今日のおすすめを英語と日本語で。"},
+      {k:"pop", n:"04", h:"店のきまりを4か国語で", p:"お通し、撮影、時間制限。口で説明しなくていい。"},
+      {k:"measure", n:"05", h:"いまの手間を測っておく", p:"入れる前と後で、何が減ったかを数字で見ます。"}
+    ];
+    view.innerHTML = '<div class="hero">' +
+      '<span class="label">京都ラボ ／ AI導入デモ</span>' +
+      '<h1>' + esc(shopJa()) + 'さんの場合、<br>AIでここが軽くなります。</h1>' +
+      '<p>外国のお客さんの説明、口コミの返事、SNS。どれも大事だけど、営業しながらだと手が回らないところです。そこをAIに下書きさせて、店は確かめて出すだけにします。</p>' +
+      '</div>' +
+      '<div class="menu4">' + items.map(function(t){
+        return '<button type="button" data-tab="' + t.k + '"><span class="num">' + t.n + '</span><span><h3>' + t.h + '</h3><p>' + t.p + '</p></span><i aria-hidden="true">›</i></button>';
+      }).join("") + '</div>' +
+      '<div class="split who2" style="margin-top:18px">' +
+        '<div class="card"><h3>店がやること</h3><ul><li>下書きを読んで、よければ出す</li><li>直したいところは口で言う</li></ul></div>' +
+        '<div class="card"><h3>京都ラボがやること</h3><ul><li>メニューの翻訳と更新</li><li>口コミとSNSの下書き</li><li>月1回、数字の報告</li></ul></div>' +
+      '</div>' +
+      (st.pack.file ? '<p class="note" style="margin-top:14px">この画面は、京都ラボが公開されている情報から作った見本です。料理や値段は今と違うことがあります。</p>'
+                    : '<p class="note" style="margin-top:14px">いまは架空の店で見ています。上の「店を選ぶ」から、その店の見本ファイルを開けます。</p>');
+    view.querySelectorAll("[data-tab]").forEach(function(b){ b.addEventListener("click", function(){ go(b.getAttribute("data-tab")); }); });
+  }
+
+  /* ---- 01 メニュー ---- */
+  function menuView(){
+    var m = st.pack.menu, before = st.menuMode === "before";
+    var html = '<div class="stack">' +
+      '<div><span class="label">01 ／ メニュー</span><h2 style="font-size:21px;margin-top:4px">同じお品書きが、お客さんの言葉で出る</h2></div>' +
+      '<div class="seg" role="group"><button type="button" data-mode="before" aria-pressed="' + before + '">いま</button><button type="button" data-mode="after" aria-pressed="' + !before + '">AIを入れたあと</button></div>';
+    if(before){
+      html += '<div class="board"><div class="bt">お品書き</div><ul>' + m.dishes.slice(0, 10).map(function(d){
+        return '<li><span>' + esc(pick(d.name, "ja")) + '</span><span>' + d.price + '円</span></li>';
+      }).join("") + '</ul></div>' +
+      '<div class="bubble">「What is this?」「Is there fish in it?」<br>1品ずつ聞かれて、そのたびに説明している。</div>';
+    }else{
+      html += '<div class="langs" role="group">' + LANGS.filter(function(l){ return l.k !== "ja"; }).concat([LANGS[0]]).map(function(l){
+        return '<button type="button" data-lang="' + l.k + '" aria-pressed="' + (st.lang === l.k) + '">' + l.n + '</button>';
+      }).join("") + '</div>' +
+      '<div class="card" lang="' + st.lang + '">' + m.dishes.map(function(d){
+        var al = d.allergens.map(function(k){
+          var a = M.ALLERGENS.filter(function(x){ return x.k === k; })[0]; return a ? (a[st.lang] || a.en) : k;
+        });
+        return '<div class="dish">' + icon(d) + '<div>' +
+          '<div class="nm"><span>' + esc(pick(d.name, st.lang)) + (d.recommend ? '<span class="rec">' + (st.lang === "ja" ? "おすすめ" : st.lang === "zh" ? "推薦" : st.lang === "ko" ? "추천" : "Pick") + '</span>' : '') + '</span><span>' + M.yen(d.price) + '</span></div>' +
+          (pick(d.desc, st.lang) ? '<div class="ds">' + esc(pick(d.desc, st.lang)) + '</div>' : '') +
+          (al.length ? '<div class="al">⚠ ' + esc(al.join(" · ")) + '</div>' : '') +
+          '</div></div>';
+      }).join("") + '</div>' +
+      '<p class="note">お客さんは席のQRから開くだけ。アプリはいりません。料理や値段を1か所直せば、4か国語ぜんぶが変わります。</p>' +
+      (st.pack.file ? '' : '<a class="btn" href="../menu/app/?shop=demo" target="_blank" rel="noopener">お客さんの画面で開く ›</a>');
+    }
+    if(pick(m.shop.notice, "ja")) html += '<p class="note">' + esc(pick(m.shop.notice, "ja")) + '</p>';
+    html += '</div>';
+    view.innerHTML = html;
+    view.querySelectorAll("[data-mode]").forEach(function(b){ b.addEventListener("click", function(){ st.menuMode = b.getAttribute("data-mode"); menuView(); }); });
+    view.querySelectorAll("[data-lang]").forEach(function(b){ b.addEventListener("click", function(){ st.lang = b.getAttribute("data-lang"); menuView(); }); });
+  }
+
+  /* ---- 02 口コミ ---- */
+  function reviewPrompt(text){
+    return "あなたは京都の飲食店「" + shopJa() + "」の店主の代わりに、口コミへの返信の下書きを書きます。\n" +
+      "- 返信は口コミと同じ言語で、3〜4文。最後に日本語訳をつける\n" +
+      "- 悪い口コミには謝ってから、事実と次にどうするかだけを書く。言い訳はしない\n" +
+      "- 値段、営業時間、割引の約束は書かない\n" +
+      "- 店の料理名は店の呼び方に揃える\n\n口コミ:\n" + (text || "（ここに口コミを貼る）");
+  }
+
+  function reviewView(){
+    var rs = st.pack.reviews;
+    var html = '<div class="stack">' +
+      '<div><span class="label">02 ／ 口コミ</span><h2 style="font-size:21px;margin-top:4px">外国語の口コミに、同じ言葉で返す</h2>' +
+      '<p class="note" style="margin-top:6px">返事のある店は、次のお客さんが選びやすい。でも英語や中国語で書くのは手間です。下書きはAIが作って、店は日本語の訳を読んで出すだけ。</p></div>';
+    if(rs.length){
+      html += rs.map(function(r, i){
+        return '<div class="card rv">' +
+          '<div class="meta">' + (r.stars ? '<span class="stars" aria-label="5点中' + r.stars + '点">' + stars(r.stars) + '</span>' : '<span></span>') + '<span>' + (LANG_JA[r.lang] || "") + 'の口コミ' + (r.summary ? '（要約）' : '') + '</span></div>' +
+          '<div class="body" lang="' + esc(r.summary ? "ja" : (r.lang || "")) + '">' + esc(r.text) + '</div>' +
+          (r.ja && r.lang !== "ja" ? '<div class="ja">訳：' + esc(r.ja) + '</div>' : '') +
+          '<div data-out="' + i + '"><button class="btn small fill" type="button" data-draft="' + i + '" style="margin-top:10px">返信の下書きを見る</button></div>' +
+          '</div>';
+      }).join("") +
+      '<p class="note">上の下書きは、前もってAIで作っておいた例です。</p>';
+    }else{
+      html += '<div class="card"><p class="note">この店の口コミはまだ入っていません。下で、その場で本物の口コミを試せます。</p></div>';
+    }
+    html += '<div class="card"><span class="label">その場で試す</span>' +
+      '<h3 style="font-size:16px;margin:4px 0 8px">店の本物の口コミを貼ってみる</h3>' +
+      '<textarea id="realRv" placeholder="Googleマップの口コミをコピーして、ここに貼る"></textarea>' +
+      '<div id="realLinks"></div>' +
+      '<p class="note" style="margin-top:8px">ボタンを押すと、指示文と口コミを入れたAIのアプリが開きます。AIの返事はそのまま出さず、店主と読んでから使います。</p></div></div>';
+    view.innerHTML = html;
+
+    view.querySelectorAll("[data-draft]").forEach(function(b){
+      b.addEventListener("click", function(){
+        var i = +b.getAttribute("data-draft"), r = rs[i];
+        var out = view.querySelector('[data-out="' + i + '"]');
+        out.innerHTML = '<div class="draft"><div class="who">返信の下書き</div><div class="tx" lang="' + esc(r.lang || "") + '"></div><div class="tr" hidden>訳：' + esc(r.replyJa || "") + '</div></div>';
+        typeInto(out.querySelector(".tx"), r.reply || "", function(){
+          if(r.replyJa && r.lang !== "ja") out.querySelector(".tr").hidden = false;
+        });
+      });
+    });
+    var ta = document.getElementById("realRv"), links = document.getElementById("realLinks");
+    function upd(){ links.innerHTML = aiLinks(reviewPrompt(ta.value.trim())); bindCopy(links); }
+    ta.addEventListener("input", upd); upd();
+  }
+
+  function bindCopy(root){
+    root.querySelectorAll("[data-copy]").forEach(function(b){
+      b.addEventListener("click", function(){ copy(b.getAttribute("data-copy")); });
+    });
+  }
+
+  /* ---- 03 SNS ---- */
+  function postFor(d){
+    var given = st.pack.posts.filter(function(p){ return p.dish === d.id; })[0];
+    if(given) return given;
+    var descEn = pick(d.desc, "en"), descJa = pick(d.desc, "ja");
+    return {
+      en: "Today's pick at " + shopEn() + ": " + pick(d.name, "en") + ".\n" + (descEn ? descEn + "\n" : "") +
+          "\nMenus in English, 中文 and 한국어. Just scan the QR at your table.\n\n#Kyoto #KyotoFood #KyotoEats #JapaneseFood #VisitKyoto",
+      ja: "今日のおすすめは「" + pick(d.name, "ja") + "」。" + (descJa ? descJa : "") +
+          "\n英語・中国語・韓国語のメニューもあります。席のQRからどうぞ。\n\n#京都グルメ #京都ごはん #京都"
+    };
+  }
+
+  function snsView(){
+    var ds = st.pack.menu.dishes, d = dishById(st.postDish) || ds[0];
+    var html = '<div class="stack">' +
+      '<div><span class="label">03 ／ SNS</span><h2 style="font-size:21px;margin-top:4px">料理を選ぶと、投稿の文ができる</h2>' +
+      '<p class="note" style="margin-top:6px">写真は店で撮るだけ。文とハッシュタグは英語と日本語で下書きします。</p></div>' +
+      '<label class="note" for="dishSel">どの料理にしますか</label>' +
+      '<select id="dishSel">' + ds.map(function(x){ return '<option value="' + esc(x.id) + '"' + (x.id === d.id ? " selected" : "") + '>' + esc(pick(x.name, "ja")) + '</option>'; }).join("") + '</select>' +
+      '<div class="seg" role="group"><button type="button" data-pl="en" aria-pressed="true">英語</button><button type="button" data-pl="ja" aria-pressed="false">日本語</button></div>' +
+      '<div class="ig"><div class="hd"><span class="av">' + esc(shopJa().slice(0, 1)) + '</span>' + esc(shopEn()) + '</div>' +
+      '<div class="ph">' + icon(d) + '</div><div class="cap" id="cap"></div></div>' +
+      '<div class="row"><button class="btn small" type="button" id="capCopy">文をコピー</button></div>' +
+      '<p class="note">' + (st.pack.posts.length ? "" : "この文は料理の説明から作った見本です。") + 'ほかの書き方がほしいときは、その場でAIに頼めます。</p>' +
+      '<div id="snsLinks"></div></div>';
+    view.innerHTML = html;
+    var post = postFor(d), pl = "en", cap = document.getElementById("cap");
+    function show(){ typeInto(cap, post[pl] || ""); }
+    show();
+    document.getElementById("dishSel").addEventListener("change", function(){ st.postDish = this.value; snsView(); });
+    view.querySelectorAll("[data-pl]").forEach(function(b){
+      b.addEventListener("click", function(){
+        pl = b.getAttribute("data-pl");
+        view.querySelectorAll("[data-pl]").forEach(function(x){ x.setAttribute("aria-pressed", x === b); });
+        show();
+      });
+    });
+    document.getElementById("capCopy").addEventListener("click", function(){ copy(post[pl] || ""); });
+    var prompt = "京都の飲食店「" + shopJa() + "」のInstagram投稿の文を書いてください。\n" +
+      "- 料理: " + pick(d.name, "ja") + "（" + pick(d.desc, "ja") + "）\n" +
+      "- 読む人は京都に来る外国人観光客。英語を先に、そのあと短い日本語\n" +
+      "- 3〜4文。くだけた、話しかけるような調子。大げさな言葉は使わない\n" +
+      "- 値段、営業時間、割引は書かない\n- 最後にハッシュタグを5つ";
+    var sl = document.getElementById("snsLinks"); sl.innerHTML = aiLinks(prompt); bindCopy(sl);
+  }
+
+  /* ---- 04 店頭の案内 ---- */
+  function ruleText(r, lang){ return r[lang].replace("{n}", st.minutes); }
+  function popView(){
+    var on = st.rules;
+    var html = '<div class="stack">' +
+      '<div><span class="label">04 ／ 店頭</span><h2 style="font-size:21px;margin-top:4px">店のきまりを、4か国語の案内に</h2>' +
+      '<p class="note" style="margin-top:6px">お通しや時間制限は、知らないと揉めるところ。入口とテーブルに貼っておけば、説明しなくて済みます。</p></div>' +
+      '<div class="card rules">' + RULES.map(function(r){
+        return '<label><input type="checkbox" data-rule="' + r.k + '"' + (on.indexOf(r.k) > -1 ? " checked" : "") + '><span>' + (r.k === "time"
+          ? '混雑時のご利用は <input type="number" id="mins" min="15" max="240" step="15" value="' + st.minutes + '" style="width:76px;padding:3px 6px" aria-label="分"> 分までです。'
+          : esc(r.ja)) + '</span></label>';
+      }).join("") + '</div>' +
+      '<div class="pop" id="pop"></div>' +
+      '<p class="note">印刷用（A4）は京都ラボが店に合わせて作ります。</p></div>';
+    view.innerHTML = html;
+    function drawPop(){
+      var sel = RULES.filter(function(r){ return st.rules.indexOf(r.k) > -1; });
+      document.getElementById("pop").innerHTML = '<div class="pt">' + esc(shopJa()) + ' ／ House rules</div>' +
+        (sel.length ? sel.map(function(r){
+          return '<div class="it"><b>' + esc(ruleText(r, "ja")) + '</b><span lang="en">' + esc(ruleText(r, "en")) + '</span><span lang="zh">' + esc(ruleText(r, "zh")) + '</span><span lang="ko">' + esc(ruleText(r, "ko")) + '</span></div>';
+        }).join("") : '<div class="it">上で項目を選んでください</div>');
+    }
+    drawPop();
+    view.querySelectorAll("[data-rule]").forEach(function(c){
+      c.addEventListener("change", function(){
+        var k = c.getAttribute("data-rule");
+        st.rules = st.rules.filter(function(x){ return x !== k; });
+        if(c.checked) st.rules.push(k);
+        drawPop();
+      });
+    });
+    var mins = document.getElementById("mins");
+    mins.addEventListener("click", function(e){ e.preventDefault(); });
+    mins.addEventListener("input", function(){ st.minutes = Math.max(15, Math.min(240, +mins.value || 90)); drawPop(); });
+  }
+
+  /* ---- 05 測る ---- */
+  var FIELDS = [
+    {k:"explain", n:"メニューの説明にかかる時間", u:"1組あたり 分", t:"number"},
+    {k:"groups", n:"外国のお客さん", u:"1日 何組くらい", t:"number"},
+    {k:"reviews", n:"Googleマップの外国語の口コミ", u:"件数", t:"number"},
+    {k:"rating", n:"Googleマップの評価", u:"例: 4.3", t:"text"},
+    {k:"replied", n:"返信している口コミ", u:"だいたい何割", t:"text"},
+    {k:"mistakes", n:"注文の聞き間違い", u:"1か月に 何回くらい", t:"number"},
+    {k:"hard", n:"いちばん手間なこと", u:"店主のことばのまま", t:"area"}
+  ];
+  function measureId(){ return st.pack.menu.id || (st.pack.file ? "shop" : "demo"); }
+  function readMeasure(){
+    try{ return (JSON.parse(localStorage.getItem(MEASURE_KEY)) || {})[measureId()] || {}; }catch(e){ return {}; }
+  }
+  function saveMeasure(v){
+    try{
+      var all = JSON.parse(localStorage.getItem(MEASURE_KEY)) || {};
+      all[measureId()] = v; localStorage.setItem(MEASURE_KEY, JSON.stringify(all));
+    }catch(e){}
+  }
+  function measureView(){
+    var v = readMeasure();
+    var html = '<div class="stack">' +
+      '<div><span class="label">05 ／ 測る</span><h2 style="font-size:21px;margin-top:4px">入れる前に、いまの手間を測っておく</h2>' +
+      '<p class="note" style="margin-top:6px">AIを入れて何が減ったかは、前の数字がないと分かりません。店主に聞きながら埋めてください。だいたいで大丈夫です。</p></div>' +
+      '<div class="card fields">' + FIELDS.map(function(f){
+        var val = esc(v[f.k] || "");
+        return '<label for="m-' + f.k + '">' + f.n + '<small>' + f.u + '</small></label>' +
+          (f.t === "area" ? '<textarea id="m-' + f.k + '" data-m="' + f.k + '" style="min-height:80px">' + val + '</textarea>'
+                          : '<input id="m-' + f.k + '" data-m="' + f.k + '" type="' + f.t + '" inputmode="' + (f.t === "number" ? "decimal" : "text") + '" value="' + val + '">');
+      }).join("") + '</div>' +
+      '<div class="row"><button class="btn fill" type="button" id="mCopy">まとめてコピー</button><button class="btn" type="button" id="mClear">消す</button></div>' +
+      '<p class="note">入れた数字はこのスマホの中だけに残ります。コピーして京都ラボの記録に貼ってください。</p></div>';
+    view.innerHTML = html;
+    view.querySelectorAll("[data-m]").forEach(function(el){
+      el.addEventListener("input", function(){ v[el.getAttribute("data-m")] = el.value; v.date = new Date().toISOString().slice(0, 10); saveMeasure(v); });
+    });
+    document.getElementById("mCopy").addEventListener("click", function(){
+      copy("【導入前の数字】" + shopJa() + "（" + (v.date || new Date().toISOString().slice(0, 10)) + "）\n" +
+        FIELDS.map(function(f){ return "- " + f.n + "（" + f.u + "）: " + (v[f.k] || "未記入"); }).join("\n"));
+    });
+    document.getElementById("mClear").addEventListener("click", function(){
+      if(!confirm("この店の数字を消しますか？")) return;
+      saveMeasure({}); measureView();
+    });
+  }
+
+  start();
+})();
+</script>
+</body>
+</html>
