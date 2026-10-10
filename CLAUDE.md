@@ -27,7 +27,8 @@
 | `tools/sento/` | デモ: 銭湯の入り方を9手順・4言語で案内 |
 | `assets/` | 画像。`<名前>.jpg`（1600px幅）と、カード用の `<名前>@700.jpg` |
 | `console/` | 記事管理と Medium 投稿のツールの雛形（PyQt6）。中身はまだない。Medium の API は使えないので（下の「SNS」）、Medium への投稿はここではできない |
-| `social/instagram/<slug>.txt` | Instagram の投稿文。`main` に入ると自動で投稿される |
+| `social/instagram/<slug>.txt` | Instagram の投稿文。`main` に入ると自動で投稿される。`date:` を書くと、その日の朝7時（日本時間）に出る |
+| `social/instagram/slides/<slug>.json` | カルーセル（スワイプで見る複数枚）の文字。`python3 social/slides.py <json>` で `assets/ig/<slug>/1.jpg` … を作る |
 | `social/note/<slug>.txt` | note に手で貼る本文 |
 | `social/instagram.py` | Instagram の投稿文の確認、投稿、トークンの更新 |
 | `.github/workflows/` | Instagram への投稿（`instagram.yml`）と、トークンの更新（`instagram-token.yml`） |
@@ -67,6 +68,9 @@
 SNS の目的は集客。主な相手は日本人より外国人観光客で、Instagram でファンを増やし、英語の記事を経て Medium（と note）の有料記事へ誘導する（2026-09-25 にオーナーが決めた）。そのため Instagram の投稿文は英語を先に書き、プロフィールのリンクは英語トップに向ける。
 
 - Instagram: `social/instagram/` に投稿文を足した PR が `main` に入ると、GitHub Actions が投稿する。投稿は取り消せない。
+  - 1枚の絵より、カルーセルのほうがフォロワー以外に届く（2026-10-10 に決めた）。新しい投稿は `images:` のカルーセルにする。
+  - まとめて出すと食い合うので、`date:` で1日1本ずつ予約する。毎日 22:00 UTC（日本時間7時）の定期実行がその日の分を出す。同じキャプションは二度出さない。
+  - 投稿文は英語のあとに日本語を続ける形のまま（2026-10-10 にオーナーが決めた）。ハッシュタグは5個まで。
   - GitHub の Secrets に `IG_ACCESS_TOKEN`（Instagram ログインの長期トークン）を入れる。トークンは60日で切れるので、`instagram-token.yml` が毎月1日と15日に期限を延ばす。
   - 延ばしたときに新しい文字列が返ってきたら、`SECRETS_PAT`（このリポジトリの Secrets を書き換えられる fine-grained token）で保存する。`SECRETS_PAT` がなければワークフローが失敗するので、トークンを取り直す。
   - 手で動かすときは、Actions の「Instagram」から Run workflow。既定では投稿の直前まで確かめるだけで、投稿しない。パスを空にすると、トークンが使えるかだけを見る。
