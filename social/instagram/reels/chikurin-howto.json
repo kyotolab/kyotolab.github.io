@@ -1,0 +1,7 @@
+{"scenes": [
+ {"image": "assets/chikurin.jpg", "label": "KYOTO SPOT GUIDE", "head": "Arashiyama Bamboo Grove: get there before 8", "seconds": 3},
+ {"label": "01  WHEN TO GO", "head": "Quiet: 7 to 8 a.m.", "body": "Busy from about 8 a.m., when the path turns into a slow line.", "seconds": 3.5},
+ {"label": "02  OPEN", "head": "Always open, and free", "body": "No gate, no ticket. Whoever arrives early wins.", "seconds": 3},
+ {"label": "03  TIP", "head": "Take your photos while it is quiet", "body": "At busy times, stopping on the narrow path blocks everyone behind you.", "seconds": 3.5},
+ {"label": "SAVE THIS", "head": "Send it to your Kyoto travel buddy.", "body": "Full guide: link in bio.", "seconds": 2.5}
+]}
