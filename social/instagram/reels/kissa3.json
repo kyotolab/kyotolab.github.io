@@ -1,0 +1,10 @@
+{
+  "scenes": [
+    {"image": "assets/ig/kissa3/hook.jpg", "label": "KYOTO KISSATEN", "head": "3 old coffee houses in Kyoto", "body": "Older than your grandparents. Still pouring.", "seconds": 3},
+    {"image": "assets/ig/kissa3/smart.jpg", "label": "01  SMART COFFEE", "head": "Hotcakes in a coffee house from 1932", "body": "On Teramachi, near Sanjo. Expect a line on weekends.", "seconds": 4},
+    {"image": "assets/ig/kissa3/rokuyosha.jpg", "label": "02  ROKUYOSHA", "head": "Coffee and a homemade donut, downstairs", "body": "A post-war coffee house on Kawaramachi-Sanjo. The basement is closed on Wednesdays.", "seconds": 4},
+    {"image": "assets/ig/kissa3/francois.jpg", "label": "03  FRANCOIS", "head": "A 1934 coffee house that is a cultural property", "body": "Arches and red velvet, like a ship's lounge. Near Shijo, by the Takase River.", "seconds": 4},
+    {"label": "BEFORE YOU GO", "head": "Go on a weekday morning.", "body": "Weekends bring lines. Hours change, so check each shop before you go.", "seconds": 3},
+    {"label": "SAVE THIS", "head": "Send it to your coffee buddy.", "body": "More Kyoto guides: link in bio.", "seconds": 2.5}
+  ]
+}
