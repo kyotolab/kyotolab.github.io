@@ -1,0 +1,44 @@
+{
+  "scenes": [
+    {
+      "image": "assets/ig/sento3/hook.jpg",
+      "label": "KYOTO SENTO SAUNA",
+      "head": "3 bathhouse saunas in Kyoto",
+      "body": "Entry is 550 yen. No booking. Just bring a towel.",
+      "seconds": 3
+    },
+    {
+      "image": "assets/ig/sento3/miyako.jpg",
+      "label": "01  MIYAKO-YU SHIMABARA",
+      "head": "Two cold baths: 18°C and a gentle 20–25°C",
+      "body": "Good if cold plunges scare you. 15:00–1:00, closed Wed.",
+      "seconds": 4
+    },
+    {
+      "image": "assets/ig/sento3/goko.jpg",
+      "label": "02  GOKOU-YU",
+      "head": "A sauna inside a sauna: 85°C, then 110°C",
+      "body": "Warm up in the first room. Open the inner door if you dare. Closed Mon and 3rd Tue.",
+      "seconds": 4
+    },
+    {
+      "image": "assets/ig/sento3/ume.jpg",
+      "label": "03  SAUNA NO UMEYU",
+      "head": "The easiest first sento",
+      "body": "100°C sauna, two cold baths, by the Takase River. Closed Thu.",
+      "seconds": 4
+    },
+    {
+      "label": "BEFORE YOU GO",
+      "head": "Wash first. Keep your towel out of the bath.",
+      "body": "Hours change, so check each bath before you go.",
+      "seconds": 3
+    },
+    {
+      "label": "SAVE THIS",
+      "head": "Send it to your sauna buddy.",
+      "body": "Full guide: link in bio.",
+      "seconds": 2.5
+    }
+  ]
+}

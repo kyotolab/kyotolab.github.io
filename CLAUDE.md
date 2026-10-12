@@ -29,6 +29,7 @@
 | `console/` | 記事管理と Medium 投稿のツールの雛形（PyQt6）。中身はまだない。Medium の API は使えないので（下の「SNS」）、Medium への投稿はここではできない |
 | `social/instagram/<slug>.txt` | Instagram の投稿文。`main` に入ると自動で投稿される。`date:` を書くと、その日の朝7時（日本時間）に出る |
 | `social/instagram/slides/<slug>.json` | カルーセル（スワイプで見る複数枚）の文字。`python3 social/slides.py <json>` で `assets/ig/<slug>/1.jpg` … を作る |
+| `social/instagram/reels/<slug>.json` | リール（縦長の短い動画）の場面。`python3 social/reel.py <json>` で `assets/ig/<slug>/reel.mp4` と表紙の `cover.jpg` を作る（ffmpeg が要る）。投稿文には `video:` で書く |
 | `social/note/<slug>.txt` | note に手で貼る本文 |
 | `social/instagram.py` | Instagram の投稿文の確認、投稿、トークンの更新 |
 | `.github/workflows/` | Instagram への投稿（`instagram.yml`）と、トークンの更新（`instagram-token.yml`） |

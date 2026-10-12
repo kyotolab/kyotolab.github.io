@@ -17,6 +17,11 @@
 
     images: assets/ig/kamogawa/1.jpg, assets/ig/kamogawa/2.jpg
 
+リール（縦長の短い動画）にするときは、video: に MP4 を書く。動画は social/reel.py で作る。
+同じフォルダに cover.jpg があれば、それを表紙にする。
+
+    video: assets/ig/kamogawa/reel.mp4
+
 date: を書いた投稿文は、main に入ってもその日まで出ない。その日の朝7時（日本時間）に
 毎日の定期実行（due）が投稿する。1日1本ずつ、日をずらして並べる。その日を過ぎてから main に
 入ったものは、入ったときに出る。同じキャプションがもう投稿されていたら、二度は出さない。
@@ -55,6 +60,7 @@ MIN_RATIO, MAX_RATIO = 4 / 5, 1.91
 MAX_CAPTION = 2200
 MAX_HASHTAGS = 5  # 2025年12月から、1投稿5個まで
 MAX_SLIDES = 10
+MAX_VIDEO_BYTES = 300 * 1024 * 1024
 JST = datetime.timezone(datetime.timedelta(hours=9))
 MAX_MENTIONS = 20
 
@@ -106,19 +112,23 @@ def load(name):
         if not colon:
             raise Fail(f"読めない行: {line}")
         fields[key.strip()] = value.strip()
-    unknown = sorted(set(fields) - {"image", "images", "date"})
+    unknown = sorted(set(fields) - {"image", "images", "video", "date"})
     if unknown:
         raise Fail(f"知らない項目: {', '.join(unknown)}")
-    if fields.get("image") and fields.get("images"):
-        raise Fail("image: と images: は、どちらか一つにする")
-    if fields.get("images"):
+    if sum(bool(fields.get(k)) for k in ("image", "images", "video")) > 1:
+        raise Fail("image: と images: と video: は、どれか一つにする")
+    if fields.get("video"):
+        if not fields["video"].endswith(".mp4"):
+            raise Fail("video: は .mp4 にする")
+        images = [fields["video"]]
+    elif fields.get("images"):
         images = [s.strip() for s in fields["images"].split(",") if s.strip()]
         if not 2 <= len(images) <= MAX_SLIDES:
             raise Fail(f"images: は2枚から{MAX_SLIDES}枚。いまは {len(images)} 枚")
     elif fields.get("image"):
         images = [fields["image"]]
     else:
-        raise Fail("image: か images: がない")
+        raise Fail("image: か images: か video: がない")
     date = None
     if "date" in fields:
         try:
@@ -132,13 +142,26 @@ def problems(images, caption):
     """(エラーの一覧, 注意の一覧) を返す。"""
     errors, warnings = [], []
     for image in images:
-        image_problems(image, errors, warnings)
+        if image.endswith(".mp4"):
+            video_problems(image, errors)
+        else:
+            image_problems(image, errors, warnings)
     if len(images) > 1:
         sizes = {jpeg_size((ROOT / i).read_bytes()) for i in images if (ROOT / i).is_file()}
         if len(sizes) > 1:
             errors.append("カルーセルの画像の大きさがそろっていない")
     caption_problems(caption, errors, warnings)
     return errors, warnings
+
+
+def video_problems(video, errors):
+    path = (ROOT / video).resolve()
+    if ROOT not in path.parents or not path.is_file():
+        errors.append(f"動画がない: {video}")
+    elif path.stat().st_size > MAX_VIDEO_BYTES:
+        errors.append(f"動画が {path.stat().st_size // 1024 // 1024}MB。300MB 以下にする")
+    elif path.read_bytes()[4:8] != b"ftyp":
+        errors.append(f"MP4 ではない: {video}")
 
 
 def image_problems(image, errors, warnings):
@@ -244,12 +267,13 @@ def post_form(path, **params):
 
 
 def wait_for_image(url, timeout=600):
-    """GitHub Pages に画像が出るのを待つ。記事と同じPRで足した画像は、デプロイが終わるまで 404 になる。"""
+    """GitHub Pages に画像（か動画）が出るのを待つ。同じPRで足したものは、デプロイが終わるまで 404 になる。"""
+    kind = "video/mp4" if url.endswith(".mp4") else "image/jpeg"
     deadline = time.time() + timeout
     while True:
         try:
             with urllib.request.urlopen(urllib.request.Request(url, method="HEAD"), timeout=30) as res:
-                if res.headers.get("Content-Type", "").startswith("image/jpeg"):
+                if res.headers.get("Content-Type", "").startswith(kind):
                     return
         except urllib.error.URLError:
             pass
@@ -263,6 +287,15 @@ def container_for(user, images, caption):
     urls = [f"{SITE}/{urllib.parse.quote(i, safe='/@')}" for i in images]
     for url in urls:
         wait_for_image(url)
+    if images[0].endswith(".mp4"):
+        params = dict(media_type="REELS", video_url=urls[0], caption=caption, share_to_feed="true")
+        cover = Path(images[0]).with_name("cover.jpg").as_posix()
+        if (ROOT / cover).is_file():
+            params["cover_url"] = f"{SITE}/{urllib.parse.quote(cover, safe='/@')}"
+            wait_for_image(params["cover_url"])
+        container = post_form(f"{user}/media", **params)["id"]
+        wait_for_container(container, timeout=900)
+        return container
     if len(urls) == 1:
         container = post_form(f"{user}/media", image_url=urls[0], caption=caption)["id"]
     else:
@@ -284,7 +317,7 @@ def wait_for_container(container, timeout=120):
         if code == "FINISHED":
             return
         if code in ("ERROR", "EXPIRED"):
-            raise Fail(f"Instagram が画像を受け付けなかった: {res.get('status') or code}")
+            raise Fail(f"Instagram が画像か動画を受け付けなかった: {res.get('status') or code}")
         if time.time() > deadline:
             raise Fail(f"Instagram の処理が {timeout} 秒で終わらなかった（{code}）")
         time.sleep(5)
