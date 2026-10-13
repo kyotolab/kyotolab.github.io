@@ -1,0 +1,43 @@
+{
+  "style": "photo",
+  "scenes": [
+    {
+      "image": "assets/ig/kissa3-photo/smart.jpg",
+      "label": "KYOTO KISSATEN",
+      "head": "3 old coffee houses in Kyoto",
+      "body": "Slow coffee, wood and brick, no rush.",
+      "seconds": 2.5
+    },
+    {
+      "image": "assets/ig/kissa3-photo/smart.jpg",
+      "label": "01  SMART COFFEE",
+      "head": "Hotcakes since 1932",
+      "body": "On Teramachi, near Sanjo. Weekends mean a line.",
+      "seconds": 2.5
+    },
+    {
+      "image": "assets/ig/kissa3-photo/rokuyosha.jpg",
+      "label": "02  ROKUYOSHA",
+      "head": "Coffee and a homemade donut, downstairs",
+      "body": "Kawaramachi-Sanjo. The basement is closed on Wednesdays.",
+      "seconds": 2.5
+    },
+    {
+      "image": "assets/ig/kissa3-photo/francois.jpg",
+      "label": "03  FRANCOIS",
+      "head": "Open since 1934. A national cultural property.",
+      "body": "Near Shijo, by the Takase River.",
+      "seconds": 2.5
+    },
+    {
+      "label": "BEFORE YOU GO",
+      "head": "Go on a weekday morning.",
+      "seconds": 2
+    },
+    {
+      "label": "SAVE THIS",
+      "head": "Send it to your coffee buddy.",
+      "seconds": 1.5
+    }
+  ]
+}
