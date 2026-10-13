@@ -17,6 +17,7 @@ image のない場面は白地に文字だけ。音は入れない（無音の�
 "style": "photo" にすると、写真を主役にした形になる。ぼかした写真を背景に敷き、
 写真を幅いっぱいに置いてゆっくり寄せ、白い大きな文字を上に重ねる。場面は溶かさずに切り替える。
 旅行のリールでよく見る形で、最初の1枚目で何の話かが分かるようにする。
+縦に長い写真は、"max_h"（既定880）の高さまで上下を切る。"focus_y"（0〜1、既定0.5）で、残す位置を上下に寄せられる。
 
 "style": "video" にすると、撮った動画を縦長に編集する。動画は4:5に切り、ぼかした自分自身を背景に敷いて、
 上に大きな文字を時間に合わせて重ねる。元の音は使わず、無音のトラックを付ける（人の声が入るため）。
@@ -100,6 +101,13 @@ def shadow_text(d, xy, text, fnt, width, fill, gap):
 def photo_layers(scene, backdrop):
     """動かない部分（背景と文字）と、寄せていく写真を返す。"""
     art = Image.open(ROOT / scene["image"]).convert("RGB") if scene.get("image") else None
+    if art:
+        # 縦に長い写真は、下のボタンに文字がかぶらないように、上下を切って 1080x880 までにする
+        max_h = int(scene.get("max_h", 880))
+        keep = art.width * max_h / W
+        if art.height > keep:
+            top = round((art.height - keep) * float(scene.get("focus_y", 0.5)))
+            art = art.crop((0, top, art.width, top + round(keep)))
     src = art or backdrop
     if src is not None:
         bg = cover_fit(src, W, H).filter(ImageFilter.GaussianBlur(40))
