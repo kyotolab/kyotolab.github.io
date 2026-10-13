@@ -17,11 +17,19 @@ image のない場面は白地に文字だけ。音は入れない（無音の�
 "style": "photo" にすると、写真を主役にした形になる。ぼかした写真を背景に敷き、
 写真を幅いっぱいに置いてゆっくり寄せ、白い大きな文字を上に重ねる。場面は溶かさずに切り替える。
 旅行のリールでよく見る形で、最初の1枚目で何の話かが分かるようにする。
+
+"style": "video" にすると、撮った動画を縦長に編集する。動画は4:5に切り、ぼかした自分自身を背景に敷いて、
+上に大きな文字を時間に合わせて重ねる。元の音は使わず、無音のトラックを付ける（人の声が入るため）。
+撮った動画は公開リポジトリに入れない。spec の "source" か、環境変数 REEL_SOURCE でパスを渡す。
+
+    {"style": "video", "source": "IMG_1134.mov", "start": 0, "end": 10.5, "crop_x": 0.5,
+     "texts": [{"from": 0, "to": 3.6, "label": "ARASHIYAMA", "head": "POV: ...", "body": "..."}]}
 Instagram の画面の下と右にはボタンが重なるので、文字は真ん中から上に置く。
 Pillow と ffmpeg が要る（python3 -m pip install pillow imageio-ffmpeg）。GitHub Actions では動かさない。
 """
 
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -150,12 +158,85 @@ def build_photo(scenes, out):
     return total
 
 
+VID_Y, VID_H = 230, 1350  # 動画を置く縦の位置と高さ（4:5）
+TEXT_FADE = 0.2
+
+
+def text_layer(t, with_frame=False):
+    """動画の上に重ねる、透明な1080x1920の画像。with_frame なら、上の影と名前だけを描く。"""
+    im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    if with_frame:
+        for y in range(VID_Y, VID_Y + 760):
+            a = round(150 * (1 - (y - VID_Y) / 760) ** 1.6)
+            d.line((0, y, W, y), fill=(0, 0, 0, a))
+        d.text((PAD, 130), f"KYOTO LAB  {HANDLE}", font=font(30), fill=(240, 240, 240, 255))
+        return im
+    y = VID_Y + 90
+    if t.get("label"):
+        d.text((PAD, y), t["label"], font=font(42, True), fill="#F2C14E")
+        y += 84
+    y = shadow_text(d, (PAD, y), t["head"], font(96, True), W - 2 * PAD, "#FFFFFF", 14)
+    if t.get("body"):
+        shadow_text(d, (PAD, y + 40), t["body"], font(52), W - 2 * PAD, "#F0F0F0", 18)
+    return im
+
+
+def build_video(spec, out):
+    src = Path(os.environ.get("REEL_SOURCE") or spec["source"]).expanduser()
+    if not src.is_file():
+        raise SystemExit(f"元の動画がない: {src}（REEL_SOURCE にパスを渡す）")
+    start, end = float(spec.get("start", 0)), float(spec["end"])
+    dur = end - start
+    cx = float(spec.get("crop_x", 0.5))
+    texts = spec["texts"]
+    with tempfile.TemporaryDirectory() as tmp:
+        layers = [text_layer(None, with_frame=True)] + [text_layer(t) for t in texts]
+        inputs = ["-ss", f"{start}", "-t", f"{dur}", "-i", str(src)]
+        for i, im in enumerate(layers):
+            p = Path(tmp) / f"t{i}.png"
+            im.save(p)
+            inputs += ["-loop", "1", "-framerate", str(FPS), "-t", f"{dur}", "-i", str(p)]
+        chain = [
+            "[0:v]split=2[a][b]",
+            f"[a]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},boxblur=40:2,eq=brightness=-0.2[bg]",
+            f"[b]crop=ih*4/5:ih:(iw-ow)*{cx}:0,scale={W}:{VID_H}:flags=lanczos[fg]",
+            f"[bg][fg]overlay=0:{VID_Y}[base]",
+            "[base][1:v]overlay=0:0[v0]",
+        ]
+        for i, t in enumerate(texts):
+            a, b = float(t["from"]), float(t["to"])
+            chain.append(
+                f"[{i + 2}:v]format=rgba,fade=t=in:st={a}:d={TEXT_FADE}:alpha=1,"
+                f"fade=t=out:st={b - TEXT_FADE}:d={TEXT_FADE}:alpha=1[x{i}]"
+            )
+            chain.append(f"[v{i}][x{i}]overlay=0:0:eof_action=pass[v{i + 1}]")
+        chain.append(f"[v{len(texts)}]format=yuv420p[v]")
+        n = len(layers) + 1
+        cmd = [ffmpeg(), "-y", "-loglevel", "error", *inputs,
+               "-f", "lavfi", "-t", f"{dur}", "-i", "anullsrc=channel_layout=stereo:sample_rate=44100",
+               "-filter_complex", ";".join(chain), "-map", "[v]", "-map", f"{n}:a",
+               "-map_metadata", "-1", "-map_chapters", "-1",
+               "-c:v", "libx264", "-profile:v", "high", "-preset", "slow", "-crf", "25", "-r", str(FPS),
+               "-c:a", "aac", "-b:a", "128k", "-shortest", "-movflags", "+faststart",
+               str(out / "reel.mp4")]
+        subprocess.run(cmd, check=True)
+        # 表紙は、最初の文字が出そろった1秒のところ
+        subprocess.run([ffmpeg(), "-y", "-loglevel", "error", "-ss", "1.0", "-i", str(out / "reel.mp4"),
+                        "-frames:v", "1", "-q:v", "3", str(out / "cover.jpg")], check=True)
+    return dur
+
+
 def build(spec_path):
     spec_path = Path(spec_path)
     spec = json.loads(spec_path.read_text(encoding="utf-8"))
-    scenes = spec["scenes"]
     out = ROOT / "assets" / "ig" / spec_path.stem
     out.mkdir(parents=True, exist_ok=True)
+    if spec.get("style") == "video":
+        dur = build_video(spec, out)
+        print(f"video: {(out / 'reel.mp4').relative_to(ROOT).as_posix()}（{dur:.1f}秒）")
+        return
+    scenes = spec.get("scenes")
     if spec.get("style") == "photo":
         total = build_photo(scenes, out)
         print(f"video: {(out / 'reel.mp4').relative_to(ROOT).as_posix()}（{total:.1f}秒）")

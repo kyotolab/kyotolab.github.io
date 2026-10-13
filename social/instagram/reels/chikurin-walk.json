@@ -1,0 +1,12 @@
+{
+  "style": "video",
+  "source": "IMG_1134.mov",
+  "start": 0,
+  "end": 10.5,
+  "crop_x": 0.5,
+  "texts": [
+    {"from": 0, "to": 3.6, "label": "ARASHIYAMA, KYOTO", "head": "POV: You walk into Kyoto's bamboo forest"},
+    {"from": 3.6, "to": 7.0, "label": "WHEN TO GO", "head": "Quiet before 8 a.m.", "body": "After 8, the path turns into a slow line."},
+    {"from": 7.0, "to": 10.5, "label": "BAMBOO GROVE", "head": "No gate. No ticket.", "body": "Save it. Send it to a travel buddy."}
+  ]
+}
