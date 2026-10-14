@@ -25,6 +25,8 @@ image のない場面は白地に文字だけ。音は入れない（無音の�
 
     {"style": "video", "source": "IMG_1134.mov", "start": 0, "end": 10.5, "crop_x": 0.5,
      "texts": [{"from": 0, "to": 3.6, "label": "ARASHIYAMA", "head": "POV: ...", "body": "..."}]}
+縦に撮った動画（幅が4:5に足りない）は、"layout": "full" にする。画面いっぱいに置き、"zoom"（既定0.06）の分だけ
+ゆっくり寄せ、"focus_x"・"focus_y"（0〜1）で寄せる先を決める。文字は左の半分に収め、そこだけ暗くして読ませる。
 Instagram の画面の下と右にはボタンが重なるので、文字は真ん中から上に置く。
 Pillow と ffmpeg が要る（python3 -m pip install pillow imageio-ffmpeg）。GitHub Actions では動かさない。
 """
@@ -170,23 +172,45 @@ VID_Y, VID_H = 230, 1350  # 動画を置く縦の位置と高さ（4:5）
 TEXT_FADE = 0.2
 
 
-def text_layer(t, with_frame=False):
+def full_shade():
+    """縦動画の左の半分を暗くする影。右の被写体は明るいまま残す。"""
+    from PIL import ImageChops
+    hx = Image.new("L", (W, 1))
+    hx.putdata([max(0, round(255 * max(0, 1 - x / 800) ** 1.3)) for x in range(W)])
+    vy = Image.new("L", (1, H))
+    vy.putdata([255 if y < 760 else round(255 * max(0, 1 - (y - 760) / 520)) for y in range(H)])
+    mask = ImageChops.multiply(hx.resize((W, H)), vy.resize((W, H))).point(lambda v: v * 165 // 255)
+    top = Image.new("L", (1, H))
+    top.putdata([round(100 * max(0, 1 - y / 360)) for y in range(H)])
+    mask = ImageChops.lighter(mask, top.resize((W, H)))
+    im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    im.putalpha(mask)
+    return im
+
+
+def text_layer(t, with_frame=False, full=False):
     """動画の上に重ねる、透明な1080x1920の画像。with_frame なら、上の影と名前だけを描く。"""
+    if with_frame:
+        if full:
+            im = full_shade()
+        else:
+            im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+            d = ImageDraw.Draw(im)
+            for y in range(VID_Y, VID_Y + 760):
+                a = round(150 * (1 - (y - VID_Y) / 760) ** 1.6)
+                d.line((0, y, W, y), fill=(0, 0, 0, a))
+        ImageDraw.Draw(im).text((PAD, 130), f"KYOTO LAB  {HANDLE}", font=font(30), fill=(240, 240, 240, 255))
+        return im
     im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
-    if with_frame:
-        for y in range(VID_Y, VID_Y + 760):
-            a = round(150 * (1 - (y - VID_Y) / 760) ** 1.6)
-            d.line((0, y, W, y), fill=(0, 0, 0, a))
-        d.text((PAD, 130), f"KYOTO LAB  {HANDLE}", font=font(30), fill=(240, 240, 240, 255))
-        return im
-    y = VID_Y + 90
+    y = 330 if full else VID_Y + 90
+    width = 640 if full else W - 2 * PAD
     if t.get("label"):
         d.text((PAD, y), t["label"], font=font(42, True), fill="#F2C14E")
         y += 84
-    y = shadow_text(d, (PAD, y), t["head"], font(96, True), W - 2 * PAD, "#FFFFFF", 14)
+    y = shadow_text(d, (PAD, y), t["head"], font(84 if full else 96, True), width, "#FFFFFF", 14)
     if t.get("body"):
-        shadow_text(d, (PAD, y + 40), t["body"], font(52), W - 2 * PAD, "#F0F0F0", 18)
+        shadow_text(d, (PAD, y + 40), t["body"], font(46 if full else 52), width, "#F0F0F0", 18)
     return im
 
 
@@ -197,21 +221,33 @@ def build_video(spec, out):
     start, end = float(spec.get("start", 0)), float(spec["end"])
     dur = end - start
     cx = float(spec.get("crop_x", 0.5))
+    full = spec.get("layout") == "full"
     texts = spec["texts"]
     with tempfile.TemporaryDirectory() as tmp:
-        layers = [text_layer(None, with_frame=True)] + [text_layer(t) for t in texts]
+        layers = [text_layer(None, with_frame=True, full=full)] + [text_layer(t, full=full) for t in texts]
         inputs = ["-ss", f"{start}", "-t", f"{dur}", "-i", str(src)]
         for i, im in enumerate(layers):
             p = Path(tmp) / f"t{i}.png"
             im.save(p)
             inputs += ["-loop", "1", "-framerate", str(FPS), "-t", f"{dur}", "-i", str(p)]
-        chain = [
-            "[0:v]split=2[a][b]",
-            f"[a]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},boxblur=40:2,eq=brightness=-0.2[bg]",
-            f"[b]crop=ih*4/5:ih:(iw-ow)*{cx}:0,scale={W}:{VID_H}:flags=lanczos[fg]",
-            f"[bg][fg]overlay=0:{VID_Y}[base]",
-            "[base][1:v]overlay=0:0[v0]",
-        ]
+        if full:
+            # 2倍に伸ばしてから寄せる（zoompan は整数の位置で動くので、そのままだとカクつく）
+            z = float(spec.get("zoom", 0.06))
+            fx, fy = float(spec.get("focus_x", 0.5)), float(spec.get("focus_y", 0.5))
+            frames = max(1, round(dur * FPS))
+            chain = [
+                f"[0:v]scale={W * 2}:{H * 2}:force_original_aspect_ratio=increase:flags=lanczos,crop={W * 2}:{H * 2},"
+                f"zoompan=z='1+{z}*on/{frames}':x='(iw-iw/zoom)*{fx}':y='(ih-ih/zoom)*{fy}':d=1:s={W}x{H}:fps={FPS}[base]",
+                "[base][1:v]overlay=0:0[v0]",
+            ]
+        else:
+            chain = [
+                "[0:v]split=2[a][b]",
+                f"[a]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},boxblur=40:2,eq=brightness=-0.2[bg]",
+                f"[b]crop=ih*4/5:ih:(iw-ow)*{cx}:0,scale={W}:{VID_H}:flags=lanczos[fg]",
+                f"[bg][fg]overlay=0:{VID_Y}[base]",
+                "[base][1:v]overlay=0:0[v0]",
+            ]
         for i, t in enumerate(texts):
             a, b = float(t["from"]), float(t["to"])
             chain.append(
