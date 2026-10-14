@@ -1,0 +1,18 @@
+{
+  "style": "video",
+  "layout": "full",
+  "source": "IMG_1167.mov",
+  "start": 0,
+  "end": 17.4,
+  "zoom": 0.07,
+  "focus_x": 0.75,
+  "focus_y": 0.4,
+  "texts": [
+    {"from": 0, "to": 3.2, "label": "NIJO CASTLE, KYOTO", "head": "4 tips before you go"},
+    {"from": 3.2, "to": 6.2, "label": "01  WHEN TO GO", "head": "Be there at 8:45", "body": "Quietest right at opening. Last entry is 4 p.m."},
+    {"from": 6.2, "to": 9.2, "label": "02  WHAT TO SEE", "head": "Palace first, gardens later", "body": "It is a one-way walk in socks. Tour groups slow it down."},
+    {"from": 9.2, "to": 12.2, "label": "03  LISTEN", "head": "The floors chirp", "body": "Old boards and nails, probably not an alarm."},
+    {"from": 12.2, "to": 15.2, "label": "04  GOOD TO KNOW", "head": "No photos inside", "body": "The palace is closed on Tuesdays in Jan, Jul, Aug and Dec."},
+    {"from": 15.2, "to": 17.4, "label": "SAVE THIS", "head": "Send it to your travel buddy."}
+  ]
+}
